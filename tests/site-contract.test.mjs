@@ -58,8 +58,8 @@ test("site uses HTTPS canonical and sharing metadata", () => {
 });
 
 test("stylesheet and script use the current cache-busting version", () => {
-  assert.match(html, /href="styles\.css\?v=experience-density-1"/);
-  assert.match(html, /src="script\.js\?v=experience-density-1"/);
+  assert.match(html, /href="styles\.css\?v=training-density-1"/);
+  assert.match(html, /src="script\.js\?v=training-density-1"/);
 });
 
 test("hero exposes recruiter actions and downloadable resume files", () => {
@@ -356,6 +356,28 @@ test("training section maps certificates to equipment scope field work and verif
   assert.match(script, /"\.certification-grid article:nth-child\(1\) \.training-evidence dt:nth-of-type\(1\)": "设备范围"/);
   assert.match(css, /\.training-evidence\s*{[\s\S]*?display:\s*grid;[\s\S]*?grid-template-columns:\s*minmax\(96px,\s*auto\) minmax\(0,\s*1fr\);/);
   assert.match(css, /@media \(max-width:\s*560px\)[\s\S]*?\.training-evidence\s*{[\s\S]*?grid-template-columns:\s*1fr;/);
+});
+
+test("training cards avoid duplicate bullet lists after evidence maps", () => {
+  const certificationGridStart = html.indexOf('<div class="certification-grid">');
+  const certificationGridEnd = html.indexOf("</section>", certificationGridStart);
+  assert.notEqual(certificationGridStart, -1, "missing certification grid");
+  assert.notEqual(certificationGridEnd, -1, "missing certification section end");
+
+  const certificationGridSource = html.slice(certificationGridStart, certificationGridEnd);
+  assert.doesNotMatch(certificationGridSource, /<ul>/);
+  assert.doesNotMatch(certificationGridSource, /<li>/);
+
+  const publicSource = `${html}\n${script}\n${css}`;
+  assert.doesNotMatch(script, /\.certification-grid article:nth-child\(\d+\) li/);
+  assert.doesNotMatch(css, /\.certification-grid ul|\.certification-grid li/);
+  assert.doesNotMatch(publicSource, /V60 \/ V60 Plus service training/);
+  assert.doesNotMatch(publicSource, /Trilogy 202 and Trilogy Evo service training/);
+  assert.doesNotMatch(publicSource, /Avalon FM20 \/ FM30, Efficia CM series, and HeartStart Intrepid training/);
+  assert.doesNotMatch(publicSource, /EPIQ \/ Affiniti and CX30 \/ CX50 ultrasound training/);
+  assert.doesNotMatch(publicSource, /BD FIX100 dispensing service basic training/);
+  assert.doesNotMatch(publicSource, /Trilogy 202 和 Trilogy Evo service training/);
+  assert.doesNotMatch(publicSource, /厂商技术培训和服务准备/);
 });
 
 test("hidden personal galleries are not loaded by the compact homepage", () => {

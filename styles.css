@@ -1349,31 +1349,6 @@ main:focus {
   background: var(--paper);
 }
 
-.certification-grid ul {
-  display: grid;
-  gap: 10px;
-  margin: 18px 0 0;
-  padding: 0;
-  list-style: none;
-}
-
-.certification-grid li {
-  position: relative;
-  padding-left: 18px;
-  color: var(--muted);
-}
-
-.certification-grid li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.72em;
-  width: 7px;
-  height: 7px;
-  border-radius: 999px;
-  background: var(--teal);
-}
-
 .training-evidence {
   display: grid;
   grid-template-columns: minmax(96px, auto) minmax(0, 1fr);

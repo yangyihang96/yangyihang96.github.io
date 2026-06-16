@@ -328,9 +328,6 @@ const translations = {
         "I found relevant service and technical training certificates in my local files. This public page lists only safe titles and equipment scopes; original PDFs, certificate numbers, signatures, and verification details stay offline.",
       ".certification-grid article:nth-child(1) span": "2023 - 2025",
       ".certification-grid article:nth-child(1) h3": "Respiratory and monitoring service",
-      ".certification-grid article:nth-child(1) li:nth-child(1)": "V60 / V60 Plus service training",
-      ".certification-grid article:nth-child(1) li:nth-child(2)": "Trilogy 202 and Trilogy Evo service training",
-      ".certification-grid article:nth-child(1) li:nth-child(3)": "Avalon FM20 / FM30, Efficia CM series, and HeartStart Intrepid training",
       ".certification-grid article:nth-child(1) .training-evidence dt:nth-of-type(1)": "Equipment scope",
       ".certification-grid article:nth-child(1) .training-evidence dd:nth-of-type(1)":
         "V60, V60 Plus, Trilogy, Avalon, Efficia, HeartStart",
@@ -342,9 +339,6 @@ const translations = {
         "Offline certificates and service records available for formal checks",
       ".certification-grid article:nth-child(2) span": "2023 - 2025",
       ".certification-grid article:nth-child(2) h3": "Imaging and diagnostic equipment",
-      ".certification-grid article:nth-child(2) li:nth-child(1)": "EPIQ / Affiniti and CX30 / CX50 ultrasound training",
-      ".certification-grid article:nth-child(2) li:nth-child(2)": "Horizon DEXA technical training",
-      ".certification-grid article:nth-child(2) li:nth-child(3)": "X-ray service and installation course",
       ".certification-grid article:nth-child(2) .training-evidence dt:nth-of-type(1)": "Equipment scope",
       ".certification-grid article:nth-child(2) .training-evidence dd:nth-of-type(1)":
         "EPIQ, Affiniti, CX30, CX50, Horizon DEXA, X-ray systems",
@@ -356,9 +350,6 @@ const translations = {
         "Training records and service notes available for private review",
       ".certification-grid article:nth-child(3) span": "2024",
       ".certification-grid article:nth-child(3) h3": "Automation and specialty systems",
-      ".certification-grid article:nth-child(3) li:nth-child(1)": "BD FIX100 dispensing service basic training",
-      ".certification-grid article:nth-child(3) li:nth-child(2)": "Vendor-led practical service preparation",
-      ".certification-grid article:nth-child(3) li:nth-child(3)": "Original certificates available for private verification",
       ".certification-grid article:nth-child(3) .training-evidence dt:nth-of-type(1)": "Equipment scope",
       ".certification-grid article:nth-child(3) .training-evidence dd:nth-of-type(1)":
         "BD FIX100 and vendor-led specialty service preparation",
@@ -737,9 +728,6 @@ const translations = {
         "我在本地文件里找到了多份服务培训和技术培训证书。公开网页只放适合展示的培训方向和设备范围，不放 PDF 原件、证书编号、签名或核验细节。",
       ".certification-grid article:nth-child(1) span": "2023 - 2025",
       ".certification-grid article:nth-child(1) h3": "呼吸与监护设备服务",
-      ".certification-grid article:nth-child(1) li:nth-child(1)": "V60 / V60 Plus service training",
-      ".certification-grid article:nth-child(1) li:nth-child(2)": "Trilogy 202 和 Trilogy Evo service training",
-      ".certification-grid article:nth-child(1) li:nth-child(3)": "Avalon FM20 / FM30、Efficia CM 系列和 HeartStart Intrepid 培训",
       ".certification-grid article:nth-child(1) .training-evidence dt:nth-of-type(1)": "设备范围",
       ".certification-grid article:nth-child(1) .training-evidence dd:nth-of-type(1)":
         "V60、V60 Plus、Trilogy、Avalon、Efficia、HeartStart",
@@ -751,9 +739,6 @@ const translations = {
         "线下证书和服务记录可在正式流程中核验",
       ".certification-grid article:nth-child(2) span": "2023 - 2025",
       ".certification-grid article:nth-child(2) h3": "影像与诊断设备",
-      ".certification-grid article:nth-child(2) li:nth-child(1)": "EPIQ / Affiniti 和 CX30 / CX50 ultrasound training",
-      ".certification-grid article:nth-child(2) li:nth-child(2)": "Horizon DEXA technical training",
-      ".certification-grid article:nth-child(2) li:nth-child(3)": "X-ray service and installation course",
       ".certification-grid article:nth-child(2) .training-evidence dt:nth-of-type(1)": "设备范围",
       ".certification-grid article:nth-child(2) .training-evidence dd:nth-of-type(1)":
         "EPIQ、Affiniti、CX30、CX50、Horizon DEXA、X-ray systems",
@@ -765,9 +750,6 @@ const translations = {
         "培训记录和服务笔记可在私下核验时提供",
       ".certification-grid article:nth-child(3) span": "2024",
       ".certification-grid article:nth-child(3) h3": "自动化与专项系统",
-      ".certification-grid article:nth-child(3) li:nth-child(1)": "BD FIX100 dispensing service basic training",
-      ".certification-grid article:nth-child(3) li:nth-child(2)": "厂商技术培训和服务准备",
-      ".certification-grid article:nth-child(3) li:nth-child(3)": "证书原件可在正式核验时单独提供",
       ".certification-grid article:nth-child(3) .training-evidence dt:nth-of-type(1)": "设备范围",
       ".certification-grid article:nth-child(3) .training-evidence dd:nth-of-type(1)":
         "BD FIX100 和厂商专项服务准备",
