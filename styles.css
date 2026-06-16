@@ -2236,6 +2236,204 @@ body.resume-style {
   }
 }
 
+/* Compact resume redesign */
+.resume-style.resume-compact .overview-section,
+.resume-style.resume-compact .scope-section,
+.resume-style.resume-compact .process-section,
+.resume-style.resume-compact .credentials-section,
+.resume-style.resume-compact .interests-section,
+.resume-style.resume-compact .moments-section,
+.resume-style.resume-compact .family-section,
+.resume-style.resume-compact .capabilities,
+.resume-style.resume-compact .gallery-section {
+  display: none;
+}
+
+.resume-style.resume-compact .hero {
+  background:
+    radial-gradient(circle at 88% 18%, rgba(15, 118, 110, 0.12), transparent 30%),
+    linear-gradient(180deg, #ffffff 0%, #f6f8f4 100%);
+}
+
+.resume-style.resume-compact .hero-copy {
+  width: min(1180px, calc(100% - 48px));
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 340px);
+  gap: clamp(30px, 5vw, 64px);
+  align-items: end;
+  padding: 132px 0 64px;
+}
+
+.resume-style.resume-compact .hero-main {
+  min-width: 0;
+}
+
+.resume-style.resume-compact .hero h1 {
+  max-width: 780px;
+}
+
+.resume-style.resume-compact .hero-subtitle {
+  max-width: 700px;
+}
+
+.resume-style.resume-compact .hero-meta {
+  max-width: 760px;
+}
+
+.resume-style.resume-compact .hero-profile-card {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 14px;
+  border: 1px solid rgba(19, 33, 31, 0.14);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 24px 70px rgba(19, 33, 31, 0.12);
+}
+
+.resume-style.resume-compact .hero-profile-card img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  display: block;
+  object-fit: cover;
+  object-position: center 28%;
+  border-radius: 6px;
+  background: #eef1f2;
+}
+
+.resume-style.resume-compact .hero-card-body {
+  display: grid;
+  gap: 8px;
+  padding: 18px 4px 2px;
+}
+
+.resume-style.resume-compact .hero-card-kicker {
+  color: var(--teal);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.resume-style.resume-compact .hero-profile-card strong {
+  color: var(--ink);
+  font-size: 22px;
+  line-height: 1.1;
+}
+
+.resume-style.resume-compact .hero-card-note {
+  margin: 0;
+  color: var(--ink-2);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.resume-style.resume-compact .statement {
+  padding: 48px 0;
+}
+
+.resume-style.resume-compact .statement-inner {
+  display: block;
+}
+
+.resume-style.resume-compact .statement-copy > p {
+  max-width: 1040px;
+  font-size: clamp(24px, 3.2vw, 38px);
+}
+
+.resume-style.resume-compact .profile-panel {
+  display: none;
+}
+
+.resume-style.resume-compact .brief-section,
+.resume-style.resume-compact .experience-section,
+.resume-style.resume-compact .case-section,
+.resume-style.resume-compact .study-section,
+.resume-style.resume-compact .certification-section,
+.resume-style.resume-compact .contact-section {
+  padding-top: 64px;
+  padding-bottom: 64px;
+}
+
+.resume-style.resume-compact .work-section,
+.resume-style.resume-compact .life-section {
+  grid-template-columns: minmax(260px, 0.66fr) minmax(0, 1.34fr);
+}
+
+.resume-style.resume-compact .story-media {
+  min-height: 340px;
+}
+
+.resume-style.resume-compact .story-content {
+  padding: clamp(42px, 5vw, 66px);
+}
+
+@media (max-width: 920px) {
+  .resume-style.resume-compact .hero-copy {
+    grid-template-columns: 1fr;
+    width: min(100% - 40px, 760px);
+    gap: 24px;
+  }
+
+  .resume-style.resume-compact .hero-profile-card {
+    width: min(100%, 560px);
+    display: grid;
+    grid-template-columns: 112px 1fr;
+    gap: 16px;
+    align-items: center;
+    justify-content: start;
+  }
+
+  .resume-style.resume-compact .hero-profile-card img {
+    aspect-ratio: 1;
+  }
+
+  .resume-style.resume-compact .hero-card-body {
+    padding: 0;
+  }
+
+  .resume-style.resume-compact .work-section,
+  .resume-style.resume-compact .life-section {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .resume-style.resume-compact .hero-copy {
+    width: calc(100% - 32px);
+    padding-top: 120px;
+    padding-bottom: 38px;
+  }
+
+  .resume-style.resume-compact .statement,
+  .resume-style.resume-compact .brief-section,
+  .resume-style.resume-compact .experience-section,
+  .resume-style.resume-compact .case-section,
+  .resume-style.resume-compact .study-section,
+  .resume-style.resume-compact .certification-section,
+  .resume-style.resume-compact .contact-section {
+    padding-top: 52px;
+    padding-bottom: 52px;
+  }
+}
+
+@media (max-width: 560px) {
+  .resume-style.resume-compact .hero-profile-card {
+    grid-template-columns: 78px 1fr;
+    gap: 12px;
+    padding: 10px;
+  }
+
+  .resume-style.resume-compact .hero-profile-card strong {
+    font-size: 17px;
+  }
+
+  .resume-style.resume-compact .hero-card-note {
+    font-size: 13px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
