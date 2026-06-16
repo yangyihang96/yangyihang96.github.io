@@ -574,7 +574,7 @@ main:focus {
 
 .proof-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
 }
 
@@ -603,6 +603,29 @@ main:focus {
   margin: 0;
   color: var(--muted);
   font-size: 15px;
+}
+
+.proof-evidence {
+  display: grid;
+  grid-template-columns: minmax(96px, auto) minmax(0, 1fr);
+  gap: 8px 12px;
+  margin: 14px 0 0;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.proof-evidence dt {
+  color: var(--teal);
+  font-size: 11px;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.proof-evidence dd {
+  min-width: 0;
+  margin: 0;
+  color: var(--ink-2);
+  overflow-wrap: anywhere;
 }
 
 .profile-panel {
@@ -2141,6 +2164,18 @@ main:focus {
     gap: 4px;
     padding-top: 12px;
     font-size: 13px;
+  }
+
+  .resume-style.resume-compact .proof-grid article {
+    padding: 14px;
+  }
+
+  .proof-evidence {
+    grid-template-columns: 1fr;
+    gap: 4px;
+    margin-top: 10px;
+    font-size: 13px;
+    line-height: 1.35;
   }
 
   .statement {

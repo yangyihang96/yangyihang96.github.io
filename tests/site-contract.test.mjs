@@ -58,8 +58,8 @@ test("site uses HTTPS canonical and sharing metadata", () => {
 });
 
 test("stylesheet and script use the current cache-busting version", () => {
-  assert.match(html, /href="styles\.css\?v=experience-priority-3"/);
-  assert.match(html, /src="script\.js\?v=experience-priority-3"/);
+  assert.match(html, /href="styles\.css\?v=proof-checklist-1"/);
+  assert.match(html, /src="script\.js\?v=proof-checklist-1"/);
 });
 
 test("hero exposes recruiter actions and downloadable resume files", () => {
@@ -201,14 +201,22 @@ test("fit section gives a recruiter-facing role-fit verdict", () => {
 
 test("early recruiter proof points summarize equipment, verification, records, and handover", () => {
   assert.match(html, /class="proof-strip reveal"/);
-  assert.match(html, /aria-label="Recruiter proof points"/);
+  assert.match(html, /aria-label="Recruiter evidence checklist"/);
   assert.equal(articleCount("proof-grid"), 4);
-  assert.match(html, /Ventilation, monitoring, ultrasound, DEXA, pharmacy automation/);
-  assert.match(html, /Functional tests, performance checks, and safety-aware verification/);
-  assert.match(html, /Simpro work orders, service reports, serial details, and equipment history/);
-  assert.match(html, /Clinical users, biomedical teams, vendors, and internal engineers/);
-  assert.match(script, /"\.proof-grid article:nth-child\(1\) h3": "Equipment range"/);
+  assert.equal((html.match(/class="proof-evidence"/g) || []).length, 4);
+  assert.match(html, /<dt>Public evidence<\/dt>\s*<dd>Experience card and skills matrix show ventilation, monitoring, ultrasound, DEXA, pharmacy automation, and general biomedical equipment\.<\/dd>/);
+  assert.match(html, /<dt>Private check<\/dt>\s*<dd>Ask for relevant training records or certificate context only after role fit is clear\.<\/dd>/);
+  assert.match(html, /<dt>Public evidence<\/dt>\s*<dd>Current role summary shows functional checks, performance evidence, service reports, and escalation status\.<\/dd>/);
+  assert.match(html, /<dt>Private check<\/dt>\s*<dd>Ask in interview for one device issue: symptom, test step, verified result, and handover\.<\/dd>/);
+  assert.match(script, /"\.proof-grid": { "aria-label": "Recruiter evidence checklist" }/);
+  assert.match(script, /"\.proof-grid": { "aria-label": "招聘方证据核对清单" }/);
+  assert.match(script, /"\.proof-grid article:nth-child\(1\) h3": "Equipment scope"/);
   assert.match(script, /"\.proof-grid article:nth-child\(1\) h3": "设备范围"/);
+  assert.match(css, /\.proof-grid\s*{[^}]*grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\);/);
+  assert.match(css, /\.proof-evidence\s*{[^}]*display:\s*grid;[^}]*grid-template-columns:\s*minmax\(96px,\s*auto\) minmax\(0,\s*1fr\);/);
+  assert.match(css, /@media \(max-width:\s*560px\)\s*{(?:(?!@media)[\s\S])*?\.resume-style\.resume-compact \.proof-grid article\s*{[^}]*padding:\s*14px;/);
+  assert.match(css, /@media \(max-width:\s*560px\)\s*{(?:(?!@media)[\s\S])*?\.proof-evidence\s*{[^}]*font-size:\s*13px;/);
+  assert.match(css, /@media \(max-width:\s*560px\)[\s\S]*?\.proof-evidence\s*{[\s\S]*?grid-template-columns:\s*1fr;/);
   assert.match(css, /@media \(max-width:\s*760px\)[\s\S]*?\.proof-heading\s*{[\s\S]*?grid-template-columns:\s*1fr;/);
   assert.match(css, /@media \(max-width:\s*760px\)[\s\S]*?\.proof-grid article\s*{[\s\S]*?min-height:\s*0;[\s\S]*?padding:\s*18px;/);
   assert.match(css, /@media \(max-width:\s*760px\)[\s\S]*?\.resume-style \.proof-grid article\s*{[\s\S]*?padding:\s*18px;/);

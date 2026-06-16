@@ -66,21 +66,37 @@ const translations = {
       ".proof-strip .section-kicker": "Recruiter Proof",
       "#proof-title": "The evidence points are kept close to the top.",
       ".proof-grid article:nth-child(1) span": "Equipment",
-      ".proof-grid article:nth-child(1) h3": "Equipment range",
-      ".proof-grid article:nth-child(1) p":
-        "Ventilation, monitoring, ultrasound, DEXA, pharmacy automation, and general biomedical equipment.",
+      ".proof-grid article:nth-child(1) h3": "Equipment scope",
+      ".proof-grid article:nth-child(1) .proof-evidence dt:nth-of-type(1)": "Public evidence",
+      ".proof-grid article:nth-child(1) .proof-evidence dd:nth-of-type(1)":
+        "Experience card and skills matrix show ventilation, monitoring, ultrasound, DEXA, pharmacy automation, and general biomedical equipment.",
+      ".proof-grid article:nth-child(1) .proof-evidence dt:nth-of-type(2)": "Private check",
+      ".proof-grid article:nth-child(1) .proof-evidence dd:nth-of-type(2)":
+        "Ask for relevant training records or certificate context only after role fit is clear.",
       ".proof-grid article:nth-child(2) span": "Verification",
-      ".proof-grid article:nth-child(2) h3": "Test evidence",
-      ".proof-grid article:nth-child(2) p":
-        "Functional tests, performance checks, and safety-aware verification that can be reviewed later.",
+      ".proof-grid article:nth-child(2) h3": "Verification method",
+      ".proof-grid article:nth-child(2) .proof-evidence dt:nth-of-type(1)": "Public evidence",
+      ".proof-grid article:nth-child(2) .proof-evidence dd:nth-of-type(1)":
+        "Current role summary shows functional checks, performance evidence, service reports, and escalation status.",
+      ".proof-grid article:nth-child(2) .proof-evidence dt:nth-of-type(2)": "Private check",
+      ".proof-grid article:nth-child(2) .proof-evidence dd:nth-of-type(2)":
+        "Ask in interview for one device issue: symptom, test step, verified result, and handover.",
       ".proof-grid article:nth-child(3) span": "Records",
-      ".proof-grid article:nth-child(3) h3": "Service documentation",
-      ".proof-grid article:nth-child(3) p":
-        "Simpro work orders, service reports, serial details, and equipment history kept traceable.",
+      ".proof-grid article:nth-child(3) h3": "Record trail",
+      ".proof-grid article:nth-child(3) .proof-evidence dt:nth-of-type(1)": "Public evidence",
+      ".proof-grid article:nth-child(3) .proof-evidence dd:nth-of-type(1)":
+        "Experience outcome lists Simpro work orders, service reports, serial details, equipment history, and customer updates.",
+      ".proof-grid article:nth-child(3) .proof-evidence dt:nth-of-type(2)": "Private check",
+      ".proof-grid article:nth-child(3) .proof-evidence dd:nth-of-type(2)":
+        "Ask how notes are written so the next engineer or biomedical team can continue safely.",
       ".proof-grid article:nth-child(4) span": "Handover",
-      ".proof-grid article:nth-child(4) h3": "Communication path",
-      ".proof-grid article:nth-child(4) p":
-        "Clinical users, biomedical teams, vendors, and internal engineers aligned on status and next steps.",
+      ".proof-grid article:nth-child(4) h3": "Handover path",
+      ".proof-grid article:nth-child(4) .proof-evidence dt:nth-of-type(1)": "Public evidence",
+      ".proof-grid article:nth-child(4) .proof-evidence dd:nth-of-type(1)":
+        "Case notes show scenario, action, verification, and handover without customer or serial details.",
+      ".proof-grid article:nth-child(4) .proof-evidence dt:nth-of-type(2)": "Private check",
+      ".proof-grid article:nth-child(4) .proof-evidence dd:nth-of-type(2)":
+        "Ask who receives the handover and what next-use status is communicated.",
       ".brief-section .section-kicker": "Screening Snapshot",
       "#brief-title": "How to assess the fit quickly after the first screen.",
       ".brief-section .section-intro":
@@ -426,6 +442,7 @@ const translations = {
       ".contact-intake": { "aria-label": "Recruiter email checklist" },
       ".hero-action-path": { "aria-label": "Recruiter action path" },
       ".fit-verdict": { "aria-label": "Recruiter role-fit verdict" },
+      ".proof-grid": { "aria-label": "Recruiter evidence checklist" },
       ".brief-grid": { "aria-label": "Recruiter screening snapshot" },
       ".overview-section": { "aria-label": "Recruiter review path" },
       ".overview-grid": { "aria-label": "Recruiter review links" },
@@ -502,20 +519,36 @@ const translations = {
       "#proof-title": "把关键证明点放在页面前半段。",
       ".proof-grid article:nth-child(1) span": "设备",
       ".proof-grid article:nth-child(1) h3": "设备范围",
-      ".proof-grid article:nth-child(1) p":
-        "Ventilation、monitoring、ultrasound、DEXA、pharmacy automation 和通用 biomedical equipment。",
+      ".proof-grid article:nth-child(1) .proof-evidence dt:nth-of-type(1)": "公开证据",
+      ".proof-grid article:nth-child(1) .proof-evidence dd:nth-of-type(1)":
+        "工作经历卡片和能力矩阵显示 ventilation、monitoring、ultrasound、DEXA、pharmacy automation 和通用 biomedical equipment。",
+      ".proof-grid article:nth-child(1) .proof-evidence dt:nth-of-type(2)": "私下核验",
+      ".proof-grid article:nth-child(1) .proof-evidence dd:nth-of-type(2)":
+        "岗位匹配清楚后，再要求相关 training records 或 certificate context。",
       ".proof-grid article:nth-child(2) span": "验证",
-      ".proof-grid article:nth-child(2) h3": "测试证据",
-      ".proof-grid article:nth-child(2) p":
-        "Functional tests、performance checks 和带安全意识的 verification，结果后续可以复查。",
+      ".proof-grid article:nth-child(2) h3": "验证方法",
+      ".proof-grid article:nth-child(2) .proof-evidence dt:nth-of-type(1)": "公开证据",
+      ".proof-grid article:nth-child(2) .proof-evidence dd:nth-of-type(1)":
+        "当前岗位摘要展示 functional checks、performance evidence、service reports 和 escalation status。",
+      ".proof-grid article:nth-child(2) .proof-evidence dt:nth-of-type(2)": "私下核验",
+      ".proof-grid article:nth-child(2) .proof-evidence dd:nth-of-type(2)":
+        "面试时让他讲一个设备问题：症状、测试步骤、验证结果和交接方式。",
       ".proof-grid article:nth-child(3) span": "记录",
-      ".proof-grid article:nth-child(3) h3": "服务文档",
-      ".proof-grid article:nth-child(3) p":
-        "Simpro 工单、service reports、serial details 和 equipment history 保持可追踪。",
+      ".proof-grid article:nth-child(3) h3": "记录链路",
+      ".proof-grid article:nth-child(3) .proof-evidence dt:nth-of-type(1)": "公开证据",
+      ".proof-grid article:nth-child(3) .proof-evidence dd:nth-of-type(1)":
+        "经历结果里列出 Simpro work orders、service reports、serial details、equipment history 和 customer updates。",
+      ".proof-grid article:nth-child(3) .proof-evidence dt:nth-of-type(2)": "私下核验",
+      ".proof-grid article:nth-child(3) .proof-evidence dd:nth-of-type(2)":
+        "询问他如何写记录，让下一位工程师或 biomedical team 可以安全继续处理。",
       ".proof-grid article:nth-child(4) span": "交接",
-      ".proof-grid article:nth-child(4) h3": "沟通路径",
-      ".proof-grid article:nth-child(4) p":
-        "和临床用户、biomedical teams、vendors、内部工程师对齐状态和下一步。",
+      ".proof-grid article:nth-child(4) h3": "交接路径",
+      ".proof-grid article:nth-child(4) .proof-evidence dt:nth-of-type(1)": "公开证据",
+      ".proof-grid article:nth-child(4) .proof-evidence dd:nth-of-type(1)":
+        "案例笔记展示 scenario、action、verification 和 handover，同时不暴露客户或序列号。",
+      ".proof-grid article:nth-child(4) .proof-evidence dt:nth-of-type(2)": "私下核验",
+      ".proof-grid article:nth-child(4) .proof-evidence dd:nth-of-type(2)":
+        "询问交接对象是谁，以及设备下一次使用状态如何被说明。",
       ".brief-section .section-kicker": "招聘筛选快照",
       "#brief-title": "第一轮看完后，可以这样快速判断匹配度。",
       ".brief-section .section-intro":
@@ -856,6 +889,7 @@ const translations = {
       ".contact-intake": { "aria-label": "招聘方邮件清单" },
       ".hero-action-path": { "aria-label": "招聘方行动路径" },
       ".fit-verdict": { "aria-label": "招聘方岗位匹配判断" },
+      ".proof-grid": { "aria-label": "招聘方证据核对清单" },
       ".brief-grid": { "aria-label": "招聘方筛选快照" },
       ".overview-section": { "aria-label": "招聘方阅读路径" },
       ".overview-grid": { "aria-label": "招聘方阅读链接" },
