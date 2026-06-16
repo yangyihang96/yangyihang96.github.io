@@ -70,6 +70,15 @@ const translations = {
       ".fit-grid article:nth-child(5) strong": "Resume and checks ready",
       ".proof-strip .section-kicker": "Recruiter Proof",
       "#proof-title": "The evidence points are kept close to the top.",
+      ".proof-boundary div:nth-child(1) strong": "Public now",
+      ".proof-boundary div:nth-child(1) span":
+        "Role scope, equipment families, service method, and safe case patterns.",
+      ".proof-boundary div:nth-child(2) strong": "Private after fit",
+      ".proof-boundary div:nth-child(2) span":
+        "Certificates, identity, right-to-work, references, and detailed employment checks.",
+      ".proof-boundary div:nth-child(3) strong": "Not published",
+      ".proof-boundary div:nth-child(3) span":
+        "Customer names, serial numbers, internal records, and site-specific details.",
       ".proof-grid article:nth-child(1) span": "Equipment",
       ".proof-grid article:nth-child(1) h3": "Equipment scope",
       ".proof-grid article:nth-child(1) .proof-evidence dt:nth-of-type(1)": "Public evidence",
@@ -359,6 +368,7 @@ const translations = {
       ".contact-response-strip": { "aria-label": "Recruiter response expectations" },
       ".hero-action-path": { "aria-label": "Recruiter action path" },
       ".fit-verdict": { "aria-label": "Recruiter role-fit verdict" },
+      ".proof-boundary": { "aria-label": "Public and private evidence boundary" },
       ".proof-grid": { "aria-label": "Recruiter evidence checklist" },
       ".brief-grid": { "aria-label": "Recruiter screening snapshot" },
       ".experience-evidence": { "aria-label": "Current field-service evidence" },
@@ -437,6 +447,15 @@ const translations = {
       ".fit-grid article:nth-child(5) strong": "简历和核验材料已准备",
       ".proof-strip .section-kicker": "招聘方快速核对",
       "#proof-title": "把关键证明点放在页面前半段。",
+      ".proof-boundary div:nth-child(1) strong": "当前公开",
+      ".proof-boundary div:nth-child(1) span":
+        "岗位范围、设备类别、服务方法和适合公开的案例框架。",
+      ".proof-boundary div:nth-child(2) strong": "匹配后私下核验",
+      ".proof-boundary div:nth-child(2) span":
+        "证书、身份、工作权利、推荐人和更详细的雇佣核验材料。",
+      ".proof-boundary div:nth-child(3) strong": "不公开",
+      ".proof-boundary div:nth-child(3) span":
+        "客户名称、序列号、内部记录和具体现场细节。",
       ".proof-grid article:nth-child(1) span": "设备",
       ".proof-grid article:nth-child(1) h3": "设备范围",
       ".proof-grid article:nth-child(1) .proof-evidence dt:nth-of-type(1)": "公开证据",
@@ -724,6 +743,7 @@ const translations = {
       ".contact-response-strip": { "aria-label": "招聘方回复预期" },
       ".hero-action-path": { "aria-label": "招聘方行动路径" },
       ".fit-verdict": { "aria-label": "招聘方岗位匹配判断" },
+      ".proof-boundary": { "aria-label": "公开与私下核验证据边界" },
       ".proof-grid": { "aria-label": "招聘方证据核对清单" },
       ".brief-grid": { "aria-label": "招聘方筛选快照" },
       ".experience-evidence": { "aria-label": "当前现场服务证据" },

@@ -533,6 +533,41 @@ main:focus {
   letter-spacing: 0;
 }
 
+.proof-boundary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  overflow: hidden;
+  margin-bottom: 14px;
+  border: 1px solid rgba(19, 33, 31, 0.12);
+  border-radius: 8px;
+  background: rgba(19, 33, 31, 0.10);
+}
+
+.proof-boundary div {
+  min-width: 0;
+  padding: 14px 16px;
+  background: #ffffff;
+}
+
+.proof-boundary strong {
+  display: block;
+  color: var(--teal);
+  font-size: 11px;
+  font-weight: 850;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.proof-boundary span {
+  display: block;
+  margin-top: 6px;
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 720;
+  line-height: 1.32;
+}
+
 .proof-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1693,6 +1728,10 @@ main:focus {
     margin-bottom: 16px;
   }
 
+  .proof-boundary {
+    grid-template-columns: 1fr;
+  }
+
   .proof-grid article {
     min-height: 0;
     padding: 18px;
@@ -1820,6 +1859,14 @@ main:focus {
 
   .contact-intake span {
     font-size: 13px;
+  }
+
+  .proof-boundary div {
+    padding: 10px 12px;
+  }
+
+  .proof-boundary span {
+    font-size: 12px;
   }
 
   .contact-response-strip {

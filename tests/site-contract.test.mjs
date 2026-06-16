@@ -59,8 +59,8 @@ test("site uses HTTPS canonical and sharing metadata", () => {
 });
 
 test("stylesheet and script use the current cache-busting version", () => {
-  assert.match(html, /href="styles\.css\?v=short-hero-1"/);
-  assert.match(html, /src="script\.js\?v=short-hero-1"/);
+  assert.match(html, /href="styles\.css\?v=proof-boundary-1"/);
+  assert.match(html, /src="script\.js\?v=proof-boundary-1"/);
 });
 
 test("hero exposes recruiter actions and downloadable resume files", () => {
@@ -280,6 +280,28 @@ test("early recruiter proof points summarize equipment, verification, records, a
   assert.match(css, /@media \(max-width:\s*760px\)[\s\S]*?\.resume-style \.proof-grid article\s*{[\s\S]*?padding:\s*18px;/);
   assert.match(css, /@media \(max-width:\s*760px\)[\s\S]*?\.resume-style\.resume-compact \.proof-strip,[\s\S]*?padding-top:\s*52px;/);
   assert.doesNotMatch(css, /\.resume-style\.resume-compact \.proof-strip[\s\S]{0,180}display:\s*none/);
+});
+
+test("proof section states the public and private evidence boundary before detailed cards", () => {
+  const proofStart = html.indexOf('<section class="proof-strip');
+  const proofGridStart = html.indexOf('<div class="proof-grid"', proofStart);
+  assert.notEqual(proofStart, -1, "missing proof section");
+  assert.notEqual(proofGridStart, -1, "missing proof grid");
+
+  const proofLeadSource = html.slice(proofStart, proofGridStart);
+  assert.match(proofLeadSource, /class="proof-boundary" aria-label="Public and private evidence boundary"/);
+  assert.match(proofLeadSource, /<strong>Public now<\/strong>\s*<span>Role scope, equipment families, service method, and safe case patterns\.<\/span>/);
+  assert.match(proofLeadSource, /<strong>Private after fit<\/strong>\s*<span>Certificates, identity, right-to-work, references, and detailed employment checks\.<\/span>/);
+  assert.match(proofLeadSource, /<strong>Not published<\/strong>\s*<span>Customer names, serial numbers, internal records, and site-specific details\.<\/span>/);
+  assert.match(script, /"\.proof-boundary div:nth-child\(1\) strong": "Public now"/);
+  assert.match(script, /"\.proof-boundary div:nth-child\(1\) strong": "当前公开"/);
+  assert.match(script, /"岗位范围、设备类别、服务方法和适合公开的案例框架。"/);
+  assert.match(script, /"证书、身份、工作权利、推荐人和更详细的雇佣核验材料。"/);
+  assert.match(script, /"\.proof-boundary": { "aria-label": "Public and private evidence boundary" }/);
+  assert.match(script, /"\.proof-boundary": { "aria-label": "公开与私下核验证据边界" }/);
+  assert.match(css, /\.proof-boundary\s*{[\s\S]*?display:\s*grid;[\s\S]*?grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\);/);
+  assert.match(css, /@media \(max-width:\s*760px\)[\s\S]*?\.proof-boundary\s*{[\s\S]*?grid-template-columns:\s*1fr;/);
+  assert.match(css, /@media \(max-width:\s*560px\)[\s\S]*?\.proof-boundary div\s*{[\s\S]*?padding:\s*10px 12px;/);
 });
 
 test("brief section acts as a recruiter screening snapshot", () => {
