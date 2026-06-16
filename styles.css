@@ -2297,7 +2297,7 @@ body.resume-style {
   grid-template-columns: minmax(0, 1fr) minmax(240px, 300px);
   gap: clamp(30px, 5vw, 64px);
   align-items: end;
-  padding: 112px 0 40px;
+  padding: 88px 0 26px;
 }
 
 .resume-style.resume-compact .hero-main {

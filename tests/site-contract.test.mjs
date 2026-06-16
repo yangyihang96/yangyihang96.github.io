@@ -58,8 +58,8 @@ test("site uses HTTPS canonical and sharing metadata", () => {
 });
 
 test("stylesheet and script use the current cache-busting version", () => {
-  assert.match(html, /href="styles\.css\?v=responsive-hero-image-1"/);
-  assert.match(html, /src="script\.js\?v=responsive-hero-image-1"/);
+  assert.match(html, /href="styles\.css\?v=responsive-hero-image-2"/);
+  assert.match(html, /src="script\.js\?v=responsive-hero-image-2"/);
 });
 
 test("hero exposes recruiter actions and downloadable resume files", () => {
@@ -514,7 +514,7 @@ test("hero portrait stays visually constrained after image dimensions load", () 
 test("desktop compact hero leaves the next recruiter section visible on short screens", () => {
   assert.match(
     css,
-    /\.resume-style\.resume-compact \.hero-copy\s*{[\s\S]*?grid-template-columns:\s*minmax\(0,\s*1fr\) minmax\(240px,\s*300px\);[\s\S]*?padding:\s*112px 0 40px;/
+    /\.resume-style\.resume-compact \.hero-copy\s*{[\s\S]*?grid-template-columns:\s*minmax\(0,\s*1fr\) minmax\(240px,\s*300px\);[\s\S]*?padding:\s*88px 0 26px;/
   );
   assert.match(
     css,
