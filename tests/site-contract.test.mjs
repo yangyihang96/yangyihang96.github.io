@@ -58,8 +58,8 @@ test("site uses HTTPS canonical and sharing metadata", () => {
 });
 
 test("stylesheet and script use the current cache-busting version", () => {
-  assert.match(html, /href="styles\.css\?v=training-evidence-1"/);
-  assert.match(html, /src="script\.js\?v=training-evidence-1"/);
+  assert.match(html, /href="styles\.css\?v=experience-outcome-1"/);
+  assert.match(html, /src="script\.js\?v=experience-outcome-1"/);
 });
 
 test("hero exposes recruiter actions and downloadable resume files", () => {
@@ -191,6 +191,18 @@ test("current experience card exposes scannable field-service evidence", () => {
     css,
     /@media \(max-width:\s*560px\)[\s\S]*?\.experience-evidence\s*{[\s\S]*?grid-template-columns:\s*1fr;/
   );
+});
+
+test("current experience card summarizes service outcomes settings records and handover", () => {
+  assert.match(html, /class="experience-outcome" aria-label="Current role service outcome summary"/);
+  assert.match(html, /<dt>Service setting<\/dt>\s*<dd>Hospital, pharmacy, workshop, and field-support environments<\/dd>/);
+  assert.match(html, /<dt>Verified outcome<\/dt>\s*<dd>Devices returned with functional checks, performance evidence, or clear escalation status<\/dd>/);
+  assert.match(html, /<dt>Record trail<\/dt>\s*<dd>Simpro work order, service report, serial details, equipment history, and customer update aligned<\/dd>/);
+  assert.match(html, /<dt>Handover<\/dt>\s*<dd>Biomedical teams, clinical users, vendors, and internal engineers can see next-use status<\/dd>/);
+  assert.match(script, /"\.experience-outcome dt:nth-of-type\(1\)": "Service setting"/);
+  assert.match(script, /"\.experience-outcome dt:nth-of-type\(1\)": "服务环境"/);
+  assert.match(css, /\.experience-outcome\s*{[\s\S]*?display:\s*grid;[\s\S]*?grid-template-columns:\s*minmax\(124px,\s*auto\) minmax\(0,\s*1fr\);/);
+  assert.match(css, /@media \(max-width:\s*560px\)[\s\S]*?\.experience-outcome\s*{[\s\S]*?grid-template-columns:\s*1fr;/);
 });
 
 test("case notes expose scenario action verification and handover outcomes", () => {

@@ -960,6 +960,34 @@ main:focus {
   line-height: 1.24;
 }
 
+.experience-outcome {
+  display: grid;
+  grid-template-columns: minmax(124px, auto) minmax(0, 1fr);
+  gap: 8px 12px;
+  margin: 18px 0 0;
+  padding: 14px;
+  border: 1px solid rgba(19, 33, 31, 0.10);
+  border-radius: 8px;
+  background: rgba(247, 248, 244, 0.82);
+}
+
+.experience-outcome dt {
+  color: var(--teal);
+  font-size: 11px;
+  font-weight: 850;
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+
+.experience-outcome dd {
+  min-width: 0;
+  margin: 0;
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 720;
+  line-height: 1.28;
+}
+
 .experience-timeline ul {
   display: grid;
   gap: 10px;
@@ -1962,6 +1990,11 @@ main:focus {
 
   .experience-evidence {
     grid-template-columns: 1fr;
+  }
+
+  .experience-outcome {
+    grid-template-columns: 1fr;
+    gap: 5px;
   }
 
   .case-outcome {

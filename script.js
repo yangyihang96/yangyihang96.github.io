@@ -171,6 +171,18 @@ const translations = {
       ".experience-evidence div:nth-child(3) span": "Simpro / service reports / equipment history",
       ".experience-evidence div:nth-child(4) strong": "Service settings",
       ".experience-evidence div:nth-child(4) span": "Hospital / pharmacy / workshop support",
+      ".experience-outcome dt:nth-of-type(1)": "Service setting",
+      ".experience-outcome dd:nth-of-type(1)":
+        "Hospital, pharmacy, workshop, and field-support environments",
+      ".experience-outcome dt:nth-of-type(2)": "Verified outcome",
+      ".experience-outcome dd:nth-of-type(2)":
+        "Devices returned with functional checks, performance evidence, or clear escalation status",
+      ".experience-outcome dt:nth-of-type(3)": "Record trail",
+      ".experience-outcome dd:nth-of-type(3)":
+        "Simpro work order, service report, serial details, equipment history, and customer update aligned",
+      ".experience-outcome dt:nth-of-type(4)": "Handover",
+      ".experience-outcome dd:nth-of-type(4)":
+        "Biomedical teams, clinical users, vendors, and internal engineers can see next-use status",
       ".experience-timeline article:nth-child(1) li:nth-child(1)":
         "Perform field and workshop service for hospital and pharmacy medical equipment, including preventive maintenance, troubleshooting, repair, installation support, verification, and service follow-up.",
       ".experience-timeline article:nth-child(1) li:nth-child(2)":
@@ -412,6 +424,7 @@ const translations = {
       ".contact-resume-link": { "aria-label": "Download Henry Yang resume as PDF" },
       ".contact-docx-link": { "aria-label": "Download Henry Yang resume as DOCX" },
       ".experience-evidence": { "aria-label": "Current field-service evidence" },
+      ".experience-outcome": { "aria-label": "Current role service outcome summary" },
       ".case-grid article:nth-child(1) .case-outcome": { "aria-label": "Public-safe case outcome" },
       ".case-grid article:nth-child(2) .case-outcome": { "aria-label": "Public-safe case outcome" },
       ".case-grid article:nth-child(3) .case-outcome": { "aria-label": "Public-safe case outcome" },
@@ -555,6 +568,18 @@ const translations = {
       ".experience-evidence div:nth-child(3) span": "Simpro / service reports / equipment history",
       ".experience-evidence div:nth-child(4) strong": "服务场景",
       ".experience-evidence div:nth-child(4) span": "医院 / 药房 / workshop support",
+      ".experience-outcome dt:nth-of-type(1)": "服务环境",
+      ".experience-outcome dd:nth-of-type(1)":
+        "医院、药房、workshop 和现场支持环境",
+      ".experience-outcome dt:nth-of-type(2)": "验证结果",
+      ".experience-outcome dd:nth-of-type(2)":
+        "设备以功能检查、性能证据或清楚升级状态结束",
+      ".experience-outcome dt:nth-of-type(3)": "记录链路",
+      ".experience-outcome dd:nth-of-type(3)":
+        "Simpro 工单、service report、serial details、equipment history 和 customer update 对齐",
+      ".experience-outcome dt:nth-of-type(4)": "交接对象",
+      ".experience-outcome dd:nth-of-type(4)":
+        "Biomedical teams、临床用户、vendors 和内部工程师能看到下一次使用状态",
       ".experience-timeline article:nth-child(1) li:nth-child(1)":
         "为医院和药房医疗设备提供现场和 workshop 服务，包括 preventive maintenance、故障排查、维修、安装支持、验证和后续跟进。",
       ".experience-timeline article:nth-child(1) li:nth-child(2)":
@@ -823,6 +848,7 @@ const translations = {
       ".contact-resume-link": { "aria-label": "下载 Henry Yang PDF 简历" },
       ".contact-docx-link": { "aria-label": "下载 Henry Yang DOCX 简历" },
       ".experience-evidence": { "aria-label": "当前现场服务证据" },
+      ".experience-outcome": { "aria-label": "当前岗位服务结果摘要" },
       ".case-grid article:nth-child(1) .case-outcome": { "aria-label": "公开安全的案例结果" },
       ".case-grid article:nth-child(2) .case-outcome": { "aria-label": "公开安全的案例结果" },
       ".case-grid article:nth-child(3) .case-outcome": { "aria-label": "公开安全的案例结果" },
