@@ -123,6 +123,18 @@ test("contact section repeats recruiter conversion actions at the close", () => 
   assert.match(css, /@media \(max-width:\s*560px\)[\s\S]*?\.contact-action-buttons\s*{[\s\S]*?grid-template-columns:\s*1fr;/);
 });
 
+test("contact appears before optional personal life content in the recruiter reading flow", () => {
+  const certificationsIndex = html.indexOf('<section id="certifications"');
+  const contactIndex = html.indexOf('<section id="contact"');
+  const lifeIndex = html.indexOf('<section id="life"');
+
+  assert.ok(certificationsIndex > -1, "missing certifications section");
+  assert.ok(contactIndex > -1, "missing contact section");
+  assert.ok(lifeIndex > -1, "missing life section");
+  assert.ok(certificationsIndex < contactIndex, "contact should follow professional training evidence");
+  assert.ok(contactIndex < lifeIndex, "contact should appear before optional personal life content");
+});
+
 test("fixed header keeps a persistent resume PDF action", () => {
   assert.match(
     html,
