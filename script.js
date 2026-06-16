@@ -50,6 +50,24 @@ const translations = {
       ".fit-grid article:nth-child(4) strong": "English / Mandarin",
       ".fit-grid article:nth-child(5) span": "Hiring",
       ".fit-grid article:nth-child(5) strong": "Resume and checks ready",
+      ".proof-strip .section-kicker": "Recruiter Proof",
+      "#proof-title": "The evidence points are kept close to the top.",
+      ".proof-grid article:nth-child(1) span": "Equipment",
+      ".proof-grid article:nth-child(1) h3": "Equipment range",
+      ".proof-grid article:nth-child(1) p":
+        "Ventilation, monitoring, ultrasound, DEXA, pharmacy automation, and general biomedical equipment.",
+      ".proof-grid article:nth-child(2) span": "Verification",
+      ".proof-grid article:nth-child(2) h3": "Test evidence",
+      ".proof-grid article:nth-child(2) p":
+        "Functional tests, performance checks, and safety-aware verification that can be reviewed later.",
+      ".proof-grid article:nth-child(3) span": "Records",
+      ".proof-grid article:nth-child(3) h3": "Service documentation",
+      ".proof-grid article:nth-child(3) p":
+        "Simpro work orders, service reports, serial details, and equipment history kept traceable.",
+      ".proof-grid article:nth-child(4) span": "Handover",
+      ".proof-grid article:nth-child(4) h3": "Communication path",
+      ".proof-grid article:nth-child(4) p":
+        "Clinical users, biomedical teams, vendors, and internal engineers aligned on status and next steps.",
       ".brief-section .section-kicker": "Professional Brief",
       "#brief-title": "A practical engineering profile built around service reliability.",
       ".brief-section .section-intro":
@@ -352,6 +370,24 @@ const translations = {
       ".fit-grid article:nth-child(4) strong": "英文 / 中文",
       ".fit-grid article:nth-child(5) span": "招聘材料",
       ".fit-grid article:nth-child(5) strong": "简历和核验材料已准备",
+      ".proof-strip .section-kicker": "招聘方快速核对",
+      "#proof-title": "把关键证明点放在页面前半段。",
+      ".proof-grid article:nth-child(1) span": "设备",
+      ".proof-grid article:nth-child(1) h3": "设备范围",
+      ".proof-grid article:nth-child(1) p":
+        "Ventilation、monitoring、ultrasound、DEXA、pharmacy automation 和通用 biomedical equipment。",
+      ".proof-grid article:nth-child(2) span": "验证",
+      ".proof-grid article:nth-child(2) h3": "测试证据",
+      ".proof-grid article:nth-child(2) p":
+        "Functional tests、performance checks 和带安全意识的 verification，结果后续可以复查。",
+      ".proof-grid article:nth-child(3) span": "记录",
+      ".proof-grid article:nth-child(3) h3": "服务文档",
+      ".proof-grid article:nth-child(3) p":
+        "Simpro 工单、service reports、serial details 和 equipment history 保持可追踪。",
+      ".proof-grid article:nth-child(4) span": "交接",
+      ".proof-grid article:nth-child(4) h3": "沟通路径",
+      ".proof-grid article:nth-child(4) p":
+        "和临床用户、biomedical teams、vendors、内部工程师对齐状态和下一步。",
       ".brief-section .section-kicker": "职业简介",
       "#brief-title": "我的定位：把医疗设备服务做得可靠、清楚、可交接。",
       ".brief-section .section-intro":

@@ -469,6 +469,66 @@ main:focus {
   line-height: 1.15;
 }
 
+.proof-strip {
+  padding: 48px 0;
+  border-bottom: 1px solid var(--line);
+  background: #ffffff;
+}
+
+.proof-inner {
+  width: min(1120px, calc(100% - 48px));
+  margin: 0 auto;
+}
+
+.proof-heading {
+  display: grid;
+  grid-template-columns: minmax(180px, 0.34fr) minmax(0, 1fr);
+  gap: 28px;
+  align-items: end;
+  margin-bottom: 20px;
+}
+
+.proof-heading h2 {
+  max-width: 720px;
+  margin: 0;
+  font-size: clamp(26px, 3vw, 40px);
+  line-height: 1.08;
+  letter-spacing: 0;
+}
+
+.proof-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.proof-grid article {
+  min-height: 180px;
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+}
+
+.proof-grid span {
+  color: var(--teal);
+  font-size: 12px;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.proof-grid h3 {
+  margin: 16px 0 10px;
+  font-size: 21px;
+  line-height: 1.12;
+}
+
+.proof-grid p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 15px;
+}
+
 .profile-panel {
   padding: 26px;
   border: 1px solid var(--line);
@@ -1312,6 +1372,7 @@ main:focus {
 
 .reveal .story-media,
 .reveal .fit-grid article,
+.reveal .proof-grid article,
 .reveal .study-grid article,
 .reveal .case-grid article,
 .reveal .brief-grid article,
@@ -1330,6 +1391,7 @@ main:focus {
 
 .reveal.is-visible .story-media,
 .reveal.is-visible .fit-grid article,
+.reveal.is-visible .proof-grid article,
 .reveal.is-visible .study-grid article,
 .reveal.is-visible .case-grid article,
 .reveal.is-visible .brief-grid article,
@@ -1347,6 +1409,7 @@ main:focus {
 
 .reveal.is-visible .study-grid article:nth-child(2),
 .reveal.is-visible .fit-grid article:nth-child(2),
+.reveal.is-visible .proof-grid article:nth-child(2),
 .reveal.is-visible .case-grid article:nth-child(2),
 .reveal.is-visible .brief-grid article:nth-child(2),
 .reveal.is-visible .scope-grid article:nth-child(2),
@@ -1360,6 +1423,7 @@ main:focus {
 }
 
 .reveal.is-visible .study-grid article:nth-child(3),
+.reveal.is-visible .proof-grid article:nth-child(3),
 .reveal.is-visible .case-grid article:nth-child(3),
 .reveal.is-visible .brief-grid article:nth-child(3),
 .reveal.is-visible .scope-grid article:nth-child(3),
@@ -1373,6 +1437,7 @@ main:focus {
 }
 
 .reveal.is-visible .case-grid article:nth-child(4),
+.reveal.is-visible .proof-grid article:nth-child(4),
 .reveal.is-visible .scope-grid article:nth-child(4),
 .reveal.is-visible .interest-grid article:nth-child(4),
 .reveal.is-visible .certification-grid article:nth-child(4),
@@ -1578,6 +1643,7 @@ main:focus {
 
   .study-grid,
   .brief-grid,
+  .proof-grid,
   .scope-grid,
   .experience-summary-grid,
   .experience-timeline article,
@@ -1608,6 +1674,7 @@ main:focus {
 
   .study-grid article,
   .brief-grid article,
+  .proof-grid article,
   .scope-grid article,
   .experience-timeline article,
   .interest-grid article,
@@ -1669,6 +1736,17 @@ main:focus {
     padding: 6px;
     font-size: 13px;
     white-space: nowrap;
+  }
+
+  .proof-heading {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .proof-grid article {
+    min-height: 0;
+    padding: 18px;
   }
 
   .hero-face-card {
@@ -1932,6 +2010,7 @@ body.resume-style {
 
 .resume-style .statement,
 .resume-style .fit-strip,
+.resume-style .proof-strip,
 .resume-style .brief-section,
 .resume-style .overview-section,
 .resume-style .work-section,
@@ -1962,6 +2041,7 @@ body.resume-style {
 
 .resume-style .profile-panel,
 .resume-style .fit-grid article,
+.resume-style .proof-grid article,
 .resume-style .brief-grid article,
 .resume-style .overview-grid a,
 .resume-style .experience-summary,
@@ -2004,6 +2084,7 @@ body.resume-style {
 
 .resume-style .brief-grid,
 .resume-style .fit-grid,
+.resume-style .proof-grid,
 .resume-style .overview-grid,
 .resume-style .case-grid,
 .resume-style .study-grid,
@@ -2012,6 +2093,7 @@ body.resume-style {
 }
 
 .resume-style .brief-grid article,
+.resume-style .proof-grid article,
 .resume-style .overview-grid a,
 .resume-style .case-grid article,
 .resume-style .study-grid article,
@@ -2021,6 +2103,7 @@ body.resume-style {
 
 .resume-style .overview-grid span,
 .resume-style .fit-grid span,
+.resume-style .proof-grid span,
 .resume-style .brief-grid span,
 .resume-style .experience-timeline span,
 .resume-style .case-grid span,
@@ -2081,6 +2164,7 @@ body.resume-style {
 .resume-style .story-content p,
 .resume-style .section-intro,
 .resume-style .fit-copy .section-intro,
+.resume-style .proof-grid p,
 .resume-style .overview-grid p,
 .resume-style .brief-grid p,
 .resume-style .case-grid p,
@@ -2184,6 +2268,7 @@ body.resume-style {
 
   .resume-style .statement,
   .resume-style .fit-strip,
+  .resume-style .proof-strip,
   .resume-style .brief-section,
   .resume-style .overview-section,
   .resume-style .work-section,
@@ -2196,6 +2281,17 @@ body.resume-style {
   .resume-style .contact-section {
     padding-top: 58px;
     padding-bottom: 58px;
+  }
+
+  .resume-style .proof-heading {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .resume-style .proof-grid article {
+    min-height: 0;
+    padding: 18px;
   }
 }
 
@@ -2321,6 +2417,7 @@ body.resume-style {
 
 .resume-style.resume-compact .brief-section,
 .resume-style.resume-compact .fit-strip,
+.resume-style.resume-compact .proof-strip,
 .resume-style.resume-compact .capabilities,
 .resume-style.resume-compact .experience-section,
 .resume-style.resume-compact .case-section,
@@ -2414,6 +2511,7 @@ body.resume-style {
 
   .resume-style.resume-compact .statement,
   .resume-style.resume-compact .fit-strip,
+  .resume-style.resume-compact .proof-strip,
   .resume-style.resume-compact .brief-section,
   .resume-style.resume-compact .capabilities,
   .resume-style.resume-compact .experience-section,

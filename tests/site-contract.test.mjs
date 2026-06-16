@@ -33,8 +33,8 @@ test("site uses HTTPS canonical and sharing metadata", () => {
 });
 
 test("stylesheet and script use the current cache-busting version", () => {
-  assert.match(html, /href="styles\.css\?v=nav-resume-1"/);
-  assert.match(html, /src="script\.js\?v=nav-resume-1"/);
+  assert.match(html, /href="styles\.css\?v=proof-points-1"/);
+  assert.match(html, /src="script\.js\?v=proof-points-1"/);
 });
 
 test("hero exposes recruiter actions and downloadable resume files", () => {
@@ -69,6 +69,23 @@ test("compact homepage keeps capability matrix visible", () => {
   assert.doesNotMatch(css, /\.resume-style\.resume-compact \.capabilities[\s\S]{0,180}display:\s*none/);
 });
 
+test("early recruiter proof points summarize equipment, verification, records, and handover", () => {
+  assert.match(html, /class="proof-strip reveal"/);
+  assert.match(html, /aria-label="Recruiter proof points"/);
+  assert.equal(articleCount("proof-grid"), 4);
+  assert.match(html, /Ventilation, monitoring, ultrasound, DEXA, pharmacy automation/);
+  assert.match(html, /Functional tests, performance checks, and safety-aware verification/);
+  assert.match(html, /Simpro work orders, service reports, serial details, and equipment history/);
+  assert.match(html, /Clinical users, biomedical teams, vendors, and internal engineers/);
+  assert.match(script, /"\.proof-grid article:nth-child\(1\) h3": "Equipment range"/);
+  assert.match(script, /"\.proof-grid article:nth-child\(1\) h3": "设备范围"/);
+  assert.match(css, /@media \(max-width:\s*760px\)[\s\S]*?\.proof-heading\s*{[\s\S]*?grid-template-columns:\s*1fr;/);
+  assert.match(css, /@media \(max-width:\s*760px\)[\s\S]*?\.proof-grid article\s*{[\s\S]*?min-height:\s*0;[\s\S]*?padding:\s*18px;/);
+  assert.match(css, /@media \(max-width:\s*760px\)[\s\S]*?\.resume-style \.proof-grid article\s*{[\s\S]*?padding:\s*18px;/);
+  assert.match(css, /@media \(max-width:\s*760px\)[\s\S]*?\.resume-style\.resume-compact \.proof-strip,[\s\S]*?padding-top:\s*52px;/);
+  assert.doesNotMatch(css, /\.resume-style\.resume-compact \.proof-strip[\s\S]{0,180}display:\s*none/);
+});
+
 test("keyboard users can skip fixed navigation", () => {
   assert.match(html, /<body id="top" class="resume-style resume-compact">/);
   assert.match(html, /<a class="skip-link" href="#main-content">Skip to content<\/a>/);
@@ -82,6 +99,7 @@ test("recruiter-facing content is compact and quick to scan", () => {
   assert.match(html, /Best fit for/);
   assert.match(html, /Resume and checks ready/);
   assert.equal(articleCount("fit-grid"), 5);
+  assert.equal(articleCount("proof-grid"), 4);
   assert.equal(articleCount("capability-row"), 6);
   assert.equal(articleCount("case-grid"), 3);
   assert.equal(articleCount("study-grid"), 3);
