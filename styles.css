@@ -408,45 +408,6 @@ main:focus {
   animation: cueDrop 1400ms ease-in-out infinite;
 }
 
-.statement {
-  padding: 56px 0;
-  background: var(--white);
-}
-
-.statement-inner {
-  width: min(1120px, calc(100% - 48px));
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: minmax(0, 1.55fr) minmax(300px, 0.8fr);
-  gap: 36px;
-  align-items: center;
-}
-
-.statement-copy > p {
-  max-width: 980px;
-  margin: 0;
-  font-size: clamp(24px, 3vw, 38px);
-  line-height: 1.25;
-  font-weight: 760;
-}
-
-.mini-facts {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 28px;
-}
-
-.mini-facts span {
-  padding: 9px 13px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  color: var(--ink-2);
-  background: var(--paper);
-  font-size: 14px;
-  font-weight: 700;
-}
-
 .fit-strip {
   padding: 52px 0;
   border-bottom: 1px solid var(--line);
@@ -628,67 +589,6 @@ main:focus {
   overflow-wrap: anywhere;
 }
 
-.profile-panel {
-  padding: 26px;
-  border: 1px solid var(--line);
-  background: linear-gradient(145deg, #ffffff 0%, #eef4f1 100%);
-  box-shadow: 0 18px 50px rgba(19, 33, 31, 0.08);
-}
-
-.profile-photo {
-  width: 100%;
-  aspect-ratio: 4 / 5;
-  margin-bottom: 22px;
-  border: 1px solid var(--line);
-  object-fit: cover;
-  object-position: center top;
-  background: var(--paper);
-}
-
-.profile-panel > span {
-  color: var(--clay);
-  font-size: 13px;
-  font-weight: 850;
-  text-transform: uppercase;
-}
-
-.profile-panel strong {
-  display: block;
-  margin-top: 14px;
-  font-size: 25px;
-  line-height: 1.12;
-}
-
-.profile-panel p {
-  margin: 14px 0 0;
-  color: var(--muted);
-}
-
-.profile-panel dl {
-  margin: 22px 0 0;
-}
-
-.profile-panel div {
-  display: grid;
-  grid-template-columns: 76px 1fr;
-  gap: 14px;
-  padding: 14px 0;
-  border-top: 1px solid var(--line);
-}
-
-.profile-panel dt {
-  color: var(--teal);
-  font-size: 12px;
-  font-weight: 850;
-  text-transform: uppercase;
-}
-
-.profile-panel dd {
-  margin: 0;
-  color: var(--ink-2);
-  font-weight: 700;
-}
-
 .brief-section {
   padding: 88px 0;
   background: var(--white);
@@ -699,8 +599,7 @@ main:focus {
   max-width: 880px;
 }
 
-.brief-grid,
-.scope-grid {
+.brief-grid {
   width: min(1120px, calc(100% - 48px));
   margin: 0 auto;
   display: grid;
@@ -711,8 +610,7 @@ main:focus {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
-.brief-grid article,
-.scope-grid article {
+.brief-grid article {
   border: 1px solid var(--line);
   background: var(--paper);
 }
@@ -724,91 +622,21 @@ main:focus {
   padding: 30px;
 }
 
-.brief-grid span,
-.scope-grid span {
+.brief-grid span {
   color: var(--clay);
   font-size: 12px;
   font-weight: 850;
   text-transform: uppercase;
 }
 
-.brief-grid h3,
-.scope-grid h3 {
+.brief-grid h3 {
   margin: 18px 0 12px;
   font-size: 24px;
   line-height: 1.12;
 }
 
-.brief-grid p,
-.scope-grid p {
+.brief-grid p {
   margin: 0;
-  color: var(--muted);
-}
-
-.overview-section {
-  padding: 44px 0;
-  background: var(--paper);
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-}
-
-.overview-heading,
-.overview-grid {
-  width: min(1120px, calc(100% - 48px));
-  margin: 0 auto;
-}
-
-.overview-heading {
-  display: grid;
-  grid-template-columns: minmax(180px, 0.35fr) minmax(0, 1fr);
-  gap: 28px;
-  align-items: end;
-  margin-bottom: 24px;
-}
-
-.overview-heading h2 {
-  margin: 0;
-  font-size: clamp(28px, 3vw, 44px);
-  line-height: 1.08;
-  letter-spacing: 0;
-}
-
-.overview-grid {
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 1px;
-  overflow: hidden;
-  border: 1px solid var(--line);
-  background: var(--line);
-}
-
-.overview-grid a {
-  min-height: 190px;
-  padding: 24px;
-  background: var(--white);
-  transition: background 180ms ease, transform 180ms ease;
-}
-
-.overview-grid a:hover {
-  background: #f8fbf8;
-  transform: translateY(-2px);
-}
-
-.overview-grid span {
-  color: var(--clay);
-  font-size: 13px;
-  font-weight: 850;
-}
-
-.overview-grid strong {
-  display: block;
-  margin-top: 18px;
-  font-size: 22px;
-}
-
-.overview-grid p {
-  margin: 8px 0 0;
   color: var(--muted);
 }
 
@@ -840,29 +668,8 @@ main:focus {
   padding: 92px clamp(32px, 6vw, 92px);
 }
 
-.work-section {
-  background: var(--paper);
-}
-
 .life-section {
   background: #e7edf0;
-}
-
-.scope-section {
-  padding: 92px 0;
-  background: var(--paper);
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-}
-
-.scope-grid {
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-}
-
-.scope-grid article {
-  min-height: 290px;
-  padding: 26px;
-  background: var(--white);
 }
 
 .section-kicker {
@@ -887,27 +694,23 @@ main:focus {
   font-size: 18px;
 }
 
-.feature-list,
 .life-notes {
   display: grid;
   gap: 16px;
   margin-top: 34px;
 }
 
-.feature-list div,
 .life-notes p {
   padding-top: 16px;
   border-top: 1px solid var(--line);
 }
 
-.feature-list strong,
 .life-notes strong {
   display: block;
   margin-bottom: 4px;
   color: var(--ink);
 }
 
-.feature-list span,
 .life-notes p {
   color: var(--muted);
 }
@@ -1192,73 +995,6 @@ main:focus {
   line-height: 1.28;
 }
 
-.process-section {
-  padding: 96px 0;
-  background: var(--paper);
-}
-
-.process-track {
-  position: relative;
-  width: min(1120px, calc(100% - 48px));
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 18px;
-}
-
-.process-track::before {
-  content: "";
-  position: absolute;
-  top: 24px;
-  left: 18px;
-  right: 18px;
-  height: 1px;
-  background: linear-gradient(90deg, var(--teal), var(--clay), var(--steel));
-  transform: scaleX(0);
-  transform-origin: left;
-}
-
-.process-section.is-visible .process-track::before {
-  animation: lineGrow 900ms ease-out 200ms both;
-}
-
-.process-track article {
-  position: relative;
-  padding: 54px 22px 24px;
-  border: 1px solid var(--line);
-  background: var(--white);
-}
-
-.process-track article::before {
-  content: "";
-  position: absolute;
-  top: 16px;
-  left: 22px;
-  width: 16px;
-  height: 16px;
-  border: 4px solid var(--white);
-  border-radius: 999px;
-  background: var(--teal);
-  box-shadow: 0 0 0 1px rgba(18, 107, 98, 0.28);
-}
-
-.process-track span {
-  color: var(--clay);
-  font-size: 13px;
-  font-weight: 850;
-  text-transform: uppercase;
-}
-
-.process-track h3 {
-  margin: 10px 0 8px;
-  font-size: 22px;
-}
-
-.process-track p {
-  margin: 0;
-  color: var(--muted);
-}
-
 .study-section,
 .capabilities {
   padding: 96px 0;
@@ -1269,7 +1005,6 @@ main:focus {
   color: #ffffff;
 }
 
-.credentials-section,
 .certification-section {
   padding: 92px 0;
   background: var(--paper);
@@ -1280,15 +1015,6 @@ main:focus {
   background: var(--white);
 }
 
-.credential-grid {
-  width: min(1120px, calc(100% - 48px));
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
-}
-
-.credential-grid article,
 .certification-grid article {
   min-height: 260px;
   padding: 30px;
@@ -1296,7 +1022,6 @@ main:focus {
   background: var(--white);
 }
 
-.credential-grid span,
 .certification-grid span {
   color: var(--clay);
   font-size: 12px;
@@ -1304,14 +1029,12 @@ main:focus {
   text-transform: uppercase;
 }
 
-.credential-grid h3,
 .certification-grid h3 {
   margin: 18px 0 12px;
   font-size: 24px;
   line-height: 1.12;
 }
 
-.credential-grid p,
 .certification-grid p {
   margin: 0;
   color: var(--muted);
@@ -1632,13 +1355,9 @@ main:focus {
 .reveal .study-grid article,
 .reveal .case-grid article,
 .reveal .brief-grid article,
-.reveal .scope-grid article,
 .reveal .experience-timeline article,
-.reveal .credential-grid article,
 .reveal .certification-grid article,
-.reveal .capability-row article,
-.reveal .process-track article,
-.reveal .overview-grid a {
+.reveal .capability-row article {
   opacity: 1;
   transform: none;
   transition: opacity 650ms ease, transform 650ms ease;
@@ -1650,13 +1369,9 @@ main:focus {
 .reveal.is-visible .study-grid article,
 .reveal.is-visible .case-grid article,
 .reveal.is-visible .brief-grid article,
-.reveal.is-visible .scope-grid article,
 .reveal.is-visible .experience-timeline article,
-.reveal.is-visible .credential-grid article,
 .reveal.is-visible .certification-grid article,
-.reveal.is-visible .capability-row article,
-.reveal.is-visible .process-track article,
-.reveal.is-visible .overview-grid a {
+.reveal.is-visible .capability-row article {
   opacity: 1;
   transform: translateY(0);
 }
@@ -1666,12 +1381,8 @@ main:focus {
 .reveal.is-visible .proof-grid article:nth-child(2),
 .reveal.is-visible .case-grid article:nth-child(2),
 .reveal.is-visible .brief-grid article:nth-child(2),
-.reveal.is-visible .scope-grid article:nth-child(2),
-.reveal.is-visible .credential-grid article:nth-child(2),
 .reveal.is-visible .certification-grid article:nth-child(2),
-.reveal.is-visible .capability-row article:nth-child(2),
-.reveal.is-visible .process-track article:nth-child(2),
-.reveal.is-visible .overview-grid a:nth-child(2) {
+.reveal.is-visible .capability-row article:nth-child(2) {
   transition-delay: 90ms;
 }
 
@@ -1679,30 +1390,21 @@ main:focus {
 .reveal.is-visible .proof-grid article:nth-child(3),
 .reveal.is-visible .case-grid article:nth-child(3),
 .reveal.is-visible .brief-grid article:nth-child(3),
-.reveal.is-visible .scope-grid article:nth-child(3),
-.reveal.is-visible .credential-grid article:nth-child(3),
 .reveal.is-visible .certification-grid article:nth-child(3),
-.reveal.is-visible .capability-row article:nth-child(3),
-.reveal.is-visible .process-track article:nth-child(3),
-.reveal.is-visible .overview-grid a:nth-child(3) {
+.reveal.is-visible .capability-row article:nth-child(3) {
   transition-delay: 180ms;
 }
 
 .reveal.is-visible .case-grid article:nth-child(4),
 .reveal.is-visible .proof-grid article:nth-child(4),
-.reveal.is-visible .scope-grid article:nth-child(4),
 .reveal.is-visible .certification-grid article:nth-child(4),
-.reveal.is-visible .capability-row article:nth-child(4),
-.reveal.is-visible .process-track article:nth-child(4),
-.reveal.is-visible .overview-grid a:nth-child(4) {
+.reveal.is-visible .capability-row article:nth-child(4) {
   transition-delay: 270ms;
 }
 
 .reveal.is-visible .case-grid article:nth-child(5),
-.reveal.is-visible .scope-grid article:nth-child(5),
 .reveal.is-visible .capability-row article:nth-child(5),
-.reveal.is-visible .study-grid article:nth-child(5),
-.reveal.is-visible .overview-grid a:nth-child(5) {
+.reveal.is-visible .study-grid article:nth-child(5) {
   transition-delay: 360ms;
 }
 
@@ -1752,15 +1454,6 @@ main:focus {
   50% {
     opacity: 1;
     transform: translateY(12px);
-  }
-}
-
-@keyframes lineGrow {
-  from {
-    transform: scaleX(0);
-  }
-  to {
-    transform: scaleX(1);
   }
 }
 
@@ -1818,14 +1511,9 @@ main:focus {
   }
 
   .hero-copy,
-  .statement-inner,
   .fit-inner,
   .brief-grid,
-  .scope-grid,
-  .credential-grid,
   .certification-grid,
-  .overview-heading,
-  .overview-grid,
   .experience-summary,
   .experience-timeline,
   .section-heading,
@@ -1836,9 +1524,7 @@ main:focus {
     width: min(100% - 32px, 720px);
   }
 
-  .statement-inner,
-  .fit-inner,
-  .overview-heading {
+  .fit-inner {
     grid-template-columns: 1fr;
   }
 
@@ -1881,10 +1567,6 @@ main:focus {
     border-bottom: 0;
   }
 
-  .profile-panel {
-    width: min(100%, 520px);
-  }
-
   .hero-copy {
     padding: 120px 0 58px;
   }
@@ -1909,39 +1591,18 @@ main:focus {
   .study-grid,
   .brief-grid,
   .proof-grid,
-  .scope-grid,
   .experience-summary-grid,
   .experience-timeline article,
-  .credential-grid,
   .certification-grid,
   .case-grid,
-  .capability-row,
-  .process-track,
-  .overview-grid {
+  .capability-row {
     grid-template-columns: 1fr;
-  }
-
-  .process-track::before {
-    top: 18px;
-    bottom: 18px;
-    left: 30px;
-    right: auto;
-    width: 1px;
-    height: auto;
-    transform: scaleY(0);
-    transform-origin: top;
-  }
-
-  .process-section.is-visible .process-track::before {
-    animation: lineGrowMobile 900ms ease-out 200ms both;
   }
 
   .study-grid article,
   .brief-grid article,
   .proof-grid article,
-  .scope-grid article,
   .experience-timeline article,
-  .credential-grid article,
   .certification-grid article,
   .capability-row article {
     min-height: 0;
@@ -2177,10 +1838,6 @@ main:focus {
     line-height: 1.35;
   }
 
-  .statement {
-    padding: 44px 0;
-  }
-
   .fit-strip {
     padding: 42px 0;
   }
@@ -2191,9 +1848,6 @@ main:focus {
 
   .story-content,
   .brief-section,
-  .overview-section,
-  .scope-section,
-  .credentials-section,
   .certification-section,
   .case-section,
   .study-section,
@@ -2205,29 +1859,12 @@ main:focus {
 
   .study-grid article,
   .brief-grid article,
-  .scope-grid article,
-  .credential-grid article,
   .certification-grid article,
   .case-grid article,
-  .capability-row article,
-  .process-track article,
-  .overview-grid a {
+  .capability-row article {
     padding: 22px;
   }
 
-  .process-track article {
-    padding-top: 54px;
-  }
-
-}
-
-@keyframes lineGrowMobile {
-  from {
-    transform: scaleY(0);
-  }
-  to {
-    transform: scaleY(1);
-  }
 }
 
 /* Resume-style surface */
@@ -2390,15 +2027,11 @@ body.resume-style {
   color: var(--ink);
 }
 
-.resume-style .statement,
 .resume-style .fit-strip,
 .resume-style .proof-strip,
 .resume-style .brief-section,
-.resume-style .overview-section,
-.resume-style .work-section,
 .resume-style .experience-section,
 .resume-style .case-section,
-.resume-style .process-section,
 .resume-style .study-section,
 .resume-style .certification-section,
 .resume-style .contact-section {
@@ -2406,56 +2039,28 @@ body.resume-style {
   padding-bottom: 72px;
 }
 
-.resume-style .statement {
-  background: #ffffff;
-}
-
-.resume-style .statement-inner {
-  gap: 32px;
-  align-items: stretch;
-}
-
-.resume-style .statement-copy > p {
-  font-size: clamp(28px, 4vw, 48px);
-  line-height: 1.08;
-}
-
-.resume-style .profile-panel,
 .resume-style .fit-grid article,
 .resume-style .proof-grid article,
 .resume-style .brief-grid article,
-.resume-style .overview-grid a,
 .resume-style .experience-summary,
 .resume-style .experience-timeline article,
 .resume-style .case-grid article,
-.resume-style .process-track article,
 .resume-style .study-grid article,
 .resume-style .certification-grid article,
-.resume-style .capability-row article,
-.resume-style .credential-grid article {
+.resume-style .capability-row article {
   border: 1px solid rgba(19, 33, 31, 0.12);
   border-radius: 8px;
   background: #ffffff;
   box-shadow: 0 18px 50px rgba(19, 33, 31, 0.06);
 }
 
-.resume-style .profile-panel {
-  justify-content: flex-start;
-}
-
-.resume-style .profile-photo {
-  border-radius: 6px;
-}
-
 .resume-style .brief-section,
 .resume-style .experience-section,
-.resume-style .process-section,
 .resume-style .certification-section {
   background: #f7f8f4;
 }
 
 .resume-style .section-heading h2,
-.resume-style .overview-heading h2,
 .resume-style .story-content h2,
 .resume-style .contact-inner h2 {
   font-size: clamp(31px, 4vw, 52px);
@@ -2465,7 +2070,6 @@ body.resume-style {
 .resume-style .brief-grid,
 .resume-style .fit-grid,
 .resume-style .proof-grid,
-.resume-style .overview-grid,
 .resume-style .case-grid,
 .resume-style .study-grid,
 .resume-style .certification-grid {
@@ -2474,14 +2078,12 @@ body.resume-style {
 
 .resume-style .brief-grid article,
 .resume-style .proof-grid article,
-.resume-style .overview-grid a,
 .resume-style .case-grid article,
 .resume-style .study-grid article,
 .resume-style .certification-grid article {
   padding: 28px;
 }
 
-.resume-style .overview-grid span,
 .resume-style .fit-grid span,
 .resume-style .proof-grid span,
 .resume-style .brief-grid span,
@@ -2545,7 +2147,6 @@ body.resume-style {
 .resume-style .section-intro,
 .resume-style .fit-copy .section-intro,
 .resume-style .proof-grid p,
-.resume-style .overview-grid p,
 .resume-style .brief-grid p,
 .resume-style .case-grid p,
 .resume-style .study-grid p,
@@ -2646,15 +2247,11 @@ body.resume-style {
     min-height: 320px;
   }
 
-  .resume-style .statement,
   .resume-style .fit-strip,
   .resume-style .proof-strip,
   .resume-style .brief-section,
-  .resume-style .overview-section,
-  .resume-style .work-section,
   .resume-style .experience-section,
   .resume-style .case-section,
-  .resume-style .process-section,
   .resume-style .study-section,
   .resume-style .certification-section,
   .resume-style .contact-section {
@@ -2687,32 +2284,6 @@ body.resume-style {
 }
 
 /* Compact resume redesign */
-.resume-style.resume-compact .scope-section,
-.resume-style.resume-compact .process-section,
-.resume-style.resume-compact .credentials-section,
-.resume-style.resume-compact .work-section,
-.resume-style.resume-compact .overview-section {
-  display: none;
-}
-
-@media (max-width: 760px) {
-  .resume-style.resume-compact .overview-grid a {
-    min-height: 0;
-    padding: 18px;
-  }
-
-  .resume-style.resume-compact .overview-grid strong {
-    margin-top: 8px;
-    font-size: 18px;
-    line-height: 1.15;
-  }
-
-  .resume-style.resume-compact .overview-grid p {
-    margin-top: 5px;
-    font-size: 14px;
-    line-height: 1.35;
-  }
-}
 
 .resume-style.resume-compact .hero {
   background:
@@ -2796,23 +2367,6 @@ body.resume-style {
   line-height: 1.42;
 }
 
-.resume-style.resume-compact .statement {
-  padding: 48px 0;
-}
-
-.resume-style.resume-compact .statement-inner {
-  display: block;
-}
-
-.resume-style.resume-compact .statement-copy > p {
-  max-width: 1040px;
-  font-size: clamp(24px, 3.2vw, 38px);
-}
-
-.resume-style.resume-compact .profile-panel {
-  display: none;
-}
-
 .resume-style.resume-compact .brief-section,
 .resume-style.resume-compact .fit-strip,
 .resume-style.resume-compact .proof-strip,
@@ -2826,7 +2380,6 @@ body.resume-style {
   padding-bottom: 64px;
 }
 
-.resume-style.resume-compact .work-section,
 .resume-style.resume-compact .life-section {
   grid-template-columns: minmax(260px, 0.66fr) minmax(0, 1.34fr);
 }
@@ -2890,7 +2443,6 @@ body.resume-style {
     padding: 0;
   }
 
-  .resume-style.resume-compact .work-section,
   .resume-style.resume-compact .life-section {
     grid-template-columns: 1fr;
   }
@@ -2919,7 +2471,6 @@ body.resume-style {
     border-bottom: 0;
   }
 
-  .resume-style.resume-compact .statement,
   .resume-style.resume-compact .fit-strip,
   .resume-style.resume-compact .proof-strip,
   .resume-style.resume-compact .brief-section,
@@ -3036,11 +2587,7 @@ body.resume-style {
   .reveal .study-grid article,
   .reveal .case-grid article,
   .reveal .brief-grid article,
-  .reveal .scope-grid article,
-  .reveal .credential-grid article,
-  .reveal .capability-row article,
-  .reveal .process-track article,
-  .reveal .overview-grid a {
+  .reveal .capability-row article {
     opacity: 1;
     transform: none;
   }

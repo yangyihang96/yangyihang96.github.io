@@ -141,36 +141,6 @@ const translations = {
       ".capability-row article:nth-child(6) h3": "Sydney travel + private proof",
       ".capability-row article:nth-child(6) p":
         "Sydney field travel, resume download, and offline degree, training, identity, and right-to-work proof for formal hiring checks.",
-      ".overview-heading .section-kicker": "Review Path",
-      ".overview-heading h2": "Use this order when checking fit, evidence, and next step.",
-      ".overview-grid a:nth-child(1) strong": "Field context",
-      ".overview-grid a:nth-child(1) p":
-        "Start with the service setting and the kind of device work involved.",
-      ".overview-grid a:nth-child(2) strong": "Work evidence",
-      ".overview-grid a:nth-child(2) p":
-        "Check current role scope, equipment range, records, and handover evidence.",
-      ".overview-grid a:nth-child(3) strong": "Case method",
-      ".overview-grid a:nth-child(3) p":
-        "Review how service problems are handled without exposing customer details.",
-      ".overview-grid a:nth-child(4) strong": "Training proof",
-      ".overview-grid a:nth-child(4) p":
-        "Confirm the listed device training and certificate context.",
-      ".overview-grid a:nth-child(5) strong": "Contact / resume",
-      ".overview-grid a:nth-child(5) p":
-        "Use email, PDF, DOCX, and private proof requests for the next step.",
-      "#work .section-kicker": "Work",
-      "#work-title": "Field service is not only fixing equipment. It is closing the loop.",
-      ".work-section .story-content > p:not(.section-kicker)":
-        "In Nova Biomedical field and workshop service, I work across preventive maintenance, fault diagnosis, corrective repair, installation support, and verification. Good service is not just leaving after a repair; it means making the equipment state, service action, and next responsibility clear.",
-      ".feature-list div:nth-child(1) strong": "Device Service",
-      ".feature-list div:nth-child(1) span":
-        "From field PM to bench repair, I follow equipment condition and service procedure through maintenance, troubleshooting, functional checks, and performance verification.",
-      ".feature-list div:nth-child(2) strong": "Equipment Range",
-      ".feature-list div:nth-child(2) span":
-        "Experience around ventilation, patient monitoring, ultrasound, DEXA, pharmacy automation, and general biomedical equipment.",
-      ".feature-list div:nth-child(3) strong": "Service Records",
-      ".feature-list div:nth-child(3) span":
-        "I maintain work orders, service reports, serial details, equipment history, and customer updates so information does not break between people.",
       ".experience-section .section-kicker": "Work Experience",
       "#experience-title":
         "Professional experience across field service, workshop support, and healthcare records.",
@@ -221,25 +191,6 @@ const translations = {
         "Supported adverse reaction record handling and drug-safety documentation for Lundbeck products listed in China.",
       ".experience-timeline article:nth-child(2) li:nth-child(2)":
         "Assisted documentation work related to regulated healthcare records and cross-functional communication.",
-      ".scope-section .section-kicker": "Service Scope",
-      "#scope-title": "The work covers more than one moment of a repair.",
-      ".scope-section .section-intro":
-        "A service job starts before opening the device and continues after the device is returned. The scope includes preparation, safe handling, technical checks, documentation, and follow-up.",
-      ".scope-grid article:nth-child(1) h3": "Planned maintenance",
-      ".scope-grid article:nth-child(1) p":
-        "Prepare required tools and records, check equipment condition, follow the service procedure, and close the visit with clear notes and required test evidence.",
-      ".scope-grid article:nth-child(2) h3": "Fault investigation",
-      ".scope-grid article:nth-child(2) p":
-        "Translate user feedback into a testable problem, reproduce the symptom where possible, and separate likely causes from confirmed causes.",
-      ".scope-grid article:nth-child(3) h3": "Workshop repair",
-      ".scope-grid article:nth-child(3) p":
-        "Handle devices in a controlled repair setting, keep parts and actions traceable, and verify the repaired state before return or escalation.",
-      ".scope-grid article:nth-child(4) h3": "Verification and safety",
-      ".scope-grid article:nth-child(4) p":
-        "Use functional checks, performance checks, and required safety checks to confirm that the device result is not only visually acceptable but technically supportable.",
-      ".scope-grid article:nth-child(5) h3": "Handover and follow-up",
-      ".scope-grid article:nth-child(5) p":
-        "Summarize what was found, what was done, what was verified, and what needs attention next so the next person does not start from zero.",
       "#case-notes .section-kicker": "Case Notes",
       "#case-title": "Public-safe service cases are more useful than generic claims.",
       "#case-notes .section-intro":
@@ -292,22 +243,6 @@ const translations = {
       ".case-grid article:nth-child(3) .case-outcome dt:nth-of-type(4)": "Handover",
       ".case-grid article:nth-child(3) .case-outcome dd:nth-of-type(4)":
         "Clear record for biomedical teams and internal engineers",
-      "#process .section-kicker": "Process",
-      "#process-title": "I use a clear process to handle field problems.",
-      "#process .section-intro":
-        "Field service breaks down when information breaks. My process keeps the symptom, judgement, verification, and record connected.",
-      ".process-track article:nth-child(1) h3": "Read the field state",
-      ".process-track article:nth-child(1) p":
-        "Confirm the symptom, user feedback, serial details, history, site limits, and current risk before jumping to a conclusion.",
-      ".process-track article:nth-child(2) h3": "Locate the problem",
-      ".process-track article:nth-child(2) p":
-        "Combine service manuals, test steps, measurements, and previous records to turn a guess into a verifiable judgement.",
-      ".process-track article:nth-child(3) h3": "Verify the result",
-      ".process-track article:nth-child(3) p":
-        "Complete functional tests, performance checks, and required safety checks so the device is not only \"apparently fixed.\"",
-      ".process-track article:nth-child(4) h3": "Leave a usable record",
-      ".process-track article:nth-child(4) p":
-        "Keep work orders, service reports, serial details, service actions, and customer updates clear for handover and review.",
       "#study .section-kicker": "Education",
       "#study-title":
         "My engineering background keeps me grounded in principles, evidence, and records.",
@@ -322,22 +257,6 @@ const translations = {
         "Flexible Electrodes for Smart Bandages: Feasibility Exploration",
       ".study-grid article:nth-child(3) p":
         "Wearable medical-device feasibility work using electrode geometry, silver ink coating, impedance measurement, and manufacturability trade-offs.",
-      ".credentials-section .section-kicker": "Credentials",
-      "#credentials-title": "Education credentials are kept public-safe.",
-      ".credentials-section .section-intro":
-        "I keep original graduation certificates and transcripts offline. This site lists the credential context without publishing certificate scans, document numbers, signatures, or private verification details.",
-      ".credential-grid article:nth-child(1) span": "University records",
-      ".credential-grid article:nth-child(1) h3": "University of Sydney education",
-      ".credential-grid article:nth-child(1) p":
-        "Master of Philosophy and Bachelor of Biomedical Engineering records can be provided privately when needed for employment checks, credential verification, or formal applications.",
-      ".credential-grid article:nth-child(2) span": "Document safety",
-      ".credential-grid article:nth-child(2) h3": "No public certificate scans",
-      ".credential-grid article:nth-child(2) p":
-        "Original degree certificates may contain identifiers and verification details, so I keep them off the public site instead of using them as decorative images.",
-      ".credential-grid article:nth-child(3) span": "Additional proof",
-      ".credential-grid article:nth-child(3) h3": "Training certificates available",
-      ".credential-grid article:nth-child(3) p":
-        "I also keep selected service and vendor training certificates separately and can share relevant documents when a role or project requires formal evidence.",
       ".certification-section .section-kicker": "Selected Training",
       "#certification-title": "Training records support the service work behind the profile.",
       ".certification-section .section-intro":
@@ -435,8 +354,6 @@ const translations = {
       ".fit-verdict": { "aria-label": "Recruiter role-fit verdict" },
       ".proof-grid": { "aria-label": "Recruiter evidence checklist" },
       ".brief-grid": { "aria-label": "Recruiter screening snapshot" },
-      ".overview-section": { "aria-label": "Recruiter review path" },
-      ".overview-grid": { "aria-label": "Recruiter review links" },
       ".experience-evidence": { "aria-label": "Current field-service evidence" },
       ".experience-outcome": { "aria-label": "Current role service outcome summary" },
       ".case-grid article:nth-child(1) .case-outcome": { "aria-label": "Public-safe case outcome" },
@@ -556,33 +473,6 @@ const translations = {
       ".brief-grid article:nth-child(3) h3": "Biomedical field service",
       ".brief-grid article:nth-child(3) p":
         "最强匹配是需要现场服务、出行、记录、故障排查和后续跟进 ownership 的岗位。",
-      ".overview-heading .section-kicker": "阅读路径",
-      ".overview-heading h2": "招聘方可以按这个顺序看匹配、证据和下一步。",
-      ".overview-grid a:nth-child(1) strong": "现场背景",
-      ".overview-grid a:nth-child(1) p": "先看服务环境，以及我接触的是哪类设备工作。",
-      ".overview-grid a:nth-child(2) strong": "经历证据",
-      ".overview-grid a:nth-child(2) p": "再看当前岗位范围、设备类型、记录和交接证据。",
-      ".overview-grid a:nth-child(3) strong": "案例方法",
-      ".overview-grid a:nth-child(3) p": "看我怎么讲服务问题，同时不暴露客户和内部资料。",
-      ".overview-grid a:nth-child(4) strong": "培训证明",
-      ".overview-grid a:nth-child(4) p":
-        "核对公开列出的设备培训和证书范围。",
-      ".overview-grid a:nth-child(5) strong": "联系 / 简历",
-      ".overview-grid a:nth-child(5) p":
-        "需要下一步时，用邮箱、PDF、DOCX 和私下证明材料继续推进。",
-      "#work .section-kicker": "工作",
-      "#work-title": "我做现场服务，不是只追求“修好了”。",
-      ".work-section .story-content > p:not(.section-kicker)":
-        "在 Nova Biomedical 的 field 和 workshop service 中，我接触 preventive maintenance、fault diagnosis、corrective repair、installation support 和 verification。对我来说，真正的服务闭环，是设备状态清楚、处理过程清楚、下一步责任也清楚。",
-      ".feature-list div:nth-child(1) strong": "设备服务",
-      ".feature-list div:nth-child(1) span":
-        "从现场 PM 到 bench repair，先看设备状态，再按流程完成维护、故障处理、功能检查和性能验证。",
-      ".feature-list div:nth-child(2) strong": "设备范围",
-      ".feature-list div:nth-child(2) span":
-        "接触过 ventilation、patient monitoring、ultrasound、DEXA、pharmacy automation 和通用 biomedical equipment。",
-      ".feature-list div:nth-child(3) strong": "服务记录",
-      ".feature-list div:nth-child(3) span":
-        "维护 work orders、service reports、serial details、equipment history 和 customer updates，让信息不要断在某个人手里。",
       ".experience-section .section-kicker": "工作经历",
       "#experience-title": "正式履历覆盖现场服务、workshop support 和医疗记录相关工作。",
       ".experience-section .section-intro":
@@ -632,25 +522,6 @@ const translations = {
         "支持 Lundbeck 在中国上市产品的不良反应记录处理和药物安全文档工作。",
       ".experience-timeline article:nth-child(2) li:nth-child(2)":
         "参与受监管医疗记录相关文档整理，接触跨部门沟通和合规记录边界。",
-      ".scope-section .section-kicker": "服务范围",
-      "#scope-title": "一次服务不是从拆机开始，也不是修完就结束。",
-      ".scope-section .section-intro":
-        "一项服务工作前面有准备，过程中有安全处理和技术验证，结束以后还有记录、交接和后续跟进。我更希望把这些环节当成一个完整流程来看。",
-      ".scope-grid article:nth-child(1) h3": "计划性维护",
-      ".scope-grid article:nth-child(1) p":
-        "提前准备工具和记录，确认设备状态，按流程完成维护，并用清楚的测试证据和服务说明结束这次 visit。",
-      ".scope-grid article:nth-child(2) h3": "故障调查",
-      ".scope-grid article:nth-child(2) p":
-        "把用户反馈变成可以验证的问题，尽量复现现象，把“可能原因”和“已经确认的原因”分开。",
-      ".scope-grid article:nth-child(3) h3": "Workshop repair",
-      ".scope-grid article:nth-child(3) p":
-        "在更可控的维修环境里处理设备，同时保持 parts、actions、observations 和 return status 可追踪。",
-      ".scope-grid article:nth-child(4) h3": "验证与安全",
-      ".scope-grid article:nth-child(4) p":
-        "通过 functional check、performance check 和必要的 safety check，确认结果不是表面上看起来可以，而是技术上站得住。",
-      ".scope-grid article:nth-child(5) h3": "交接与跟进",
-      ".scope-grid article:nth-child(5) p":
-        "把发现了什么、做了什么、验证了什么、下一步要注意什么写清楚，让后面接手的人不用从零开始。",
       "#case-notes .section-kicker": "服务案例",
       "#case-title": "服务经历不能公开细节，但可以公开方法。",
       "#case-notes .section-intro":
@@ -703,22 +574,6 @@ const translations = {
       ".case-grid article:nth-child(3) .case-outcome dt:nth-of-type(4)": "交付",
       ".case-grid article:nth-child(3) .case-outcome dd:nth-of-type(4)":
         "给 biomedical team 和内部工程师清楚记录",
-      "#process .section-kicker": "流程",
-      "#process-title": "我的处理顺序：先看清，再判断，再验证，再记录。",
-      "#process .section-intro":
-        "现场服务最怕的是信息断掉。流程清楚，后续的人才能知道当时为什么这么判断。",
-      ".process-track article:nth-child(1) h3": "看现场状态",
-      ".process-track article:nth-child(1) p":
-        "先确认设备现象、用户反馈、serial、历史记录、现场限制和当前风险，不急着给答案。",
-      ".process-track article:nth-child(2) h3": "定位问题",
-      ".process-track article:nth-child(2) p":
-        "结合 service manual、测试步骤、实际测量结果和过往记录，把“可能是”变成可以验证的判断。",
-      ".process-track article:nth-child(3) h3": "验证结果",
-      ".process-track article:nth-child(3) p":
-        "完成 functional test、performance check 和必要的 safety check，确认设备不是“看起来好了”。",
-      ".process-track article:nth-child(4) h3": "留下记录",
-      ".process-track article:nth-child(4) p":
-        "把工单、服务报告、serial、处理结果和客户更新写清楚，让交接和复查少走弯路。",
       "#study .section-kicker": "教育",
       "#study-title": "工程背景让我更习惯用证据说话。",
       "#study .section-intro":
@@ -732,22 +587,6 @@ const translations = {
         "Flexible Electrodes for Smart Bandages: Feasibility Exploration",
       ".study-grid article:nth-child(3) p":
         "围绕 wearable medical device 可行性，处理柔性电极几何、银墨涂层、阻抗测量和可制造性权衡。",
-      ".credentials-section .section-kicker": "学历证明",
-      "#credentials-title": "毕业证书会保留原件，但不直接公开扫描件。",
-      ".credentials-section .section-intro":
-        "毕业证、学位证和成绩单属于比较敏感的文件，可能包含编号、签名或核验信息。这个网站只公开学历背景和可核验状态，不把原件当作图片展示。",
-      ".credential-grid article:nth-child(1) span": "学历记录",
-      ".credential-grid article:nth-child(1) h3": "悉尼大学教育背景",
-      ".credential-grid article:nth-child(1) p":
-        "Master of Philosophy 和 Bachelor of Biomedical Engineering 的学历材料可以在求职、背景核验或正式申请需要时单独提供。",
-      ".credential-grid article:nth-child(2) span": "文件安全",
-      ".credential-grid article:nth-child(2) h3": "不公开毕业证扫描件",
-      ".credential-grid article:nth-child(2) p":
-        "证书原件不适合作为公开网页装饰图。公开网站更适合展示学历摘要，把证书原件留给正式核验场景。",
-      ".credential-grid article:nth-child(3) span": "补充证明",
-      ".credential-grid article:nth-child(3) h3": "培训证书可按需提供",
-      ".credential-grid article:nth-child(3) p":
-        "除了学历材料，我也保留了一些 service 和 vendor training certificates，可以在相关岗位或项目需要时提供。",
       ".certification-section .section-kicker": "培训证书",
       "#certification-title": "证书部分展示能力范围，不公开证书原件。",
       ".certification-section .section-intro":
@@ -873,8 +712,6 @@ const translations = {
       ".fit-verdict": { "aria-label": "招聘方岗位匹配判断" },
       ".proof-grid": { "aria-label": "招聘方证据核对清单" },
       ".brief-grid": { "aria-label": "招聘方筛选快照" },
-      ".overview-section": { "aria-label": "招聘方阅读路径" },
-      ".overview-grid": { "aria-label": "招聘方阅读链接" },
       ".experience-evidence": { "aria-label": "当前现场服务证据" },
       ".experience-outcome": { "aria-label": "当前岗位服务结果摘要" },
       ".case-grid article:nth-child(1) .case-outcome": { "aria-label": "公开安全的案例结果" },

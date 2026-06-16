@@ -58,8 +58,8 @@ test("site uses HTTPS canonical and sharing metadata", () => {
 });
 
 test("stylesheet and script use the current cache-busting version", () => {
-  assert.match(html, /href="styles\.css\?v=professional-rhythm-1"/);
-  assert.match(html, /src="script\.js\?v=professional-rhythm-1"/);
+  assert.match(html, /href="styles\.css\?v=clean-public-source-1"/);
+  assert.match(html, /src="script\.js\?v=clean-public-source-1"/);
 });
 
 test("hero exposes recruiter actions and downloadable resume files", () => {
@@ -257,8 +257,6 @@ test("compact homepage prioritizes real work experience over supporting preamble
   const proofIndex = html.indexOf('<section class="proof-strip');
   const briefIndex = html.indexOf('<section class="brief-section');
   const capabilitiesIndex = html.indexOf('<section id="capabilities"');
-  const overviewIndex = html.indexOf('<section class="overview-section');
-  const workIndex = html.indexOf('<section id="work"');
 
   assert.ok(fitIndex !== -1, "fit section should exist");
   assert.ok(experienceIndex !== -1, "experience section should exist");
@@ -266,12 +264,21 @@ test("compact homepage prioritizes real work experience over supporting preamble
   assert.ok(experienceIndex < proofIndex, "experience should appear before supporting proof cards");
   assert.ok(experienceIndex < briefIndex, "experience should appear before interview guidance");
   assert.ok(experienceIndex < capabilitiesIndex, "experience should appear before the skill matrix");
-  assert.ok(experienceIndex < overviewIndex, "experience should appear before the duplicate review path");
-  assert.ok(experienceIndex < workIndex, "experience should appear before the narrative work preamble");
 
-  assert.match(css, /\.resume-style\.resume-compact \.work-section,\s*\.resume-style\.resume-compact \.overview-section\s*{[\s\S]*?display:\s*none;/);
   assert.doesNotMatch(html, /Life Rhythm/);
   assert.doesNotMatch(html, /This site answers five practical questions first/);
+});
+
+test("legacy hidden recruiter sections are not shipped in the compact public site", () => {
+  const publicSource = `${html}\n${css}\n${script}`;
+
+  assert.doesNotMatch(html, /class="overview-section|class="scope-section|id="work"|id="process"|id="credentials"/);
+  assert.doesNotMatch(publicSource, /overview-section|scope-section|scope-grid|work-section|process-section|credentials-section/);
+  assert.doesNotMatch(publicSource, /Review Path|Service Scope|The work covers more than one moment|Field service is not only fixing equipment|I use a clear process|Education credentials are kept public-safe/);
+  assert.doesNotMatch(publicSource, /招聘方阅读路径|服务范围|一次服务不是|我做现场服务|我的处理顺序|学历证明/);
+  assert.doesNotMatch(publicSource, /work-bench\.jpg/);
+  assert.doesNotMatch(publicSource, /\.statement|\.profile-panel|\.profile-photo|\.feature-list|@keyframes lineGrow/);
+  assert.ok(!fs.existsSync(path.join(root, "assets/work-bench.jpg")), "unused hidden-section image should not be published");
 });
 
 test("keyboard users can skip fixed navigation", () => {
@@ -472,7 +479,6 @@ test("published visual assets are referenced by the site", () => {
 
 test("site images declare stable dimensions", () => {
   assert.match(html, /src="assets\/yihang-professional-headshot-formal-4k\.jpg"[^>]*width="1407"[^>]*height="2200"/);
-  assert.match(html, /src="assets\/work-bench\.jpg"[^>]*width="1448"[^>]*height="1086"/);
   assert.match(html, /src="assets\/logo-nova-biomedical\.jpg"[^>]*width="182"[^>]*height="108"/);
   assert.match(html, /src="assets\/logo-lundbeck\.svg"[^>]*width="485"[^>]*height="206"/);
   assert.match(html, /src="assets\/study-life\.jpg"[^>]*width="1448"[^>]*height="1086"/);
