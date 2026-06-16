@@ -59,8 +59,8 @@ test("site uses HTTPS canonical and sharing metadata", () => {
 });
 
 test("stylesheet and script use the current cache-busting version", () => {
-  assert.match(html, /href="styles\.css\?v=proof-boundary-1"/);
-  assert.match(html, /src="script\.js\?v=proof-boundary-1"/);
+  assert.match(html, /href="styles\.css\?v=header-email-1"/);
+  assert.match(html, /src="script\.js\?v=header-email-1"/);
 });
 
 test("hero exposes recruiter actions and downloadable resume files", () => {
@@ -116,6 +116,7 @@ test("recruiter actions expose clear accessible labels for file type and destina
   assert.match(html, /class="button secondary resume-docx-link"[^>]*aria-label="Download Henry Yang resume as DOCX"/);
   assert.match(html, /class="button secondary email-action"[^>]*aria-label="Email Yihang Henry Yang"/);
   assert.match(html, /class="button tertiary github-action"[^>]*aria-label="Open Yihang Yang GitHub profile"/);
+  assert.match(html, /class="nav-email-link"[^>]*aria-label="Email Yihang Henry Yang"/);
   assert.match(html, /class="nav-resume-link"[^>]*aria-label="Download Henry Yang resume PDF"/);
   assert.match(html, /class="button primary contact-email-action"[^>]*aria-label="Email Yihang Henry Yang"/);
   assert.match(html, /class="button secondary contact-copy-email-action"[^>]*aria-label="Copy Yihang Henry Yang email address"/);
@@ -211,17 +212,32 @@ test("contact appears before optional personal life content in the recruiter rea
   assert.ok(contactIndex < lifeIndex, "contact should appear before optional personal life content");
 });
 
-test("fixed header keeps a persistent resume PDF action", () => {
+test("fixed header keeps persistent contact and resume actions", () => {
+  assert.match(
+    html,
+    /<a class="nav-email-link" href="mailto:yangyihang96@gmail\.com" aria-label="Email Yihang Henry Yang">Email<\/a>\s*<a class="nav-resume-link" href="assets\/Henry_Yang_Biomedical_Engineer_Resume\.pdf" type="application\/pdf" download aria-label="Download Henry Yang resume PDF">Resume PDF<\/a>/
+  );
   assert.match(
     html,
     /<a class="nav-resume-link" href="assets\/Henry_Yang_Biomedical_Engineer_Resume\.pdf" type="application\/pdf" download aria-label="Download Henry Yang resume PDF">Resume PDF<\/a>/
   );
+  assert.match(script, /"\.nav-email-link": "Email"/);
+  assert.match(script, /"\.nav-email-link": "邮件"/);
   assert.match(script, /"\.nav-resume-link": "Resume PDF"/);
   assert.match(script, /"\.nav-resume-link": "PDF 简历"/);
+  assert.match(css, /\.nav-email-link\s*{[\s\S]*?flex:\s*0 0 auto;[\s\S]*?min-height:\s*36px;/);
   assert.match(css, /\.nav-resume-link\s*{[\s\S]*?flex:\s*0 0 auto;[\s\S]*?min-height:\s*36px;/);
   assert.match(
     css,
+    /@media \(max-width:\s*760px\)[\s\S]*?\.nav-email-link\s*{[\s\S]*?position:\s*absolute;[\s\S]*?top:\s*12px;[\s\S]*?right:\s*240px;/
+  );
+  assert.match(
+    css,
     /@media \(max-width:\s*760px\)[\s\S]*?\.nav-resume-link\s*{[\s\S]*?position:\s*absolute;[\s\S]*?top:\s*12px;[\s\S]*?right:\s*118px;/
+  );
+  assert.match(
+    css,
+    /@media \(max-width:\s*340px\)[\s\S]*?\.nav-resume-link::after\s*{[\s\S]*?content:\s*"PDF";/
   );
 });
 
@@ -314,6 +330,7 @@ test("brief section acts as a recruiter screening snapshot", () => {
   assert.match(html, /<span>Best next role<\/span>\s*<h3>Biomedical field service<\/h3>\s*<p>Strongest match is hands-on service work with travel, documentation, troubleshooting, and follow-up ownership\.<\/p>/);
   assert.match(script, /"\.brief-section \.section-kicker": "Screening Snapshot"/);
   assert.match(script, /"\.brief-section \.section-kicker": "招聘筛选快照"/);
+  assert.match(script, /"公开页面只放简历；学历、培训和雇佣核验相关材料需要时再私下提供。"/);
   assert.match(script, /"\.brief-grid": { "aria-label": "Recruiter screening snapshot" }/);
   assert.match(script, /"\.brief-grid": { "aria-label": "招聘方筛选快照" }/);
   assert.match(css, /\.brief-grid article\s*{[\s\S]*?min-height:\s*240px;/);

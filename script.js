@@ -21,6 +21,7 @@ const translations = {
       ".site-nav a:nth-child(3)": "Cases",
       ".site-nav a:nth-child(4)": "Education",
       ".site-nav a:nth-child(5)": "Contact",
+      ".nav-email-link": "Email",
       ".nav-resume-link": "Resume PDF",
       ".eyebrow": "Sydney · Biomedical Engineering · Field Service",
       ".hero-subtitle":
@@ -355,6 +356,7 @@ const translations = {
         "<strong>Record discipline</strong> Turning scattered information into reusable notes, checklists, and handover structure.",
     },
     attrs: {
+      ".nav-email-link": { "aria-label": "Email Yihang Henry Yang" },
       ".nav-resume-link": { "aria-label": "Download Henry Yang resume PDF" },
       ".resume-link": { "aria-label": "Download Henry Yang resume as PDF" },
       ".resume-docx-link": { "aria-label": "Download Henry Yang resume as DOCX" },
@@ -398,6 +400,7 @@ const translations = {
       ".site-nav a:nth-child(3)": "案例",
       ".site-nav a:nth-child(4)": "背景",
       ".site-nav a:nth-child(5)": "联系",
+      ".nav-email-link": "邮件",
       ".nav-resume-link": "PDF 简历",
       ".eyebrow": "悉尼 · 生物医学工程 · 现场服务",
       ".hero-subtitle":
@@ -499,7 +502,7 @@ const translations = {
       ".brief-grid article:nth-child(2) span": "私下核验",
       ".brief-grid article:nth-child(2) h3": "匹配后再要证明文件",
       ".brief-grid article:nth-child(2) p":
-        "公开页面只放简历；学历、培训和 employment-check 相关材料需要时再私下提供。",
+        "公开页面只放简历；学历、培训和雇佣核验相关材料需要时再私下提供。",
       ".brief-grid article:nth-child(3) span": "最适合下一步",
       ".brief-grid article:nth-child(3) h3": "Biomedical field service",
       ".brief-grid article:nth-child(3) p":
@@ -730,6 +733,7 @@ const translations = {
         "<strong>记录纪律</strong> 把零散信息整理成可复用的笔记、清单和交接结构。",
     },
     attrs: {
+      ".nav-email-link": { "aria-label": "发邮件联系 Yihang Henry Yang" },
       ".nav-resume-link": { "aria-label": "下载 Henry Yang PDF 简历" },
       ".resume-link": { "aria-label": "下载 Henry Yang PDF 简历" },
       ".resume-docx-link": { "aria-label": "下载 Henry Yang DOCX 简历" },

@@ -134,6 +134,22 @@ main:focus {
   background: rgba(255, 255, 255, 0.18);
 }
 
+.nav-email-link {
+  display: inline-flex;
+  flex: 0 0 auto;
+  min-height: 36px;
+  align-items: center;
+  justify-content: center;
+  padding: 7px 12px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  color: #ffffff;
+  background: var(--teal);
+  font-size: 13px;
+  font-weight: 850;
+  white-space: nowrap;
+}
+
 .nav-resume-link {
   display: inline-flex;
   flex: 0 0 auto;
@@ -150,6 +166,7 @@ main:focus {
   white-space: nowrap;
 }
 
+.nav-email-link:hover,
 .nav-resume-link:hover {
   transform: translateY(-1px);
 }
@@ -1528,6 +1545,7 @@ main:focus {
     scrollbar-width: none;
   }
 
+  .nav-email-link,
   .nav-resume-link {
     min-height: 34px;
   }
@@ -1699,6 +1717,15 @@ main:focus {
     grid-template-columns: 1fr;
   }
 
+  .nav-email-link {
+    position: absolute;
+    top: 12px;
+    right: 240px;
+    min-height: 34px;
+    padding: 6px 10px;
+    font-size: 13px;
+  }
+
   .nav-resume-link {
     position: absolute;
     top: 12px;
@@ -1756,6 +1783,26 @@ main:focus {
 
   .hero-copy {
     padding-top: 500px;
+  }
+}
+
+@media (max-width: 340px) {
+  .nav-email-link {
+    right: 168px;
+    padding: 6px 8px;
+  }
+
+  .nav-resume-link {
+    right: 112px;
+    width: 44px;
+    padding: 6px 8px;
+    font-size: 0;
+  }
+
+  .nav-resume-link::after {
+    content: "PDF";
+    font-size: 12px;
+    line-height: 1;
   }
 }
 
