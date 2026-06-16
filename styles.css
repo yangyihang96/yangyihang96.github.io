@@ -134,6 +134,26 @@ main:focus {
   background: rgba(255, 255, 255, 0.18);
 }
 
+.nav-resume-link {
+  display: inline-flex;
+  flex: 0 0 auto;
+  min-height: 36px;
+  align-items: center;
+  justify-content: center;
+  padding: 7px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 999px;
+  color: var(--ink);
+  background: #ffffff;
+  font-size: 13px;
+  font-weight: 850;
+  white-space: nowrap;
+}
+
+.nav-resume-link:hover {
+  transform: translateY(-1px);
+}
+
 .site-header.is-scrolled .site-nav a:hover,
 .site-header.is-scrolled .site-nav a.is-active {
   background: rgba(18, 107, 98, 0.10);
@@ -1453,6 +1473,10 @@ main:focus {
     scrollbar-width: none;
   }
 
+  .nav-resume-link {
+    min-height: 34px;
+  }
+
   .site-nav::-webkit-scrollbar {
     display: none;
   }
@@ -1630,6 +1654,15 @@ main:focus {
     width: 100%;
     gap: 2px;
     padding-right: 0;
+  }
+
+  .nav-resume-link {
+    position: absolute;
+    top: 12px;
+    right: 118px;
+    min-height: 34px;
+    padding: 6px 10px;
+    font-size: 13px;
   }
 
   .site-nav a {

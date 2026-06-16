@@ -16,6 +16,7 @@ const translations = {
       ".site-nav a:nth-child(3)": "Skills",
       ".site-nav a:nth-child(4)": "Education",
       ".site-nav a:nth-child(5)": "Contact",
+      ".nav-resume-link": "Resume PDF",
       ".eyebrow": "Sydney · Biomedical Engineering · Field Service",
       ".hero-subtitle":
         "Sydney-based biomedical field service engineer focused on medical device maintenance, fault diagnosis, verification, and service documentation.",
@@ -317,6 +318,7 @@ const translations = {
       ".site-nav a:nth-child(3)": "能力",
       ".site-nav a:nth-child(4)": "背景",
       ".site-nav a:nth-child(5)": "联系",
+      ".nav-resume-link": "PDF 简历",
       ".eyebrow": "悉尼 · 生物医学工程 · 现场服务",
       ".hero-subtitle":
         "我在悉尼做医疗设备现场服务，关注的不只是把设备修好，而是把现场判断、测试验证和服务记录做成可交接的闭环。",

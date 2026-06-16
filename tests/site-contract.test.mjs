@@ -33,8 +33,8 @@ test("site uses HTTPS canonical and sharing metadata", () => {
 });
 
 test("stylesheet and script use the current cache-busting version", () => {
-  assert.match(html, /href="styles\.css\?v=hero-portrait-1"/);
-  assert.match(html, /src="script\.js\?v=hero-portrait-1"/);
+  assert.match(html, /href="styles\.css\?v=nav-resume-1"/);
+  assert.match(html, /src="script\.js\?v=nav-resume-1"/);
 });
 
 test("hero exposes recruiter actions and downloadable resume files", () => {
@@ -46,6 +46,20 @@ test("hero exposes recruiter actions and downloadable resume files", () => {
   assert.match(html, /github\.com\/yangyihang96/);
   assert.ok(fs.existsSync(path.join(root, "assets/Henry_Yang_Biomedical_Engineer_Resume.docx")));
   assert.ok(fs.existsSync(path.join(root, "assets/Henry_Yang_Biomedical_Engineer_Resume.pdf")));
+});
+
+test("fixed header keeps a persistent resume PDF action", () => {
+  assert.match(
+    html,
+    /<a class="nav-resume-link" href="assets\/Henry_Yang_Biomedical_Engineer_Resume\.pdf" type="application\/pdf" download>Resume PDF<\/a>/
+  );
+  assert.match(script, /"\.nav-resume-link": "Resume PDF"/);
+  assert.match(script, /"\.nav-resume-link": "PDF 简历"/);
+  assert.match(css, /\.nav-resume-link\s*{[\s\S]*?flex:\s*0 0 auto;[\s\S]*?min-height:\s*36px;/);
+  assert.match(
+    css,
+    /@media \(max-width:\s*760px\)[\s\S]*?\.nav-resume-link\s*{[\s\S]*?position:\s*absolute;[\s\S]*?top:\s*12px;[\s\S]*?right:\s*118px;/
+  );
 });
 
 test("compact homepage keeps capability matrix visible", () => {
