@@ -58,8 +58,8 @@ test("site uses HTTPS canonical and sharing metadata", () => {
 });
 
 test("stylesheet and script use the current cache-busting version", () => {
-  assert.match(html, /href="styles\.css\?v=contact-density-1"/);
-  assert.match(html, /src="script\.js\?v=contact-density-1"/);
+  assert.match(html, /href="styles\.css\?v=experience-priority-3"/);
+  assert.match(html, /src="script\.js\?v=experience-priority-3"/);
 });
 
 test("hero exposes recruiter actions and downloadable resume files", () => {
@@ -170,13 +170,13 @@ test("fixed header keeps a persistent resume PDF action", () => {
 test("primary navigation follows the visible recruiter reading order", () => {
   assert.match(
     html,
-    /<nav class="site-nav" aria-label="Primary navigation">\s*<a href="#capabilities">Skills<\/a>\s*<a href="#experience">Experience<\/a>\s*<a href="#case-notes">Cases<\/a>\s*<a href="#study">Education<\/a>\s*<a href="#contact">Contact<\/a>\s*<\/nav>/
+    /<nav class="site-nav" aria-label="Primary navigation">\s*<a href="#experience">Experience<\/a>\s*<a href="#capabilities">Skills<\/a>\s*<a href="#case-notes">Cases<\/a>\s*<a href="#study">Education<\/a>\s*<a href="#contact">Contact<\/a>\s*<\/nav>/
   );
-  assert.match(script, /"\.site-nav a:nth-child\(1\)": "Skills"/);
-  assert.match(script, /"\.site-nav a:nth-child\(2\)": "Experience"/);
+  assert.match(script, /"\.site-nav a:nth-child\(1\)": "Experience"/);
+  assert.match(script, /"\.site-nav a:nth-child\(2\)": "Skills"/);
   assert.match(script, /"\.site-nav a:nth-child\(3\)": "Cases"/);
-  assert.match(script, /"\.site-nav a:nth-child\(1\)": "能力"/);
-  assert.match(script, /"\.site-nav a:nth-child\(2\)": "经历"/);
+  assert.match(script, /"\.site-nav a:nth-child\(1\)": "经历"/);
+  assert.match(script, /"\.site-nav a:nth-child\(2\)": "能力"/);
   assert.match(script, /"\.site-nav a:nth-child\(3\)": "案例"/);
 });
 
@@ -190,7 +190,7 @@ test("compact homepage keeps capability matrix visible", () => {
 test("fit section gives a recruiter-facing role-fit verdict", () => {
   assert.match(html, /class="fit-verdict" aria-label="Recruiter role-fit verdict"/);
   assert.match(html, /<strong>Best match<\/strong>\s*<span>Biomedical field service roles needing device service, verification records, and clear handover\.<\/span>/);
-  assert.match(html, /<strong>Evidence path<\/strong>\s*<span>Proof points, experience, cases, and training records are listed below for review\.<\/span>/);
+  assert.match(html, /<strong>Evidence path<\/strong>\s*<span>Work experience comes next, followed by proof points, cases, and training records\.<\/span>/);
   assert.match(script, /"\.fit-verdict div:nth-child\(1\) strong": "Best match"/);
   assert.match(script, /"\.fit-verdict div:nth-child\(1\) strong": "最适合"/);
   assert.match(script, /"\.fit-verdict": { "aria-label": "Recruiter role-fit verdict" }/);
@@ -233,23 +233,25 @@ test("brief section acts as a recruiter screening snapshot", () => {
   assert.doesNotMatch(html, /A practical engineering profile built around service reliability/);
 });
 
-test("overview section gives recruiters a focused review path", () => {
-  assert.match(html, /<section class="overview-section reveal" aria-label="Recruiter review path">/);
-  assert.match(html, /<p class="section-kicker">Review Path<\/p>/);
-  assert.match(html, /<h2>Use this order when checking fit, evidence, and next step\.<\/h2>/);
-  assert.match(html, /<div class="overview-grid" aria-label="Recruiter review links">/);
-  assert.match(html, /<a href="#work">\s*<span>01<\/span>\s*<strong>Field context<\/strong>\s*<p>Start with the service setting and the kind of device work involved\.<\/p>/);
-  assert.match(html, /<a href="#experience">\s*<span>02<\/span>\s*<strong>Work evidence<\/strong>\s*<p>Check current role scope, equipment range, records, and handover evidence\.<\/p>/);
-  assert.match(html, /<a href="#case-notes">\s*<span>03<\/span>\s*<strong>Case method<\/strong>\s*<p>Review how service problems are handled without exposing customer details\.<\/p>/);
-  assert.match(html, /<a href="#certifications">\s*<span>04<\/span>\s*<strong>Training proof<\/strong>\s*<p>Confirm the listed device training and certificate context\.<\/p>/);
-  assert.match(html, /<a href="#contact">\s*<span>05<\/span>\s*<strong>Contact \/ resume<\/strong>\s*<p>Use email, PDF, DOCX, and private proof requests for the next step\.<\/p>/);
-  assert.match(script, /"\.overview-heading \.section-kicker": "Review Path"/);
-  assert.match(script, /"\.overview-heading \.section-kicker": "阅读路径"/);
-  assert.match(script, /"\.overview-grid": { "aria-label": "Recruiter review links" }/);
-  assert.match(script, /"\.overview-grid": { "aria-label": "招聘方阅读链接" }/);
-  assert.doesNotMatch(css, /\.resume-style\.resume-compact \.overview-section,[\s\S]*?{\s*display:\s*none;/);
-  assert.match(css, /@media \(max-width:\s*760px\)[\s\S]*?\.resume-style\.resume-compact \.overview-grid a\s*{[\s\S]*?min-height:\s*0;[\s\S]*?padding:\s*18px;/);
-  assert.match(css, /@media \(max-width:\s*760px\)[\s\S]*?\.resume-style\.resume-compact \.overview-grid strong\s*{[\s\S]*?margin-top:\s*8px;[\s\S]*?font-size:\s*18px;/);
+test("compact homepage prioritizes real work experience over supporting preamble", () => {
+  const fitIndex = html.indexOf('<section class="fit-strip');
+  const experienceIndex = html.indexOf('<section id="experience"');
+  const proofIndex = html.indexOf('<section class="proof-strip');
+  const briefIndex = html.indexOf('<section class="brief-section');
+  const capabilitiesIndex = html.indexOf('<section id="capabilities"');
+  const overviewIndex = html.indexOf('<section class="overview-section');
+  const workIndex = html.indexOf('<section id="work"');
+
+  assert.ok(fitIndex !== -1, "fit section should exist");
+  assert.ok(experienceIndex !== -1, "experience section should exist");
+  assert.ok(fitIndex < experienceIndex, "experience should follow the role-fit summary");
+  assert.ok(experienceIndex < proofIndex, "experience should appear before supporting proof cards");
+  assert.ok(experienceIndex < briefIndex, "experience should appear before interview guidance");
+  assert.ok(experienceIndex < capabilitiesIndex, "experience should appear before the skill matrix");
+  assert.ok(experienceIndex < overviewIndex, "experience should appear before the duplicate review path");
+  assert.ok(experienceIndex < workIndex, "experience should appear before the narrative work preamble");
+
+  assert.match(css, /\.resume-style\.resume-compact \.work-section,\s*\.resume-style\.resume-compact \.overview-section,[\s\S]*?display:\s*none;/);
   assert.doesNotMatch(html, /Life Rhythm/);
   assert.doesNotMatch(html, /This site answers five practical questions first/);
 });

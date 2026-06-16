@@ -11,8 +11,8 @@ const translations = {
       "Sydney-based Biomedical Field Service Engineer focused on medical device maintenance, troubleshooting, verification, service documentation, and resume download.",
     text: {
       ".skip-link": "Skip to content",
-      ".site-nav a:nth-child(1)": "Skills",
-      ".site-nav a:nth-child(2)": "Experience",
+      ".site-nav a:nth-child(1)": "Experience",
+      ".site-nav a:nth-child(2)": "Skills",
       ".site-nav a:nth-child(3)": "Cases",
       ".site-nav a:nth-child(4)": "Education",
       ".site-nav a:nth-child(5)": "Contact",
@@ -52,7 +52,7 @@ const translations = {
         "Biomedical field service roles needing device service, verification records, and clear handover.",
       ".fit-verdict div:nth-child(2) strong": "Evidence path",
       ".fit-verdict div:nth-child(2) span":
-        "Proof points, experience, cases, and training records are listed below for review.",
+        "Work experience comes next, followed by proof points, cases, and training records.",
       ".fit-grid article:nth-child(1) span": "Role",
       ".fit-grid article:nth-child(1) strong": "Biomedical Field Service Engineer",
       ".fit-grid article:nth-child(2) span": "Service work",
@@ -446,8 +446,8 @@ const translations = {
       "Yihang (Henry) Yang 是悉尼医疗设备现场服务工程师，重点展示设备维护、故障排查、验证记录、服务文档和简历下载。",
     text: {
       ".skip-link": "跳到主要内容",
-      ".site-nav a:nth-child(1)": "能力",
-      ".site-nav a:nth-child(2)": "经历",
+      ".site-nav a:nth-child(1)": "经历",
+      ".site-nav a:nth-child(2)": "能力",
       ".site-nav a:nth-child(3)": "案例",
       ".site-nav a:nth-child(4)": "背景",
       ".site-nav a:nth-child(5)": "联系",
@@ -487,7 +487,7 @@ const translations = {
         "需要设备服务、验证记录和清楚交接的 biomedical field service 岗位。",
       ".fit-verdict div:nth-child(2) strong": "证据路径",
       ".fit-verdict div:nth-child(2) span":
-        "证明点、经历、案例和培训记录都在下方，方便招聘方快速核对。",
+        "下面先看正式工作经历，再看证据点、案例和培训记录。",
       ".fit-grid article:nth-child(1) span": "岗位",
       ".fit-grid article:nth-child(1) strong": "Biomedical Field Service Engineer",
       ".fit-grid article:nth-child(2) span": "服务内容",

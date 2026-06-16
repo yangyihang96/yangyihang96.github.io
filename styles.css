@@ -2661,6 +2661,8 @@ body.resume-style {
 .resume-style.resume-compact .scope-section,
 .resume-style.resume-compact .process-section,
 .resume-style.resume-compact .credentials-section,
+.resume-style.resume-compact .work-section,
+.resume-style.resume-compact .overview-section,
 .resume-style.resume-compact .interests-section {
   display: none;
 }
