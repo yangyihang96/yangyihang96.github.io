@@ -21,8 +21,11 @@ const articleCount = (className) => {
 };
 
 test("site uses HTTPS canonical and sharing metadata", () => {
+  assert.match(html, /<title>Yihang \(Henry\) Yang \| Biomedical Field Service Engineer<\/title>/);
   assert.match(html, /<meta name="robots" content="index, follow">/);
   assert.match(html, /<link rel="canonical" href="https:\/\/yangyihang96\.com\/">/);
+  assert.match(html, /property="og:title" content="Yihang \(Henry\) Yang \| Biomedical Field Service Engineer"/);
+  assert.match(html, /name="twitter:title" content="Yihang \(Henry\) Yang \| Biomedical Field Service Engineer"/);
   assert.match(html, /property="og:url" content="https:\/\/yangyihang96\.com\/"/);
   assert.match(html, /property="og:image" content="https:\/\/yangyihang96\.com\/assets\//);
   assert.match(html, /property="og:image:width" content="2200"/);
@@ -30,11 +33,13 @@ test("site uses HTTPS canonical and sharing metadata", () => {
   assert.match(html, /property="og:image:alt" content="Professional portrait and biomedical service profile for Yihang Yang"/);
   assert.match(html, /name="twitter:image:alt" content="Professional portrait and biomedical service profile for Yihang Yang"/);
   assert.doesNotMatch(html, /http:\/\/yangyihang96\.com/);
+  assert.match(script, /title: "Yihang \(Henry\) Yang \| Biomedical Field Service Engineer"/);
+  assert.match(script, /title: "Yihang \(Henry\) Yang \| 医疗设备现场服务工程师"/);
 });
 
 test("stylesheet and script use the current cache-busting version", () => {
-  assert.match(html, /href="styles\.css\?v=nav-flow-1"/);
-  assert.match(html, /src="script\.js\?v=nav-flow-1"/);
+  assert.match(html, /href="styles\.css\?v=title-engineer-1"/);
+  assert.match(html, /src="script\.js\?v=title-engineer-1"/);
 });
 
 test("hero exposes recruiter actions and downloadable resume files", () => {

@@ -6,7 +6,7 @@ if (yearTarget) {
 const translations = {
   en: {
     lang: "en",
-    title: "Yihang (Henry) Yang | Biomedical Field Service",
+    title: "Yihang (Henry) Yang | Biomedical Field Service Engineer",
     description:
       "Personal website for Yihang (Henry) Yang, covering biomedical field service, medical device maintenance, testing, documentation, education, selected training records, resume download, and contact details.",
     text: {
@@ -334,7 +334,7 @@ const translations = {
   },
   zh: {
     lang: "zh-CN",
-    title: "Yihang (Henry) Yang | 医疗设备现场服务",
+    title: "Yihang (Henry) Yang | 医疗设备现场服务工程师",
     description:
       "Yihang (Henry) Yang 的个人网站，记录医疗设备现场服务、测试验证、工程背景、培训证书、简历下载和联系方式。",
     text: {
