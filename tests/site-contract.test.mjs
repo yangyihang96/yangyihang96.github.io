@@ -33,8 +33,8 @@ test("site uses HTTPS canonical and sharing metadata", () => {
 });
 
 test("stylesheet and script use the current cache-busting version", () => {
-  assert.match(html, /href="styles\.css\?v=resume-pdf-1"/);
-  assert.match(html, /src="script\.js\?v=resume-pdf-1"/);
+  assert.match(html, /href="styles\.css\?v=hero-portrait-1"/);
+  assert.match(html, /src="script\.js\?v=hero-portrait-1"/);
 });
 
 test("hero exposes recruiter actions and downloadable resume files", () => {
@@ -108,6 +108,17 @@ test("site images declare stable dimensions", () => {
   assert.match(html, /src="assets\/logo-nova-biomedical\.jpg"[^>]*width="182"[^>]*height="108"/);
   assert.match(html, /src="assets\/logo-lundbeck\.svg"[^>]*width="485"[^>]*height="206"/);
   assert.match(html, /src="assets\/study-life\.jpg"[^>]*width="1448"[^>]*height="1086"/);
+});
+
+test("hero portrait stays visually constrained after image dimensions load", () => {
+  assert.match(
+    css,
+    /\.resume-style\.resume-compact \.hero-profile-card img\s*{[\s\S]*?aspect-ratio:\s*4\s*\/\s*5;[\s\S]*?height:\s*auto;[\s\S]*?object-fit:\s*cover;/
+  );
+  assert.match(
+    css,
+    /@media \(max-width:\s*920px\)[\s\S]*?\.resume-style\.resume-compact \.hero-profile-card img\s*{[\s\S]*?aspect-ratio:\s*1;[\s\S]*?height:\s*auto;/
+  );
 });
 
 test("person structured data is present and parseable", () => {

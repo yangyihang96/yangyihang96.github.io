@@ -2234,6 +2234,7 @@ body.resume-style {
 .resume-style.resume-compact .hero-profile-card img {
   width: 100%;
   aspect-ratio: 4 / 5;
+  height: auto;
   display: block;
   object-fit: cover;
   object-position: center 28%;
@@ -2342,6 +2343,7 @@ body.resume-style {
 
   .resume-style.resume-compact .hero-profile-card img {
     aspect-ratio: 1;
+    height: auto;
   }
 
   .resume-style.resume-compact .hero-card-body {
