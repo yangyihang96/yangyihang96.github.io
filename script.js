@@ -204,7 +204,7 @@ const translations = {
       ".study-grid article:nth-child(3) h3":
         "Flexible Electrodes for Smart Bandages: Feasibility Exploration",
       ".study-grid article:nth-child(3) p":
-        "Explored flexible electrode design for wearable health-monitoring and therapeutic devices, including micro-perforated structures, silver ink, z-conductive electrodes, and impedance measurement. Earlier academic work included a cochlear implant electrode impedance study and a hospital-linked controllable blood pumping simulation.",
+        "Framed as feasibility and design optimisation research, this project connected wearable medical device requirements with flexible electrode geometry, silver ink coating, impedance measurement, and manufacturability trade-offs. It strengthened how I evaluate device performance, validation evidence, and practical design limits.",
       ".study-grid article:nth-child(4) span": "Research discipline",
       ".study-grid article:nth-child(4) h3": "Separating evidence from assumption",
       ".study-grid article:nth-child(4) p":
@@ -589,7 +589,7 @@ const translations = {
       ".study-grid article:nth-child(3) h3":
         "Flexible Electrodes for Smart Bandages: Feasibility Exploration",
       ".study-grid article:nth-child(3) p":
-        "围绕用于 wearable health-monitoring 和 therapeutic devices 的柔性电极设计，探索 micro-perforated structures、silver ink、z-conductive electrodes 和 impedance measurement。早期学术项目还包括 cochlear implant electrode impedance study 和 hospital-linked controllable blood pumping simulation。",
+        "这项 MPhil 研究定位为可行性与设计优化研究，重点连接 wearable medical device 需求、柔性电极几何、银墨涂层、阻抗测量和可制造性权衡，也训练了我用验证证据评估设备性能和实际设计边界。",
       ".study-grid article:nth-child(4) span": "研究训练",
       ".study-grid article:nth-child(4) h3": "把证据和假设分开",
       ".study-grid article:nth-child(4) p":
