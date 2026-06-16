@@ -33,8 +33,8 @@ test("site uses HTTPS canonical and sharing metadata", () => {
 });
 
 test("stylesheet and script use the current cache-busting version", () => {
-  assert.match(html, /href="styles\.css\?v=contact-close-1"/);
-  assert.match(html, /src="script\.js\?v=contact-close-1"/);
+  assert.match(html, /href="styles\.css\?v=nav-flow-1"/);
+  assert.match(html, /src="script\.js\?v=nav-flow-1"/);
 });
 
 test("hero exposes recruiter actions and downloadable resume files", () => {
@@ -74,6 +74,19 @@ test("fixed header keeps a persistent resume PDF action", () => {
     css,
     /@media \(max-width:\s*760px\)[\s\S]*?\.nav-resume-link\s*{[\s\S]*?position:\s*absolute;[\s\S]*?top:\s*12px;[\s\S]*?right:\s*118px;/
   );
+});
+
+test("primary navigation follows the visible recruiter reading order", () => {
+  assert.match(
+    html,
+    /<nav class="site-nav" aria-label="Primary navigation">\s*<a href="#capabilities">Skills<\/a>\s*<a href="#experience">Experience<\/a>\s*<a href="#case-notes">Cases<\/a>\s*<a href="#study">Education<\/a>\s*<a href="#contact">Contact<\/a>\s*<\/nav>/
+  );
+  assert.match(script, /"\.site-nav a:nth-child\(1\)": "Skills"/);
+  assert.match(script, /"\.site-nav a:nth-child\(2\)": "Experience"/);
+  assert.match(script, /"\.site-nav a:nth-child\(3\)": "Cases"/);
+  assert.match(script, /"\.site-nav a:nth-child\(1\)": "能力"/);
+  assert.match(script, /"\.site-nav a:nth-child\(2\)": "经历"/);
+  assert.match(script, /"\.site-nav a:nth-child\(3\)": "案例"/);
 });
 
 test("compact homepage keeps capability matrix visible", () => {
