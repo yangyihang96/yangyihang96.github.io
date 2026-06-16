@@ -2639,12 +2639,30 @@ body.resume-style {
 }
 
 /* Compact resume redesign */
-.resume-style.resume-compact .overview-section,
 .resume-style.resume-compact .scope-section,
 .resume-style.resume-compact .process-section,
 .resume-style.resume-compact .credentials-section,
 .resume-style.resume-compact .interests-section {
   display: none;
+}
+
+@media (max-width: 760px) {
+  .resume-style.resume-compact .overview-grid a {
+    min-height: 0;
+    padding: 18px;
+  }
+
+  .resume-style.resume-compact .overview-grid strong {
+    margin-top: 8px;
+    font-size: 18px;
+    line-height: 1.15;
+  }
+
+  .resume-style.resume-compact .overview-grid p {
+    margin-top: 5px;
+    font-size: 14px;
+    line-height: 1.35;
+  }
 }
 
 .resume-style.resume-compact .hero {

@@ -58,8 +58,8 @@ test("site uses HTTPS canonical and sharing metadata", () => {
 });
 
 test("stylesheet and script use the current cache-busting version", () => {
-  assert.match(html, /href="styles\.css\?v=screening-snapshot-1"/);
-  assert.match(html, /src="script\.js\?v=screening-snapshot-1"/);
+  assert.match(html, /href="styles\.css\?v=review-path-1"/);
+  assert.match(html, /src="script\.js\?v=review-path-1"/);
 });
 
 test("hero exposes recruiter actions and downloadable resume files", () => {
@@ -191,6 +191,27 @@ test("brief section acts as a recruiter screening snapshot", () => {
   assert.match(css, /\.brief-grid article\s*{[\s\S]*?min-height:\s*240px;/);
   assert.doesNotMatch(html, /Professional Brief/);
   assert.doesNotMatch(html, /A practical engineering profile built around service reliability/);
+});
+
+test("overview section gives recruiters a focused review path", () => {
+  assert.match(html, /<section class="overview-section reveal" aria-label="Recruiter review path">/);
+  assert.match(html, /<p class="section-kicker">Review Path<\/p>/);
+  assert.match(html, /<h2>Use this order when checking fit, evidence, and next step\.<\/h2>/);
+  assert.match(html, /<div class="overview-grid" aria-label="Recruiter review links">/);
+  assert.match(html, /<a href="#work">\s*<span>01<\/span>\s*<strong>Field context<\/strong>\s*<p>Start with the service setting and the kind of device work involved\.<\/p>/);
+  assert.match(html, /<a href="#experience">\s*<span>02<\/span>\s*<strong>Work evidence<\/strong>\s*<p>Check current role scope, equipment range, records, and handover evidence\.<\/p>/);
+  assert.match(html, /<a href="#case-notes">\s*<span>03<\/span>\s*<strong>Case method<\/strong>\s*<p>Review how service problems are handled without exposing customer details\.<\/p>/);
+  assert.match(html, /<a href="#certifications">\s*<span>04<\/span>\s*<strong>Training proof<\/strong>\s*<p>Confirm the listed device training and certificate context\.<\/p>/);
+  assert.match(html, /<a href="#contact">\s*<span>05<\/span>\s*<strong>Contact \/ resume<\/strong>\s*<p>Use email, PDF, DOCX, and private proof requests for the next step\.<\/p>/);
+  assert.match(script, /"\.overview-heading \.section-kicker": "Review Path"/);
+  assert.match(script, /"\.overview-heading \.section-kicker": "阅读路径"/);
+  assert.match(script, /"\.overview-grid": { "aria-label": "Recruiter review links" }/);
+  assert.match(script, /"\.overview-grid": { "aria-label": "招聘方阅读链接" }/);
+  assert.doesNotMatch(css, /\.resume-style\.resume-compact \.overview-section,[\s\S]*?{\s*display:\s*none;/);
+  assert.match(css, /@media \(max-width:\s*760px\)[\s\S]*?\.resume-style\.resume-compact \.overview-grid a\s*{[\s\S]*?min-height:\s*0;[\s\S]*?padding:\s*18px;/);
+  assert.match(css, /@media \(max-width:\s*760px\)[\s\S]*?\.resume-style\.resume-compact \.overview-grid strong\s*{[\s\S]*?margin-top:\s*8px;[\s\S]*?font-size:\s*18px;/);
+  assert.doesNotMatch(html, /Life Rhythm/);
+  assert.doesNotMatch(html, /This site answers five practical questions first/);
 });
 
 test("keyboard users can skip fixed navigation", () => {
