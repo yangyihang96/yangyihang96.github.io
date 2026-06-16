@@ -10,6 +10,25 @@ const read = (file) => fs.readFileSync(path.join(root, file), "utf8");
 const html = read("index.html");
 const css = read("styles.css");
 const script = read("script.js");
+const escapeRegExp = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+const recruiterEmailAddress = "yangyihang96@gmail.com";
+const recruiterEmailHrefEn = `mailto:${recruiterEmailAddress}?subject=${encodeURIComponent(
+  "Biomedical field service opportunity"
+)}&body=${encodeURIComponent(
+  [
+    "Hi Yihang,",
+    "",
+    "I'm contacting you about a biomedical field service role.",
+    "",
+    "Role scope: ",
+    "Device scope: ",
+    "Location / travel: ",
+    "Preferred call times: ",
+    "",
+    "Regards,",
+  ].join("\r\n")
+)}`;
+const recruiterEmailHrefEnHtml = recruiterEmailHrefEn.replace("&body=", "&amp;body=");
 
 const sectionBody = (className) => {
   const match = html.match(new RegExp(`<div class="${className}"[^>]*>([\\s\\S]*?)</div>`));
@@ -59,8 +78,8 @@ test("site uses HTTPS canonical and sharing metadata", () => {
 });
 
 test("stylesheet and script use the current cache-busting version", () => {
-  assert.match(html, /href="styles\.css\?v=translated-structure-labels-1"/);
-  assert.match(html, /src="script\.js\?v=translated-structure-labels-1"/);
+  assert.match(html, /href="styles\.css\?v=prefilled-email-1"/);
+  assert.match(html, /src="script\.js\?v=prefilled-email-1"/);
 });
 
 test("language preference is restored when the page loads", () => {
@@ -119,6 +138,31 @@ test("hero exposes recruiter actions and downloadable resume files", () => {
   assert.ok(fs.existsSync(path.join(root, "assets/Henry_Yang_Biomedical_Engineer_Resume.pdf")));
 });
 
+test("email actions prefill recruiter context instead of opening a blank email", () => {
+  const htmlPrefilledEmailCount = (html.match(new RegExp(escapeRegExp(recruiterEmailHrefEnHtml), "g")) || [])
+    .length;
+
+  assert.equal(htmlPrefilledEmailCount, 3);
+  assert.doesNotMatch(html, /href="mailto:yangyihang96@gmail\.com" aria-label="Email Yihang Henry Yang"/);
+  assert.match(html, /subject=Biomedical%20field%20service%20opportunity/);
+  assert.match(html, /Role%20scope%3A%20/);
+  assert.match(html, /Device%20scope%3A%20/);
+  assert.match(html, /Location%20%2F%20travel%3A%20/);
+  assert.match(html, /Preferred%20call%20times%3A%20/);
+  assert.match(script, /const recruiterEmailHrefEn =/);
+  assert.match(script, /const recruiterEmailHrefZh =/);
+  assert.match(script, /encodeURIComponent\(\s*"Biomedical field service opportunity"\s*\)/);
+  assert.match(script, /encodeURIComponent\(\s*"医疗设备现场服务机会"\s*\)/);
+  assert.match(script, /"Role scope: "/);
+  assert.match(script, /"设备范围："/);
+  assert.match(script, /"\.nav-email-link": { "aria-label": "Email Yihang Henry Yang", href: recruiterEmailHrefEn }/);
+  assert.match(script, /"\.email-action": { "aria-label": "Email Yihang Henry Yang", href: recruiterEmailHrefEn }/);
+  assert.match(script, /"\.contact-email-action": { "aria-label": "Email Yihang Henry Yang", href: recruiterEmailHrefEn }/);
+  assert.match(script, /"\.nav-email-link": { "aria-label": "发邮件联系 Yihang Henry Yang", href: recruiterEmailHrefZh }/);
+  assert.match(script, /"\.email-action": { "aria-label": "发邮件联系 Yihang Henry Yang", href: recruiterEmailHrefZh }/);
+  assert.match(script, /"\.contact-email-action": { "aria-label": "发邮件联系 Yihang Henry Yang", href: recruiterEmailHrefZh }/);
+});
+
 test("downloadable resume files expose professional document metadata", () => {
   const pdfSource = fs.readFileSync(
     path.join(root, "assets/Henry_Yang_Biomedical_Engineer_Resume.pdf"),
@@ -175,7 +219,10 @@ test("contact section repeats recruiter conversion actions at the close", () => 
   assert.match(html, /class="contact-actions"/);
   assert.match(html, /Ready for field service conversations/);
   assert.match(html, /Sydney field travel, medical device service, verification records, and bilingual communication/);
-  assert.match(html, /class="button primary contact-email-action" href="mailto:yangyihang96@gmail\.com"/);
+  assert.match(
+    html,
+    new RegExp(`class="button primary contact-email-action" href="${escapeRegExp(recruiterEmailHrefEnHtml)}"`)
+  );
   assert.match(html, /class="button secondary contact-copy-email-action" type="button" data-copy-email="yangyihang96@gmail\.com"/);
   assert.match(html, /class="button secondary contact-resume-link" href="assets\/Henry_Yang_Biomedical_Engineer_Resume\.pdf" type="application\/pdf" download/);
   assert.match(html, /class="button secondary contact-docx-link" href="assets\/Henry_Yang_Biomedical_Engineer_Resume\.docx" download/);
@@ -260,7 +307,11 @@ test("contact appears before optional personal life content in the recruiter rea
 test("fixed header keeps persistent contact and resume actions", () => {
   assert.match(
     html,
-    /<a class="nav-email-link" href="mailto:yangyihang96@gmail\.com" aria-label="Email Yihang Henry Yang">Email<\/a>\s*<a class="nav-resume-link" href="assets\/Henry_Yang_Biomedical_Engineer_Resume\.pdf" type="application\/pdf" download aria-label="Download Henry Yang resume PDF">Resume PDF<\/a>/
+    new RegExp(
+      `<a class="nav-email-link" href="${escapeRegExp(
+        recruiterEmailHrefEnHtml
+      )}" aria-label="Email Yihang Henry Yang">Email</a>\\s*<a class="nav-resume-link" href="assets/Henry_Yang_Biomedical_Engineer_Resume\\.pdf" type="application/pdf" download aria-label="Download Henry Yang resume PDF">Resume PDF</a>`
+    )
   );
   assert.match(
     html,

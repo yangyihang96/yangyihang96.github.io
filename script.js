@@ -3,6 +3,40 @@ if (yearTarget) {
   yearTarget.textContent = String(new Date().getFullYear());
 }
 
+const recruiterEmailAddress = "yangyihang96@gmail.com";
+const recruiterEmailHrefEn = `mailto:${recruiterEmailAddress}?subject=${encodeURIComponent(
+  "Biomedical field service opportunity"
+)}&body=${encodeURIComponent(
+  [
+    "Hi Yihang,",
+    "",
+    "I'm contacting you about a biomedical field service role.",
+    "",
+    "Role scope: ",
+    "Device scope: ",
+    "Location / travel: ",
+    "Preferred call times: ",
+    "",
+    "Regards,",
+  ].join("\r\n")
+)}`;
+const recruiterEmailHrefZh = `mailto:${recruiterEmailAddress}?subject=${encodeURIComponent(
+  "医疗设备现场服务机会"
+)}&body=${encodeURIComponent(
+  [
+    "Yihang 你好，",
+    "",
+    "我想联系你沟通一个医疗设备现场服务相关机会。",
+    "",
+    "岗位范围：",
+    "设备范围：",
+    "地点 / 出行：",
+    "合适通话时间：",
+    "",
+    "谢谢。",
+  ].join("\r\n")
+)}`;
+
 const translations = {
   en: {
     lang: "en",
@@ -363,13 +397,13 @@ const translations = {
       ".hero-profile-card": { "aria-label": "Profile snapshot" },
       ".fit-grid": { "aria-label": "Recruiter quick match" },
       ".experience-summary-grid": { "aria-label": "Work experience summary" },
-      ".nav-email-link": { "aria-label": "Email Yihang Henry Yang" },
+      ".nav-email-link": { "aria-label": "Email Yihang Henry Yang", href: recruiterEmailHrefEn },
       ".nav-resume-link": { "aria-label": "Download Henry Yang resume PDF" },
       ".resume-link": { "aria-label": "Download Henry Yang resume as PDF" },
       ".resume-docx-link": { "aria-label": "Download Henry Yang resume as DOCX" },
-      ".email-action": { "aria-label": "Email Yihang Henry Yang" },
+      ".email-action": { "aria-label": "Email Yihang Henry Yang", href: recruiterEmailHrefEn },
       ".github-action": { "aria-label": "Open Yihang Yang GitHub profile" },
-      ".contact-email-action": { "aria-label": "Email Yihang Henry Yang" },
+      ".contact-email-action": { "aria-label": "Email Yihang Henry Yang", href: recruiterEmailHrefEn },
       ".contact-copy-email-action": { "aria-label": "Copy Yihang Henry Yang email address" },
       ".contact-resume-link": { "aria-label": "Download Henry Yang resume as PDF" },
       ".contact-docx-link": { "aria-label": "Download Henry Yang resume as DOCX" },
@@ -748,13 +782,13 @@ const translations = {
       ".hero-profile-card": { "aria-label": "个人资料快照" },
       ".fit-grid": { "aria-label": "招聘方快速匹配" },
       ".experience-summary-grid": { "aria-label": "工作经历摘要" },
-      ".nav-email-link": { "aria-label": "发邮件联系 Yihang Henry Yang" },
+      ".nav-email-link": { "aria-label": "发邮件联系 Yihang Henry Yang", href: recruiterEmailHrefZh },
       ".nav-resume-link": { "aria-label": "下载 Henry Yang PDF 简历" },
       ".resume-link": { "aria-label": "下载 Henry Yang PDF 简历" },
       ".resume-docx-link": { "aria-label": "下载 Henry Yang DOCX 简历" },
-      ".email-action": { "aria-label": "发邮件联系 Yihang Henry Yang" },
+      ".email-action": { "aria-label": "发邮件联系 Yihang Henry Yang", href: recruiterEmailHrefZh },
       ".github-action": { "aria-label": "打开 Yihang Yang GitHub 主页" },
-      ".contact-email-action": { "aria-label": "发邮件联系 Yihang Henry Yang" },
+      ".contact-email-action": { "aria-label": "发邮件联系 Yihang Henry Yang", href: recruiterEmailHrefZh },
       ".contact-copy-email-action": { "aria-label": "复制 Yihang Henry Yang 邮箱地址" },
       ".contact-resume-link": { "aria-label": "下载 Henry Yang PDF 简历" },
       ".contact-docx-link": { "aria-label": "下载 Henry Yang DOCX 简历" },
