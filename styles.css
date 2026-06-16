@@ -695,7 +695,9 @@ main:focus {
 }
 
 .brief-grid article {
-  min-height: 300px;
+  display: grid;
+  min-height: 240px;
+  align-content: start;
   padding: 30px;
 }
 

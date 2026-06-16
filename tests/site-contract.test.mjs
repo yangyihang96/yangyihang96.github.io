@@ -58,8 +58,8 @@ test("site uses HTTPS canonical and sharing metadata", () => {
 });
 
 test("stylesheet and script use the current cache-busting version", () => {
-  assert.match(html, /href="styles\.css\?v=fit-verdict-1"/);
-  assert.match(html, /src="script\.js\?v=fit-verdict-1"/);
+  assert.match(html, /href="styles\.css\?v=screening-snapshot-1"/);
+  assert.match(html, /src="script\.js\?v=screening-snapshot-1"/);
 });
 
 test("hero exposes recruiter actions and downloadable resume files", () => {
@@ -174,6 +174,23 @@ test("early recruiter proof points summarize equipment, verification, records, a
   assert.match(css, /@media \(max-width:\s*760px\)[\s\S]*?\.resume-style \.proof-grid article\s*{[\s\S]*?padding:\s*18px;/);
   assert.match(css, /@media \(max-width:\s*760px\)[\s\S]*?\.resume-style\.resume-compact \.proof-strip,[\s\S]*?padding-top:\s*52px;/);
   assert.doesNotMatch(css, /\.resume-style\.resume-compact \.proof-strip[\s\S]{0,180}display:\s*none/);
+});
+
+test("brief section acts as a recruiter screening snapshot", () => {
+  assert.match(html, /<p class="section-kicker">Screening Snapshot<\/p>/);
+  assert.match(html, /<h2 id="brief-title">How to assess the fit quickly after the first screen\.<\/h2>/);
+  assert.match(html, /class="brief-grid" aria-label="Recruiter screening snapshot"/);
+  assert.equal(articleCount("brief-grid"), 3);
+  assert.match(html, /<span>Interview focus<\/span>\s*<h3>Ask for a service example<\/h3>\s*<p>Use one device issue to discuss symptom capture, test steps, verification evidence, and handover\.<\/p>/);
+  assert.match(html, /<span>Private proof<\/span>\s*<h3>Request documents after fit<\/h3>\s*<p>Resume files are public; credentials, training records, and employment-check material stay private until needed\.<\/p>/);
+  assert.match(html, /<span>Best next role<\/span>\s*<h3>Biomedical field service<\/h3>\s*<p>Strongest match is hands-on service work with travel, documentation, troubleshooting, and follow-up ownership\.<\/p>/);
+  assert.match(script, /"\.brief-section \.section-kicker": "Screening Snapshot"/);
+  assert.match(script, /"\.brief-section \.section-kicker": "招聘筛选快照"/);
+  assert.match(script, /"\.brief-grid": { "aria-label": "Recruiter screening snapshot" }/);
+  assert.match(script, /"\.brief-grid": { "aria-label": "招聘方筛选快照" }/);
+  assert.match(css, /\.brief-grid article\s*{[\s\S]*?min-height:\s*240px;/);
+  assert.doesNotMatch(html, /Professional Brief/);
+  assert.doesNotMatch(html, /A practical engineering profile built around service reliability/);
 });
 
 test("keyboard users can skip fixed navigation", () => {
