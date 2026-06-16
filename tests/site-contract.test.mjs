@@ -8,6 +8,7 @@ const read = (file) => fs.readFileSync(path.join(root, file), "utf8");
 
 const html = read("index.html");
 const css = read("styles.css");
+const script = read("script.js");
 
 const sectionBody = (className) => {
   const match = html.match(new RegExp(`<div class="${className}"[^>]*>([\\s\\S]*?)</div>`));
@@ -29,6 +30,11 @@ test("site uses HTTPS canonical and sharing metadata", () => {
   assert.match(html, /property="og:image:alt" content="Professional portrait and biomedical service profile for Yihang Yang"/);
   assert.match(html, /name="twitter:image:alt" content="Professional portrait and biomedical service profile for Yihang Yang"/);
   assert.doesNotMatch(html, /http:\/\/yangyihang96\.com/);
+});
+
+test("stylesheet and script use the current cache-busting version", () => {
+  assert.match(html, /href="styles\.css\?v=source-cleanup-1"/);
+  assert.match(html, /src="script\.js\?v=source-cleanup-1"/);
 });
 
 test("hero exposes recruiter actions and downloadable resume file", () => {
@@ -71,6 +77,26 @@ test("hidden personal galleries are not loaded by the compact homepage", () => {
   assert.doesNotMatch(html, /id="moments"/);
   assert.doesNotMatch(html, /id="gallery"/);
   assert.ok(!fs.existsSync(path.join(root, "assets/personal-gallery")), "personal-gallery should not be published");
+});
+
+test("removed personal gallery copy is not shipped in public source", () => {
+  const publicSource = `${html}\n${css}\n${script}`;
+
+  assert.doesNotMatch(publicSource, /Personal Moments|Family Moments|family photos|家庭照片|生活合影/);
+  assert.doesNotMatch(publicSource, /moments-section|family-section|gallery-section/);
+  assert.doesNotMatch(publicSource, /moments-grid|family-grid|gallery-grid/);
+});
+
+test("published visual assets are referenced by the site", () => {
+  const publicSource = `${html}\n${css}\n${script}`;
+  const ignoredAssetFiles = new Set(["Henry_Yang_Biomedical_Engineer_Resume.docx"]);
+  const assetFiles = fs
+    .readdirSync(path.join(root, "assets"))
+    .filter((file) => !ignoredAssetFiles.has(file));
+
+  assetFiles.forEach((file) => {
+    assert.match(publicSource, new RegExp(`assets/${file.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}`));
+  });
 });
 
 test("person structured data is present and parseable", () => {

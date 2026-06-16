@@ -48,18 +48,6 @@ const translations = {
       ".fit-grid article:nth-child(4) strong": "English / Mandarin",
       ".fit-grid article:nth-child(5) span": "Hiring",
       ".fit-grid article:nth-child(5) strong": "Resume and checks ready",
-      ".statement-copy > p":
-        "My work sits between equipment and information: understand the field condition, find the fault path, verify the result, and leave records that other people can actually reuse.",
-      ".mini-facts span:nth-child(3)": "Sydney field travel",
-      ".mini-facts span:nth-child(4)": "English / Mandarin",
-      ".profile-panel > span": "Profile",
-      ".profile-panel strong": "Biomedical field service engineer",
-      ".profile-panel p":
-        "Sydney based. Focused on medical device service, testing, documentation and clear handover.",
-      ".profile-panel div:nth-child(1) dt": "Focus",
-      ".profile-panel div:nth-child(1) dd": "Field service / workshop repair",
-      ".profile-panel div:nth-child(2) dt": "Style",
-      ".profile-panel div:nth-child(2) dd": "Evidence first, record clearly",
       ".brief-section .section-kicker": "Professional Brief",
       "#brief-title": "A practical engineering profile built around service reliability.",
       ".brief-section .section-intro":
@@ -104,14 +92,6 @@ const translations = {
       ".capability-row article:nth-child(6) h3": "Sydney travel + private proof",
       ".capability-row article:nth-child(6) p":
         "Sydney field travel, resume download, and offline degree, training, identity, and right-to-work proof for formal hiring checks.",
-      ".capability-row article:nth-child(7) span": "Mobility",
-      ".capability-row article:nth-child(7) h3": "Sydney field travel",
-      ".capability-row article:nth-child(7) p":
-        "Sydney-based and used to work that moves between field sites, workshop tasks, documentation, and follow-up.",
-      ".capability-row article:nth-child(8) span": "Employment checks",
-      ".capability-row article:nth-child(8) h3": "Private proof on request",
-      ".capability-row article:nth-child(8) p":
-        "Degree records, training certificates, identity documents, and right-to-work documents are kept offline and can be provided through formal hiring checks.",
       ".overview-heading .section-kicker": "Overview",
       ".overview-heading h2": "This site answers five practical questions first.",
       ".overview-grid a:nth-child(1) strong": "Field Work",
@@ -222,27 +202,6 @@ const translations = {
       ".case-grid article:nth-child(3) li:nth-child(1)": "Equipment history cleanup",
       ".case-grid article:nth-child(3) li:nth-child(2)": "Work order alignment",
       ".case-grid article:nth-child(3) li:nth-child(3)": "Clear customer updates",
-      ".case-grid article:nth-child(4) span": "04 / Communication",
-      ".case-grid article:nth-child(4) h3": "Making technical limits understandable",
-      ".case-grid article:nth-child(4) p":
-        "Some service situations are not solved by one replacement or one visit. I try to explain what is known, what is not yet confirmed, and what needs follow-up without making the record vague.",
-      ".case-grid article:nth-child(4) li:nth-child(1)": "Known issue summary",
-      ".case-grid article:nth-child(4) li:nth-child(2)": "Follow-up boundary",
-      ".case-grid article:nth-child(4) li:nth-child(3)": "Plain service language",
-      ".case-grid article:nth-child(5) span": "05 / Workshop control",
-      ".case-grid article:nth-child(5) h3": "Keeping bench work traceable",
-      ".case-grid article:nth-child(5) p":
-        "Workshop repair needs a different discipline from field work. The device can be tested more deeply, but parts, observations, and return status still need to stay traceable.",
-      ".case-grid article:nth-child(5) li:nth-child(1)": "Bench test notes",
-      ".case-grid article:nth-child(5) li:nth-child(2)": "Parts/action traceability",
-      ".case-grid article:nth-child(5) li:nth-child(3)": "Return condition check",
-      ".case-grid article:nth-child(6) span": "06 / Improvement",
-      ".case-grid article:nth-child(6) h3": "Learning from repeated patterns",
-      ".case-grid article:nth-child(6) p":
-        "When similar issues appear repeatedly, the useful question is not only how to fix this case, but what record, checklist, or communication habit would prevent confusion next time.",
-      ".case-grid article:nth-child(6) li:nth-child(1)": "Pattern recognition",
-      ".case-grid article:nth-child(6) li:nth-child(2)": "Checklist refinement",
-      ".case-grid article:nth-child(6) li:nth-child(3)": "Reusable service knowledge",
       "#process .section-kicker": "Process",
       "#process-title": "I use a clear process to handle field problems.",
       "#process .section-intro":
@@ -273,18 +232,6 @@ const translations = {
         "Flexible Electrodes for Smart Bandages: Feasibility Exploration",
       ".study-grid article:nth-child(3) p":
         "Wearable medical-device feasibility work using electrode geometry, silver ink coating, impedance measurement, and manufacturability trade-offs.",
-      ".study-grid article:nth-child(4) span": "Research discipline",
-      ".study-grid article:nth-child(4) h3": "Separating evidence from assumption",
-      ".study-grid article:nth-child(4) p":
-        "Research training makes me more careful about what can actually be claimed. That habit carries into service work: describe the evidence, then state the judgement.",
-      ".study-grid article:nth-child(5) span": "Technical writing",
-      ".study-grid article:nth-child(5) h3": "Making complex work readable",
-      ".study-grid article:nth-child(5) p":
-        "I value records that can be read by someone who was not present. A good technical note should reduce ambiguity, not add more work for the next person.",
-      ".study-grid article:nth-child(6) span": "Applied tools",
-      ".study-grid article:nth-child(6) h3": "Using tools to organize work",
-      ".study-grid article:nth-child(6) p":
-        "Engineering tools, spreadsheets, diagrams, service manuals, and AI-assisted organization help me turn scattered details into clearer decisions and repeatable workflows.",
       ".credentials-section .section-kicker": "Credentials",
       "#credentials-title": "Education credentials are kept public-safe.",
       ".credentials-section .section-intro":
@@ -320,10 +267,6 @@ const translations = {
       ".certification-grid article:nth-child(3) li:nth-child(1)": "BD FIX100 dispensing service basic training",
       ".certification-grid article:nth-child(3) li:nth-child(2)": "Vendor-led practical service preparation",
       ".certification-grid article:nth-child(3) li:nth-child(3)": "Original certificates available for private verification",
-      ".certification-grid article:nth-child(4) span": "Public boundary",
-      ".certification-grid article:nth-child(4) h3": "Proof without exposing documents",
-      ".certification-grid article:nth-child(4) p":
-        "For a public website, the right level is the training scope and credential context. Full scans, document IDs, and certificate numbers should only be shared in a formal verification process.",
       "#life .section-kicker": "Life",
       "#life-title": "Outside work, I keep practicing how to organize complex things.",
       ".life-section .story-content > p:not(.section-kicker)":
@@ -347,105 +290,6 @@ const translations = {
       ".interest-grid article:nth-child(5) h3": "Food, coffee, and daily rhythm",
       ".interest-grid article:nth-child(5) p":
         "Simple routines matter to me: a good meal, a coffee, a clean desk, and a well-planned day make work and life feel more stable.",
-      ".moments-section .section-kicker": "Personal Moments",
-      "#moments-title": "A few real photos from life outside work.",
-      ".moments-section .section-intro":
-        "These images come from my local photo library. I keep the captions broad: enough to make the site personal, without naming other people or exposing private details.",
-      ".moments-grid figure:nth-child(1) strong": "A small personal milestone",
-      ".moments-grid figure:nth-child(1) span":
-        "A quiet reminder that life needs records of people and moments, not only work tasks.",
-      ".moments-grid figure:nth-child(2) strong": "Travel and open space",
-      ".moments-grid figure:nth-child(2) span":
-        "I like places that create room to think, walk, and reset.",
-      ".moments-grid figure:nth-child(3) strong": "Learning through places",
-      ".moments-grid figure:nth-child(3) span":
-        "Visiting public spaces makes me notice how systems, layout, and people meet.",
-      ".moments-grid figure:nth-child(4) strong": "Sydney coast rhythm",
-      ".moments-grid figure:nth-child(4) span":
-        "Coastal walks help me keep the site connected to real life in Australia.",
-      ".moments-grid figure:nth-child(5) strong": "Weather and real life",
-      ".moments-grid figure:nth-child(5) span":
-        "Not every good memory needs perfect weather. Some days feel more real because they are unplanned.",
-      ".moments-grid figure:nth-child(6) strong": "Small travel stops",
-      ".moments-grid figure:nth-child(6) span":
-        "The pauses between destinations often become the photos I remember most clearly.",
-      ".moments-grid figure:nth-child(7) strong": "Walking and noticing",
-      ".moments-grid figure:nth-child(7) span":
-        "I like photos that keep a place, a route, and a small feeling together.",
-      ".moments-grid figure:nth-child(8) strong": "Seeing public systems",
-      ".moments-grid figure:nth-child(8) span":
-        "Visits like this make me pay attention to how people, space, and process work together.",
-      ".moments-grid figure:nth-child(9) strong": "Another civic view",
-      ".moments-grid figure:nth-child(9) span":
-        "Keeping more than one frame helps the site feel lived-in rather than staged.",
-      ".moments-grid figure:nth-child(10) strong": "Coastline memory",
-      ".moments-grid figure:nth-child(10) span":
-        "A clearer personal photo from the coast, with the place and people both visible.",
-      ".family-section .section-kicker": "Family Moments",
-      "#family-title": "Family photos are part of the story, but kept carefully public.",
-      ".family-section .section-intro":
-        "I selected travel and public-place photos rather than documents, private records, addresses, or sensitive family paperwork. The captions stay broad on purpose.",
-      ".family-grid figure:nth-child(1) strong": "Family visit in Sydney",
-      ".family-grid figure:nth-child(1) span":
-        "A public travel photo that keeps family support connected to life in Australia.",
-      ".family-grid figure:nth-child(2) strong": "Travel with family",
-      ".family-grid figure:nth-child(2) span":
-        "Shared trips are one way to remember where I come from and who has supported the long path.",
-      ".family-grid figure:nth-child(3) strong": "Public-place memory",
-      ".family-grid figure:nth-child(3) span":
-        "A family travel moment kept broad, with names and private details left out.",
-      ".family-grid figure:nth-child(4) strong": "Travel as a family record",
-      ".family-grid figure:nth-child(4) span":
-        "A wider travel photo that keeps the place and the family memory in the same frame.",
-      ".family-grid figure:nth-child(5) strong": "Closer family frame",
-      ".family-grid figure:nth-child(5) span":
-        "A more direct family photo, still kept public-safe with no names or private context.",
-      ".family-grid figure:nth-child(6) strong": "Another Sydney family day",
-      ".family-grid figure:nth-child(6) span":
-        "Some places are worth keeping from more than one angle because the memory belongs to the visit.",
-      "#capabilities .section-kicker": "Skills Matrix",
-      "#capabilities-title": "What I can handle in a service environment.",
-      "#capabilities .section-intro":
-        "A recruiter or hiring manager should be able to judge the fit quickly: device service, testing, records, communication, tools, and employment-check readiness.",
-      ".capability-row article:nth-child(1) span": "Service",
-      ".capability-row article:nth-child(1) h3": "Field and workshop work",
-      ".capability-row article:nth-child(1) p":
-        "Preventive maintenance, troubleshooting, repair, installation support, bench service, and close-out.",
-      ".capability-row article:nth-child(2) span": "Testing",
-      ".capability-row article:nth-child(2) h3": "Verification evidence",
-      ".capability-row article:nth-child(2) p":
-        "Functional testing, performance checks, electrical safety awareness, and test notes that can be reviewed later.",
-      ".capability-row article:nth-child(3) span": "Equipment",
-      ".capability-row article:nth-child(3) h3": "Medical device range",
-      ".capability-row article:nth-child(3) p":
-        "Ventilation, patient monitoring, ultrasound, DEXA, pharmacy automation, and general biomedical equipment.",
-      ".capability-row article:nth-child(4) span": "Records",
-      ".capability-row article:nth-child(4) h3": "Traceable service notes",
-      ".capability-row article:nth-child(4) p":
-        "Work orders, service reports, equipment history, serial details, action logs, and concise follow-up notes.",
-      ".capability-row article:nth-child(5) span": "Communication",
-      ".capability-row article:nth-child(5) h3": "Clear handover",
-      ".capability-row article:nth-child(5) p":
-        "Aligning observed issues, limits, and next steps with clinical users, biomedical teams, vendors, and internal engineers.",
-      ".capability-row article:nth-child(6) span": "Employment checks",
-      ".capability-row article:nth-child(6) h3": "Sydney travel + private proof",
-      ".capability-row article:nth-child(6) p":
-        "Sydney field travel, resume download, and offline degree, training, identity, and right-to-work proof for formal hiring checks.",
-      ".capability-row article:nth-child(7) span": "Mobility",
-      ".capability-row article:nth-child(7) h3": "Sydney field travel",
-      ".capability-row article:nth-child(7) p":
-        "Sydney-based and used to work that moves between field sites, workshop tasks, documentation, and follow-up.",
-      ".capability-row article:nth-child(8) span": "Employment checks",
-      ".capability-row article:nth-child(8) h3": "Private proof on request",
-      ".capability-row article:nth-child(8) p":
-        "Degree records, training certificates, identity documents, and right-to-work documents are kept offline and can be provided through formal hiring checks.",
-      "#gallery .section-kicker": "Visual Notes",
-      "#gallery-title": "The site keeps some work context and personal warmth.",
-      "#gallery .section-intro":
-        "The images are not resume attachments. They help people feel the working style and personal rhythm faster.",
-      ".gallery-grid figure:nth-child(1) figcaption": "Field judgement",
-      ".gallery-grid figure:nth-child(2) figcaption": "Repair verification",
-      ".gallery-grid figure:nth-child(3) figcaption": "Continuous learning",
       "#contact .section-kicker": "Contact",
       "#contact-title": "You can reach me here.",
       ".contact-inner > p:not(.section-kicker)":
@@ -504,18 +348,6 @@ const translations = {
       ".fit-grid article:nth-child(4) strong": "英文 / 中文",
       ".fit-grid article:nth-child(5) span": "招聘材料",
       ".fit-grid article:nth-child(5) strong": "简历和核验材料已准备",
-      ".statement-copy > p":
-        "做现场服务时，我最在意两件事：设备现在到底是什么状态，以及这次处理以后，下一位接手的人能不能看懂发生了什么。",
-      ".mini-facts span:nth-child(3)": "悉尼现场出行",
-      ".mini-facts span:nth-child(4)": "英文 / 中文",
-      ".profile-panel > span": "个人概览",
-      ".profile-panel strong": "生物医学现场服务工程师",
-      ".profile-panel p":
-        "常驻悉尼，长期和医疗设备、测试流程、服务记录打交道。",
-      ".profile-panel div:nth-child(1) dt": "重点",
-      ".profile-panel div:nth-child(1) dd": "现场服务 / workshop repair",
-      ".profile-panel div:nth-child(2) dt": "风格",
-      ".profile-panel div:nth-child(2) dd": "先核对事实，再下判断",
       ".brief-section .section-kicker": "职业简介",
       "#brief-title": "我的定位：把医疗设备服务做得可靠、清楚、可交接。",
       ".brief-section .section-intro":
@@ -638,27 +470,6 @@ const translations = {
       ".case-grid article:nth-child(3) li:nth-child(1)": "设备历史整理",
       ".case-grid article:nth-child(3) li:nth-child(2)": "工单信息对齐",
       ".case-grid article:nth-child(3) li:nth-child(3)": "客户更新清晰",
-      ".case-grid article:nth-child(4) span": "04 / 沟通",
-      ".case-grid article:nth-child(4) h3": "把技术限制讲清楚",
-      ".case-grid article:nth-child(4) p":
-        "有些服务情况不是一次更换或一次上门就能完全结束。我会尽量把已知信息、还没确认的部分和需要跟进的边界写明白，而不是只留下模糊描述。",
-      ".case-grid article:nth-child(4) li:nth-child(1)": "已知问题总结",
-      ".case-grid article:nth-child(4) li:nth-child(2)": "后续边界说明",
-      ".case-grid article:nth-child(4) li:nth-child(3)": "服务语言清楚",
-      ".case-grid article:nth-child(5) span": "05 / 维修控制",
-      ".case-grid article:nth-child(5) h3": "让 bench work 可追踪",
-      ".case-grid article:nth-child(5) p":
-        "Workshop repair 和现场服务不一样，可以做更深入的检查，但 parts、observations 和 return condition 依然要能追溯。",
-      ".case-grid article:nth-child(5) li:nth-child(1)": "Bench test notes",
-      ".case-grid article:nth-child(5) li:nth-child(2)": "Parts/action 追踪",
-      ".case-grid article:nth-child(5) li:nth-child(3)": "Return condition check",
-      ".case-grid article:nth-child(6) span": "06 / 改进",
-      ".case-grid article:nth-child(6) h3": "从重复问题里整理经验",
-      ".case-grid article:nth-child(6) p":
-        "如果类似问题反复出现，我会想的不只是这一次怎么修，而是什么记录、checklist 或沟通习惯能减少下一次的混乱。",
-      ".case-grid article:nth-child(6) li:nth-child(1)": "识别重复模式",
-      ".case-grid article:nth-child(6) li:nth-child(2)": "优化检查清单",
-      ".case-grid article:nth-child(6) li:nth-child(3)": "沉淀可复用经验",
       "#process .section-kicker": "流程",
       "#process-title": "我的处理顺序：先看清，再判断，再验证，再记录。",
       "#process .section-intro":
@@ -688,18 +499,6 @@ const translations = {
         "Flexible Electrodes for Smart Bandages: Feasibility Exploration",
       ".study-grid article:nth-child(3) p":
         "围绕 wearable medical device 可行性，处理柔性电极几何、银墨涂层、阻抗测量和可制造性权衡。",
-      ".study-grid article:nth-child(4) span": "研究训练",
-      ".study-grid article:nth-child(4) h3": "把证据和假设分开",
-      ".study-grid article:nth-child(4) p":
-        "研究训练让我更谨慎地判断什么能说、什么还不能说。这个习惯也会带到服务工作里：先描述证据，再写结论。",
-      ".study-grid article:nth-child(5) span": "技术写作",
-      ".study-grid article:nth-child(5) h3": "让复杂工作变得可读",
-      ".study-grid article:nth-child(5) p":
-        "我很重视让不在现场的人也能看懂记录。好的技术记录应该减少歧义，而不是给下一位接手的人增加负担。",
-      ".study-grid article:nth-child(6) span": "应用工具",
-      ".study-grid article:nth-child(6) h3": "用工具整理工作",
-      ".study-grid article:nth-child(6) p":
-        "工程工具、表格、流程图、service manuals 和 AI 辅助整理，都能帮我把零散信息变成更清楚的判断和流程。",
       ".credentials-section .section-kicker": "学历证明",
       "#credentials-title": "毕业证书会保留原件，但不直接公开扫描件。",
       ".credentials-section .section-intro":
@@ -735,10 +534,6 @@ const translations = {
       ".certification-grid article:nth-child(3) li:nth-child(1)": "BD FIX100 dispensing service basic training",
       ".certification-grid article:nth-child(3) li:nth-child(2)": "厂商技术培训和服务准备",
       ".certification-grid article:nth-child(3) li:nth-child(3)": "证书原件可在正式核验时单独提供",
-      ".certification-grid article:nth-child(4) span": "公开边界",
-      ".certification-grid article:nth-child(4) h3": "证明能力，但不暴露文件",
-      ".certification-grid article:nth-child(4) p":
-        "个人网站适合展示培训方向和能力范围。完整扫描件、证书编号和核验信息，应只在求职、项目或正式背景核验流程中提供。",
       "#life .section-kicker": "生活",
       "#life-title": "生活里，我也喜欢把复杂事情理顺。",
       ".life-section .story-content > p:not(.section-kicker)":
@@ -762,62 +557,6 @@ const translations = {
       ".interest-grid article:nth-child(5) h3": "食物、咖啡和日常节奏",
       ".interest-grid article:nth-child(5) p":
         "我也重视一些简单的日常：好好吃饭、喝杯咖啡、整理桌面、安排好一天，这些会让工作和生活都更稳定。",
-      ".moments-section .section-kicker": "生活合影",
-      "#moments-title": "放几张真实生活照，让网站不只是简历。",
-      ".moments-section .section-intro":
-        "这些照片来自本地相册。我没有在说明里写别人的姓名，也不展示太私密的细节，只保留能让页面更有人味的生活片段。",
-      ".moments-grid figure:nth-child(1) strong": "一个小小的生活节点",
-      ".moments-grid figure:nth-child(1) span":
-        "有些照片不是为了证明什么，只是提醒自己生活里也有值得认真保存的时刻。",
-      ".moments-grid figure:nth-child(2) strong": "走到开阔的地方",
-      ".moments-grid figure:nth-child(2) span":
-        "我喜欢去能看见天空和路的地方，走一走，也让脑子从工作里松出来。",
-      ".moments-grid figure:nth-child(3) strong": "在公共空间里观察城市",
-      ".moments-grid figure:nth-child(3) span":
-        "参观公共建筑和城市空间时，我会留意布局、秩序和人的使用方式。",
-      ".moments-grid figure:nth-child(4) strong": "海边和悉尼生活",
-      ".moments-grid figure:nth-child(4) span":
-        "海边散步是悉尼生活里很真实的一部分，也让这个网站不只停留在职业介绍。",
-      ".moments-grid figure:nth-child(5) strong": "天气不完美，也是真实生活",
-      ".moments-grid figure:nth-child(5) span":
-        "不是每张好照片都需要天气很好。有些照片因为随意，反而更像真实生活。",
-      ".moments-grid figure:nth-child(6) strong": "路上的停顿",
-      ".moments-grid figure:nth-child(6) span":
-        "旅行里很多记忆不是目的地，而是中间停下来的那几分钟。",
-      ".moments-grid figure:nth-child(7) strong": "边走边看",
-      ".moments-grid figure:nth-child(7) span":
-        "我喜欢能把地点、路线和当时感受一起留下来的照片。",
-      ".moments-grid figure:nth-child(8) strong": "观察公共空间",
-      ".moments-grid figure:nth-child(8) span":
-        "参观这类空间时，我会留意人、空间和流程是怎么配合的。",
-      ".moments-grid figure:nth-child(9) strong": "多留一个公共空间角度",
-      ".moments-grid figure:nth-child(9) span":
-        "多放一张真实照片，会比只放一张精选照更像个人网站。",
-      ".moments-grid figure:nth-child(10) strong": "海岸线记忆",
-      ".moments-grid figure:nth-child(10) span":
-        "这张照片里人和地点都更清楚，适合作为生活照片的一部分。",
-      ".family-section .section-kicker": "家庭照片",
-      "#family-title": "家庭照片也可以放，但要放得克制。",
-      ".family-section .section-intro":
-        "我选的是出游和公共场景照片，没有放证件、住址、家庭材料或太私密的画面。说明文字也会刻意写得宽一点，不写家人的姓名和具体身份细节。",
-      ".family-grid figure:nth-child(1) strong": "家人来悉尼",
-      ".family-grid figure:nth-child(1) span":
-        "这类照片能把澳洲生活和家人的支持放在一起，比单纯写经历更真实。",
-      ".family-grid figure:nth-child(2) strong": "和家人一起出行",
-      ".family-grid figure:nth-child(2) span":
-        "家庭出游不一定要写得很重，但它会提醒我自己从哪里来，也是谁一直在支持。",
-      ".family-grid figure:nth-child(3) strong": "公共空间里的家庭记忆",
-      ".family-grid figure:nth-child(3) span":
-        "只保留公开场景和大致记忆，不把家人的私人信息放到网页上。",
-      ".family-grid figure:nth-child(4) strong": "把地点也留下来",
-      ".family-grid figure:nth-child(4) span":
-        "这类照片不只是合影，也能记住当时去了哪里。",
-      ".family-grid figure:nth-child(5) strong": "更近一点的家庭合影",
-      ".family-grid figure:nth-child(5) span":
-        "照片可以更直接，但说明里仍然不放家人的姓名和私人背景。",
-      ".family-grid figure:nth-child(6) strong": "另一张悉尼家庭日",
-      ".family-grid figure:nth-child(6) span":
-        "同一个地方从不同角度看，也是在记录那次家人来访。",
       "#capabilities .section-kicker": "能力矩阵",
       "#capabilities-title": "我能在服务环境里承担什么。",
       "#capabilities .section-intro":
@@ -846,21 +585,6 @@ const translations = {
       ".capability-row article:nth-child(6) h3": "悉尼出行 + 私下核验证明",
       ".capability-row article:nth-child(6) p":
         "可支持悉尼现场出行，简历可下载，学历、培训、身份证明和 right-to-work 材料可在正式流程中提供。",
-      ".capability-row article:nth-child(7) span": "机动性",
-      ".capability-row article:nth-child(7) h3": "悉尼现场出行",
-      ".capability-row article:nth-child(7) p":
-        "常驻悉尼，习惯在现场、workshop、文档记录和后续跟进之间切换。",
-      ".capability-row article:nth-child(8) span": "雇佣检查",
-      ".capability-row article:nth-child(8) h3": "证明材料私下提供",
-      ".capability-row article:nth-child(8) p":
-        "学历记录、培训证书、身份证明和 right-to-work 材料不公开展示，可在正式招聘核验流程中提供。",
-      "#gallery .section-kicker": "视觉",
-      "#gallery-title": "我希望这个网站有专业感，也有一点生活感。",
-      "#gallery .section-intro":
-        "图片不是简历附件，而是让页面不只有文字，也能更快传达我的工作方式和日常节奏。",
-      ".gallery-grid figure:nth-child(1) figcaption": "现场判断",
-      ".gallery-grid figure:nth-child(2) figcaption": "维修验证",
-      ".gallery-grid figure:nth-child(3) figcaption": "持续学习",
       "#contact .section-kicker": "联系",
       "#contact-title": "可以在这里联系我。",
       ".contact-inner > p:not(.section-kicker)":
