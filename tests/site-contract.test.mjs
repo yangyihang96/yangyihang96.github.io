@@ -58,8 +58,8 @@ test("site uses HTTPS canonical and sharing metadata", () => {
 });
 
 test("stylesheet and script use the current cache-busting version", () => {
-  assert.match(html, /href="styles\.css\?v=case-outcomes-1"/);
-  assert.match(html, /src="script\.js\?v=case-outcomes-1"/);
+  assert.match(html, /href="styles\.css\?v=training-evidence-1"/);
+  assert.match(html, /src="script\.js\?v=training-evidence-1"/);
 });
 
 test("hero exposes recruiter actions and downloadable resume files", () => {
@@ -205,6 +205,19 @@ test("case notes expose scenario action verification and handover outcomes", () 
   assert.match(script, /"\.case-grid article:nth-child\(1\) \.case-outcome dt:nth-of-type\(1\)": "场景"/);
   assert.match(css, /\.case-outcome\s*{[\s\S]*?display:\s*grid;[\s\S]*?grid-template-columns:\s*auto minmax\(0,\s*1fr\);/);
   assert.match(css, /@media \(max-width:\s*560px\)[\s\S]*?\.case-outcome\s*{[\s\S]*?grid-template-columns:\s*1fr;/);
+});
+
+test("training section maps certificates to equipment scope field work and verification evidence", () => {
+  assert.equal((html.match(/class="training-evidence" aria-label="Training evidence map"/g) || []).length, 3);
+  assert.match(html, /<dt>Equipment scope<\/dt>\s*<dd>V60, V60 Plus, Trilogy, Avalon, Efficia, HeartStart<\/dd>/);
+  assert.match(html, /<dt>Field work<\/dt>\s*<dd>Planned service, troubleshooting preparation, functional checks<\/dd>/);
+  assert.match(html, /<dt>Evidence<\/dt>\s*<dd>Offline certificates and service records available for formal checks<\/dd>/);
+  assert.match(html, /<dd>EPIQ, Affiniti, CX30, CX50, Horizon DEXA, X-ray systems<\/dd>/);
+  assert.match(html, /<dd>BD FIX100 and vendor-led specialty service preparation<\/dd>/);
+  assert.match(script, /"\.certification-grid article:nth-child\(1\) \.training-evidence dt:nth-of-type\(1\)": "Equipment scope"/);
+  assert.match(script, /"\.certification-grid article:nth-child\(1\) \.training-evidence dt:nth-of-type\(1\)": "设备范围"/);
+  assert.match(css, /\.training-evidence\s*{[\s\S]*?display:\s*grid;[\s\S]*?grid-template-columns:\s*minmax\(96px,\s*auto\) minmax\(0,\s*1fr\);/);
+  assert.match(css, /@media \(max-width:\s*560px\)[\s\S]*?\.training-evidence\s*{[\s\S]*?grid-template-columns:\s*1fr;/);
 });
 
 test("hidden personal galleries are not loaded by the compact homepage", () => {

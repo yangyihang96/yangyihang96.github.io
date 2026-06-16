@@ -1294,6 +1294,34 @@ main:focus {
   background: var(--teal);
 }
 
+.training-evidence {
+  display: grid;
+  grid-template-columns: minmax(96px, auto) minmax(0, 1fr);
+  gap: 8px 12px;
+  margin: 20px 0 0;
+  padding: 14px;
+  border: 1px solid rgba(19, 33, 31, 0.10);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.training-evidence dt {
+  color: var(--teal);
+  font-size: 11px;
+  font-weight: 850;
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+
+.training-evidence dd {
+  min-width: 0;
+  margin: 0;
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 720;
+  line-height: 1.28;
+}
+
 .section-heading {
   width: min(1120px, calc(100% - 48px));
   margin: 0 auto 36px;
@@ -1937,6 +1965,11 @@ main:focus {
   }
 
   .case-outcome {
+    grid-template-columns: 1fr;
+    gap: 5px;
+  }
+
+  .training-evidence {
     grid-template-columns: 1fr;
     gap: 5px;
   }

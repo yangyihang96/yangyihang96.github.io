@@ -321,16 +321,43 @@ const translations = {
       ".certification-grid article:nth-child(1) li:nth-child(1)": "V60 / V60 Plus service training",
       ".certification-grid article:nth-child(1) li:nth-child(2)": "Trilogy 202 and Trilogy Evo service training",
       ".certification-grid article:nth-child(1) li:nth-child(3)": "Avalon FM20 / FM30, Efficia CM series, and HeartStart Intrepid training",
+      ".certification-grid article:nth-child(1) .training-evidence dt:nth-of-type(1)": "Equipment scope",
+      ".certification-grid article:nth-child(1) .training-evidence dd:nth-of-type(1)":
+        "V60, V60 Plus, Trilogy, Avalon, Efficia, HeartStart",
+      ".certification-grid article:nth-child(1) .training-evidence dt:nth-of-type(2)": "Field work",
+      ".certification-grid article:nth-child(1) .training-evidence dd:nth-of-type(2)":
+        "Planned service, troubleshooting preparation, functional checks",
+      ".certification-grid article:nth-child(1) .training-evidence dt:nth-of-type(3)": "Evidence",
+      ".certification-grid article:nth-child(1) .training-evidence dd:nth-of-type(3)":
+        "Offline certificates and service records available for formal checks",
       ".certification-grid article:nth-child(2) span": "2023 - 2025",
       ".certification-grid article:nth-child(2) h3": "Imaging and diagnostic equipment",
       ".certification-grid article:nth-child(2) li:nth-child(1)": "EPIQ / Affiniti and CX30 / CX50 ultrasound training",
       ".certification-grid article:nth-child(2) li:nth-child(2)": "Horizon DEXA technical training",
       ".certification-grid article:nth-child(2) li:nth-child(3)": "X-ray service and installation course",
+      ".certification-grid article:nth-child(2) .training-evidence dt:nth-of-type(1)": "Equipment scope",
+      ".certification-grid article:nth-child(2) .training-evidence dd:nth-of-type(1)":
+        "EPIQ, Affiniti, CX30, CX50, Horizon DEXA, X-ray systems",
+      ".certification-grid article:nth-child(2) .training-evidence dt:nth-of-type(2)": "Field work",
+      ".certification-grid article:nth-child(2) .training-evidence dd:nth-of-type(2)":
+        "Imaging system service preparation, installation support, checks",
+      ".certification-grid article:nth-child(2) .training-evidence dt:nth-of-type(3)": "Evidence",
+      ".certification-grid article:nth-child(2) .training-evidence dd:nth-of-type(3)":
+        "Training records and service notes available for private review",
       ".certification-grid article:nth-child(3) span": "2024",
       ".certification-grid article:nth-child(3) h3": "Automation and specialty systems",
       ".certification-grid article:nth-child(3) li:nth-child(1)": "BD FIX100 dispensing service basic training",
       ".certification-grid article:nth-child(3) li:nth-child(2)": "Vendor-led practical service preparation",
       ".certification-grid article:nth-child(3) li:nth-child(3)": "Original certificates available for private verification",
+      ".certification-grid article:nth-child(3) .training-evidence dt:nth-of-type(1)": "Equipment scope",
+      ".certification-grid article:nth-child(3) .training-evidence dd:nth-of-type(1)":
+        "BD FIX100 and vendor-led specialty service preparation",
+      ".certification-grid article:nth-child(3) .training-evidence dt:nth-of-type(2)": "Field work",
+      ".certification-grid article:nth-child(3) .training-evidence dd:nth-of-type(2)":
+        "Automation service readiness, workflow awareness, handover notes",
+      ".certification-grid article:nth-child(3) .training-evidence dt:nth-of-type(3)": "Evidence",
+      ".certification-grid article:nth-child(3) .training-evidence dd:nth-of-type(3)":
+        "Original certificates available for formal verification only",
       "#life .section-kicker": "Life",
       "#life-title": "Outside work, I keep practicing how to organize complex things.",
       ".life-section .story-content > p:not(.section-kicker)":
@@ -388,6 +415,9 @@ const translations = {
       ".case-grid article:nth-child(1) .case-outcome": { "aria-label": "Public-safe case outcome" },
       ".case-grid article:nth-child(2) .case-outcome": { "aria-label": "Public-safe case outcome" },
       ".case-grid article:nth-child(3) .case-outcome": { "aria-label": "Public-safe case outcome" },
+      ".certification-grid article:nth-child(1) .training-evidence": { "aria-label": "Training evidence map" },
+      ".certification-grid article:nth-child(2) .training-evidence": { "aria-label": "Training evidence map" },
+      ".certification-grid article:nth-child(3) .training-evidence": { "aria-label": "Training evidence map" },
     },
   },
   zh: {
@@ -674,16 +704,43 @@ const translations = {
       ".certification-grid article:nth-child(1) li:nth-child(1)": "V60 / V60 Plus service training",
       ".certification-grid article:nth-child(1) li:nth-child(2)": "Trilogy 202 和 Trilogy Evo service training",
       ".certification-grid article:nth-child(1) li:nth-child(3)": "Avalon FM20 / FM30、Efficia CM 系列和 HeartStart Intrepid 培训",
+      ".certification-grid article:nth-child(1) .training-evidence dt:nth-of-type(1)": "设备范围",
+      ".certification-grid article:nth-child(1) .training-evidence dd:nth-of-type(1)":
+        "V60、V60 Plus、Trilogy、Avalon、Efficia、HeartStart",
+      ".certification-grid article:nth-child(1) .training-evidence dt:nth-of-type(2)": "现场工作",
+      ".certification-grid article:nth-child(1) .training-evidence dd:nth-of-type(2)":
+        "计划性服务、故障排查准备和功能检查",
+      ".certification-grid article:nth-child(1) .training-evidence dt:nth-of-type(3)": "证据",
+      ".certification-grid article:nth-child(1) .training-evidence dd:nth-of-type(3)":
+        "线下证书和服务记录可在正式流程中核验",
       ".certification-grid article:nth-child(2) span": "2023 - 2025",
       ".certification-grid article:nth-child(2) h3": "影像与诊断设备",
       ".certification-grid article:nth-child(2) li:nth-child(1)": "EPIQ / Affiniti 和 CX30 / CX50 ultrasound training",
       ".certification-grid article:nth-child(2) li:nth-child(2)": "Horizon DEXA technical training",
       ".certification-grid article:nth-child(2) li:nth-child(3)": "X-ray service and installation course",
+      ".certification-grid article:nth-child(2) .training-evidence dt:nth-of-type(1)": "设备范围",
+      ".certification-grid article:nth-child(2) .training-evidence dd:nth-of-type(1)":
+        "EPIQ、Affiniti、CX30、CX50、Horizon DEXA、X-ray systems",
+      ".certification-grid article:nth-child(2) .training-evidence dt:nth-of-type(2)": "现场工作",
+      ".certification-grid article:nth-child(2) .training-evidence dd:nth-of-type(2)":
+        "影像系统服务准备、安装支持和检查",
+      ".certification-grid article:nth-child(2) .training-evidence dt:nth-of-type(3)": "证据",
+      ".certification-grid article:nth-child(2) .training-evidence dd:nth-of-type(3)":
+        "培训记录和服务笔记可在私下核验时提供",
       ".certification-grid article:nth-child(3) span": "2024",
       ".certification-grid article:nth-child(3) h3": "自动化与专项系统",
       ".certification-grid article:nth-child(3) li:nth-child(1)": "BD FIX100 dispensing service basic training",
       ".certification-grid article:nth-child(3) li:nth-child(2)": "厂商技术培训和服务准备",
       ".certification-grid article:nth-child(3) li:nth-child(3)": "证书原件可在正式核验时单独提供",
+      ".certification-grid article:nth-child(3) .training-evidence dt:nth-of-type(1)": "设备范围",
+      ".certification-grid article:nth-child(3) .training-evidence dd:nth-of-type(1)":
+        "BD FIX100 和厂商专项服务准备",
+      ".certification-grid article:nth-child(3) .training-evidence dt:nth-of-type(2)": "现场工作",
+      ".certification-grid article:nth-child(3) .training-evidence dd:nth-of-type(2)":
+        "自动化服务准备、流程意识和交接记录",
+      ".certification-grid article:nth-child(3) .training-evidence dt:nth-of-type(3)": "证据",
+      ".certification-grid article:nth-child(3) .training-evidence dd:nth-of-type(3)":
+        "证书原件只在正式核验时提供",
       "#life .section-kicker": "生活",
       "#life-title": "生活里，我也喜欢把复杂事情理顺。",
       ".life-section .story-content > p:not(.section-kicker)":
@@ -769,6 +826,9 @@ const translations = {
       ".case-grid article:nth-child(1) .case-outcome": { "aria-label": "公开安全的案例结果" },
       ".case-grid article:nth-child(2) .case-outcome": { "aria-label": "公开安全的案例结果" },
       ".case-grid article:nth-child(3) .case-outcome": { "aria-label": "公开安全的案例结果" },
+      ".certification-grid article:nth-child(1) .training-evidence": { "aria-label": "培训证书能力映射" },
+      ".certification-grid article:nth-child(2) .training-evidence": { "aria-label": "培训证书能力映射" },
+      ".certification-grid article:nth-child(3) .training-evidence": { "aria-label": "培训证书能力映射" },
     },
   },
 };
