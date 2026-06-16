@@ -58,8 +58,8 @@ test("site uses HTTPS canonical and sharing metadata", () => {
 });
 
 test("stylesheet and script use the current cache-busting version", () => {
-  assert.match(html, /href="styles\.css\?v=experience-outcome-1"/);
-  assert.match(html, /src="script\.js\?v=experience-outcome-1"/);
+  assert.match(html, /href="styles\.css\?v=recruiter-path-1"/);
+  assert.match(html, /src="script\.js\?v=recruiter-path-1"/);
 });
 
 test("hero exposes recruiter actions and downloadable resume files", () => {
@@ -71,6 +71,19 @@ test("hero exposes recruiter actions and downloadable resume files", () => {
   assert.match(html, /github\.com\/yangyihang96/);
   assert.ok(fs.existsSync(path.join(root, "assets/Henry_Yang_Biomedical_Engineer_Resume.docx")));
   assert.ok(fs.existsSync(path.join(root, "assets/Henry_Yang_Biomedical_Engineer_Resume.pdf")));
+});
+
+test("hero shows a compact recruiter action path near first-screen CTAs", () => {
+  assert.match(html, /class="hero-action-path" aria-label="Recruiter action path"/);
+  assert.match(html, /<strong>Contact<\/strong>\s*<span>Email for field-service fit<\/span>/);
+  assert.match(html, /<strong>Resume<\/strong>\s*<span>PDF and DOCX ready<\/span>/);
+  assert.match(html, /<strong>Private proof<\/strong>\s*<span>Credentials, training, and employment-check documents on request<\/span>/);
+  assert.match(script, /"\.hero-action-path div:nth-child\(1\) strong": "Contact"/);
+  assert.match(script, /"\.hero-action-path div:nth-child\(1\) strong": "联系"/);
+  assert.match(script, /"\.hero-action-path": { "aria-label": "Recruiter action path" }/);
+  assert.match(script, /"\.hero-action-path": { "aria-label": "招聘方行动路径" }/);
+  assert.match(css, /\.hero-action-path\s*{[\s\S]*?display:\s*grid;[\s\S]*?grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\);/);
+  assert.match(css, /@media \(max-width:\s*560px\)[\s\S]*?\.hero-action-path\s*{[\s\S]*?grid-template-columns:\s*1fr;/);
 });
 
 test("recruiter actions expose clear accessible labels for file type and destination", () => {

@@ -313,6 +313,42 @@ main:focus {
   margin-top: 30px;
 }
 
+.hero-action-path {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  max-width: 780px;
+  gap: 1px;
+  overflow: hidden;
+  margin: 14px 0 0;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.hero-action-path div {
+  min-width: 0;
+  padding: 10px 12px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.hero-action-path strong {
+  display: block;
+  color: #a8d6cd;
+  font-size: 11px;
+  font-weight: 850;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.hero-action-path span {
+  display: block;
+  margin-top: 4px;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 13px;
+  font-weight: 720;
+  line-height: 1.25;
+}
+
 .button {
   display: inline-flex;
   min-height: 48px;
@@ -1992,6 +2028,28 @@ main:focus {
     grid-template-columns: 1fr;
   }
 
+  .hero-action-path {
+    grid-template-columns: 1fr;
+    gap: 6px;
+    border: 0;
+    background: transparent;
+  }
+
+  .hero-action-path div {
+    display: grid;
+    grid-template-columns: 82px minmax(0, 1fr);
+    gap: 8px;
+    align-items: center;
+    padding: 8px 10px;
+    border: 1px solid rgba(19, 33, 31, 0.10);
+    border-radius: 8px;
+  }
+
+  .hero-action-path span {
+    margin-top: 0;
+    font-size: 12px;
+  }
+
   .experience-outcome {
     grid-template-columns: 1fr;
     gap: 5px;
@@ -2216,6 +2274,23 @@ body.resume-style {
   color: var(--teal);
   border-color: rgba(15, 118, 110, 0.28);
   background: #eef8f5;
+}
+
+.resume-style .hero-action-path {
+  border-color: rgba(19, 33, 31, 0.12);
+  background: rgba(19, 33, 31, 0.10);
+}
+
+.resume-style .hero-action-path div {
+  background: #ffffff;
+}
+
+.resume-style .hero-action-path strong {
+  color: var(--teal);
+}
+
+.resume-style .hero-action-path span {
+  color: var(--ink);
 }
 
 .resume-style .statement,

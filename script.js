@@ -32,6 +32,13 @@ const translations = {
       ".resume-docx-link": "Download DOCX",
       ".email-action": "Email Me",
       ".github-action": "GitHub",
+      ".hero-action-path div:nth-child(1) strong": "Contact",
+      ".hero-action-path div:nth-child(1) span": "Email for field-service fit",
+      ".hero-action-path div:nth-child(2) strong": "Resume",
+      ".hero-action-path div:nth-child(2) span": "PDF and DOCX ready",
+      ".hero-action-path div:nth-child(3) strong": "Private proof",
+      ".hero-action-path div:nth-child(3) span":
+        "Credentials, training, and employment-check documents on request",
       ".hero-profile-card .hero-card-kicker": "Current profile",
       ".hero-profile-card strong": "Biomedical field service engineer",
       ".hero-profile-card .hero-card-note":
@@ -423,6 +430,7 @@ const translations = {
       ".contact-email-action": { "aria-label": "Email Yihang Henry Yang" },
       ".contact-resume-link": { "aria-label": "Download Henry Yang resume as PDF" },
       ".contact-docx-link": { "aria-label": "Download Henry Yang resume as DOCX" },
+      ".hero-action-path": { "aria-label": "Recruiter action path" },
       ".experience-evidence": { "aria-label": "Current field-service evidence" },
       ".experience-outcome": { "aria-label": "Current role service outcome summary" },
       ".case-grid article:nth-child(1) .case-outcome": { "aria-label": "Public-safe case outcome" },
@@ -461,6 +469,13 @@ const translations = {
       ".resume-docx-link": "下载 DOCX",
       ".email-action": "发邮件联系我",
       ".github-action": "GitHub",
+      ".hero-action-path div:nth-child(1) strong": "联系",
+      ".hero-action-path div:nth-child(1) span": "发邮件确认岗位匹配",
+      ".hero-action-path div:nth-child(2) strong": "简历",
+      ".hero-action-path div:nth-child(2) span": "PDF 和 DOCX 可下载",
+      ".hero-action-path div:nth-child(3) strong": "私下核验",
+      ".hero-action-path div:nth-child(3) span":
+        "学历、培训和雇佣检查材料按需提供",
       ".hero-profile-card .hero-card-kicker": "当前身份",
       ".hero-profile-card strong": "生物医学现场服务工程师",
       ".hero-profile-card .hero-card-note":
@@ -847,6 +862,7 @@ const translations = {
       ".contact-email-action": { "aria-label": "发邮件联系 Yihang Henry Yang" },
       ".contact-resume-link": { "aria-label": "下载 Henry Yang PDF 简历" },
       ".contact-docx-link": { "aria-label": "下载 Henry Yang DOCX 简历" },
+      ".hero-action-path": { "aria-label": "招聘方行动路径" },
       ".experience-evidence": { "aria-label": "当前现场服务证据" },
       ".experience-outcome": { "aria-label": "当前岗位服务结果摘要" },
       ".case-grid article:nth-child(1) .case-outcome": { "aria-label": "公开安全的案例结果" },
