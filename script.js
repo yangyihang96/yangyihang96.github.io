@@ -9,6 +9,11 @@ const translations = {
     title: "Yihang (Henry) Yang | Biomedical Field Service Engineer",
     description:
       "Sydney-based Biomedical Field Service Engineer focused on medical device maintenance, troubleshooting, verification, service documentation, and resume download.",
+    copyEmail: {
+      default: "Copy Email",
+      copied: "Copied",
+      failed: "Copy failed",
+    },
     text: {
       ".skip-link": "Skip to content",
       ".site-nav a:nth-child(1)": "Experience",
@@ -306,6 +311,7 @@ const translations = {
       ".contact-actions-summary":
         "For roles needing Sydney field travel, medical device service, verification records, and bilingual communication.",
       ".contact-email-action": "Email Me",
+      ".contact-copy-email-action": "Copy Email",
       ".contact-resume-link": "Resume PDF",
       ".contact-docx-link": "Resume DOCX",
       ".contact-intake div:nth-child(1) strong": "Role scope",
@@ -346,6 +352,7 @@ const translations = {
       ".email-action": { "aria-label": "Email Yihang Henry Yang" },
       ".github-action": { "aria-label": "Open Yihang Yang GitHub profile" },
       ".contact-email-action": { "aria-label": "Email Yihang Henry Yang" },
+      ".contact-copy-email-action": { "aria-label": "Copy Yihang Henry Yang email address" },
       ".contact-resume-link": { "aria-label": "Download Henry Yang resume as PDF" },
       ".contact-docx-link": { "aria-label": "Download Henry Yang resume as DOCX" },
       ".contact-intake": { "aria-label": "Recruiter email checklist" },
@@ -369,6 +376,11 @@ const translations = {
     title: "Yihang (Henry) Yang | 医疗设备现场服务工程师",
     description:
       "Yihang (Henry) Yang 是悉尼医疗设备现场服务工程师，重点展示设备维护、故障排查、验证记录、服务文档和简历下载。",
+    copyEmail: {
+      default: "复制邮箱",
+      copied: "已复制",
+      failed: "复制失败",
+    },
     text: {
       ".skip-link": "跳到主要内容",
       ".site-nav a:nth-child(1)": "经历",
@@ -664,6 +676,7 @@ const translations = {
       ".contact-actions-summary":
         "适合需要悉尼现场出行、医疗设备服务、验证记录和中英文沟通的岗位。",
       ".contact-email-action": "发邮件联系我",
+      ".contact-copy-email-action": "复制邮箱",
       ".contact-resume-link": "PDF 简历",
       ".contact-docx-link": "DOCX 简历",
       ".contact-intake div:nth-child(1) strong": "岗位范围",
@@ -704,6 +717,7 @@ const translations = {
       ".email-action": { "aria-label": "发邮件联系 Yihang Henry Yang" },
       ".github-action": { "aria-label": "打开 Yihang Yang GitHub 主页" },
       ".contact-email-action": { "aria-label": "发邮件联系 Yihang Henry Yang" },
+      ".contact-copy-email-action": { "aria-label": "复制 Yihang Henry Yang 邮箱地址" },
       ".contact-resume-link": { "aria-label": "下载 Henry Yang PDF 简历" },
       ".contact-docx-link": { "aria-label": "下载 Henry Yang DOCX 简历" },
       ".contact-intake": { "aria-label": "招聘方邮件清单" },
@@ -725,6 +739,7 @@ const translations = {
 };
 
 const languageButtons = Array.from(document.querySelectorAll("[data-language-option]"));
+const emailCopyButtons = Array.from(document.querySelectorAll("[data-copy-email]"));
 const descriptionMeta = document.querySelector('meta[name="description"]');
 
 const setStoredLanguage = (language) => {
@@ -784,6 +799,10 @@ const applyLanguage = (language, shouldStore = true) => {
     button.setAttribute("aria-pressed", String(isActive));
   });
 
+  emailCopyButtons.forEach((button) => {
+    button.classList.remove("is-copied", "is-copy-failed");
+  });
+
   if (shouldStore) {
     setStoredLanguage(selected);
   }
@@ -792,6 +811,65 @@ const applyLanguage = (language, shouldStore = true) => {
 languageButtons.forEach((button) => {
   button.addEventListener("click", () => {
     applyLanguage(button.dataset.languageOption);
+  });
+});
+
+const getActiveDictionary = () => {
+  const language = document.body.dataset.language || "en";
+  return translations[language] || translations.en;
+};
+
+const setCopyButtonState = (button, state) => {
+  const copyLabels = getActiveDictionary().copyEmail || translations.en.copyEmail;
+  button.textContent = copyLabels[state] || copyLabels.default;
+  button.classList.toggle("is-copied", state === "copied");
+  button.classList.toggle("is-copy-failed", state === "failed");
+
+  window.clearTimeout(Number(button.dataset.copyResetTimer));
+  const resetTimer = window.setTimeout(() => {
+    const resetLabels = getActiveDictionary().copyEmail || translations.en.copyEmail;
+    button.textContent = resetLabels.default;
+    button.classList.remove("is-copied", "is-copy-failed");
+    delete button.dataset.copyResetTimer;
+  }, 1800);
+  button.dataset.copyResetTimer = String(resetTimer);
+};
+
+const copyTextToClipboard = async (text) => {
+  if (navigator.clipboard?.writeText) {
+    await navigator.clipboard.writeText(text);
+    return;
+  }
+
+  const textarea = document.createElement("textarea");
+  textarea.value = text;
+  textarea.setAttribute("readonly", "");
+  textarea.style.position = "fixed";
+  textarea.style.left = "-9999px";
+  document.body.append(textarea);
+  textarea.select();
+
+  const didCopy = document.execCommand("copy");
+  textarea.remove();
+
+  if (!didCopy) {
+    throw new Error("Copy command failed");
+  }
+};
+
+emailCopyButtons.forEach((button) => {
+  button.addEventListener("click", async () => {
+    const email = button.dataset.copyEmail;
+    if (!email) {
+      return;
+    }
+
+    try {
+      await copyTextToClipboard(email);
+      setCopyButtonState(button, "copied");
+    } catch {
+      setCopyButtonState(button, "failed");
+    }
   });
 });
 

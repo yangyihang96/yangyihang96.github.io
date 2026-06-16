@@ -1227,6 +1227,18 @@ main:focus {
   justify-content: flex-end;
 }
 
+.contact-copy-email-action.is-copied {
+  color: var(--ink);
+  border-color: #a8d6cd;
+  background: #a8d6cd;
+}
+
+.contact-copy-email-action.is-copy-failed {
+  color: #ffffff;
+  border-color: rgba(199, 107, 66, 0.62);
+  background: rgba(199, 107, 66, 0.20);
+}
+
 .contact-intake {
   grid-column: 1 / -1;
   display: grid;

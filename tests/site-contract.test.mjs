@@ -58,8 +58,8 @@ test("site uses HTTPS canonical and sharing metadata", () => {
 });
 
 test("stylesheet and script use the current cache-busting version", () => {
-  assert.match(html, /href="styles\.css\?v=responsive-hero-image-2"/);
-  assert.match(html, /src="script\.js\?v=responsive-hero-image-2"/);
+  assert.match(html, /href="styles\.css\?v=contact-copy-email-1"/);
+  assert.match(html, /src="script\.js\?v=contact-copy-email-1"/);
 });
 
 test("hero exposes recruiter actions and downloadable resume files", () => {
@@ -93,6 +93,7 @@ test("recruiter actions expose clear accessible labels for file type and destina
   assert.match(html, /class="button tertiary github-action"[^>]*aria-label="Open Yihang Yang GitHub profile"/);
   assert.match(html, /class="nav-resume-link"[^>]*aria-label="Download Henry Yang resume PDF"/);
   assert.match(html, /class="button primary contact-email-action"[^>]*aria-label="Email Yihang Henry Yang"/);
+  assert.match(html, /class="button secondary contact-copy-email-action"[^>]*aria-label="Copy Yihang Henry Yang email address"/);
   assert.match(html, /class="button secondary contact-resume-link"[^>]*aria-label="Download Henry Yang resume as PDF"/);
   assert.match(html, /class="button secondary contact-docx-link"[^>]*aria-label="Download Henry Yang resume as DOCX"/);
   assert.match(script, /attrs:\s*{[\s\S]*?"\.resume-link":\s*{ "aria-label": "Download Henry Yang resume as PDF" }/);
@@ -104,6 +105,7 @@ test("contact section repeats recruiter conversion actions at the close", () => 
   assert.match(html, /Ready for field service conversations/);
   assert.match(html, /Sydney field travel, medical device service, verification records, and bilingual communication/);
   assert.match(html, /class="button primary contact-email-action" href="mailto:yangyihang96@gmail\.com"/);
+  assert.match(html, /class="button secondary contact-copy-email-action" type="button" data-copy-email="yangyihang96@gmail\.com"/);
   assert.match(html, /class="button secondary contact-resume-link" href="assets\/Henry_Yang_Biomedical_Engineer_Resume\.pdf" type="application\/pdf" download/);
   assert.match(html, /class="button secondary contact-docx-link" href="assets\/Henry_Yang_Biomedical_Engineer_Resume\.docx" download/);
   assert.match(html, /Private credentials and employment-check documents are shared only when required/);
@@ -131,6 +133,27 @@ test("contact section repeats recruiter conversion actions at the close", () => 
   assert.match(css, /@media \(max-width:\s*760px\)[\s\S]*?\.contact-response-strip\s*{[\s\S]*?grid-template-columns:\s*1fr;/);
   assert.match(css, /\.contact-actions\s*{[\s\S]*?grid-template-columns:\s*minmax\(0,\s*1fr\) auto;/);
   assert.match(css, /@media \(max-width:\s*560px\)[\s\S]*?\.contact-action-buttons\s*{[\s\S]*?grid-template-columns:\s*1fr;/);
+});
+
+test("contact offers a copy-email fallback when mail clients are unavailable", () => {
+  const contactStart = html.indexOf('<section id="contact"');
+  const contactEnd = html.indexOf("</section>", contactStart);
+  assert.notEqual(contactStart, -1, "missing contact section");
+  assert.notEqual(contactEnd, -1, "missing contact section end");
+
+  const contactSource = html.slice(contactStart, contactEnd);
+  assert.match(
+    contactSource,
+    /<button class="button secondary contact-copy-email-action" type="button" data-copy-email="yangyihang96@gmail\.com" aria-label="Copy Yihang Henry Yang email address">Copy Email<\/button>/
+  );
+  assert.match(script, /"\.contact-copy-email-action": "Copy Email"/);
+  assert.match(script, /"\.contact-copy-email-action": "复制邮箱"/);
+  assert.match(script, /copyEmail:\s*{[\s\S]*?default:\s*"Copy Email"[\s\S]*?copied:\s*"Copied"[\s\S]*?failed:\s*"Copy failed"/);
+  assert.match(script, /copyEmail:\s*{[\s\S]*?default:\s*"复制邮箱"[\s\S]*?copied:\s*"已复制"[\s\S]*?failed:\s*"复制失败"/);
+  assert.match(script, /document\.querySelectorAll\("\[data-copy-email\]"\)/);
+  assert.match(script, /navigator\.clipboard\.writeText\(text\)/);
+  assert.match(script, /document\.execCommand\("copy"\)/);
+  assert.match(css, /\.contact-copy-email-action\.is-copied\s*{/);
 });
 
 test("contact section keeps one mail action and a compact visible email line", () => {
