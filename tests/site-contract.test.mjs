@@ -33,8 +33,8 @@ test("site uses HTTPS canonical and sharing metadata", () => {
 });
 
 test("stylesheet and script use the current cache-busting version", () => {
-  assert.match(html, /href="styles\.css\?v=proof-points-1"/);
-  assert.match(html, /src="script\.js\?v=proof-points-1"/);
+  assert.match(html, /href="styles\.css\?v=contact-close-1"/);
+  assert.match(html, /src="script\.js\?v=contact-close-1"/);
 });
 
 test("hero exposes recruiter actions and downloadable resume files", () => {
@@ -46,6 +46,20 @@ test("hero exposes recruiter actions and downloadable resume files", () => {
   assert.match(html, /github\.com\/yangyihang96/);
   assert.ok(fs.existsSync(path.join(root, "assets/Henry_Yang_Biomedical_Engineer_Resume.docx")));
   assert.ok(fs.existsSync(path.join(root, "assets/Henry_Yang_Biomedical_Engineer_Resume.pdf")));
+});
+
+test("contact section repeats recruiter conversion actions at the close", () => {
+  assert.match(html, /class="contact-actions"/);
+  assert.match(html, /Ready for field service conversations/);
+  assert.match(html, /Sydney field travel, medical device service, verification records, and bilingual communication/);
+  assert.match(html, /class="button primary contact-email-action" href="mailto:yangyihang96@gmail\.com"/);
+  assert.match(html, /class="button secondary contact-resume-link" href="assets\/Henry_Yang_Biomedical_Engineer_Resume\.pdf" type="application\/pdf" download/);
+  assert.match(html, /class="button secondary contact-docx-link" href="assets\/Henry_Yang_Biomedical_Engineer_Resume\.docx" download/);
+  assert.match(html, /Private credentials and employment-check documents are shared only when required/);
+  assert.match(script, /"\.contact-actions-title": "Ready for field service conversations\."/);
+  assert.match(script, /"\.contact-actions-title": "可以继续聊医疗设备现场服务机会。"/);
+  assert.match(css, /\.contact-actions\s*{[\s\S]*?grid-template-columns:\s*minmax\(0,\s*1fr\) auto;/);
+  assert.match(css, /@media \(max-width:\s*560px\)[\s\S]*?\.contact-action-buttons\s*{[\s\S]*?grid-template-columns:\s*1fr;/);
 });
 
 test("fixed header keeps a persistent resume PDF action", () => {

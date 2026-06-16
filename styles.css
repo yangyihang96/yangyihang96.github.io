@@ -1348,6 +1348,53 @@ main:focus {
   overflow-wrap: anywhere;
 }
 
+.contact-actions {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 18px 24px;
+  align-items: center;
+  margin-top: 34px;
+  padding: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.contact-actions-copy {
+  min-width: 0;
+}
+
+.contact-actions-title {
+  display: block;
+  color: #ffffff;
+  font-size: clamp(22px, 3vw, 34px);
+  font-weight: 850;
+  line-height: 1.08;
+}
+
+.contact-actions-summary {
+  max-width: 640px;
+  margin: 10px 0 0;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.contact-action-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.contact-actions-note {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
 .site-footer {
   padding: 26px 24px;
   text-align: center;
@@ -1601,6 +1648,14 @@ main:focus {
     grid-column: 1 / -1;
   }
 
+  .contact-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-action-buttons {
+    justify-content: flex-start;
+  }
+
   .hero-meta {
     max-width: 520px;
     grid-template-columns: 1fr;
@@ -1807,6 +1862,19 @@ main:focus {
   }
 
   .button {
+    width: 100%;
+  }
+
+  .contact-actions {
+    padding: 18px;
+  }
+
+  .contact-action-buttons {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .contact-actions .button {
     width: 100%;
   }
 

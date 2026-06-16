@@ -314,6 +314,14 @@ const translations = {
       "#contact-title": "You can reach me here.",
       ".contact-inner > p:not(.section-kicker)":
         "If you want to know more about my work experience, education, or a biomedical / medical device field service opportunity, email me. English and Mandarin are both fine.",
+      ".contact-actions-title": "Ready for field service conversations.",
+      ".contact-actions-summary":
+        "For roles needing Sydney field travel, medical device service, verification records, and bilingual communication.",
+      ".contact-email-action": "Email Me",
+      ".contact-resume-link": "Resume PDF",
+      ".contact-docx-link": "Resume DOCX",
+      ".contact-actions-note":
+        "Private credentials and employment-check documents are shared only when required.",
     },
     html: {
       ".life-notes p:nth-child(1)":
@@ -629,6 +637,14 @@ const translations = {
       "#contact-title": "可以在这里联系我。",
       ".contact-inner > p:not(.section-kicker)":
         "如果你想了解我的工作经历、学习背景，或者有 biomedical / medical device field service 相关机会，可以直接发邮件给我。中文和英文都可以。",
+      ".contact-actions-title": "可以继续聊医疗设备现场服务机会。",
+      ".contact-actions-summary":
+        "适合需要悉尼现场出行、医疗设备服务、验证记录和中英文沟通的岗位。",
+      ".contact-email-action": "发邮件联系我",
+      ".contact-resume-link": "PDF 简历",
+      ".contact-docx-link": "DOCX 简历",
+      ".contact-actions-note":
+        "学历、培训证书和雇佣检查材料只在正式需要时私下提供。",
     },
     html: {
       ".life-notes p:nth-child(1)":
