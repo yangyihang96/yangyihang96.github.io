@@ -58,8 +58,8 @@ test("site uses HTTPS canonical and sharing metadata", () => {
 });
 
 test("stylesheet and script use the current cache-busting version", () => {
-  assert.match(html, /href="styles\.css\?v=meta-summary-1"/);
-  assert.match(html, /src="script\.js\?v=meta-summary-1"/);
+  assert.match(html, /href="styles\.css\?v=accessible-actions-1"/);
+  assert.match(html, /src="script\.js\?v=accessible-actions-1"/);
 });
 
 test("hero exposes recruiter actions and downloadable resume files", () => {
@@ -71,6 +71,19 @@ test("hero exposes recruiter actions and downloadable resume files", () => {
   assert.match(html, /github\.com\/yangyihang96/);
   assert.ok(fs.existsSync(path.join(root, "assets/Henry_Yang_Biomedical_Engineer_Resume.docx")));
   assert.ok(fs.existsSync(path.join(root, "assets/Henry_Yang_Biomedical_Engineer_Resume.pdf")));
+});
+
+test("recruiter actions expose clear accessible labels for file type and destination", () => {
+  assert.match(html, /class="button primary resume-link"[^>]*aria-label="Download Henry Yang resume as PDF"/);
+  assert.match(html, /class="button secondary resume-docx-link"[^>]*aria-label="Download Henry Yang resume as DOCX"/);
+  assert.match(html, /class="button secondary email-action"[^>]*aria-label="Email Yihang Henry Yang"/);
+  assert.match(html, /class="button tertiary github-action"[^>]*aria-label="Open Yihang Yang GitHub profile"/);
+  assert.match(html, /class="nav-resume-link"[^>]*aria-label="Download Henry Yang resume PDF"/);
+  assert.match(html, /class="button primary contact-email-action"[^>]*aria-label="Email Yihang Henry Yang"/);
+  assert.match(html, /class="button secondary contact-resume-link"[^>]*aria-label="Download Henry Yang resume as PDF"/);
+  assert.match(html, /class="button secondary contact-docx-link"[^>]*aria-label="Download Henry Yang resume as DOCX"/);
+  assert.match(script, /attrs:\s*{[\s\S]*?"\.resume-link":\s*{ "aria-label": "Download Henry Yang resume as PDF" }/);
+  assert.match(script, /attrs:\s*{[\s\S]*?"\.resume-link":\s*{ "aria-label": "下载 Henry Yang PDF 简历" }/);
 });
 
 test("contact section repeats recruiter conversion actions at the close", () => {
@@ -90,7 +103,7 @@ test("contact section repeats recruiter conversion actions at the close", () => 
 test("fixed header keeps a persistent resume PDF action", () => {
   assert.match(
     html,
-    /<a class="nav-resume-link" href="assets\/Henry_Yang_Biomedical_Engineer_Resume\.pdf" type="application\/pdf" download>Resume PDF<\/a>/
+    /<a class="nav-resume-link" href="assets\/Henry_Yang_Biomedical_Engineer_Resume\.pdf" type="application\/pdf" download aria-label="Download Henry Yang resume PDF">Resume PDF<\/a>/
   );
   assert.match(script, /"\.nav-resume-link": "Resume PDF"/);
   assert.match(script, /"\.nav-resume-link": "PDF 简历"/);

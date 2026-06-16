@@ -331,6 +331,16 @@ const translations = {
       ".life-notes p:nth-child(3)":
         "<strong>Organized records</strong> Turning scattered information into reusable structure so future work is easier.",
     },
+    attrs: {
+      ".nav-resume-link": { "aria-label": "Download Henry Yang resume PDF" },
+      ".resume-link": { "aria-label": "Download Henry Yang resume as PDF" },
+      ".resume-docx-link": { "aria-label": "Download Henry Yang resume as DOCX" },
+      ".email-action": { "aria-label": "Email Yihang Henry Yang" },
+      ".github-action": { "aria-label": "Open Yihang Yang GitHub profile" },
+      ".contact-email-action": { "aria-label": "Email Yihang Henry Yang" },
+      ".contact-resume-link": { "aria-label": "Download Henry Yang resume as PDF" },
+      ".contact-docx-link": { "aria-label": "Download Henry Yang resume as DOCX" },
+    },
   },
   zh: {
     lang: "zh-CN",
@@ -654,6 +664,16 @@ const translations = {
       ".life-notes p:nth-child(3)":
         "<strong>记录整理</strong> 喜欢把零散信息变成能复用的结构，让未来的自己少走弯路。",
     },
+    attrs: {
+      ".nav-resume-link": { "aria-label": "下载 Henry Yang PDF 简历" },
+      ".resume-link": { "aria-label": "下载 Henry Yang PDF 简历" },
+      ".resume-docx-link": { "aria-label": "下载 Henry Yang DOCX 简历" },
+      ".email-action": { "aria-label": "发邮件联系 Yihang Henry Yang" },
+      ".github-action": { "aria-label": "打开 Yihang Yang GitHub 主页" },
+      ".contact-email-action": { "aria-label": "发邮件联系 Yihang Henry Yang" },
+      ".contact-resume-link": { "aria-label": "下载 Henry Yang PDF 简历" },
+      ".contact-docx-link": { "aria-label": "下载 Henry Yang DOCX 简历" },
+    },
   },
 };
 
@@ -699,6 +719,15 @@ const applyLanguage = (language, shouldStore = true) => {
     const target = document.querySelector(selector);
     if (target) {
       target.innerHTML = value;
+    }
+  });
+
+  Object.entries(dictionary.attrs || {}).forEach(([selector, attributes]) => {
+    const target = document.querySelector(selector);
+    if (target) {
+      Object.entries(attributes).forEach(([name, value]) => {
+        target.setAttribute(name, value);
+      });
     }
   });
 
