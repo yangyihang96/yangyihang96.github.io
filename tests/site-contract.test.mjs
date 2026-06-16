@@ -58,8 +58,8 @@ test("site uses HTTPS canonical and sharing metadata", () => {
 });
 
 test("stylesheet and script use the current cache-busting version", () => {
-  assert.match(html, /href="styles\.css\?v=accessible-actions-1"/);
-  assert.match(html, /src="script\.js\?v=accessible-actions-1"/);
+  assert.match(html, /href="styles\.css\?v=mobile-hero-1"/);
+  assert.match(html, /src="script\.js\?v=mobile-hero-1"/);
 });
 
 test("hero exposes recruiter actions and downloadable resume files", () => {
@@ -215,6 +215,44 @@ test("hero portrait stays visually constrained after image dimensions load", () 
   assert.match(
     css,
     /@media \(max-width:\s*920px\)[\s\S]*?\.resume-style\.resume-compact \.hero-profile-card img\s*{[\s\S]*?aspect-ratio:\s*1;[\s\S]*?height:\s*auto;/
+  );
+});
+
+test("desktop compact hero leaves the next recruiter section visible on short screens", () => {
+  assert.match(
+    css,
+    /\.resume-style\.resume-compact \.hero-copy\s*{[\s\S]*?grid-template-columns:\s*minmax\(0,\s*1fr\) minmax\(240px,\s*300px\);[\s\S]*?padding:\s*112px 0 40px;/
+  );
+  assert.match(
+    css,
+    /\.resume-style\.resume-compact \.hero-card-body\s*{[\s\S]*?padding:\s*14px 4px 0;/
+  );
+  assert.match(
+    css,
+    /\.resume-style\.resume-compact \.hero-profile-card strong\s*{[\s\S]*?font-size:\s*20px;/
+  );
+  assert.match(
+    css,
+    /\.resume-style\.resume-compact \.hero-card-note\s*{[\s\S]*?font-size:\s*13px;[\s\S]*?line-height:\s*1.42;/
+  );
+});
+
+test("mobile compact hero keeps recruiter actions inside a short first screen", () => {
+  assert.match(
+    css,
+    /@media \(max-width:\s*560px\)[\s\S]*?\.resume-style\.resume-compact \.hero-copy\s*{[\s\S]*?gap:\s*18px;[\s\S]*?padding-top:\s*108px;[\s\S]*?padding-bottom:\s*24px;/
+  );
+  assert.match(
+    css,
+    /@media \(max-width:\s*560px\)[\s\S]*?\.resume-style\.resume-compact \.hero-card-note\s*{[\s\S]*?display:\s*none;/
+  );
+  assert.match(
+    css,
+    /@media \(max-width:\s*560px\)[\s\S]*?\.resume-style\.resume-compact \.hero-actions\s*{[\s\S]*?grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\);[\s\S]*?gap:\s*8px;/
+  );
+  assert.match(
+    css,
+    /@media \(max-width:\s*560px\)[\s\S]*?\.resume-style\.resume-compact \.resume-link\s*{[\s\S]*?grid-column:\s*auto;/
   );
 });
 

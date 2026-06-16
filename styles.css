@@ -2393,10 +2393,10 @@ body.resume-style {
 .resume-style.resume-compact .hero-copy {
   width: min(1180px, calc(100% - 48px));
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(260px, 340px);
+  grid-template-columns: minmax(0, 1fr) minmax(240px, 300px);
   gap: clamp(30px, 5vw, 64px);
   align-items: end;
-  padding: 132px 0 64px;
+  padding: 112px 0 40px;
 }
 
 .resume-style.resume-compact .hero-main {
@@ -2442,7 +2442,7 @@ body.resume-style {
 .resume-style.resume-compact .hero-card-body {
   display: grid;
   gap: 8px;
-  padding: 18px 4px 2px;
+  padding: 14px 4px 0;
 }
 
 .resume-style.resume-compact .hero-card-kicker {
@@ -2455,15 +2455,15 @@ body.resume-style {
 
 .resume-style.resume-compact .hero-profile-card strong {
   color: var(--ink);
-  font-size: 22px;
+  font-size: 20px;
   line-height: 1.1;
 }
 
 .resume-style.resume-compact .hero-card-note {
   margin: 0;
   color: var(--ink-2);
-  font-size: 14px;
-  line-height: 1.5;
+  font-size: 13px;
+  line-height: 1.42;
 }
 
 .resume-style.resume-compact .statement {
@@ -2593,14 +2593,20 @@ body.resume-style {
 }
 
 @media (max-width: 560px) {
+  .resume-style.resume-compact .hero-copy {
+    gap: 18px;
+    padding-top: 108px;
+    padding-bottom: 24px;
+  }
+
   .resume-style.resume-compact .hero-profile-card {
-    grid-template-columns: 78px 1fr;
-    gap: 12px;
+    grid-template-columns: 64px 1fr;
+    gap: 10px;
     padding: 10px;
   }
 
   .resume-style.resume-compact .hero-profile-card strong {
-    font-size: 17px;
+    font-size: 16px;
   }
 
   .resume-style.resume-compact .hero-card-kicker {
@@ -2608,20 +2614,43 @@ body.resume-style {
   }
 
   .resume-style.resume-compact .hero-card-note {
-    font-size: 13px;
+    display: none;
+  }
+
+  .resume-style.resume-compact .hero h1 {
+    font-size: clamp(34px, 10.2vw, 42px);
+  }
+
+  .resume-style.resume-compact .hero-subtitle {
+    margin-top: 14px;
+    font-size: 16px;
+    line-height: 1.38;
+  }
+
+  .resume-style.resume-compact .hero-meta {
+    margin-top: 16px;
+  }
+
+  .resume-style.resume-compact .hero-meta div {
+    padding: 8px 10px;
   }
 
   .resume-style.resume-compact .hero-actions {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    margin-top: 14px;
   }
 
   .resume-style.resume-compact .resume-link {
-    grid-column: 1 / -1;
+    grid-column: auto;
   }
 
   .resume-style.resume-compact .button {
+    min-height: 40px;
+    padding: 9px 10px;
     width: 100%;
+    font-size: 13px;
   }
 }
 
