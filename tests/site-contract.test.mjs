@@ -58,8 +58,8 @@ test("site uses HTTPS canonical and sharing metadata", () => {
 });
 
 test("stylesheet and script use the current cache-busting version", () => {
-  assert.match(html, /href="styles\.css\?v=proof-checklist-1"/);
-  assert.match(html, /src="script\.js\?v=proof-checklist-1"/);
+  assert.match(html, /href="styles\.css\?v=final-contact-1"/);
+  assert.match(html, /src="script\.js\?v=final-contact-1"/);
 });
 
 test("hero exposes recruiter actions and downloadable resume files", () => {
@@ -113,12 +113,22 @@ test("contact section repeats recruiter conversion actions at the close", () => 
   assert.match(html, /<strong>Role scope<\/strong>\s*<span>Share device type, service setting, travel area, and start timing\.<\/span>/);
   assert.match(html, /<strong>Proof needed<\/strong>\s*<span>Ask privately for degree, training, identity, right-to-work, or reference material when required\.<\/span>/);
   assert.match(html, /<strong>Next step<\/strong>\s*<span>Send interview time, role description, or technical screen format\.<\/span>/);
+  assert.match(html, /class="contact-response-strip" aria-label="Recruiter response expectations"/);
+  assert.match(html, /<strong>Reply window<\/strong>\s*<span>I aim to reply within 1 business day for role-fit, interview, or document requests\.<\/span>/);
+  assert.match(html, /<strong>Best format<\/strong>\s*<span>Email the role description, device scope, location, and preferred call times\.<\/span>/);
+  assert.match(html, /<strong>Document order<\/strong>\s*<span>Resume first; sensitive checks only after role fit and formal process are clear\.<\/span>/);
   assert.match(script, /"\.contact-intake div:nth-child\(1\) strong": "Role scope"/);
   assert.match(script, /"\.contact-intake div:nth-child\(1\) strong": "岗位范围"/);
+  assert.match(script, /"\.contact-response-strip div:nth-child\(1\) strong": "Reply window"/);
+  assert.match(script, /"\.contact-response-strip div:nth-child\(1\) strong": "回复预期"/);
   assert.match(script, /"\.contact-intake": { "aria-label": "Recruiter email checklist" }/);
   assert.match(script, /"\.contact-intake": { "aria-label": "招聘方邮件清单" }/);
+  assert.match(script, /"\.contact-response-strip": { "aria-label": "Recruiter response expectations" }/);
+  assert.match(script, /"\.contact-response-strip": { "aria-label": "招聘方回复预期" }/);
   assert.match(css, /\.contact-intake\s*{[\s\S]*?display:\s*grid;[\s\S]*?grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\);/);
+  assert.match(css, /\.contact-response-strip\s*{[\s\S]*?display:\s*grid;[\s\S]*?grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\);/);
   assert.match(css, /@media \(max-width:\s*760px\)[\s\S]*?\.contact-intake\s*{[\s\S]*?grid-template-columns:\s*1fr;/);
+  assert.match(css, /@media \(max-width:\s*760px\)[\s\S]*?\.contact-response-strip\s*{[\s\S]*?grid-template-columns:\s*1fr;/);
   assert.match(css, /\.contact-actions\s*{[\s\S]*?grid-template-columns:\s*minmax\(0,\s*1fr\) auto;/);
   assert.match(css, /@media \(max-width:\s*560px\)[\s\S]*?\.contact-action-buttons\s*{[\s\S]*?grid-template-columns:\s*1fr;/);
 });

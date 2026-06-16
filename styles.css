@@ -1581,6 +1581,39 @@ main:focus {
   line-height: 1.35;
 }
 
+.contact-response-strip {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid rgba(168, 214, 205, 0.22);
+  border-radius: 8px;
+  background: rgba(168, 214, 205, 0.08);
+}
+
+.contact-response-strip div {
+  min-width: 0;
+}
+
+.contact-response-strip strong {
+  display: block;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 850;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.contact-response-strip span {
+  display: block;
+  margin-top: 6px;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 14px;
+  font-weight: 680;
+  line-height: 1.35;
+}
+
 .contact-actions-note {
   grid-column: 1 / -1;
   display: grid;
@@ -1878,6 +1911,10 @@ main:focus {
     grid-template-columns: 1fr;
   }
 
+  .contact-response-strip {
+    grid-template-columns: 1fr;
+  }
+
   .hero-meta {
     max-width: 520px;
     grid-template-columns: 1fr;
@@ -1998,6 +2035,10 @@ main:focus {
   }
 
   .contact-intake {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-response-strip {
     grid-template-columns: 1fr;
   }
 
@@ -2156,6 +2197,15 @@ main:focus {
   }
 
   .contact-intake span {
+    font-size: 13px;
+  }
+
+  .contact-response-strip {
+    gap: 10px;
+    padding: 12px;
+  }
+
+  .contact-response-strip span {
     font-size: 13px;
   }
 

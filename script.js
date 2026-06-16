@@ -417,6 +417,15 @@ const translations = {
       ".contact-intake div:nth-child(3) strong": "Next step",
       ".contact-intake div:nth-child(3) span":
         "Send interview time, role description, or technical screen format.",
+      ".contact-response-strip div:nth-child(1) strong": "Reply window",
+      ".contact-response-strip div:nth-child(1) span":
+        "I aim to reply within 1 business day for role-fit, interview, or document requests.",
+      ".contact-response-strip div:nth-child(2) strong": "Best format",
+      ".contact-response-strip div:nth-child(2) span":
+        "Email the role description, device scope, location, and preferred call times.",
+      ".contact-response-strip div:nth-child(3) strong": "Document order",
+      ".contact-response-strip div:nth-child(3) span":
+        "Resume first; sensitive checks only after role fit and formal process are clear.",
       ".contact-actions-note strong": "Direct email",
       ".contact-email-text": "yangyihang96@gmail.com",
       ".contact-privacy-note":
@@ -440,6 +449,7 @@ const translations = {
       ".contact-resume-link": { "aria-label": "Download Henry Yang resume as PDF" },
       ".contact-docx-link": { "aria-label": "Download Henry Yang resume as DOCX" },
       ".contact-intake": { "aria-label": "Recruiter email checklist" },
+      ".contact-response-strip": { "aria-label": "Recruiter response expectations" },
       ".hero-action-path": { "aria-label": "Recruiter action path" },
       ".fit-verdict": { "aria-label": "Recruiter role-fit verdict" },
       ".proof-grid": { "aria-label": "Recruiter evidence checklist" },
@@ -864,6 +874,15 @@ const translations = {
       ".contact-intake div:nth-child(3) strong": "下一步",
       ".contact-intake div:nth-child(3) span":
         "发送面试时间、岗位说明或技术筛选形式。",
+      ".contact-response-strip div:nth-child(1) strong": "回复预期",
+      ".contact-response-strip div:nth-child(1) span":
+        "岗位匹配、面试或材料请求，我会尽量在 1 个工作日内回复。",
+      ".contact-response-strip div:nth-child(2) strong": "最佳格式",
+      ".contact-response-strip div:nth-child(2) span":
+        "邮件里请附岗位说明、设备范围、地点和合适的通话时间。",
+      ".contact-response-strip div:nth-child(3) strong": "材料顺序",
+      ".contact-response-strip div:nth-child(3) span":
+        "先看简历；敏感核验材料只在岗位匹配和正式流程清楚后提供。",
       ".contact-actions-note strong": "直接邮箱",
       ".contact-email-text": "yangyihang96@gmail.com",
       ".contact-privacy-note":
@@ -887,6 +906,7 @@ const translations = {
       ".contact-resume-link": { "aria-label": "下载 Henry Yang PDF 简历" },
       ".contact-docx-link": { "aria-label": "下载 Henry Yang DOCX 简历" },
       ".contact-intake": { "aria-label": "招聘方邮件清单" },
+      ".contact-response-strip": { "aria-label": "招聘方回复预期" },
       ".hero-action-path": { "aria-label": "招聘方行动路径" },
       ".fit-verdict": { "aria-label": "招聘方岗位匹配判断" },
       ".proof-grid": { "aria-label": "招聘方证据核对清单" },
