@@ -385,7 +385,7 @@ const translations = {
       "#contact .section-kicker": "Contact",
       "#contact-title": "You can reach me here.",
       ".contact-inner > p:not(.section-kicker)":
-        "If you want to know more about my work experience, education, or a biomedical / medical device field service opportunity, email me. English and Mandarin are both fine.",
+        "For biomedical / medical device field service opportunities, use the actions below. English and Mandarin are both fine.",
       ".contact-actions-title": "Ready for field service conversations.",
       ".contact-actions-summary":
         "For roles needing Sydney field travel, medical device service, verification records, and bilingual communication.",
@@ -401,7 +401,9 @@ const translations = {
       ".contact-intake div:nth-child(3) strong": "Next step",
       ".contact-intake div:nth-child(3) span":
         "Send interview time, role description, or technical screen format.",
-      ".contact-actions-note":
+      ".contact-actions-note strong": "Direct email",
+      ".contact-email-text": "yangyihang96@gmail.com",
+      ".contact-privacy-note":
         "Private credentials and employment-check documents are shared only when required.",
     },
     html: {
@@ -813,7 +815,7 @@ const translations = {
       "#contact .section-kicker": "联系",
       "#contact-title": "可以在这里联系我。",
       ".contact-inner > p:not(.section-kicker)":
-        "如果你想了解我的工作经历、学习背景，或者有 biomedical / medical device field service 相关机会，可以直接发邮件给我。中文和英文都可以。",
+        "如果有 biomedical / medical device field service 相关机会，可以用下面的行动入口联系我。中文和英文都可以。",
       ".contact-actions-title": "可以继续聊医疗设备现场服务机会。",
       ".contact-actions-summary":
         "适合需要悉尼现场出行、医疗设备服务、验证记录和中英文沟通的岗位。",
@@ -829,7 +831,9 @@ const translations = {
       ".contact-intake div:nth-child(3) strong": "下一步",
       ".contact-intake div:nth-child(3) span":
         "发送面试时间、岗位说明或技术筛选形式。",
-      ".contact-actions-note":
+      ".contact-actions-note strong": "直接邮箱",
+      ".contact-email-text": "yangyihang96@gmail.com",
+      ".contact-privacy-note":
         "学历、培训证书和雇佣检查材料只在正式需要时私下提供。",
     },
     html: {

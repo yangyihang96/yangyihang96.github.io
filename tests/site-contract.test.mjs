@@ -58,8 +58,8 @@ test("site uses HTTPS canonical and sharing metadata", () => {
 });
 
 test("stylesheet and script use the current cache-busting version", () => {
-  assert.match(html, /href="styles\.css\?v=training-density-1"/);
-  assert.match(html, /src="script\.js\?v=training-density-1"/);
+  assert.match(html, /href="styles\.css\?v=contact-density-1"/);
+  assert.match(html, /src="script\.js\?v=contact-density-1"/);
 });
 
 test("hero exposes recruiter actions and downloadable resume files", () => {
@@ -121,6 +121,24 @@ test("contact section repeats recruiter conversion actions at the close", () => 
   assert.match(css, /@media \(max-width:\s*760px\)[\s\S]*?\.contact-intake\s*{[\s\S]*?grid-template-columns:\s*1fr;/);
   assert.match(css, /\.contact-actions\s*{[\s\S]*?grid-template-columns:\s*minmax\(0,\s*1fr\) auto;/);
   assert.match(css, /@media \(max-width:\s*560px\)[\s\S]*?\.contact-action-buttons\s*{[\s\S]*?grid-template-columns:\s*1fr;/);
+});
+
+test("contact section keeps one mail action and a compact visible email line", () => {
+  const contactStart = html.indexOf('<section id="contact"');
+  const contactEnd = html.indexOf("</section>", contactStart);
+  assert.notEqual(contactStart, -1, "missing contact section");
+  assert.notEqual(contactEnd, -1, "missing contact section end");
+
+  const contactSource = html.slice(contactStart, contactEnd);
+  assert.equal((contactSource.match(/href="mailto:/g) || []).length, 1);
+  assert.doesNotMatch(contactSource, /class="email-link"/);
+  assert.match(contactSource, /class="contact-email-text">yangyihang96@gmail\.com<\/span>/);
+  assert.match(contactSource, /class="contact-privacy-note">Private credentials and employment-check documents are shared only when required\.<\/span>/);
+  assert.match(script, /"\.contact-actions-note strong": "Direct email"/);
+  assert.match(script, /"\.contact-actions-note strong": "直接邮箱"/);
+  assert.doesNotMatch(css, /\.email-link\s*{/);
+  assert.match(css, /\.contact-actions-note\s*{[\s\S]*?display:\s*grid;[\s\S]*?grid-template-columns:\s*auto auto minmax\(0,\s*1fr\);/);
+  assert.match(css, /@media \(max-width:\s*560px\)[\s\S]*?\.contact-actions-note\s*{[\s\S]*?grid-template-columns:\s*1fr;/);
 });
 
 test("contact appears before optional personal life content in the recruiter reading flow", () => {
