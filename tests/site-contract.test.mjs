@@ -22,10 +22,22 @@ const articleCount = (className) => {
 
 test("site uses HTTPS canonical and sharing metadata", () => {
   assert.match(html, /<title>Yihang \(Henry\) Yang \| Biomedical Field Service Engineer<\/title>/);
+  assert.match(
+    html,
+    /<meta name="description" content="Sydney-based Biomedical Field Service Engineer focused on medical device maintenance, troubleshooting, verification, service documentation, and resume download\.">/
+  );
   assert.match(html, /<meta name="robots" content="index, follow">/);
   assert.match(html, /<link rel="canonical" href="https:\/\/yangyihang96\.com\/">/);
   assert.match(html, /property="og:title" content="Yihang \(Henry\) Yang \| Biomedical Field Service Engineer"/);
+  assert.match(
+    html,
+    /property="og:description" content="Sydney-based Biomedical Field Service Engineer focused on medical device maintenance, troubleshooting, verification, service documentation, and resume download\."/
+  );
   assert.match(html, /name="twitter:title" content="Yihang \(Henry\) Yang \| Biomedical Field Service Engineer"/);
+  assert.match(
+    html,
+    /name="twitter:description" content="Sydney-based Biomedical Field Service Engineer focused on medical device maintenance, troubleshooting, verification, service documentation, and resume download\."/
+  );
   assert.match(html, /property="og:url" content="https:\/\/yangyihang96\.com\/"/);
   assert.match(html, /property="og:image" content="https:\/\/yangyihang96\.com\/assets\//);
   assert.match(html, /property="og:image:width" content="2200"/);
@@ -34,12 +46,20 @@ test("site uses HTTPS canonical and sharing metadata", () => {
   assert.match(html, /name="twitter:image:alt" content="Professional portrait and biomedical service profile for Yihang Yang"/);
   assert.doesNotMatch(html, /http:\/\/yangyihang96\.com/);
   assert.match(script, /title: "Yihang \(Henry\) Yang \| Biomedical Field Service Engineer"/);
+  assert.match(
+    script,
+    /description:\s*"Sydney-based Biomedical Field Service Engineer focused on medical device maintenance, troubleshooting, verification, service documentation, and resume download\."/
+  );
   assert.match(script, /title: "Yihang \(Henry\) Yang \| 医疗设备现场服务工程师"/);
+  assert.match(
+    script,
+    /description:\s*"Yihang \(Henry\) Yang 是悉尼医疗设备现场服务工程师，重点展示设备维护、故障排查、验证记录、服务文档和简历下载。"/
+  );
 });
 
 test("stylesheet and script use the current cache-busting version", () => {
-  assert.match(html, /href="styles\.css\?v=title-engineer-1"/);
-  assert.match(html, /src="script\.js\?v=title-engineer-1"/);
+  assert.match(html, /href="styles\.css\?v=meta-summary-1"/);
+  assert.match(html, /src="script\.js\?v=meta-summary-1"/);
 });
 
 test("hero exposes recruiter actions and downloadable resume files", () => {
@@ -193,7 +213,10 @@ test("person structured data is present and parseable", () => {
   assert.equal(data["@type"], "Person");
   assert.equal(data.name, "Yihang (Henry) Yang");
   assert.equal(data.jobTitle, "Biomedical Field Service Engineer");
-  assert.match(data.description, /Sydney-based biomedical field service engineer/);
+  assert.equal(
+    data.description,
+    "Sydney-based Biomedical Field Service Engineer focused on medical device maintenance, troubleshooting, verification, service documentation, and resume download."
+  );
   assert.equal(data.url, "https://yangyihang96.com/");
   assert.equal(data.image, "https://yangyihang96.com/assets/yihang-professional-headshot-formal-4k.jpg");
   assert.equal(data.email, "mailto:yangyihang96@gmail.com");

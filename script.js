@@ -8,7 +8,7 @@ const translations = {
     lang: "en",
     title: "Yihang (Henry) Yang | Biomedical Field Service Engineer",
     description:
-      "Personal website for Yihang (Henry) Yang, covering biomedical field service, medical device maintenance, testing, documentation, education, selected training records, resume download, and contact details.",
+      "Sydney-based Biomedical Field Service Engineer focused on medical device maintenance, troubleshooting, verification, service documentation, and resume download.",
     text: {
       ".skip-link": "Skip to content",
       ".site-nav a:nth-child(1)": "Skills",
@@ -336,7 +336,7 @@ const translations = {
     lang: "zh-CN",
     title: "Yihang (Henry) Yang | 医疗设备现场服务工程师",
     description:
-      "Yihang (Henry) Yang 的个人网站，记录医疗设备现场服务、测试验证、工程背景、培训证书、简历下载和联系方式。",
+      "Yihang (Henry) Yang 是悉尼医疗设备现场服务工程师，重点展示设备维护、故障排查、验证记录、服务文档和简历下载。",
     text: {
       ".skip-link": "跳到主要内容",
       ".site-nav a:nth-child(1)": "能力",
