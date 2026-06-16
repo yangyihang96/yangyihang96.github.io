@@ -8,12 +8,12 @@ const translations = {
     lang: "en",
     title: "Yihang (Henry) Yang | Biomedical Field Service",
     description:
-      "Personal website for Yihang (Henry) Yang, covering biomedical field service, medical device maintenance, testing, documentation, education, selected training records, personal moments, and contact details.",
+      "Personal website for Yihang (Henry) Yang, covering biomedical field service, medical device maintenance, testing, documentation, education, selected training records, resume download, and contact details.",
     text: {
       ".site-nav a:nth-child(1)": "Experience",
       ".site-nav a:nth-child(2)": "Cases",
-      ".site-nav a:nth-child(3)": "Education",
-      ".site-nav a:nth-child(4)": "Personal",
+      ".site-nav a:nth-child(3)": "Skills",
+      ".site-nav a:nth-child(4)": "Education",
       ".site-nav a:nth-child(5)": "Contact",
       ".eyebrow": "Sydney · Biomedical Engineering · Field Service",
       ".hero-subtitle":
@@ -24,14 +24,33 @@ const translations = {
       ".hero-meta div:nth-child(2) dd": "Medical device service",
       ".hero-meta div:nth-child(3) dt": "Languages",
       ".hero-meta div:nth-child(3) dd": "English / Mandarin",
-      ".button.primary": "Email Me",
-      ".button.secondary": "View Experience",
+      ".hero-meta div:nth-child(4) dt": "Availability",
+      ".hero-meta div:nth-child(4) dd": "Sydney field travel",
+      ".resume-link": "Download Resume",
+      ".email-action": "Email Me",
+      ".github-action": "GitHub",
       ".hero-profile-card .hero-card-kicker": "Current profile",
       ".hero-profile-card strong": "Biomedical field service engineer",
-      ".hero-profile-card .hero-card-note": "Resume and credentials available on request.",
+      ".hero-profile-card .hero-card-note":
+        "Resume available now. Credentials and employment-check documents can be provided privately when required.",
+      ".fit-strip .section-kicker": "Best fit for",
+      "#fit-title": "Biomedical field service roles that need practical device judgement.",
+      ".fit-strip .section-intro":
+        "The quick read: Sydney-based, field-ready, bilingual, and focused on medical device maintenance, troubleshooting, verification, and clear service records.",
+      ".fit-grid article:nth-child(1) span": "Role",
+      ".fit-grid article:nth-child(1) strong": "Biomedical Field Service Engineer",
+      ".fit-grid article:nth-child(2) span": "Service work",
+      ".fit-grid article:nth-child(2) strong": "PM / repair / installation support",
+      ".fit-grid article:nth-child(3) span": "Location",
+      ".fit-grid article:nth-child(3) strong": "Sydney field travel",
+      ".fit-grid article:nth-child(4) span": "Communication",
+      ".fit-grid article:nth-child(4) strong": "English / Mandarin",
+      ".fit-grid article:nth-child(5) span": "Hiring",
+      ".fit-grid article:nth-child(5) strong": "Resume and checks ready",
       ".statement-copy > p":
         "My work sits between equipment and information: understand the field condition, find the fault path, verify the result, and leave records that other people can actually reuse.",
-      ".mini-facts span:nth-child(3)": "English / Mandarin",
+      ".mini-facts span:nth-child(3)": "Sydney field travel",
+      ".mini-facts span:nth-child(4)": "English / Mandarin",
       ".profile-panel > span": "Profile",
       ".profile-panel strong": "Biomedical field service engineer",
       ".profile-panel p":
@@ -56,6 +75,42 @@ const translations = {
       ".brief-grid article:nth-child(3) h3": "Service quality and systems thinking",
       ".brief-grid article:nth-child(3) p":
         "I am building a long-term path in biomedical engineering service, with interest in better service records, device reliability, process improvement, and practical tools that help teams work clearly.",
+      "#capabilities .section-kicker": "Skills Matrix",
+      "#capabilities-title": "What I can handle in a service environment.",
+      "#capabilities .section-intro":
+        "A recruiter or hiring manager should be able to judge the fit quickly: device service, testing, records, communication, tools, and employment-check readiness.",
+      ".capability-row article:nth-child(1) span": "Service",
+      ".capability-row article:nth-child(1) h3": "Field and workshop work",
+      ".capability-row article:nth-child(1) p":
+        "Preventive maintenance, troubleshooting, repair, installation support, bench service, and close-out.",
+      ".capability-row article:nth-child(2) span": "Testing",
+      ".capability-row article:nth-child(2) h3": "Verification evidence",
+      ".capability-row article:nth-child(2) p":
+        "Functional testing, performance checks, electrical safety awareness, and test notes that can be reviewed later.",
+      ".capability-row article:nth-child(3) span": "Equipment",
+      ".capability-row article:nth-child(3) h3": "Medical device range",
+      ".capability-row article:nth-child(3) p":
+        "Ventilation, patient monitoring, ultrasound, DEXA, pharmacy automation, and general biomedical equipment.",
+      ".capability-row article:nth-child(4) span": "Records",
+      ".capability-row article:nth-child(4) h3": "Traceable service notes",
+      ".capability-row article:nth-child(4) p":
+        "Work orders, service reports, equipment history, serial details, action logs, and concise follow-up notes.",
+      ".capability-row article:nth-child(5) span": "Communication",
+      ".capability-row article:nth-child(5) h3": "Clear handover",
+      ".capability-row article:nth-child(5) p":
+        "Aligning observed issues, limits, and next steps with clinical users, biomedical teams, vendors, and internal engineers.",
+      ".capability-row article:nth-child(6) span": "Employment checks",
+      ".capability-row article:nth-child(6) h3": "Sydney travel + private proof",
+      ".capability-row article:nth-child(6) p":
+        "Sydney field travel, resume download, and offline degree, training, identity, and right-to-work proof for formal hiring checks.",
+      ".capability-row article:nth-child(7) span": "Mobility",
+      ".capability-row article:nth-child(7) h3": "Sydney field travel",
+      ".capability-row article:nth-child(7) p":
+        "Sydney-based and used to work that moves between field sites, workshop tasks, documentation, and follow-up.",
+      ".capability-row article:nth-child(8) span": "Employment checks",
+      ".capability-row article:nth-child(8) h3": "Private proof on request",
+      ".capability-row article:nth-child(8) p":
+        "Degree records, training certificates, identity documents, and right-to-work documents are kept offline and can be provided through formal hiring checks.",
       ".overview-heading .section-kicker": "Overview",
       ".overview-heading h2": "This site answers five practical questions first.",
       ".overview-grid a:nth-child(1) strong": "Field Work",
@@ -162,7 +217,7 @@ const translations = {
       ".case-grid article:nth-child(3) span": "03 / Documentation",
       ".case-grid article:nth-child(3) h3": "Keeping service information reusable",
       ".case-grid article:nth-child(3) p":
-        "I align serial details, work orders, service reports, parts/actions, and customer updates so service knowledge is not trapped in memory and can support later troubleshooting.",
+        "I align serial details, work orders, service reports, parts/actions, and customer updates so later troubleshooting does not start from memory alone.",
       ".case-grid article:nth-child(3) li:nth-child(1)": "Equipment history cleanup",
       ".case-grid article:nth-child(3) li:nth-child(2)": "Work order alignment",
       ".case-grid article:nth-child(3) li:nth-child(3)": "Clear customer updates",
@@ -209,14 +264,14 @@ const translations = {
       "#study .section-intro":
         "From biomedical engineering study to field service, I keep training the same habit: break the problem down, verify it, and write it clearly.",
       ".study-grid article:nth-child(1) p:nth-of-type(2)":
-        "Focused on biomedical engineering research, experimental planning, and technical documentation. It trained me to separate hypotheses, evidence, and conclusions.",
+        "Biomedical engineering research, experimental planning, validation evidence, and technical documentation.",
       ".study-grid article:nth-child(2) p:nth-of-type(2)":
-        "Studied medical science, biomedical design, data analysis, and engineering design tools, building the foundation for how I understand devices, workflows, and data.",
+        "Medical science, biomedical design, data analysis, and engineering design tools.",
       ".study-grid article:nth-child(3) span": "MPhil thesis",
       ".study-grid article:nth-child(3) h3":
         "Flexible Electrodes for Smart Bandages: Feasibility Exploration",
       ".study-grid article:nth-child(3) p":
-        "Framed as feasibility and design optimisation research, this project connected wearable medical device requirements with flexible electrode geometry, silver ink coating, impedance measurement, and manufacturability trade-offs. It strengthened how I evaluate device performance, validation evidence, and practical design limits.",
+        "Wearable medical-device feasibility work using electrode geometry, silver ink coating, impedance measurement, and manufacturability trade-offs.",
       ".study-grid article:nth-child(4) span": "Research discipline",
       ".study-grid article:nth-child(4) h3": "Separating evidence from assumption",
       ".study-grid article:nth-child(4) p":
@@ -253,20 +308,17 @@ const translations = {
       ".certification-grid article:nth-child(1) h3": "Respiratory and monitoring service",
       ".certification-grid article:nth-child(1) li:nth-child(1)": "V60 / V60 Plus service training",
       ".certification-grid article:nth-child(1) li:nth-child(2)": "Trilogy 202 and Trilogy Evo service training",
-      ".certification-grid article:nth-child(1) li:nth-child(3)": "Avalon FM20 / FM30 and Efficia CM series training",
-      ".certification-grid article:nth-child(1) li:nth-child(4)": "HeartStart Intrepid monitor defibrillator service training",
+      ".certification-grid article:nth-child(1) li:nth-child(3)": "Avalon FM20 / FM30, Efficia CM series, and HeartStart Intrepid training",
       ".certification-grid article:nth-child(2) span": "2023 - 2025",
       ".certification-grid article:nth-child(2) h3": "Imaging and diagnostic equipment",
       ".certification-grid article:nth-child(2) li:nth-child(1)": "EPIQ / Affiniti and CX30 / CX50 ultrasound training",
       ".certification-grid article:nth-child(2) li:nth-child(2)": "Horizon DEXA technical training",
       ".certification-grid article:nth-child(2) li:nth-child(3)": "X-ray service and installation course",
-      ".certification-grid article:nth-child(2) li:nth-child(4)": "Technical checks, safe handover, and support records",
       ".certification-grid article:nth-child(3) span": "2024",
       ".certification-grid article:nth-child(3) h3": "Automation and specialty systems",
       ".certification-grid article:nth-child(3) li:nth-child(1)": "BD FIX100 dispensing service basic training",
       ".certification-grid article:nth-child(3) li:nth-child(2)": "Vendor-led practical service preparation",
-      ".certification-grid article:nth-child(3) li:nth-child(3)": "Fault finding, service readiness, and documentation",
-      ".certification-grid article:nth-child(3) li:nth-child(4)": "Original certificates available for private verification",
+      ".certification-grid article:nth-child(3) li:nth-child(3)": "Original certificates available for private verification",
       ".certification-grid article:nth-child(4) span": "Public boundary",
       ".certification-grid article:nth-child(4) h3": "Proof without exposing documents",
       ".certification-grid article:nth-child(4) p":
@@ -274,7 +326,7 @@ const translations = {
       "#life .section-kicker": "Life",
       "#life-title": "Outside work, I keep practicing how to organize complex things.",
       ".life-section .story-content > p:not(.section-kicker)":
-        "Outside work, I like turning scattered information into clear structure: files, plans, daily routines, travel, and study notes are different versions of the same habit. This website can grow from a personal card into a fuller personal space.",
+        "Outside work, I keep the personal section deliberately short: enough to show rhythm and curiosity, not enough to distract from the engineering profile.",
       ".interests-section .section-kicker": "Interests",
       "#interests-title": "The things I enjoy also shape how I think.",
       ".interests-section .section-intro":
@@ -350,37 +402,42 @@ const translations = {
       ".family-grid figure:nth-child(6) strong": "Another Sydney family day",
       ".family-grid figure:nth-child(6) span":
         "Some places are worth keeping from more than one angle because the memory belongs to the visit.",
-      "#capabilities .section-kicker": "Capabilities",
-      "#capabilities-title": "What I can handle",
+      "#capabilities .section-kicker": "Skills Matrix",
+      "#capabilities-title": "What I can handle in a service environment.",
       "#capabilities .section-intro":
-        "This section works as a capability index so people can quickly judge whether my background fits a relevant opportunity.",
-      ".capability-row article:nth-child(1) h3": "Service",
+        "A recruiter or hiring manager should be able to judge the fit quickly: device service, testing, records, communication, tools, and employment-check readiness.",
+      ".capability-row article:nth-child(1) span": "Service",
+      ".capability-row article:nth-child(1) h3": "Field and workshop work",
       ".capability-row article:nth-child(1) p":
-        "Field PM, troubleshooting, repair, installation support, bench service, pre/post checks, and close-out.",
-      ".capability-row article:nth-child(2) h3": "Testing",
+        "Preventive maintenance, troubleshooting, repair, installation support, bench service, and close-out.",
+      ".capability-row article:nth-child(2) span": "Testing",
+      ".capability-row article:nth-child(2) h3": "Verification evidence",
       ".capability-row article:nth-child(2) p":
-        "Electrical safety, performance checks, functional testing, and test records that can be reviewed later.",
-      ".capability-row article:nth-child(3) h3": "Communication",
+        "Functional testing, performance checks, electrical safety awareness, and test notes that can be reviewed later.",
+      ".capability-row article:nth-child(3) span": "Equipment",
+      ".capability-row article:nth-child(3) h3": "Medical device range",
       ".capability-row article:nth-child(3) p":
-        "Aligning field information, limits, and next steps with clinical users, biomedical teams, vendors, and internal engineers.",
-      ".capability-row article:nth-child(4) h3": "Tools",
+        "Ventilation, patient monitoring, ultrasound, DEXA, pharmacy automation, and general biomedical equipment.",
+      ".capability-row article:nth-child(4) span": "Records",
+      ".capability-row article:nth-child(4) h3": "Traceable service notes",
       ".capability-row article:nth-child(4) p":
-        "Excel, Microsoft Office, MATLAB, SolidWorks, Visio, service manuals, vendor tools, and AI-assisted information organization.",
-      ".capability-row article:nth-child(5) h3": "Records",
-      ".capability-row article:nth-child(5) p":
         "Work orders, service reports, equipment history, serial details, action logs, and concise follow-up notes.",
-      ".capability-row article:nth-child(6) h3": "Judgement",
+      ".capability-row article:nth-child(5) span": "Communication",
+      ".capability-row article:nth-child(5) h3": "Clear handover",
+      ".capability-row article:nth-child(5) p":
+        "Aligning observed issues, limits, and next steps with clinical users, biomedical teams, vendors, and internal engineers.",
+      ".capability-row article:nth-child(6) span": "Employment checks",
+      ".capability-row article:nth-child(6) h3": "Sydney travel + private proof",
       ".capability-row article:nth-child(6) p":
-        "Separating observed facts, likely causes, verified results, and remaining uncertainty so decisions stay reviewable.",
-      ".capability-row article:nth-child(7) h3": "Reliability",
+        "Sydney field travel, resume download, and offline degree, training, identity, and right-to-work proof for formal hiring checks.",
+      ".capability-row article:nth-child(7) span": "Mobility",
+      ".capability-row article:nth-child(7) h3": "Sydney field travel",
       ".capability-row article:nth-child(7) p":
-        "Thinking beyond one repair: repeatability, handover quality, service readiness, and clearer future troubleshooting.",
-      ".capability-row article:nth-child(8) h3": "Growth",
+        "Sydney-based and used to work that moves between field sites, workshop tasks, documentation, and follow-up.",
+      ".capability-row article:nth-child(8) span": "Employment checks",
+      ".capability-row article:nth-child(8) h3": "Private proof on request",
       ".capability-row article:nth-child(8) p":
-        "Continuing to build stronger biomedical engineering judgement, technical writing, and practical process improvement skills.",
-      ".capability-row article:nth-child(9) h3": "AI Workflow",
-      ".capability-row article:nth-child(9) p":
-        "Using AI tools to organize technical references, draft bilingual notes, build checklists, structure service records, and speed up document preparation while verifying final judgement against manuals, test results, and real device evidence.",
+        "Degree records, training certificates, identity documents, and right-to-work documents are kept offline and can be provided through formal hiring checks.",
       "#gallery .section-kicker": "Visual Notes",
       "#gallery-title": "The site keeps some work context and personal warmth.",
       "#gallery .section-intro":
@@ -400,22 +457,18 @@ const translations = {
         "<strong>Continuous learning</strong> Following medical technology, engineering tools, AI tools, and practical ways to improve work.",
       ".life-notes p:nth-child(3)":
         "<strong>Organized records</strong> Turning scattered information into reusable structure so future work is easier.",
-      ".life-notes p:nth-child(4)":
-        "<strong>Practical mindset</strong> I like work that becomes clearer after it is touched: a cleaner file, a better note, a more reliable checklist, or a simpler handover.",
-      ".life-notes p:nth-child(5)":
-        "<strong>Long-term direction</strong> I want this site to grow into a professional home for engineering experience, selected notes, and future project writing.",
     },
   },
   zh: {
     lang: "zh-CN",
     title: "Yihang (Henry) Yang | 医疗设备现场服务",
     description:
-      "Yihang (Henry) Yang 的个人网站，记录医疗设备现场服务、测试验证、工程背景、培训证书、生活照片和联系方式。",
+      "Yihang (Henry) Yang 的个人网站，记录医疗设备现场服务、测试验证、工程背景、培训证书、简历下载和联系方式。",
     text: {
       ".site-nav a:nth-child(1)": "经历",
       ".site-nav a:nth-child(2)": "案例",
-      ".site-nav a:nth-child(3)": "背景",
-      ".site-nav a:nth-child(4)": "个人",
+      ".site-nav a:nth-child(3)": "能力",
+      ".site-nav a:nth-child(4)": "背景",
       ".site-nav a:nth-child(5)": "联系",
       ".eyebrow": "悉尼 · 生物医学工程 · 现场服务",
       ".hero-subtitle":
@@ -426,14 +479,33 @@ const translations = {
       ".hero-meta div:nth-child(2) dd": "医疗设备服务",
       ".hero-meta div:nth-child(3) dt": "语言",
       ".hero-meta div:nth-child(3) dd": "英文 / 中文",
-      ".button.primary": "发邮件联系我",
-      ".button.secondary": "查看经历",
+      ".hero-meta div:nth-child(4) dt": "可支持",
+      ".hero-meta div:nth-child(4) dd": "悉尼现场出行",
+      ".resume-link": "下载简历",
+      ".email-action": "发邮件联系我",
+      ".github-action": "GitHub",
       ".hero-profile-card .hero-card-kicker": "当前身份",
       ".hero-profile-card strong": "生物医学现场服务工程师",
-      ".hero-profile-card .hero-card-note": "简历和证书原件可按需私下提供。",
+      ".hero-profile-card .hero-card-note":
+        "简历可直接下载。学历、培训证书和雇佣检查材料可在正式流程中私下提供。",
+      ".fit-strip .section-kicker": "适合岗位",
+      "#fit-title": "需要现场判断和设备服务能力的 biomedical field service 岗位。",
+      ".fit-strip .section-intro":
+        "快速判断：常驻悉尼，可支持现场出行，中英文沟通，重点在医疗设备维护、故障排查、验证测试和清楚的服务记录。",
+      ".fit-grid article:nth-child(1) span": "岗位",
+      ".fit-grid article:nth-child(1) strong": "Biomedical Field Service Engineer",
+      ".fit-grid article:nth-child(2) span": "服务内容",
+      ".fit-grid article:nth-child(2) strong": "PM / 维修 / 安装支持",
+      ".fit-grid article:nth-child(3) span": "地点",
+      ".fit-grid article:nth-child(3) strong": "悉尼现场出行",
+      ".fit-grid article:nth-child(4) span": "沟通",
+      ".fit-grid article:nth-child(4) strong": "英文 / 中文",
+      ".fit-grid article:nth-child(5) span": "招聘材料",
+      ".fit-grid article:nth-child(5) strong": "简历和核验材料已准备",
       ".statement-copy > p":
         "做现场服务时，我最在意两件事：设备现在到底是什么状态，以及这次处理以后，下一位接手的人能不能看懂发生了什么。",
-      ".mini-facts span:nth-child(3)": "英文 / 中文",
+      ".mini-facts span:nth-child(3)": "悉尼现场出行",
+      ".mini-facts span:nth-child(4)": "英文 / 中文",
       ".profile-panel > span": "个人概览",
       ".profile-panel strong": "生物医学现场服务工程师",
       ".profile-panel p":
@@ -560,7 +632,7 @@ const translations = {
       ".case-grid article:nth-child(3) span": "03 / 服务记录",
       ".case-grid article:nth-child(3) h3": "记录写清楚，后面才接得住",
       ".case-grid article:nth-child(3) p":
-        "服务结束以后，信息不能只留在记忆里。我会把 serial、work order、service report、parts/action 和 customer update 对齐，让后续排查和交接有依据。",
+        "服务结束以后，信息不能只留在记忆里。我会把 serial、work order、service report、parts/action 和 customer update 对齐，让后续排查不用重新猜。",
       ".case-grid article:nth-child(3) li:nth-child(1)": "设备历史整理",
       ".case-grid article:nth-child(3) li:nth-child(2)": "工单信息对齐",
       ".case-grid article:nth-child(3) li:nth-child(3)": "客户更新清晰",
@@ -606,14 +678,14 @@ const translations = {
       "#study .section-intro":
         "从 biomedical engineering 到现场服务，我一直在练习同一件事：把复杂问题拆开，找到证据，再把结论写清楚。",
       ".study-grid article:nth-child(1) p:nth-of-type(2)":
-        "研究训练让我更习惯把问题拆成假设、证据和结论，而不是只停留在感觉上。",
+        "Biomedical engineering research、实验计划、验证证据和技术文档。",
       ".study-grid article:nth-child(2) p:nth-of-type(2)":
-        "medical science、biomedical design、data analysis 和 engineering design tools，是我理解设备、流程和数据的基础。",
+        "Medical science、biomedical design、data analysis 和 engineering design tools。",
       ".study-grid article:nth-child(3) span": "MPhil 论文题目",
       ".study-grid article:nth-child(3) h3":
         "Flexible Electrodes for Smart Bandages: Feasibility Exploration",
       ".study-grid article:nth-child(3) p":
-        "这项 MPhil 研究定位为可行性与设计优化研究，重点连接 wearable medical device 需求、柔性电极几何、银墨涂层、阻抗测量和可制造性权衡，也训练了我用验证证据评估设备性能和实际设计边界。",
+        "围绕 wearable medical device 可行性，处理柔性电极几何、银墨涂层、阻抗测量和可制造性权衡。",
       ".study-grid article:nth-child(4) span": "研究训练",
       ".study-grid article:nth-child(4) h3": "把证据和假设分开",
       ".study-grid article:nth-child(4) p":
@@ -650,20 +722,17 @@ const translations = {
       ".certification-grid article:nth-child(1) h3": "呼吸与监护设备服务",
       ".certification-grid article:nth-child(1) li:nth-child(1)": "V60 / V60 Plus service training",
       ".certification-grid article:nth-child(1) li:nth-child(2)": "Trilogy 202 和 Trilogy Evo service training",
-      ".certification-grid article:nth-child(1) li:nth-child(3)": "Avalon FM20 / FM30 和 Efficia CM 系列培训",
-      ".certification-grid article:nth-child(1) li:nth-child(4)": "HeartStart Intrepid monitor defibrillator service training",
+      ".certification-grid article:nth-child(1) li:nth-child(3)": "Avalon FM20 / FM30、Efficia CM 系列和 HeartStart Intrepid 培训",
       ".certification-grid article:nth-child(2) span": "2023 - 2025",
       ".certification-grid article:nth-child(2) h3": "影像与诊断设备",
       ".certification-grid article:nth-child(2) li:nth-child(1)": "EPIQ / Affiniti 和 CX30 / CX50 ultrasound training",
       ".certification-grid article:nth-child(2) li:nth-child(2)": "Horizon DEXA technical training",
       ".certification-grid article:nth-child(2) li:nth-child(3)": "X-ray service and installation course",
-      ".certification-grid article:nth-child(2) li:nth-child(4)": "技术检查、安全交接和支持记录",
       ".certification-grid article:nth-child(3) span": "2024",
       ".certification-grid article:nth-child(3) h3": "自动化与专项系统",
       ".certification-grid article:nth-child(3) li:nth-child(1)": "BD FIX100 dispensing service basic training",
       ".certification-grid article:nth-child(3) li:nth-child(2)": "厂商技术培训和服务准备",
-      ".certification-grid article:nth-child(3) li:nth-child(3)": "故障排查、服务准备度和记录整理",
-      ".certification-grid article:nth-child(3) li:nth-child(4)": "证书原件可在正式核验时单独提供",
+      ".certification-grid article:nth-child(3) li:nth-child(3)": "证书原件可在正式核验时单独提供",
       ".certification-grid article:nth-child(4) span": "公开边界",
       ".certification-grid article:nth-child(4) h3": "证明能力，但不暴露文件",
       ".certification-grid article:nth-child(4) p":
@@ -671,7 +740,7 @@ const translations = {
       "#life .section-kicker": "生活",
       "#life-title": "生活里，我也喜欢把复杂事情理顺。",
       ".life-section .story-content > p:not(.section-kicker)":
-        "工作之外，我也会整理文件、计划、日常安排、旅行和学习笔记。对我来说，这些事情背后是同一种能力：把分散的信息变成以后还能用的结构。",
+        "生活部分刻意保持简短：展示一点节奏和好奇心，但不抢走工程履历的主线。",
       ".interests-section .section-kicker": "兴趣爱好",
       "#interests-title": "我喜欢的事情，很多也在影响我的思考方式。",
       ".interests-section .section-intro":
@@ -747,37 +816,42 @@ const translations = {
       ".family-grid figure:nth-child(6) strong": "另一张悉尼家庭日",
       ".family-grid figure:nth-child(6) span":
         "同一个地方从不同角度看，也是在记录那次家人来访。",
-      "#capabilities .section-kicker": "能力",
-      "#capabilities-title": "我能独立承担的部分",
+      "#capabilities .section-kicker": "能力矩阵",
+      "#capabilities-title": "我能在服务环境里承担什么。",
       "#capabilities .section-intro":
-        "如果你只想快速判断我能做什么，可以先看这一部分。",
-      ".capability-row article:nth-child(1) h3": "服务",
+        "招聘方可以先看这一部分，快速判断我在设备服务、测试验证、记录、沟通、工具和雇佣检查材料方面是否匹配。",
+      ".capability-row article:nth-child(1) span": "服务",
+      ".capability-row article:nth-child(1) h3": "现场和 workshop 工作",
       ".capability-row article:nth-child(1) p":
-        "现场 PM、故障排查、维修、安装支持、bench service，以及完成前后的确认和 close-out。",
-      ".capability-row article:nth-child(2) h3": "测试",
+        "预防性维护、故障排查、维修、安装支持、bench service，以及服务 close-out。",
+      ".capability-row article:nth-child(2) span": "测试",
+      ".capability-row article:nth-child(2) h3": "可复查的验证证据",
       ".capability-row article:nth-child(2) p":
-        "按流程做 electrical safety、performance check、functional test，并把测试结果写成后续能复查的记录。",
-      ".capability-row article:nth-child(3) h3": "沟通",
+        "按流程做 functional test、performance check，保持 electrical safety awareness，并留下后续能复查的测试记录。",
+      ".capability-row article:nth-child(3) span": "设备",
+      ".capability-row article:nth-child(3) h3": "医疗设备范围",
       ".capability-row article:nth-child(3) p":
-        "和临床用户、医院 biomedical team、vendor、内部工程师对齐现场信息、限制条件和下一步。",
-      ".capability-row article:nth-child(4) h3": "工具",
+        "接触 ventilation、patient monitoring、ultrasound、DEXA、pharmacy automation 和通用 biomedical equipment。",
+      ".capability-row article:nth-child(4) span": "记录",
+      ".capability-row article:nth-child(4) h3": "可追踪的服务记录",
       ".capability-row article:nth-child(4) p":
-        "使用 Excel、Microsoft Office、MATLAB、SolidWorks、Visio、service manuals 和 vendor tools，也会用 AI 工具整理复杂资料。",
-      ".capability-row article:nth-child(5) h3": "记录",
-      ".capability-row article:nth-child(5) p":
         "处理 work orders、service reports、equipment history、serial details、action logs 和简洁的 follow-up notes。",
-      ".capability-row article:nth-child(6) h3": "判断",
+      ".capability-row article:nth-child(5) span": "沟通",
+      ".capability-row article:nth-child(5) h3": "清楚交接",
+      ".capability-row article:nth-child(5) p":
+        "和临床用户、医院 biomedical team、vendor、内部工程师对齐现场信息、限制条件和下一步。",
+      ".capability-row article:nth-child(6) span": "雇佣检查",
+      ".capability-row article:nth-child(6) h3": "悉尼出行 + 私下核验证明",
       ".capability-row article:nth-child(6) p":
-        "把观察事实、可能原因、验证结果和仍未确认的部分分开，让判断以后还能复查。",
-      ".capability-row article:nth-child(7) h3": "可靠性",
+        "可支持悉尼现场出行，简历可下载，学历、培训、身份证明和 right-to-work 材料可在正式流程中提供。",
+      ".capability-row article:nth-child(7) span": "机动性",
+      ".capability-row article:nth-child(7) h3": "悉尼现场出行",
       ".capability-row article:nth-child(7) p":
-        "不只看一次维修，也关注重复性、交接质量、服务准备度和以后排查是否更清楚。",
-      ".capability-row article:nth-child(8) h3": "成长",
+        "常驻悉尼，习惯在现场、workshop、文档记录和后续跟进之间切换。",
+      ".capability-row article:nth-child(8) span": "雇佣检查",
+      ".capability-row article:nth-child(8) h3": "证明材料私下提供",
       ".capability-row article:nth-child(8) p":
-        "继续提高 biomedical engineering judgement、technical writing 和实际流程改进能力。",
-      ".capability-row article:nth-child(9) h3": "AI 工作流",
-      ".capability-row article:nth-child(9) p":
-        "使用 AI 工具整理技术资料、起草中英文笔记、生成 checklist、结构化服务记录，并提高文档准备效率；但最终判断仍以 service manual、测试结果和真实设备证据为准。",
+        "学历记录、培训证书、身份证明和 right-to-work 材料不公开展示，可在正式招聘核验流程中提供。",
       "#gallery .section-kicker": "视觉",
       "#gallery-title": "我希望这个网站有专业感，也有一点生活感。",
       "#gallery .section-intro":
@@ -797,10 +871,6 @@ const translations = {
         "<strong>持续学习</strong> 关注医疗技术、工程工具、AI 工具和真正能改善工作的做法。",
       ".life-notes p:nth-child(3)":
         "<strong>记录整理</strong> 喜欢把零散信息变成能复用的结构，让未来的自己少走弯路。",
-      ".life-notes p:nth-child(4)":
-        "<strong>实际感</strong> 我喜欢把事情处理到更清楚：文件更干净、笔记更可读、清单更可靠、交接更简单。",
-      ".life-notes p:nth-child(5)":
-        "<strong>长期方向</strong> 希望这个网站以后不只是名片，也能放下工程经历、精选笔记和更完整的项目记录。",
     },
   },
 };
