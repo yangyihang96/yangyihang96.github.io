@@ -196,12 +196,6 @@ const translations = {
       ".experience-outcome dt:nth-of-type(4)": "Handover",
       ".experience-outcome dd:nth-of-type(4)":
         "Biomedical teams, clinical users, vendors, and internal engineers can see next-use status",
-      ".experience-timeline article:nth-child(1) li:nth-child(1)":
-        "Perform field and workshop service for hospital and pharmacy medical equipment, including preventive maintenance, troubleshooting, repair, installation support, verification, and service follow-up.",
-      ".experience-timeline article:nth-child(1) li:nth-child(2)":
-        "Support ventilation, patient monitoring, ultrasound, DEXA, pharmacy automation, and general biomedical equipment work across service and documentation workflows.",
-      ".experience-timeline article:nth-child(1) li:nth-child(3)":
-        "Maintain Simpro work orders, service reports, serial details, equipment history, and customer updates for biomedical teams and internal engineers.",
       ".experience-timeline article:nth-child(2) .experience-date": "Dec 2019 - Feb 2020",
       ".experience-timeline article:nth-child(2) h3":
         "Pharmacovigilance Department Assistant | Lundbeck Beijing",
@@ -612,12 +606,6 @@ const translations = {
       ".experience-outcome dt:nth-of-type(4)": "交接对象",
       ".experience-outcome dd:nth-of-type(4)":
         "Biomedical teams、临床用户、vendors 和内部工程师能看到下一次使用状态",
-      ".experience-timeline article:nth-child(1) li:nth-child(1)":
-        "为医院和药房医疗设备提供现场和 workshop 服务，包括 preventive maintenance、故障排查、维修、安装支持、验证和后续跟进。",
-      ".experience-timeline article:nth-child(1) li:nth-child(2)":
-        "服务范围覆盖 ventilation、patient monitoring、ultrasound、DEXA、pharmacy automation 和通用 biomedical equipment，并配套完成记录流程。",
-      ".experience-timeline article:nth-child(1) li:nth-child(3)":
-        "维护 Simpro 工单、service reports、serial details、equipment history 和 customer updates，支持 biomedical teams 和内部工程师交接。",
       ".experience-timeline article:nth-child(2) .experience-date": "2019 年 12 月 - 2020 年 2 月",
       ".experience-timeline article:nth-child(2) h3":
         "药物警戒部门助理 | Lundbeck Beijing",

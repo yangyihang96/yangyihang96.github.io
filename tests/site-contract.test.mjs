@@ -58,8 +58,8 @@ test("site uses HTTPS canonical and sharing metadata", () => {
 });
 
 test("stylesheet and script use the current cache-busting version", () => {
-  assert.match(html, /href="styles\.css\?v=case-density-1"/);
-  assert.match(html, /src="script\.js\?v=case-density-1"/);
+  assert.match(html, /href="styles\.css\?v=experience-density-1"/);
+  assert.match(html, /src="script\.js\?v=experience-density-1"/);
 });
 
 test("hero exposes recruiter actions and downloadable resume files", () => {
@@ -288,6 +288,30 @@ test("current experience card summarizes service outcomes settings records and h
   assert.match(script, /"\.experience-outcome dt:nth-of-type\(1\)": "服务环境"/);
   assert.match(css, /\.experience-outcome\s*{[\s\S]*?display:\s*grid;[\s\S]*?grid-template-columns:\s*minmax\(124px,\s*auto\) minmax\(0,\s*1fr\);/);
   assert.match(css, /@media \(max-width:\s*560px\)[\s\S]*?\.experience-outcome\s*{[\s\S]*?grid-template-columns:\s*1fr;/);
+});
+
+test("current experience card avoids duplicate bullet summaries after structured outcomes", () => {
+  const firstCardStart = html.indexOf('<div class="experience-body">');
+  const secondCardStart = html.indexOf('<div class="experience-body">', firstCardStart + 1);
+  assert.notEqual(firstCardStart, -1, "missing current experience body");
+  assert.notEqual(secondCardStart, -1, "missing second experience body");
+
+  const currentExperienceSource = html.slice(firstCardStart, secondCardStart);
+  assert.doesNotMatch(currentExperienceSource, /<ul>/);
+  assert.doesNotMatch(currentExperienceSource, /<li>/);
+
+  const secondExperienceSource = html.slice(secondCardStart, html.indexOf("</section>", secondCardStart));
+  assert.match(secondExperienceSource, /<ul>/);
+  assert.equal((secondExperienceSource.match(/<li>/g) || []).length, 2);
+
+  const publicSource = `${html}\n${script}`;
+  assert.doesNotMatch(script, /\.experience-timeline article:nth-child\(1\) li/);
+  assert.doesNotMatch(publicSource, /Perform field and workshop service for hospital and pharmacy medical equipment/);
+  assert.doesNotMatch(publicSource, /Support ventilation, patient monitoring, ultrasound, DEXA/);
+  assert.doesNotMatch(publicSource, /Maintain Simpro work orders, service reports, serial details, equipment history, and customer updates for biomedical teams and internal engineers/);
+  assert.doesNotMatch(publicSource, /为医院和药房医疗设备提供现场和 workshop 服务/);
+  assert.doesNotMatch(publicSource, /服务范围覆盖 ventilation、patient monitoring、ultrasound、DEXA/);
+  assert.doesNotMatch(publicSource, /维护 Simpro 工单、service reports、serial details、equipment history 和 customer updates，支持 biomedical teams 和内部工程师交接/);
 });
 
 test("case notes expose scenario action verification and handover outcomes", () => {

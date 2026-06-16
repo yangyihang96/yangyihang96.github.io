@@ -1953,9 +1953,6 @@ main:focus {
     min-height: 0;
   }
 
-  .case-grid ul {
-    margin: 22px 0 0;
-  }
 }
 
 @media (max-width: 760px) {
