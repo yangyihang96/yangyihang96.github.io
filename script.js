@@ -47,6 +47,12 @@ const translations = {
       "#fit-title": "Biomedical field service roles that need practical device judgement.",
       ".fit-strip .section-intro":
         "The quick read: Sydney-based, field-ready, bilingual, and focused on medical device maintenance, troubleshooting, verification, and clear service records.",
+      ".fit-verdict div:nth-child(1) strong": "Best match",
+      ".fit-verdict div:nth-child(1) span":
+        "Biomedical field service roles needing device service, verification records, and clear handover.",
+      ".fit-verdict div:nth-child(2) strong": "Evidence path",
+      ".fit-verdict div:nth-child(2) span":
+        "Proof points, experience, cases, and training records are listed below for review.",
       ".fit-grid article:nth-child(1) span": "Role",
       ".fit-grid article:nth-child(1) strong": "Biomedical Field Service Engineer",
       ".fit-grid article:nth-child(2) span": "Service work",
@@ -431,6 +437,7 @@ const translations = {
       ".contact-resume-link": { "aria-label": "Download Henry Yang resume as PDF" },
       ".contact-docx-link": { "aria-label": "Download Henry Yang resume as DOCX" },
       ".hero-action-path": { "aria-label": "Recruiter action path" },
+      ".fit-verdict": { "aria-label": "Recruiter role-fit verdict" },
       ".experience-evidence": { "aria-label": "Current field-service evidence" },
       ".experience-outcome": { "aria-label": "Current role service outcome summary" },
       ".case-grid article:nth-child(1) .case-outcome": { "aria-label": "Public-safe case outcome" },
@@ -484,6 +491,12 @@ const translations = {
       "#fit-title": "需要现场判断和设备服务能力的 biomedical field service 岗位。",
       ".fit-strip .section-intro":
         "快速判断：常驻悉尼，可支持现场出行，中英文沟通，重点在医疗设备维护、故障排查、验证测试和清楚的服务记录。",
+      ".fit-verdict div:nth-child(1) strong": "最适合",
+      ".fit-verdict div:nth-child(1) span":
+        "需要设备服务、验证记录和清楚交接的 biomedical field service 岗位。",
+      ".fit-verdict div:nth-child(2) strong": "证据路径",
+      ".fit-verdict div:nth-child(2) span":
+        "证明点、经历、案例和培训记录都在下方，方便招聘方快速核对。",
       ".fit-grid article:nth-child(1) span": "岗位",
       ".fit-grid article:nth-child(1) strong": "Biomedical Field Service Engineer",
       ".fit-grid article:nth-child(2) span": "服务内容",
@@ -863,6 +876,7 @@ const translations = {
       ".contact-resume-link": { "aria-label": "下载 Henry Yang PDF 简历" },
       ".contact-docx-link": { "aria-label": "下载 Henry Yang DOCX 简历" },
       ".hero-action-path": { "aria-label": "招聘方行动路径" },
+      ".fit-verdict": { "aria-label": "招聘方岗位匹配判断" },
       ".experience-evidence": { "aria-label": "当前现场服务证据" },
       ".experience-outcome": { "aria-label": "当前岗位服务结果摘要" },
       ".case-grid article:nth-child(1) .case-outcome": { "aria-label": "公开安全的案例结果" },

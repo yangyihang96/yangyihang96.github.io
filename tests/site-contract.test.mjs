@@ -58,8 +58,8 @@ test("site uses HTTPS canonical and sharing metadata", () => {
 });
 
 test("stylesheet and script use the current cache-busting version", () => {
-  assert.match(html, /href="styles\.css\?v=recruiter-path-1"/);
-  assert.match(html, /src="script\.js\?v=recruiter-path-1"/);
+  assert.match(html, /href="styles\.css\?v=fit-verdict-1"/);
+  assert.match(html, /src="script\.js\?v=fit-verdict-1"/);
 });
 
 test("hero exposes recruiter actions and downloadable resume files", () => {
@@ -145,6 +145,18 @@ test("compact homepage keeps capability matrix visible", () => {
   assert.match(html, /Employment checks/);
   assert.match(html, /Sydney field travel/);
   assert.doesNotMatch(css, /\.resume-style\.resume-compact \.capabilities[\s\S]{0,180}display:\s*none/);
+});
+
+test("fit section gives a recruiter-facing role-fit verdict", () => {
+  assert.match(html, /class="fit-verdict" aria-label="Recruiter role-fit verdict"/);
+  assert.match(html, /<strong>Best match<\/strong>\s*<span>Biomedical field service roles needing device service, verification records, and clear handover\.<\/span>/);
+  assert.match(html, /<strong>Evidence path<\/strong>\s*<span>Proof points, experience, cases, and training records are listed below for review\.<\/span>/);
+  assert.match(script, /"\.fit-verdict div:nth-child\(1\) strong": "Best match"/);
+  assert.match(script, /"\.fit-verdict div:nth-child\(1\) strong": "最适合"/);
+  assert.match(script, /"\.fit-verdict": { "aria-label": "Recruiter role-fit verdict" }/);
+  assert.match(script, /"\.fit-verdict": { "aria-label": "招聘方岗位匹配判断" }/);
+  assert.match(css, /\.fit-verdict\s*{[\s\S]*?display:\s*grid;[\s\S]*?grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\);/);
+  assert.match(css, /@media \(max-width:\s*760px\)[\s\S]*?\.fit-verdict\s*{[\s\S]*?grid-template-columns:\s*1fr;/);
 });
 
 test("early recruiter proof points summarize equipment, verification, records, and handover", () => {

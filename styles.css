@@ -475,6 +475,46 @@ main:focus {
   font-size: 17px;
 }
 
+.fit-panel {
+  display: grid;
+  gap: 12px;
+  min-width: 0;
+}
+
+.fit-verdict {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  overflow: hidden;
+  border: 1px solid rgba(19, 33, 31, 0.12);
+  border-radius: 8px;
+  background: rgba(19, 33, 31, 0.10);
+}
+
+.fit-verdict div {
+  min-width: 0;
+  padding: 16px;
+  background: #ffffff;
+}
+
+.fit-verdict strong {
+  display: block;
+  color: var(--teal);
+  font-size: 12px;
+  font-weight: 850;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.fit-verdict span {
+  display: block;
+  margin-top: 8px;
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 720;
+  line-height: 1.35;
+}
+
 .fit-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
@@ -1950,6 +1990,10 @@ main:focus {
 
   .experience-evidence {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .fit-verdict {
+    grid-template-columns: 1fr;
   }
 
   .proof-heading {
