@@ -11,11 +11,12 @@ const translations = {
       "Personal website for Yihang (Henry) Yang, covering biomedical field service, medical device maintenance, testing, documentation, education, selected training records, personal moments, and contact details.",
     text: {
       ".site-nav a:nth-child(1)": "Work",
-      ".site-nav a:nth-child(2)": "Cases",
-      ".site-nav a:nth-child(3)": "Process",
-      ".site-nav a:nth-child(4)": "Education",
-      ".site-nav a:nth-child(5)": "Life",
-      ".site-nav a:nth-child(6)": "Contact",
+      ".site-nav a:nth-child(2)": "Experience",
+      ".site-nav a:nth-child(3)": "Cases",
+      ".site-nav a:nth-child(4)": "Process",
+      ".site-nav a:nth-child(5)": "Education",
+      ".site-nav a:nth-child(6)": "Life",
+      ".site-nav a:nth-child(7)": "Contact",
       ".eyebrow": "Sydney · Biomedical Engineering · Field Service",
       ".hero-subtitle":
         "Sydney-based biomedical field service engineer focused on medical device maintenance, fault diagnosis, verification, and service documentation.",
@@ -84,6 +85,31 @@ const translations = {
       ".feature-list div:nth-child(3) strong": "Service Records",
       ".feature-list div:nth-child(3) span":
         "I maintain work orders, service reports, serial details, equipment history, and customer updates so information does not break between people.",
+      ".experience-section .section-kicker": "Work Experience",
+      "#experience-title":
+        "Professional experience across field service, workshop support, and healthcare records.",
+      ".experience-section .section-intro":
+        "The roles below summarize public-safe work history without customer names, serial numbers, internal documents, or private site details.",
+      ".experience-timeline article:nth-child(1) span": "Jul 2023 - Present",
+      ".experience-timeline article:nth-child(1) h3":
+        "Biomedical Engineer | Nova Biomedical Pty Ltd",
+      ".experience-timeline article:nth-child(1) .experience-meta":
+        "Australia-wide field service / workshop support · Full-time, 38 hours per week",
+      ".experience-timeline article:nth-child(1) li:nth-child(1)":
+        "Perform field and workshop service for hospital and pharmacy medical equipment, including preventive maintenance, troubleshooting, repair, installation support, verification, and service follow-up.",
+      ".experience-timeline article:nth-child(1) li:nth-child(2)":
+        "Support ventilation, patient monitoring, ultrasound, DEXA, pharmacy automation, and general biomedical equipment work across service and documentation workflows.",
+      ".experience-timeline article:nth-child(1) li:nth-child(3)":
+        "Maintain Simpro work orders, service reports, serial details, equipment history, and customer updates for biomedical teams and internal engineers.",
+      ".experience-timeline article:nth-child(2) span": "Dec 2019 - Feb 2020",
+      ".experience-timeline article:nth-child(2) h3":
+        "Pharmacovigilance Department Assistant | Lundbeck Beijing",
+      ".experience-timeline article:nth-child(2) .experience-meta":
+        "Internship · Beijing, China",
+      ".experience-timeline article:nth-child(2) li:nth-child(1)":
+        "Supported adverse reaction record handling and drug-safety documentation for Lundbeck products listed in China.",
+      ".experience-timeline article:nth-child(2) li:nth-child(2)":
+        "Assisted documentation work related to regulated healthcare records and cross-functional communication.",
       ".scope-section .section-kicker": "Service Scope",
       "#scope-title": "The work covers more than one moment of a repair.",
       ".scope-section .section-intro":
@@ -174,10 +200,10 @@ const translations = {
         "Focused on biomedical engineering research, experimental planning, and technical documentation. It trained me to separate hypotheses, evidence, and conclusions.",
       ".study-grid article:nth-child(2) p:nth-of-type(2)":
         "Studied medical science, biomedical design, data analysis, and engineering design tools, building the foundation for how I understand devices, workflows, and data.",
-      ".study-grid article:nth-child(3) h3": "From experiment to engineering communication",
+      ".study-grid article:nth-child(3) span": "Graduation thesis",
+      ".study-grid article:nth-child(3) h3": "Electrode Impedance of Cochlear Implant",
       ".study-grid article:nth-child(3) p":
-        "Cochlear implant electrode impedance study and a hospital-linked controllable blood pumping simulation gave me early exposure to engineering communication in medical contexts.",
-      ".study-grid article:nth-child(3) span": "Projects",
+        "Investigated mechanisms of electrode impedance change and performed laboratory work in a biomedical device research setting. Other academic work included a hospital-linked controllable blood pumping simulation.",
       ".study-grid article:nth-child(4) span": "Research discipline",
       ".study-grid article:nth-child(4) h3": "Separating evidence from assumption",
       ".study-grid article:nth-child(4) p":
@@ -374,11 +400,12 @@ const translations = {
       "Yihang (Henry) Yang 的个人网站，记录医疗设备现场服务、测试验证、工程背景、培训证书、生活照片和联系方式。",
     text: {
       ".site-nav a:nth-child(1)": "工作",
-      ".site-nav a:nth-child(2)": "案例",
-      ".site-nav a:nth-child(3)": "流程",
-      ".site-nav a:nth-child(4)": "背景",
-      ".site-nav a:nth-child(5)": "生活",
-      ".site-nav a:nth-child(6)": "联系",
+      ".site-nav a:nth-child(2)": "经历",
+      ".site-nav a:nth-child(3)": "案例",
+      ".site-nav a:nth-child(4)": "流程",
+      ".site-nav a:nth-child(5)": "背景",
+      ".site-nav a:nth-child(6)": "生活",
+      ".site-nav a:nth-child(7)": "联系",
       ".eyebrow": "悉尼 · 生物医学工程 · 现场服务",
       ".hero-subtitle":
         "我在悉尼做医疗设备现场服务，关注的不只是把设备修好，而是把现场判断、测试验证和服务记录做成可交接的闭环。",
@@ -444,6 +471,30 @@ const translations = {
       ".feature-list div:nth-child(3) strong": "服务记录",
       ".feature-list div:nth-child(3) span":
         "维护 work orders、service reports、serial details、equipment history 和 customer updates，让信息不要断在某个人手里。",
+      ".experience-section .section-kicker": "工作经历",
+      "#experience-title": "正式履历覆盖现场服务、workshop support 和医疗记录相关工作。",
+      ".experience-section .section-intro":
+        "下面只放适合公开展示的履历摘要，不公开客户名称、序列号、内部文件或具体现场细节。",
+      ".experience-timeline article:nth-child(1) span": "2023 年 7 月 - 至今",
+      ".experience-timeline article:nth-child(1) h3":
+        "Biomedical Engineer | Nova Biomedical Pty Ltd",
+      ".experience-timeline article:nth-child(1) .experience-meta":
+        "澳大利亚范围现场服务 / workshop support · 全职，每周 38 小时",
+      ".experience-timeline article:nth-child(1) li:nth-child(1)":
+        "为医院和药房医疗设备提供现场和 workshop 服务，包括 preventive maintenance、故障排查、维修、安装支持、验证和后续跟进。",
+      ".experience-timeline article:nth-child(1) li:nth-child(2)":
+        "服务范围覆盖 ventilation、patient monitoring、ultrasound、DEXA、pharmacy automation 和通用 biomedical equipment，并配套完成记录流程。",
+      ".experience-timeline article:nth-child(1) li:nth-child(3)":
+        "维护 Simpro 工单、service reports、serial details、equipment history 和 customer updates，支持 biomedical teams 和内部工程师交接。",
+      ".experience-timeline article:nth-child(2) span": "2019 年 12 月 - 2020 年 2 月",
+      ".experience-timeline article:nth-child(2) h3":
+        "药物警戒部门助理 | Lundbeck Beijing",
+      ".experience-timeline article:nth-child(2) .experience-meta":
+        "实习 · 中国北京",
+      ".experience-timeline article:nth-child(2) li:nth-child(1)":
+        "支持 Lundbeck 在中国上市产品的不良反应记录处理和药物安全文档工作。",
+      ".experience-timeline article:nth-child(2) li:nth-child(2)":
+        "参与受监管医疗记录相关文档整理，接触跨部门沟通和合规记录边界。",
       ".scope-section .section-kicker": "服务范围",
       "#scope-title": "一次服务不是从拆机开始，也不是修完就结束。",
       ".scope-section .section-intro":
@@ -533,10 +584,10 @@ const translations = {
         "研究训练让我更习惯把问题拆成假设、证据和结论，而不是只停留在感觉上。",
       ".study-grid article:nth-child(2) p:nth-of-type(2)":
         "medical science、biomedical design、data analysis 和 engineering design tools，是我理解设备、流程和数据的基础。",
-      ".study-grid article:nth-child(3) h3": "从实验到工程表达",
+      ".study-grid article:nth-child(3) span": "毕业论文题目",
+      ".study-grid article:nth-child(3) h3": "Electrode Impedance of Cochlear Implant",
       ".study-grid article:nth-child(3) p":
-        "从 cochlear implant electrode impedance study 到 hospital-linked controllable blood pumping simulation，我更早接触到医疗场景里的工程表达。",
-      ".study-grid article:nth-child(3) span": "项目经历",
+        "研究 cochlear implant 电极阻抗变化机制，并在 biomedical device research 场景中完成实验工作。其他学术项目还包括 hospital-linked controllable blood pumping simulation。",
       ".study-grid article:nth-child(4) span": "研究训练",
       ".study-grid article:nth-child(4) h3": "把证据和假设分开",
       ".study-grid article:nth-child(4) p":

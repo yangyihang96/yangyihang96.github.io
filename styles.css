@@ -639,6 +639,73 @@ a {
   color: var(--muted);
 }
 
+.experience-section {
+  padding: 96px 0;
+  background: var(--white);
+  border-top: 1px solid var(--line);
+}
+
+.experience-timeline {
+  width: min(1120px, calc(100% - 48px));
+  margin: 0 auto;
+  display: grid;
+  gap: 18px;
+}
+
+.experience-timeline article {
+  display: grid;
+  grid-template-columns: minmax(150px, 0.32fr) minmax(0, 1fr);
+  gap: 28px;
+  padding: 30px;
+  border: 1px solid var(--line);
+  background: var(--paper);
+}
+
+.experience-timeline span {
+  color: var(--clay);
+  font-size: 12px;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.experience-body h3 {
+  margin: 0;
+  font-size: clamp(24px, 2.6vw, 34px);
+  line-height: 1.1;
+  letter-spacing: 0;
+}
+
+.experience-meta {
+  margin: 10px 0 0;
+  color: var(--teal);
+  font-weight: 800;
+}
+
+.experience-timeline ul {
+  display: grid;
+  gap: 10px;
+  margin: 22px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.experience-timeline li {
+  position: relative;
+  padding-left: 18px;
+  color: var(--ink-2);
+}
+
+.experience-timeline li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.72em;
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: var(--teal);
+}
+
 .case-section {
   padding: 96px 0;
   background: var(--white);
@@ -1169,6 +1236,7 @@ a {
 .reveal .case-grid article,
 .reveal .brief-grid article,
 .reveal .scope-grid article,
+.reveal .experience-timeline article,
 .reveal .interest-grid article,
 .reveal .credential-grid article,
 .reveal .certification-grid article,
@@ -1188,6 +1256,7 @@ a {
 .reveal.is-visible .case-grid article,
 .reveal.is-visible .brief-grid article,
 .reveal.is-visible .scope-grid article,
+.reveal.is-visible .experience-timeline article,
 .reveal.is-visible .interest-grid article,
 .reveal.is-visible .credential-grid article,
 .reveal.is-visible .certification-grid article,
@@ -1372,6 +1441,7 @@ a {
   .family-grid,
   .overview-heading,
   .overview-grid,
+  .experience-timeline,
   .section-heading,
   .case-grid,
   .study-grid,
@@ -1428,6 +1498,7 @@ a {
   .study-grid,
   .brief-grid,
   .scope-grid,
+  .experience-timeline article,
   .interest-grid,
   .credential-grid,
   .certification-grid,
@@ -1464,6 +1535,7 @@ a {
   .study-grid article,
   .brief-grid article,
   .scope-grid article,
+  .experience-timeline article,
   .interest-grid article,
   .credential-grid article,
   .certification-grid article,
