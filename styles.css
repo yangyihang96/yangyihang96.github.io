@@ -1583,6 +1583,41 @@ main:focus {
   justify-content: flex-end;
 }
 
+.contact-intake {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.contact-intake div {
+  min-width: 0;
+  padding: 14px;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.contact-intake strong {
+  display: block;
+  color: #a8d6cd;
+  font-size: 12px;
+  font-weight: 850;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.contact-intake span {
+  display: block;
+  margin-top: 6px;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
 .contact-actions-note {
   grid-column: 1 / -1;
   margin: 0;
@@ -1853,6 +1888,10 @@ main:focus {
     justify-content: flex-start;
   }
 
+  .contact-intake {
+    grid-template-columns: 1fr;
+  }
+
   .hero-meta {
     max-width: 520px;
     grid-template-columns: 1fr;
@@ -1973,6 +2012,10 @@ main:focus {
     width: 100%;
     gap: 2px;
     padding-right: 0;
+  }
+
+  .contact-intake {
+    grid-template-columns: 1fr;
   }
 
   .nav-resume-link {

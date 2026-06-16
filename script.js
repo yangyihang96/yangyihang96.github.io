@@ -416,6 +416,15 @@ const translations = {
       ".contact-email-action": "Email Me",
       ".contact-resume-link": "Resume PDF",
       ".contact-docx-link": "Resume DOCX",
+      ".contact-intake div:nth-child(1) strong": "Role scope",
+      ".contact-intake div:nth-child(1) span":
+        "Share device type, service setting, travel area, and start timing.",
+      ".contact-intake div:nth-child(2) strong": "Proof needed",
+      ".contact-intake div:nth-child(2) span":
+        "Ask privately for degree, training, identity, right-to-work, or reference material when required.",
+      ".contact-intake div:nth-child(3) strong": "Next step",
+      ".contact-intake div:nth-child(3) span":
+        "Send interview time, role description, or technical screen format.",
       ".contact-actions-note":
         "Private credentials and employment-check documents are shared only when required.",
     },
@@ -436,6 +445,7 @@ const translations = {
       ".contact-email-action": { "aria-label": "Email Yihang Henry Yang" },
       ".contact-resume-link": { "aria-label": "Download Henry Yang resume as PDF" },
       ".contact-docx-link": { "aria-label": "Download Henry Yang resume as DOCX" },
+      ".contact-intake": { "aria-label": "Recruiter email checklist" },
       ".hero-action-path": { "aria-label": "Recruiter action path" },
       ".fit-verdict": { "aria-label": "Recruiter role-fit verdict" },
       ".brief-grid": { "aria-label": "Recruiter screening snapshot" },
@@ -858,6 +868,15 @@ const translations = {
       ".contact-email-action": "发邮件联系我",
       ".contact-resume-link": "PDF 简历",
       ".contact-docx-link": "DOCX 简历",
+      ".contact-intake div:nth-child(1) strong": "岗位范围",
+      ".contact-intake div:nth-child(1) span":
+        "说明设备类型、服务环境、出行范围和开始时间。",
+      ".contact-intake div:nth-child(2) strong": "需要核验",
+      ".contact-intake div:nth-child(2) span":
+        "需要时可私下索取学历、培训、身份、right-to-work 或 reference 材料。",
+      ".contact-intake div:nth-child(3) strong": "下一步",
+      ".contact-intake div:nth-child(3) span":
+        "发送面试时间、岗位说明或技术筛选形式。",
       ".contact-actions-note":
         "学历、培训证书和雇佣检查材料只在正式需要时私下提供。",
     },
@@ -878,6 +897,7 @@ const translations = {
       ".contact-email-action": { "aria-label": "发邮件联系 Yihang Henry Yang" },
       ".contact-resume-link": { "aria-label": "下载 Henry Yang PDF 简历" },
       ".contact-docx-link": { "aria-label": "下载 Henry Yang DOCX 简历" },
+      ".contact-intake": { "aria-label": "招聘方邮件清单" },
       ".hero-action-path": { "aria-label": "招聘方行动路径" },
       ".fit-verdict": { "aria-label": "招聘方岗位匹配判断" },
       ".brief-grid": { "aria-label": "招聘方筛选快照" },
