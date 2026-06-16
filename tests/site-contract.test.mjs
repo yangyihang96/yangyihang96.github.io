@@ -59,8 +59,16 @@ test("site uses HTTPS canonical and sharing metadata", () => {
 });
 
 test("stylesheet and script use the current cache-busting version", () => {
-  assert.match(html, /href="styles\.css\?v=hr-screening-copy-1"/);
-  assert.match(html, /src="script\.js\?v=hr-screening-copy-1"/);
+  assert.match(html, /href="styles\.css\?v=language-persistence-1"/);
+  assert.match(html, /src="script\.js\?v=language-persistence-1"/);
+});
+
+test("language preference is restored when the page loads", () => {
+  assert.match(script, /const getInitialLanguage = \(\) => \{/);
+  assert.match(script, /const storedLanguage = getStoredLanguage\(\);/);
+  assert.match(script, /return translations\[storedLanguage\] \? storedLanguage : "en";/);
+  assert.match(script, /applyLanguage\(getInitialLanguage\(\), false\);/);
+  assert.doesNotMatch(script, /applyLanguage\("en", false\);/);
 });
 
 test("screening copy uses standard HR terms in both languages", () => {

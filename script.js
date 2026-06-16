@@ -782,6 +782,11 @@ const getStoredLanguage = () => {
   }
 };
 
+const getInitialLanguage = () => {
+  const storedLanguage = getStoredLanguage();
+  return translations[storedLanguage] ? storedLanguage : "en";
+};
+
 const applyLanguage = (language, shouldStore = true) => {
   const selected = translations[language] ? language : "en";
   const dictionary = translations[selected];
@@ -897,7 +902,7 @@ emailCopyButtons.forEach((button) => {
   });
 });
 
-applyLanguage("en", false);
+applyLanguage(getInitialLanguage(), false);
 
 const header = document.querySelector("[data-site-header]");
 const updateHeader = () => {
