@@ -213,6 +213,18 @@ const translations = {
       ".case-grid article:nth-child(1) h3": "From routine maintenance to clear handover",
       ".case-grid article:nth-child(1) p":
         "I first confirm equipment condition, history, and site limits, then complete checks, calibration, or performance verification by procedure. The close-out record should make the next handover easier, not harder.",
+      ".case-grid article:nth-child(1) .case-outcome dt:nth-of-type(1)": "Scenario",
+      ".case-grid article:nth-child(1) .case-outcome dd:nth-of-type(1)":
+        "Scheduled service with site constraints",
+      ".case-grid article:nth-child(1) .case-outcome dt:nth-of-type(2)": "Action",
+      ".case-grid article:nth-child(1) .case-outcome dd:nth-of-type(2)":
+        "Condition check, procedure steps, and performance evidence",
+      ".case-grid article:nth-child(1) .case-outcome dt:nth-of-type(3)": "Verification",
+      ".case-grid article:nth-child(1) .case-outcome dd:nth-of-type(3)":
+        "Functional check and service record close-out",
+      ".case-grid article:nth-child(1) .case-outcome dt:nth-of-type(4)": "Handover",
+      ".case-grid article:nth-child(1) .case-outcome dd:nth-of-type(4)":
+        "Clear next-use status for biomedical or site teams",
       ".case-grid article:nth-child(1) li:nth-child(1)": "Field condition check",
       ".case-grid article:nth-child(1) li:nth-child(2)": "Functional and performance testing",
       ".case-grid article:nth-child(1) li:nth-child(3)": "Service record close-out",
@@ -220,6 +232,18 @@ const translations = {
       ".case-grid article:nth-child(2) h3": "Turning user feedback into a verifiable judgement",
       ".case-grid article:nth-child(2) p":
         "When a fault is reported, I separate the symptom, use condition, repair history, and reproducible path before combining service manual steps, measurements, and replacement checks.",
+      ".case-grid article:nth-child(2) .case-outcome dt:nth-of-type(1)": "Scenario",
+      ".case-grid article:nth-child(2) .case-outcome dd:nth-of-type(1)":
+        "User-reported symptom with repair history",
+      ".case-grid article:nth-child(2) .case-outcome dt:nth-of-type(2)": "Action",
+      ".case-grid article:nth-child(2) .case-outcome dd:nth-of-type(2)":
+        "Symptom review, reproducible path, and manual-led checks",
+      ".case-grid article:nth-child(2) .case-outcome dt:nth-of-type(3)": "Verification",
+      ".case-grid article:nth-child(2) .case-outcome dd:nth-of-type(3)":
+        "Measurement notes and post-repair confirmation",
+      ".case-grid article:nth-child(2) .case-outcome dt:nth-of-type(4)": "Handover",
+      ".case-grid article:nth-child(2) .case-outcome dd:nth-of-type(4)":
+        "Traceable finding for the next service decision",
       ".case-grid article:nth-child(2) li:nth-child(1)": "Fault symptom review",
       ".case-grid article:nth-child(2) li:nth-child(2)": "Test step documentation",
       ".case-grid article:nth-child(2) li:nth-child(3)": "Post-repair verification",
@@ -227,6 +251,18 @@ const translations = {
       ".case-grid article:nth-child(3) h3": "Keeping service information reusable",
       ".case-grid article:nth-child(3) p":
         "I align serial details, work orders, service reports, parts/actions, and customer updates so later troubleshooting does not start from memory alone.",
+      ".case-grid article:nth-child(3) .case-outcome dt:nth-of-type(1)": "Scenario",
+      ".case-grid article:nth-child(3) .case-outcome dd:nth-of-type(1)":
+        "Reusable service trail for later troubleshooting",
+      ".case-grid article:nth-child(3) .case-outcome dt:nth-of-type(2)": "Action",
+      ".case-grid article:nth-child(3) .case-outcome dd:nth-of-type(2)":
+        "Serial details, work order, service report, and actions aligned",
+      ".case-grid article:nth-child(3) .case-outcome dt:nth-of-type(3)": "Verification",
+      ".case-grid article:nth-child(3) .case-outcome dd:nth-of-type(3)":
+        "Equipment history and customer update cross-check",
+      ".case-grid article:nth-child(3) .case-outcome dt:nth-of-type(4)": "Handover",
+      ".case-grid article:nth-child(3) .case-outcome dd:nth-of-type(4)":
+        "Clear record for biomedical teams and internal engineers",
       ".case-grid article:nth-child(3) li:nth-child(1)": "Equipment history cleanup",
       ".case-grid article:nth-child(3) li:nth-child(2)": "Work order alignment",
       ".case-grid article:nth-child(3) li:nth-child(3)": "Clear customer updates",
@@ -349,6 +385,9 @@ const translations = {
       ".contact-resume-link": { "aria-label": "Download Henry Yang resume as PDF" },
       ".contact-docx-link": { "aria-label": "Download Henry Yang resume as DOCX" },
       ".experience-evidence": { "aria-label": "Current field-service evidence" },
+      ".case-grid article:nth-child(1) .case-outcome": { "aria-label": "Public-safe case outcome" },
+      ".case-grid article:nth-child(2) .case-outcome": { "aria-label": "Public-safe case outcome" },
+      ".case-grid article:nth-child(3) .case-outcome": { "aria-label": "Public-safe case outcome" },
     },
   },
   zh: {
@@ -528,6 +567,18 @@ const translations = {
       ".case-grid article:nth-child(1) h3": "从例行维护到可交接记录",
       ".case-grid article:nth-child(1) p":
         "例行维护看起来重复，但每次都要先确认设备状态、历史记录和现场限制。检查、校准或性能验证完成后，记录要写到下一位接手的人不用重新猜。",
+      ".case-grid article:nth-child(1) .case-outcome dt:nth-of-type(1)": "场景",
+      ".case-grid article:nth-child(1) .case-outcome dd:nth-of-type(1)":
+        "有现场限制的计划性服务",
+      ".case-grid article:nth-child(1) .case-outcome dt:nth-of-type(2)": "动作",
+      ".case-grid article:nth-child(1) .case-outcome dd:nth-of-type(2)":
+        "状态确认、流程步骤和性能证据",
+      ".case-grid article:nth-child(1) .case-outcome dt:nth-of-type(3)": "验证",
+      ".case-grid article:nth-child(1) .case-outcome dd:nth-of-type(3)":
+        "功能检查和服务记录 close-out",
+      ".case-grid article:nth-child(1) .case-outcome dt:nth-of-type(4)": "交付",
+      ".case-grid article:nth-child(1) .case-outcome dd:nth-of-type(4)":
+        "给 biomedical 或现场团队清楚的下一次使用状态",
       ".case-grid article:nth-child(1) li:nth-child(1)": "现场状态确认",
       ".case-grid article:nth-child(1) li:nth-child(2)": "功能与性能检查",
       ".case-grid article:nth-child(1) li:nth-child(3)": "服务记录 close-out",
@@ -535,6 +586,18 @@ const translations = {
       ".case-grid article:nth-child(2) h3": "先把故障描述变成可验证的问题",
       ".case-grid article:nth-child(2) p":
         "面对用户反馈，我不会一开始就猜原因。我会先拆出现象、使用场景、历史维修和可复现条件，再结合 service manual、测量结果和替换验证去收窄判断。",
+      ".case-grid article:nth-child(2) .case-outcome dt:nth-of-type(1)": "场景",
+      ".case-grid article:nth-child(2) .case-outcome dd:nth-of-type(1)":
+        "带有维修历史的用户反馈故障",
+      ".case-grid article:nth-child(2) .case-outcome dt:nth-of-type(2)": "动作",
+      ".case-grid article:nth-child(2) .case-outcome dd:nth-of-type(2)":
+        "现象复核、复现路径和手册引导检查",
+      ".case-grid article:nth-child(2) .case-outcome dt:nth-of-type(3)": "验证",
+      ".case-grid article:nth-child(2) .case-outcome dd:nth-of-type(3)":
+        "测量记录和维修后确认",
+      ".case-grid article:nth-child(2) .case-outcome dt:nth-of-type(4)": "交付",
+      ".case-grid article:nth-child(2) .case-outcome dd:nth-of-type(4)":
+        "给下一次服务决策可追踪的判断",
       ".case-grid article:nth-child(2) li:nth-child(1)": "故障现象复核",
       ".case-grid article:nth-child(2) li:nth-child(2)": "测试步骤记录",
       ".case-grid article:nth-child(2) li:nth-child(3)": "维修后验证",
@@ -542,6 +605,18 @@ const translations = {
       ".case-grid article:nth-child(3) h3": "记录写清楚，后面才接得住",
       ".case-grid article:nth-child(3) p":
         "服务结束以后，信息不能只留在记忆里。我会把 serial、work order、service report、parts/action 和 customer update 对齐，让后续排查不用重新猜。",
+      ".case-grid article:nth-child(3) .case-outcome dt:nth-of-type(1)": "场景",
+      ".case-grid article:nth-child(3) .case-outcome dd:nth-of-type(1)":
+        "后续排查需要复用的服务轨迹",
+      ".case-grid article:nth-child(3) .case-outcome dt:nth-of-type(2)": "动作",
+      ".case-grid article:nth-child(3) .case-outcome dd:nth-of-type(2)":
+        "对齐 serial、work order、service report 和 actions",
+      ".case-grid article:nth-child(3) .case-outcome dt:nth-of-type(3)": "验证",
+      ".case-grid article:nth-child(3) .case-outcome dd:nth-of-type(3)":
+        "交叉检查 equipment history 和 customer update",
+      ".case-grid article:nth-child(3) .case-outcome dt:nth-of-type(4)": "交付",
+      ".case-grid article:nth-child(3) .case-outcome dd:nth-of-type(4)":
+        "给 biomedical team 和内部工程师清楚记录",
       ".case-grid article:nth-child(3) li:nth-child(1)": "设备历史整理",
       ".case-grid article:nth-child(3) li:nth-child(2)": "工单信息对齐",
       ".case-grid article:nth-child(3) li:nth-child(3)": "客户更新清晰",
@@ -691,6 +766,9 @@ const translations = {
       ".contact-resume-link": { "aria-label": "下载 Henry Yang PDF 简历" },
       ".contact-docx-link": { "aria-label": "下载 Henry Yang DOCX 简历" },
       ".experience-evidence": { "aria-label": "当前现场服务证据" },
+      ".case-grid article:nth-child(1) .case-outcome": { "aria-label": "公开安全的案例结果" },
+      ".case-grid article:nth-child(2) .case-outcome": { "aria-label": "公开安全的案例结果" },
+      ".case-grid article:nth-child(3) .case-outcome": { "aria-label": "公开安全的案例结果" },
     },
   },
 };

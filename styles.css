@@ -1035,10 +1035,38 @@ main:focus {
   color: var(--ink-2);
 }
 
+.case-outcome {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 8px 12px;
+  margin: 20px 0 0;
+  padding: 14px;
+  border: 1px solid rgba(19, 33, 31, 0.10);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.case-outcome dt {
+  color: var(--teal);
+  font-size: 11px;
+  font-weight: 850;
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+
+.case-outcome dd {
+  min-width: 0;
+  margin: 0;
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 720;
+  line-height: 1.28;
+}
+
 .case-grid ul {
   display: grid;
   gap: 9px;
-  margin: auto 0 0;
+  margin: 20px 0 0;
   padding: 24px 0 0;
   list-style: none;
 }
@@ -1906,6 +1934,11 @@ main:focus {
 
   .experience-evidence {
     grid-template-columns: 1fr;
+  }
+
+  .case-outcome {
+    grid-template-columns: 1fr;
+    gap: 5px;
   }
 
   .contact-actions {

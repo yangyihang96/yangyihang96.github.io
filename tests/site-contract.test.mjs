@@ -58,8 +58,8 @@ test("site uses HTTPS canonical and sharing metadata", () => {
 });
 
 test("stylesheet and script use the current cache-busting version", () => {
-  assert.match(html, /href="styles\.css\?v=experience-evidence-1"/);
-  assert.match(html, /src="script\.js\?v=experience-evidence-1"/);
+  assert.match(html, /href="styles\.css\?v=case-outcomes-1"/);
+  assert.match(html, /src="script\.js\?v=case-outcomes-1"/);
 });
 
 test("hero exposes recruiter actions and downloadable resume files", () => {
@@ -191,6 +191,20 @@ test("current experience card exposes scannable field-service evidence", () => {
     css,
     /@media \(max-width:\s*560px\)[\s\S]*?\.experience-evidence\s*{[\s\S]*?grid-template-columns:\s*1fr;/
   );
+});
+
+test("case notes expose scenario action verification and handover outcomes", () => {
+  assert.equal((html.match(/class="case-outcome" aria-label="Public-safe case outcome"/g) || []).length, 3);
+  assert.match(html, /<dt>Scenario<\/dt>\s*<dd>Scheduled service with site constraints<\/dd>/);
+  assert.match(html, /<dt>Action<\/dt>\s*<dd>Condition check, procedure steps, and performance evidence<\/dd>/);
+  assert.match(html, /<dt>Verification<\/dt>\s*<dd>Functional check and service record close-out<\/dd>/);
+  assert.match(html, /<dt>Handover<\/dt>\s*<dd>Clear next-use status for biomedical or site teams<\/dd>/);
+  assert.match(html, /<dd>User-reported symptom with repair history<\/dd>/);
+  assert.match(html, /<dd>Reusable service trail for later troubleshooting<\/dd>/);
+  assert.match(script, /"\.case-grid article:nth-child\(1\) \.case-outcome dt:nth-of-type\(1\)": "Scenario"/);
+  assert.match(script, /"\.case-grid article:nth-child\(1\) \.case-outcome dt:nth-of-type\(1\)": "场景"/);
+  assert.match(css, /\.case-outcome\s*{[\s\S]*?display:\s*grid;[\s\S]*?grid-template-columns:\s*auto minmax\(0,\s*1fr\);/);
+  assert.match(css, /@media \(max-width:\s*560px\)[\s\S]*?\.case-outcome\s*{[\s\S]*?grid-template-columns:\s*1fr;/);
 });
 
 test("hidden personal galleries are not loaded by the compact homepage", () => {
