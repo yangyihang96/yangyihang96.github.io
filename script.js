@@ -200,10 +200,11 @@ const translations = {
         "Focused on biomedical engineering research, experimental planning, and technical documentation. It trained me to separate hypotheses, evidence, and conclusions.",
       ".study-grid article:nth-child(2) p:nth-of-type(2)":
         "Studied medical science, biomedical design, data analysis, and engineering design tools, building the foundation for how I understand devices, workflows, and data.",
-      ".study-grid article:nth-child(3) span": "Graduation thesis",
-      ".study-grid article:nth-child(3) h3": "Electrode Impedance of Cochlear Implant",
+      ".study-grid article:nth-child(3) span": "MPhil thesis",
+      ".study-grid article:nth-child(3) h3":
+        "Flexible Electrodes for Smart Bandages: Feasibility Exploration",
       ".study-grid article:nth-child(3) p":
-        "Investigated mechanisms of electrode impedance change and performed laboratory work in a biomedical device research setting. Other academic work included a hospital-linked controllable blood pumping simulation.",
+        "Explored flexible electrode design for wearable health-monitoring and therapeutic devices, including micro-perforated structures, silver ink, z-conductive electrodes, and impedance measurement. Earlier academic work included a cochlear implant electrode impedance study and a hospital-linked controllable blood pumping simulation.",
       ".study-grid article:nth-child(4) span": "Research discipline",
       ".study-grid article:nth-child(4) h3": "Separating evidence from assumption",
       ".study-grid article:nth-child(4) p":
@@ -584,10 +585,11 @@ const translations = {
         "研究训练让我更习惯把问题拆成假设、证据和结论，而不是只停留在感觉上。",
       ".study-grid article:nth-child(2) p:nth-of-type(2)":
         "medical science、biomedical design、data analysis 和 engineering design tools，是我理解设备、流程和数据的基础。",
-      ".study-grid article:nth-child(3) span": "毕业论文题目",
-      ".study-grid article:nth-child(3) h3": "Electrode Impedance of Cochlear Implant",
+      ".study-grid article:nth-child(3) span": "MPhil 论文题目",
+      ".study-grid article:nth-child(3) h3":
+        "Flexible Electrodes for Smart Bandages: Feasibility Exploration",
       ".study-grid article:nth-child(3) p":
-        "研究 cochlear implant 电极阻抗变化机制，并在 biomedical device research 场景中完成实验工作。其他学术项目还包括 hospital-linked controllable blood pumping simulation。",
+        "围绕用于 wearable health-monitoring 和 therapeutic devices 的柔性电极设计，探索 micro-perforated structures、silver ink、z-conductive electrodes 和 impedance measurement。早期学术项目还包括 cochlear implant electrode impedance study 和 hospital-linked controllable blood pumping simulation。",
       ".study-grid article:nth-child(4) span": "研究训练",
       ".study-grid article:nth-child(4) h3": "把证据和假设分开",
       ".study-grid article:nth-child(4) p":
