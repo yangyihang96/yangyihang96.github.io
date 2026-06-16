@@ -44,11 +44,11 @@ const translations = {
       ".hero-action-path div:nth-child(2) span": "PDF and DOCX ready",
       ".hero-action-path div:nth-child(3) strong": "Private proof",
       ".hero-action-path div:nth-child(3) span":
-        "Credentials, training, and employment-check documents on request",
+        "Credentials, training, right-to-work, and reference checks after fit",
       ".hero-profile-card .hero-card-kicker": "Current profile",
       ".hero-profile-card strong": "Biomedical field service engineer",
       ".hero-profile-card .hero-card-note":
-        "Resume PDF and DOCX available. Credentials and employment-check documents can be provided privately when required.",
+        "Resume PDF and DOCX available. Credentials and pre-employment screening material can be provided privately when required.",
       ".fit-strip .section-kicker": "Best fit for",
       "#fit-title": "Biomedical field service roles that need practical device judgement.",
       ".fit-strip .section-intro":
@@ -76,7 +76,7 @@ const translations = {
         "Role scope, equipment families, service method, and safe case patterns.",
       ".proof-boundary div:nth-child(2) strong": "Private after fit",
       ".proof-boundary div:nth-child(2) span":
-        "Certificates, identity, right-to-work, references, and detailed employment checks.",
+        "Certificates, identity, right-to-work checks, references, and pre-employment screening.",
       ".proof-boundary div:nth-child(3) strong": "Not published",
       ".proof-boundary div:nth-child(3) span":
         "Customer names, serial numbers, internal records, and site-specific details.",
@@ -123,7 +123,7 @@ const translations = {
       ".brief-grid article:nth-child(2) span": "Private proof",
       ".brief-grid article:nth-child(2) h3": "Request documents after fit",
       ".brief-grid article:nth-child(2) p":
-        "Resume files are public; credentials, training records, and employment-check material stay private until needed.",
+        "Resume files are public; credentials, training records, and screening material stay private until needed.",
       ".brief-grid article:nth-child(3) span": "Best next role",
       ".brief-grid article:nth-child(3) h3": "Biomedical field service",
       ".brief-grid article:nth-child(3) p":
@@ -131,7 +131,7 @@ const translations = {
       "#capabilities .section-kicker": "Skills Matrix",
       "#capabilities-title": "What I can handle in a service environment.",
       "#capabilities .section-intro":
-        "A recruiter or hiring manager should be able to judge the fit quickly: device service, testing, records, communication, tools, and employment-check readiness.",
+        "A recruiter or hiring manager should be able to judge the fit quickly: device service, testing, records, communication, tools, and pre-employment screening readiness.",
       ".capability-row article:nth-child(1) span": "Service",
       ".capability-row article:nth-child(1) h3": "Field and workshop work",
       ".capability-row article:nth-child(1) p":
@@ -152,10 +152,10 @@ const translations = {
       ".capability-row article:nth-child(5) h3": "Clear handover",
       ".capability-row article:nth-child(5) p":
         "Aligning observed issues, limits, and next steps with clinical users, biomedical teams, vendors, and internal engineers.",
-      ".capability-row article:nth-child(6) span": "Employment checks",
+      ".capability-row article:nth-child(6) span": "Pre-employment checks",
       ".capability-row article:nth-child(6) h3": "Sydney travel + private proof",
       ".capability-row article:nth-child(6) p":
-        "Sydney field travel, resume download, and offline degree, training, identity, and right-to-work proof for formal hiring checks.",
+        "Sydney field travel, resume download, and private degree, training, identity, and right-to-work proof for formal hiring checks.",
       ".experience-section .section-kicker": "Work Experience",
       "#experience-title":
         "Professional experience across field service, workshop support, and healthcare records.",
@@ -329,7 +329,7 @@ const translations = {
         "Share device type, service setting, travel area, and start timing.",
       ".contact-intake div:nth-child(2) strong": "Proof needed",
       ".contact-intake div:nth-child(2) span":
-        "Ask privately for degree, training, identity, right-to-work, or reference material when required.",
+        "Ask privately for degree, training, identity, right-to-work, or reference-check material when required.",
       ".contact-intake div:nth-child(3) strong": "Next step",
       ".contact-intake div:nth-child(3) span":
         "Send interview time, role description, or technical screen format.",
@@ -345,7 +345,7 @@ const translations = {
       ".contact-actions-note strong": "Direct email",
       ".contact-email-text": "yangyihang96@gmail.com",
       ".contact-privacy-note":
-        "Private credentials and employment-check documents are shared only when required.",
+        "Private credentials and pre-employment screening material are shared only when required.",
     },
     html: {
       ".life-notes p:nth-child(1)":
@@ -423,11 +423,11 @@ const translations = {
       ".hero-action-path div:nth-child(2) span": "PDF 和 DOCX 可下载",
       ".hero-action-path div:nth-child(3) strong": "私下核验",
       ".hero-action-path div:nth-child(3) span":
-        "学历、培训和雇佣检查材料按需提供",
+        "学历、培训、工作权利和推荐人核验在匹配后私下提供",
       ".hero-profile-card .hero-card-kicker": "当前身份",
       ".hero-profile-card strong": "生物医学现场服务工程师",
       ".hero-profile-card .hero-card-note":
-        "PDF 和 DOCX 简历都可下载。学历、培训证书和雇佣检查材料可在正式流程中私下提供。",
+        "PDF 和 DOCX 简历都可下载。学历、培训证书和入职前筛选材料可在正式流程中私下提供。",
       ".fit-strip .section-kicker": "适合岗位",
       "#fit-title": "需要现场判断和设备服务能力的 biomedical field service 岗位。",
       ".fit-strip .section-intro":
@@ -455,7 +455,7 @@ const translations = {
         "岗位范围、设备类别、服务方法和适合公开的案例框架。",
       ".proof-boundary div:nth-child(2) strong": "匹配后私下核验",
       ".proof-boundary div:nth-child(2) span":
-        "证书、身份、工作权利、推荐人和更详细的雇佣核验材料。",
+        "证书、身份、工作权利核验、推荐人核验和入职前筛选材料。",
       ".proof-boundary div:nth-child(3) strong": "不公开",
       ".proof-boundary div:nth-child(3) span":
         "客户名称、序列号、内部记录和具体现场细节。",
@@ -502,7 +502,7 @@ const translations = {
       ".brief-grid article:nth-child(2) span": "私下核验",
       ".brief-grid article:nth-child(2) h3": "匹配后再要证明文件",
       ".brief-grid article:nth-child(2) p":
-        "公开页面只放简历；学历、培训和雇佣核验相关材料需要时再私下提供。",
+        "公开页面只放简历；学历、培训和筛选材料需要时再私下提供。",
       ".brief-grid article:nth-child(3) span": "最适合下一步",
       ".brief-grid article:nth-child(3) h3": "Biomedical field service",
       ".brief-grid article:nth-child(3) p":
@@ -665,7 +665,7 @@ const translations = {
       "#capabilities .section-kicker": "能力矩阵",
       "#capabilities-title": "我能在服务环境里承担什么。",
       "#capabilities .section-intro":
-        "招聘方可以先看这一部分，快速判断我在设备服务、测试验证、记录、沟通、工具和雇佣检查材料方面是否匹配。",
+        "招聘方可以先看这一部分，快速判断我在设备服务、测试验证、记录、沟通、工具和入职前筛选材料方面是否匹配。",
       ".capability-row article:nth-child(1) span": "服务",
       ".capability-row article:nth-child(1) h3": "现场和 workshop 工作",
       ".capability-row article:nth-child(1) p":
@@ -686,10 +686,10 @@ const translations = {
       ".capability-row article:nth-child(5) h3": "清楚交接",
       ".capability-row article:nth-child(5) p":
         "和临床用户、医院 biomedical team、vendor、内部工程师对齐现场信息、限制条件和下一步。",
-      ".capability-row article:nth-child(6) span": "雇佣检查",
+      ".capability-row article:nth-child(6) span": "入职前筛选",
       ".capability-row article:nth-child(6) h3": "悉尼出行 + 私下核验证明",
       ".capability-row article:nth-child(6) p":
-        "可支持悉尼现场出行，简历可下载，学历、培训、身份证明和 right-to-work 材料可在正式流程中提供。",
+        "可支持悉尼现场出行，简历可下载，学历、培训、身份证明和工作权利材料可在正式流程中提供。",
       "#contact .section-kicker": "联系",
       "#contact-title": "可以在这里联系我。",
       ".contact-inner > p:not(.section-kicker)":
@@ -706,7 +706,7 @@ const translations = {
         "说明设备类型、服务环境、出行范围和开始时间。",
       ".contact-intake div:nth-child(2) strong": "需要核验",
       ".contact-intake div:nth-child(2) span":
-        "需要时可私下索取学历、培训、身份、right-to-work 或 reference 材料。",
+        "需要时可私下索取学历、培训、身份、工作权利或推荐人核验材料。",
       ".contact-intake div:nth-child(3) strong": "下一步",
       ".contact-intake div:nth-child(3) span":
         "发送面试时间、岗位说明或技术筛选形式。",
@@ -722,7 +722,7 @@ const translations = {
       ".contact-actions-note strong": "直接邮箱",
       ".contact-email-text": "yangyihang96@gmail.com",
       ".contact-privacy-note":
-        "学历、培训证书和雇佣检查材料只在正式需要时私下提供。",
+        "学历、培训证书和入职前筛选材料只在正式需要时私下提供。",
     },
     html: {
       ".life-notes p:nth-child(1)":

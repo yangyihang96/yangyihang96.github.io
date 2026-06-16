@@ -59,8 +59,16 @@ test("site uses HTTPS canonical and sharing metadata", () => {
 });
 
 test("stylesheet and script use the current cache-busting version", () => {
-  assert.match(html, /href="styles\.css\?v=header-email-1"/);
-  assert.match(html, /src="script\.js\?v=header-email-1"/);
+  assert.match(html, /href="styles\.css\?v=hr-screening-copy-1"/);
+  assert.match(html, /src="script\.js\?v=hr-screening-copy-1"/);
+});
+
+test("screening copy uses standard HR terms in both languages", () => {
+  assert.doesNotMatch(`${html}\n${script}`, /employment-check/);
+  assert.match(`${html}\n${script}`, /pre-employment screening/);
+  assert.match(script, /入职前筛选/);
+  assert.doesNotMatch(script, /雇佣检查|雇佣核验/);
+  assert.doesNotMatch(script, /right-to-work 材料|right-to-work 或 reference|reference 材料/);
 });
 
 test("hero exposes recruiter actions and downloadable resume files", () => {
@@ -102,7 +110,7 @@ test("hero shows a compact recruiter action path near first-screen CTAs", () => 
   assert.match(html, /class="hero-action-path" aria-label="Recruiter action path"/);
   assert.match(html, /<strong>Contact<\/strong>\s*<span>Email for field-service fit<\/span>/);
   assert.match(html, /<strong>Resume<\/strong>\s*<span>PDF and DOCX ready<\/span>/);
-  assert.match(html, /<strong>Private proof<\/strong>\s*<span>Credentials, training, and employment-check documents on request<\/span>/);
+  assert.match(html, /<strong>Private proof<\/strong>\s*<span>Credentials, training, right-to-work, and reference checks after fit<\/span>/);
   assert.match(script, /"\.hero-action-path div:nth-child\(1\) strong": "Contact"/);
   assert.match(script, /"\.hero-action-path div:nth-child\(1\) strong": "联系"/);
   assert.match(script, /"\.hero-action-path": { "aria-label": "Recruiter action path" }/);
@@ -134,12 +142,12 @@ test("contact section repeats recruiter conversion actions at the close", () => 
   assert.match(html, /class="button secondary contact-copy-email-action" type="button" data-copy-email="yangyihang96@gmail\.com"/);
   assert.match(html, /class="button secondary contact-resume-link" href="assets\/Henry_Yang_Biomedical_Engineer_Resume\.pdf" type="application\/pdf" download/);
   assert.match(html, /class="button secondary contact-docx-link" href="assets\/Henry_Yang_Biomedical_Engineer_Resume\.docx" download/);
-  assert.match(html, /Private credentials and employment-check documents are shared only when required/);
+  assert.match(html, /Private credentials and pre-employment screening material are shared only when required/);
   assert.match(script, /"\.contact-actions-title": "Ready for field service conversations\."/);
   assert.match(script, /"\.contact-actions-title": "可以继续聊医疗设备现场服务机会。"/);
   assert.match(html, /class="contact-intake" aria-label="Recruiter email checklist"/);
   assert.match(html, /<strong>Role scope<\/strong>\s*<span>Share device type, service setting, travel area, and start timing\.<\/span>/);
-  assert.match(html, /<strong>Proof needed<\/strong>\s*<span>Ask privately for degree, training, identity, right-to-work, or reference material when required\.<\/span>/);
+  assert.match(html, /<strong>Proof needed<\/strong>\s*<span>Ask privately for degree, training, identity, right-to-work, or reference-check material when required\.<\/span>/);
   assert.match(html, /<strong>Next step<\/strong>\s*<span>Send interview time, role description, or technical screen format\.<\/span>/);
   assert.match(html, /class="contact-response-strip" aria-label="Recruiter response expectations"/);
   assert.match(html, /<strong>Reply window<\/strong>\s*<span>I aim to reply within 1 business day for role-fit, interview, or document requests\.<\/span>/);
@@ -192,7 +200,7 @@ test("contact section keeps one mail action and a compact visible email line", (
   assert.equal((contactSource.match(/href="mailto:/g) || []).length, 1);
   assert.doesNotMatch(contactSource, /class="email-link"/);
   assert.match(contactSource, /class="contact-email-text">yangyihang96@gmail\.com<\/span>/);
-  assert.match(contactSource, /class="contact-privacy-note">Private credentials and employment-check documents are shared only when required\.<\/span>/);
+  assert.match(contactSource, /class="contact-privacy-note">Private credentials and pre-employment screening material are shared only when required\.<\/span>/);
   assert.match(script, /"\.contact-actions-note strong": "Direct email"/);
   assert.match(script, /"\.contact-actions-note strong": "直接邮箱"/);
   assert.doesNotMatch(css, /\.email-link\s*{/);
@@ -256,7 +264,7 @@ test("primary navigation follows the visible recruiter reading order", () => {
 
 test("compact homepage keeps capability matrix visible", () => {
   assert.match(html, /id="capabilities"/);
-  assert.match(html, /Employment checks/);
+  assert.match(html, /Pre-employment checks/);
   assert.match(html, /Sydney field travel/);
   assert.doesNotMatch(css, /\.resume-style\.resume-compact \.capabilities[\s\S]{0,180}display:\s*none/);
 });
@@ -307,12 +315,12 @@ test("proof section states the public and private evidence boundary before detai
   const proofLeadSource = html.slice(proofStart, proofGridStart);
   assert.match(proofLeadSource, /class="proof-boundary" aria-label="Public and private evidence boundary"/);
   assert.match(proofLeadSource, /<strong>Public now<\/strong>\s*<span>Role scope, equipment families, service method, and safe case patterns\.<\/span>/);
-  assert.match(proofLeadSource, /<strong>Private after fit<\/strong>\s*<span>Certificates, identity, right-to-work, references, and detailed employment checks\.<\/span>/);
+  assert.match(proofLeadSource, /<strong>Private after fit<\/strong>\s*<span>Certificates, identity, right-to-work checks, references, and pre-employment screening\.<\/span>/);
   assert.match(proofLeadSource, /<strong>Not published<\/strong>\s*<span>Customer names, serial numbers, internal records, and site-specific details\.<\/span>/);
   assert.match(script, /"\.proof-boundary div:nth-child\(1\) strong": "Public now"/);
   assert.match(script, /"\.proof-boundary div:nth-child\(1\) strong": "当前公开"/);
   assert.match(script, /"岗位范围、设备类别、服务方法和适合公开的案例框架。"/);
-  assert.match(script, /"证书、身份、工作权利、推荐人和更详细的雇佣核验材料。"/);
+  assert.match(script, /"证书、身份、工作权利核验、推荐人核验和入职前筛选材料。"/);
   assert.match(script, /"\.proof-boundary": { "aria-label": "Public and private evidence boundary" }/);
   assert.match(script, /"\.proof-boundary": { "aria-label": "公开与私下核验证据边界" }/);
   assert.match(css, /\.proof-boundary\s*{[\s\S]*?display:\s*grid;[\s\S]*?grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\);/);
@@ -326,11 +334,11 @@ test("brief section acts as a recruiter screening snapshot", () => {
   assert.match(html, /class="brief-grid" aria-label="Recruiter screening snapshot"/);
   assert.equal(articleCount("brief-grid"), 3);
   assert.match(html, /<span>Interview focus<\/span>\s*<h3>Ask for a service example<\/h3>\s*<p>Use one device issue to discuss symptom capture, test steps, verification evidence, and handover\.<\/p>/);
-  assert.match(html, /<span>Private proof<\/span>\s*<h3>Request documents after fit<\/h3>\s*<p>Resume files are public; credentials, training records, and employment-check material stay private until needed\.<\/p>/);
+  assert.match(html, /<span>Private proof<\/span>\s*<h3>Request documents after fit<\/h3>\s*<p>Resume files are public; credentials, training records, and screening material stay private until needed\.<\/p>/);
   assert.match(html, /<span>Best next role<\/span>\s*<h3>Biomedical field service<\/h3>\s*<p>Strongest match is hands-on service work with travel, documentation, troubleshooting, and follow-up ownership\.<\/p>/);
   assert.match(script, /"\.brief-section \.section-kicker": "Screening Snapshot"/);
   assert.match(script, /"\.brief-section \.section-kicker": "招聘筛选快照"/);
-  assert.match(script, /"公开页面只放简历；学历、培训和雇佣核验相关材料需要时再私下提供。"/);
+  assert.match(script, /"公开页面只放简历；学历、培训和筛选材料需要时再私下提供。"/);
   assert.match(script, /"\.brief-grid": { "aria-label": "Recruiter screening snapshot" }/);
   assert.match(script, /"\.brief-grid": { "aria-label": "招聘方筛选快照" }/);
   assert.match(css, /\.brief-grid article\s*{[\s\S]*?min-height:\s*240px;/);
