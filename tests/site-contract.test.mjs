@@ -59,8 +59,8 @@ test("site uses HTTPS canonical and sharing metadata", () => {
 });
 
 test("stylesheet and script use the current cache-busting version", () => {
-  assert.match(html, /href="styles\.css\?v=language-persistence-1"/);
-  assert.match(html, /src="script\.js\?v=language-persistence-1"/);
+  assert.match(html, /href="styles\.css\?v=translated-structure-labels-1"/);
+  assert.match(html, /src="script\.js\?v=translated-structure-labels-1"/);
 });
 
 test("language preference is restored when the page loads", () => {
@@ -77,6 +77,35 @@ test("screening copy uses standard HR terms in both languages", () => {
   assert.match(script, /入职前筛选/);
   assert.doesNotMatch(script, /雇佣检查|雇佣核验/);
   assert.doesNotMatch(script, /right-to-work 材料|right-to-work 或 reference|reference 材料/);
+});
+
+test("structural accessibility labels are translated with the visible language", () => {
+  assert.match(html, /<a class="brand" href="#top" aria-label="Back to top">/);
+  assert.match(html, /<nav class="site-nav" aria-label="Primary navigation">/);
+  assert.match(html, /<div class="language-switch" aria-label="Language switcher">/);
+  assert.match(html, /<dl class="hero-meta" aria-label="Quick profile">/);
+  assert.match(html, /<aside class="hero-profile-card" aria-label="Profile snapshot">/);
+  assert.match(html, /<div class="fit-grid" aria-label="Recruiter quick match">/);
+  assert.match(html, /<div class="experience-summary-grid" aria-label="Work experience summary">/);
+  assert.match(html, /<div class="contact-actions" aria-label="Recruiter contact actions">/);
+
+  assert.match(script, /"\.brand": { "aria-label": "Back to top" }/);
+  assert.match(script, /"\.site-nav": { "aria-label": "Primary navigation" }/);
+  assert.match(script, /"\.language-switch": { "aria-label": "Language switcher" }/);
+  assert.match(script, /"\.hero-meta": { "aria-label": "Quick profile" }/);
+  assert.match(script, /"\.hero-profile-card": { "aria-label": "Profile snapshot" }/);
+  assert.match(script, /"\.fit-grid": { "aria-label": "Recruiter quick match" }/);
+  assert.match(script, /"\.experience-summary-grid": { "aria-label": "Work experience summary" }/);
+  assert.match(script, /"\.contact-actions": { "aria-label": "Recruiter contact actions" }/);
+
+  assert.match(script, /"\.brand": { "aria-label": "返回页面顶部" }/);
+  assert.match(script, /"\.site-nav": { "aria-label": "主导航" }/);
+  assert.match(script, /"\.language-switch": { "aria-label": "语言切换" }/);
+  assert.match(script, /"\.hero-meta": { "aria-label": "快速资料" }/);
+  assert.match(script, /"\.hero-profile-card": { "aria-label": "个人资料快照" }/);
+  assert.match(script, /"\.fit-grid": { "aria-label": "招聘方快速匹配" }/);
+  assert.match(script, /"\.experience-summary-grid": { "aria-label": "工作经历摘要" }/);
+  assert.match(script, /"\.contact-actions": { "aria-label": "招聘方联系操作" }/);
 });
 
 test("hero exposes recruiter actions and downloadable resume files", () => {
