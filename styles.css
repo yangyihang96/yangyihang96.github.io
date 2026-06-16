@@ -2841,7 +2841,7 @@ body.resume-style {
   }
 
   .resume-style.resume-compact .hero-meta {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .resume-style.resume-compact .hero-meta div {
@@ -2849,7 +2849,11 @@ body.resume-style {
     border-bottom: 1px solid rgba(19, 33, 31, 0.12);
   }
 
-  .resume-style.resume-compact .hero-meta div:last-child {
+  .resume-style.resume-compact .hero-meta div:nth-child(odd) {
+    border-right: 1px solid rgba(19, 33, 31, 0.12);
+  }
+
+  .resume-style.resume-compact .hero-meta div:nth-last-child(-n + 2) {
     border-bottom: 0;
   }
 

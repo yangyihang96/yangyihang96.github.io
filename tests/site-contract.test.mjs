@@ -58,8 +58,8 @@ test("site uses HTTPS canonical and sharing metadata", () => {
 });
 
 test("stylesheet and script use the current cache-busting version", () => {
-  assert.match(html, /href="styles\.css\?v=contact-intake-1"/);
-  assert.match(html, /src="script\.js\?v=contact-intake-1"/);
+  assert.match(html, /href="styles\.css\?v=tablet-hero-1"/);
+  assert.match(html, /src="script\.js\?v=tablet-hero-1"/);
 });
 
 test("hero exposes recruiter actions and downloadable resume files", () => {
@@ -368,6 +368,30 @@ test("desktop compact hero leaves the next recruiter section visible on short sc
   assert.match(
     css,
     /\.resume-style\.resume-compact \.hero-card-note\s*{[\s\S]*?font-size:\s*13px;[\s\S]*?line-height:\s*1.42;/
+  );
+});
+
+test("tablet compact hero keeps quick facts scannable without over-tall stacking", () => {
+  const compactTabletMediaStart = css.indexOf(
+    "@media (max-width: 920px) {\n  .resume-style.resume-compact .hero-copy"
+  );
+  assert.notEqual(compactTabletMediaStart, -1, "missing compact tablet media block");
+
+  const compactTabletMediaEnd = css.indexOf("\n}\n\n@media (max-width: 760px)", compactTabletMediaStart);
+  assert.notEqual(compactTabletMediaEnd, -1, "missing end of compact tablet media block");
+  const compactTabletMedia = css.slice(compactTabletMediaStart, compactTabletMediaEnd);
+
+  assert.match(
+    compactTabletMedia,
+    /\.resume-style\.resume-compact \.hero-meta\s*{[\s\S]*?grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\);/
+  );
+  assert.match(
+    compactTabletMedia,
+    /\.resume-style\.resume-compact \.hero-meta div:nth-child\(odd\)\s*{[\s\S]*?border-right:\s*1px solid rgba\(19,\s*33,\s*31,\s*0\.12\);/
+  );
+  assert.match(
+    compactTabletMedia,
+    /\.resume-style\.resume-compact \.hero-meta div:nth-last-child\(-n \+ 2\)\s*{[\s\S]*?border-bottom:\s*0;/
   );
 });
 
