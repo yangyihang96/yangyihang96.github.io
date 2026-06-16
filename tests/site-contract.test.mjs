@@ -58,8 +58,8 @@ test("site uses HTTPS canonical and sharing metadata", () => {
 });
 
 test("stylesheet and script use the current cache-busting version", () => {
-  assert.match(html, /href="styles\.css\?v=mobile-hero-1"/);
-  assert.match(html, /src="script\.js\?v=mobile-hero-1"/);
+  assert.match(html, /href="styles\.css\?v=experience-evidence-1"/);
+  assert.match(html, /src="script\.js\?v=experience-evidence-1"/);
 });
 
 test("hero exposes recruiter actions and downloadable resume files", () => {
@@ -169,6 +169,28 @@ test("recruiter-facing content is compact and quick to scan", () => {
   assert.equal(articleCount("case-grid"), 3);
   assert.equal(articleCount("study-grid"), 3);
   assert.equal(articleCount("certification-grid"), 3);
+});
+
+test("current experience card exposes scannable field-service evidence", () => {
+  assert.match(html, /class="experience-evidence" aria-label="Current field-service evidence"/);
+  assert.match(html, /<strong>Equipment<\/strong>\s*<span>Ventilation \/ monitoring \/ ultrasound \/ DEXA<\/span>/);
+  assert.match(html, /<strong>Service actions<\/strong>\s*<span>PM \/ repair \/ installation \/ verification<\/span>/);
+  assert.match(html, /<strong>Records<\/strong>\s*<span>Simpro \/ service reports \/ equipment history<\/span>/);
+  assert.match(html, /<strong>Service settings<\/strong>\s*<span>Hospital \/ pharmacy \/ workshop support<\/span>/);
+  assert.match(script, /"\.experience-evidence div:nth-child\(1\) strong": "Equipment"/);
+  assert.match(script, /"\.experience-evidence div:nth-child\(1\) strong": "设备"/);
+  assert.match(
+    css,
+    /\.experience-evidence\s*{[\s\S]*?display:\s*grid;[\s\S]*?grid-template-columns:\s*repeat\(4,\s*minmax\(0,\s*1fr\)\);/
+  );
+  assert.match(
+    css,
+    /@media \(max-width:\s*760px\)[\s\S]*?\.experience-evidence\s*{[\s\S]*?grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\);/
+  );
+  assert.match(
+    css,
+    /@media \(max-width:\s*560px\)[\s\S]*?\.experience-evidence\s*{[\s\S]*?grid-template-columns:\s*1fr;/
+  );
 });
 
 test("hidden personal galleries are not loaded by the compact homepage", () => {

@@ -163,6 +163,14 @@ const translations = {
         "Biomedical Engineer | Nova Biomedical Pty Ltd",
       ".experience-timeline article:nth-child(1) .experience-meta":
         "Australia-wide field service / workshop support · Full-time, 38 hours per week",
+      ".experience-evidence div:nth-child(1) strong": "Equipment",
+      ".experience-evidence div:nth-child(1) span": "Ventilation / monitoring / ultrasound / DEXA",
+      ".experience-evidence div:nth-child(2) strong": "Service actions",
+      ".experience-evidence div:nth-child(2) span": "PM / repair / installation / verification",
+      ".experience-evidence div:nth-child(3) strong": "Records",
+      ".experience-evidence div:nth-child(3) span": "Simpro / service reports / equipment history",
+      ".experience-evidence div:nth-child(4) strong": "Service settings",
+      ".experience-evidence div:nth-child(4) span": "Hospital / pharmacy / workshop support",
       ".experience-timeline article:nth-child(1) li:nth-child(1)":
         "Perform field and workshop service for hospital and pharmacy medical equipment, including preventive maintenance, troubleshooting, repair, installation support, verification, and service follow-up.",
       ".experience-timeline article:nth-child(1) li:nth-child(2)":
@@ -340,6 +348,7 @@ const translations = {
       ".contact-email-action": { "aria-label": "Email Yihang Henry Yang" },
       ".contact-resume-link": { "aria-label": "Download Henry Yang resume as PDF" },
       ".contact-docx-link": { "aria-label": "Download Henry Yang resume as DOCX" },
+      ".experience-evidence": { "aria-label": "Current field-service evidence" },
     },
   },
   zh: {
@@ -469,6 +478,14 @@ const translations = {
         "Biomedical Engineer | Nova Biomedical Pty Ltd",
       ".experience-timeline article:nth-child(1) .experience-meta":
         "澳大利亚范围现场服务 / workshop support · 全职，每周 38 小时",
+      ".experience-evidence div:nth-child(1) strong": "设备",
+      ".experience-evidence div:nth-child(1) span": "Ventilation / monitoring / ultrasound / DEXA",
+      ".experience-evidence div:nth-child(2) strong": "服务动作",
+      ".experience-evidence div:nth-child(2) span": "PM / 维修 / 安装支持 / 验证",
+      ".experience-evidence div:nth-child(3) strong": "记录",
+      ".experience-evidence div:nth-child(3) span": "Simpro / service reports / equipment history",
+      ".experience-evidence div:nth-child(4) strong": "服务场景",
+      ".experience-evidence div:nth-child(4) span": "医院 / 药房 / workshop support",
       ".experience-timeline article:nth-child(1) li:nth-child(1)":
         "为医院和药房医疗设备提供现场和 workshop 服务，包括 preventive maintenance、故障排查、维修、安装支持、验证和后续跟进。",
       ".experience-timeline article:nth-child(1) li:nth-child(2)":
@@ -673,6 +690,7 @@ const translations = {
       ".contact-email-action": { "aria-label": "发邮件联系 Yihang Henry Yang" },
       ".contact-resume-link": { "aria-label": "下载 Henry Yang PDF 简历" },
       ".contact-docx-link": { "aria-label": "下载 Henry Yang DOCX 简历" },
+      ".experience-evidence": { "aria-label": "当前现场服务证据" },
     },
   },
 };

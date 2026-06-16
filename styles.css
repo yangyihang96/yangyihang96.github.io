@@ -925,6 +925,41 @@ main:focus {
   font-weight: 800;
 }
 
+.experience-evidence {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  overflow: hidden;
+  margin-top: 18px;
+  border: 1px solid rgba(19, 33, 31, 0.12);
+  border-radius: 8px;
+  background: rgba(19, 33, 31, 0.10);
+}
+
+.experience-evidence div {
+  min-width: 0;
+  padding: 13px 14px;
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.experience-evidence strong {
+  display: block;
+  color: var(--teal);
+  font-size: 11px;
+  font-weight: 850;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.experience-evidence span {
+  display: block;
+  margin-top: 7px;
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 760;
+  line-height: 1.24;
+}
+
 .experience-timeline ul {
   display: grid;
   gap: 10px;
@@ -1793,6 +1828,10 @@ main:focus {
     white-space: nowrap;
   }
 
+  .experience-evidence {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .proof-heading {
     grid-template-columns: 1fr;
     gap: 10px;
@@ -1863,6 +1902,10 @@ main:focus {
 
   .button {
     width: 100%;
+  }
+
+  .experience-evidence {
+    grid-template-columns: 1fr;
   }
 
   .contact-actions {
