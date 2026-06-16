@@ -375,29 +375,10 @@ const translations = {
       ".certification-grid article:nth-child(3) .training-evidence dt:nth-of-type(3)": "Evidence",
       ".certification-grid article:nth-child(3) .training-evidence dd:nth-of-type(3)":
         "Original certificates available for formal verification only",
-      "#life .section-kicker": "Life",
-      "#life-title": "Outside work, I keep practicing how to organize complex things.",
+      "#life .section-kicker": "Professional Rhythm",
+      "#life-title": "The personal note is kept short and work-adjacent.",
       ".life-section .story-content > p:not(.section-kicker)":
-        "Outside work, I keep the personal section deliberately short: enough to show rhythm and curiosity, not enough to distract from the engineering profile.",
-      ".interests-section .section-kicker": "Interests",
-      "#interests-title": "The things I enjoy also shape how I think.",
-      ".interests-section .section-intro":
-        "Outside work, I spend time on interests that keep me curious, organized, and observant. They are personal, but they also support how I learn and how I build clearer systems.",
-      ".interest-grid article:nth-child(1) h3": "AI tools and personal systems",
-      ".interest-grid article:nth-child(1) p":
-        "I like experimenting with AI tools for notes, planning, bilingual writing, document structure, and personal workflow improvement.",
-      ".interest-grid article:nth-child(2) h3": "Photography and visual notes",
-      ".interest-grid article:nth-child(2) p":
-        "Photos help me remember places, details, layouts, and moods. I enjoy using images as a way to record life more clearly.",
-      ".interest-grid article:nth-child(3) h3": "Travel and city walks",
-      ".interest-grid article:nth-child(3) p":
-        "I like planning routes, comparing places, walking through different city areas, and understanding how daily life changes from place to place.",
-      ".interest-grid article:nth-child(4) h3": "Reading and long-form learning",
-      ".interest-grid article:nth-child(4) p":
-        "I follow engineering, technology, medical devices, AI, business, and practical knowledge that can slowly improve judgement.",
-      ".interest-grid article:nth-child(5) h3": "Food, coffee, and daily rhythm",
-      ".interest-grid article:nth-child(5) p":
-        "Simple routines matter to me: a good meal, a coffee, a clean desk, and a well-planned day make work and life feel more stable.",
+        "Outside work, I keep the personal section deliberately short: enough to show learning rhythm and organization habits without distracting from the engineering profile.",
       "#contact .section-kicker": "Contact",
       "#contact-title": "You can reach me here.",
       ".contact-inner > p:not(.section-kicker)":
@@ -433,11 +414,11 @@ const translations = {
     },
     html: {
       ".life-notes p:nth-child(1)":
-        "<strong>Sydney life</strong> Building a sustainable rhythm across work, commuting, study, and daily planning.",
+        "<strong>Structured weeks</strong> Keeping work, commuting, study, and admin organized so field-service days stay reliable.",
       ".life-notes p:nth-child(2)":
-        "<strong>Continuous learning</strong> Following medical technology, engineering tools, AI tools, and practical ways to improve work.",
+        "<strong>Continuous learning</strong> Following medical technology, engineering tools, AI tools, and practical ways to improve service work.",
       ".life-notes p:nth-child(3)":
-        "<strong>Organized records</strong> Turning scattered information into reusable structure so future work is easier.",
+        "<strong>Record discipline</strong> Turning scattered information into reusable notes, checklists, and handover structure.",
     },
     attrs: {
       ".nav-resume-link": { "aria-label": "Download Henry Yang resume PDF" },
@@ -804,29 +785,10 @@ const translations = {
       ".certification-grid article:nth-child(3) .training-evidence dt:nth-of-type(3)": "证据",
       ".certification-grid article:nth-child(3) .training-evidence dd:nth-of-type(3)":
         "证书原件只在正式核验时提供",
-      "#life .section-kicker": "生活",
-      "#life-title": "生活里，我也喜欢把复杂事情理顺。",
+      "#life .section-kicker": "职业节奏",
+      "#life-title": "个人内容保持简短，并贴近工作习惯。",
       ".life-section .story-content > p:not(.section-kicker)":
-        "生活部分刻意保持简短：展示一点节奏和好奇心，但不抢走工程履历的主线。",
-      ".interests-section .section-kicker": "兴趣爱好",
-      "#interests-title": "我喜欢的事情，很多也在影响我的思考方式。",
-      ".interests-section .section-intro":
-        "我的兴趣不算特别夸张，更多是一些能让我保持好奇、观察细节、整理信息和维持生活节奏的事情。它们看起来是生活爱好，但也会反过来影响我学习和工作的方式。",
-      ".interest-grid article:nth-child(1) h3": "AI 工具和个人系统",
-      ".interest-grid article:nth-child(1) p":
-        "我喜欢尝试 AI 工具，用它们整理笔记、做计划、起草中英文内容、梳理文档结构，也优化自己的日常工作流。",
-      ".interest-grid article:nth-child(2) h3": "摄影和视觉记录",
-      ".interest-grid article:nth-child(2) p":
-        "我会用照片记录地点、细节、空间和当时的状态。对我来说，照片不是只为了好看，也是一种整理记忆的方式。",
-      ".interest-grid article:nth-child(3) h3": "旅行和城市观察",
-      ".interest-grid article:nth-child(3) p":
-        "我喜欢规划路线、比较不同地方，也喜欢走进一个城市的日常区域，看不同地方的人怎么生活。",
-      ".interest-grid article:nth-child(4) h3": "阅读和长期学习",
-      ".interest-grid article:nth-child(4) p":
-        "我会持续关注工程、科技、医疗设备、AI、商业和实用知识。很多内容不会马上用上，但会慢慢改变判断方式。",
-      ".interest-grid article:nth-child(5) h3": "食物、咖啡和日常节奏",
-      ".interest-grid article:nth-child(5) p":
-        "我也重视一些简单的日常：好好吃饭、喝杯咖啡、整理桌面、安排好一天，这些会让工作和生活都更稳定。",
+        "个人内容刻意保持简短：展示学习节奏和组织习惯，但不抢走工程履历的主线。",
       "#capabilities .section-kicker": "能力矩阵",
       "#capabilities-title": "我能在服务环境里承担什么。",
       "#capabilities .section-intro":
@@ -890,11 +852,11 @@ const translations = {
     },
     html: {
       ".life-notes p:nth-child(1)":
-        "<strong>悉尼生活</strong> 在工作、通勤、学习和日常安排之间，建立自己的节奏。",
+        "<strong>结构化安排</strong> 把工作、通勤、学习和个人事务安排清楚，让现场服务日保持可靠。",
       ".life-notes p:nth-child(2)":
-        "<strong>持续学习</strong> 关注医疗技术、工程工具、AI 工具和真正能改善工作的做法。",
+        "<strong>持续学习</strong> 关注医疗技术、工程工具、AI 工具和能改善服务工作的实际做法。",
       ".life-notes p:nth-child(3)":
-        "<strong>记录整理</strong> 喜欢把零散信息变成能复用的结构，让未来的自己少走弯路。",
+        "<strong>记录纪律</strong> 把零散信息整理成可复用的笔记、清单和交接结构。",
     },
     attrs: {
       ".nav-resume-link": { "aria-label": "下载 Henry Yang PDF 简历" },

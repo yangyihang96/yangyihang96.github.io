@@ -58,8 +58,8 @@ test("site uses HTTPS canonical and sharing metadata", () => {
 });
 
 test("stylesheet and script use the current cache-busting version", () => {
-  assert.match(html, /href="styles\.css\?v=final-contact-1"/);
-  assert.match(html, /src="script\.js\?v=final-contact-1"/);
+  assert.match(html, /href="styles\.css\?v=professional-rhythm-1"/);
+  assert.match(html, /src="script\.js\?v=professional-rhythm-1"/);
 });
 
 test("hero exposes recruiter actions and downloadable resume files", () => {
@@ -269,7 +269,7 @@ test("compact homepage prioritizes real work experience over supporting preamble
   assert.ok(experienceIndex < overviewIndex, "experience should appear before the duplicate review path");
   assert.ok(experienceIndex < workIndex, "experience should appear before the narrative work preamble");
 
-  assert.match(css, /\.resume-style\.resume-compact \.work-section,\s*\.resume-style\.resume-compact \.overview-section,[\s\S]*?display:\s*none;/);
+  assert.match(css, /\.resume-style\.resume-compact \.work-section,\s*\.resume-style\.resume-compact \.overview-section\s*{[\s\S]*?display:\s*none;/);
   assert.doesNotMatch(html, /Life Rhythm/);
   assert.doesNotMatch(html, /This site answers five practical questions first/);
 });
@@ -426,12 +426,36 @@ test("hidden personal galleries are not loaded by the compact homepage", () => {
   assert.ok(!fs.existsSync(path.join(root, "assets/personal-gallery")), "personal-gallery should not be published");
 });
 
+test("optional personal section stays professional and compact", () => {
+  const publicSource = `${html}\n${script}`;
+
+  assert.match(html, /<section id="life" class="story-section life-section reveal" aria-labelledby="life-title">/);
+  assert.match(html, /<p class="section-kicker">Professional Rhythm<\/p>/);
+  assert.match(html, /<h2 id="life-title">The personal note is kept short and work-adjacent\.<\/h2>/);
+  assert.match(html, /<p><strong>Structured weeks<\/strong> Keeping work, commuting, study, and admin organized so field-service days stay reliable\.<\/p>/);
+  assert.match(html, /<p><strong>Continuous learning<\/strong> Following medical technology, engineering tools, AI tools, and practical ways to improve service work\.<\/p>/);
+  assert.match(html, /<p><strong>Record discipline<\/strong> Turning scattered information into reusable notes, checklists, and handover structure\.<\/p>/);
+  assert.match(script, /"#life \.section-kicker": "Professional Rhythm"/);
+  assert.match(script, /"#life \.section-kicker": "职业节奏"/);
+  assert.match(script, /"#life-title": "The personal note is kept short and work-adjacent\."/);
+  assert.match(script, /"#life-title": "个人内容保持简短，并贴近工作习惯。"/);
+  assert.match(css, /\.resume-style\.resume-compact \.life-section\s*{[\s\S]*?grid-template-columns:\s*minmax\(460px,\s*0\.95fr\) minmax\(360px,\s*1\.05fr\);/);
+  assert.match(css, /\.resume-style\.resume-compact \.life-section \.story-content\s*{[\s\S]*?padding:\s*clamp\(42px,\s*4vw,\s*58px\);/);
+  assert.match(css, /@media \(max-width:\s*760px\)[\s\S]*?\.resume-style\.resume-compact \.life-section\s*{[\s\S]*?min-height:\s*0;/);
+  assert.match(css, /@media \(max-width:\s*760px\)[\s\S]*?\.resume-style\.resume-compact \.life-section \.story-media\s*{[\s\S]*?min-height:\s*240px;[\s\S]*?max-height:\s*260px;/);
+  assert.match(css, /@media \(max-width:\s*760px\)[\s\S]*?\.resume-style\.resume-compact \.life-section \.story-content\s*{[\s\S]*?padding:\s*38px 24px;/);
+  assert.match(css, /@media \(max-width:\s*760px\)[\s\S]*?\.resume-style\.resume-compact \.life-notes\s*{[\s\S]*?gap:\s*10px;[\s\S]*?margin-top:\s*24px;/);
+  assert.doesNotMatch(html, /<section id="interests"/);
+  assert.doesNotMatch(publicSource, /Food, coffee|Travel and city walks|The things I enjoy|Interests|兴趣爱好|食物、咖啡|旅行和城市观察/);
+  assert.doesNotMatch(css, /\.resume-style\.resume-compact \.interests-section/);
+});
+
 test("removed personal gallery copy is not shipped in public source", () => {
   const publicSource = `${html}\n${css}\n${script}`;
 
   assert.doesNotMatch(publicSource, /Personal Moments|Family Moments|family photos|家庭照片|生活合影/);
-  assert.doesNotMatch(publicSource, /moments-section|family-section|gallery-section/);
-  assert.doesNotMatch(publicSource, /moments-grid|family-grid|gallery-grid/);
+  assert.doesNotMatch(publicSource, /moments-section|family-section|gallery-section|interests-section/);
+  assert.doesNotMatch(publicSource, /moments-grid|family-grid|gallery-grid|interest-grid/);
 });
 
 test("published visual assets are referenced by the site", () => {
