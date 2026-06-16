@@ -90,6 +90,17 @@ const translations = {
         "Professional experience across field service, workshop support, and healthcare records.",
       ".experience-section .section-intro":
         "The roles below summarize public-safe work history without customer names, serial numbers, internal documents, or private site details.",
+      ".experience-summary > p":
+        "Biomedical field service engineer with full-time experience across hospital and pharmacy medical equipment service, preventive maintenance, troubleshooting, repair, verification, and service documentation.",
+      ".experience-summary-grid div:nth-child(1) strong": "Service loop",
+      ".experience-summary-grid div:nth-child(1) span":
+        "Cover equipment preparation, on-site or workshop service, installation support, functional checks, safety-aware verification, and follow-up.",
+      ".experience-summary-grid div:nth-child(2) strong": "Equipment range",
+      ".experience-summary-grid div:nth-child(2) span":
+        "Work across ventilation, patient monitoring, ultrasound, DEXA, pharmacy automation, and general biomedical equipment.",
+      ".experience-summary-grid div:nth-child(3) strong": "Documentation",
+      ".experience-summary-grid div:nth-child(3) span":
+        "Maintain Simpro work orders, service reports, serial details, equipment history, and customer updates so technical decisions remain traceable.",
       ".experience-timeline article:nth-child(1) span": "Jul 2023 - Present",
       ".experience-timeline article:nth-child(1) h3":
         "Biomedical Engineer | Nova Biomedical Pty Ltd",
@@ -476,6 +487,17 @@ const translations = {
       "#experience-title": "正式履历覆盖现场服务、workshop support 和医疗记录相关工作。",
       ".experience-section .section-intro":
         "下面只放适合公开展示的履历摘要，不公开客户名称、序列号、内部文件或具体现场细节。",
+      ".experience-summary > p":
+        "我目前从事 biomedical field service 工作，服务对象覆盖医院和药房相关医疗设备，工作内容包括预防性维护、故障排查、维修、安装支持、验证测试和服务记录。",
+      ".experience-summary-grid div:nth-child(1) strong": "服务闭环",
+      ".experience-summary-grid div:nth-child(1) span":
+        "覆盖设备准备、现场或 workshop 服务、安装支持、功能检查、安全意识下的验证和后续跟进。",
+      ".experience-summary-grid div:nth-child(2) strong": "设备范围",
+      ".experience-summary-grid div:nth-child(2) span":
+        "接触 ventilation、patient monitoring、ultrasound、DEXA、pharmacy automation 和通用 biomedical equipment。",
+      ".experience-summary-grid div:nth-child(3) strong": "记录能力",
+      ".experience-summary-grid div:nth-child(3) span":
+        "维护 Simpro 工单、service reports、serial details、equipment history 和 customer updates，让技术判断可以追踪和交接。",
       ".experience-timeline article:nth-child(1) span": "2023 年 7 月 - 至今",
       ".experience-timeline article:nth-child(1) h3":
         "Biomedical Engineer | Nova Biomedical Pty Ltd",
