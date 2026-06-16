@@ -101,7 +101,7 @@ const translations = {
       ".experience-summary-grid div:nth-child(3) strong": "Documentation",
       ".experience-summary-grid div:nth-child(3) span":
         "Maintain Simpro work orders, service reports, serial details, equipment history, and customer updates so technical decisions remain traceable.",
-      ".experience-timeline article:nth-child(1) span": "Jul 2023 - Present",
+      ".experience-timeline article:nth-child(1) .experience-date": "Jul 2023 - Present",
       ".experience-timeline article:nth-child(1) h3":
         "Biomedical Engineer | Nova Biomedical Pty Ltd",
       ".experience-timeline article:nth-child(1) .experience-meta":
@@ -112,7 +112,7 @@ const translations = {
         "Support ventilation, patient monitoring, ultrasound, DEXA, pharmacy automation, and general biomedical equipment work across service and documentation workflows.",
       ".experience-timeline article:nth-child(1) li:nth-child(3)":
         "Maintain Simpro work orders, service reports, serial details, equipment history, and customer updates for biomedical teams and internal engineers.",
-      ".experience-timeline article:nth-child(2) span": "Dec 2019 - Feb 2020",
+      ".experience-timeline article:nth-child(2) .experience-date": "Dec 2019 - Feb 2020",
       ".experience-timeline article:nth-child(2) h3":
         "Pharmacovigilance Department Assistant | Lundbeck Beijing",
       ".experience-timeline article:nth-child(2) .experience-meta":
@@ -498,7 +498,7 @@ const translations = {
       ".experience-summary-grid div:nth-child(3) strong": "记录能力",
       ".experience-summary-grid div:nth-child(3) span":
         "维护 Simpro 工单、service reports、serial details、equipment history 和 customer updates，让技术判断可以追踪和交接。",
-      ".experience-timeline article:nth-child(1) span": "2023 年 7 月 - 至今",
+      ".experience-timeline article:nth-child(1) .experience-date": "2023 年 7 月 - 至今",
       ".experience-timeline article:nth-child(1) h3":
         "Biomedical Engineer | Nova Biomedical Pty Ltd",
       ".experience-timeline article:nth-child(1) .experience-meta":
@@ -509,7 +509,7 @@ const translations = {
         "服务范围覆盖 ventilation、patient monitoring、ultrasound、DEXA、pharmacy automation 和通用 biomedical equipment，并配套完成记录流程。",
       ".experience-timeline article:nth-child(1) li:nth-child(3)":
         "维护 Simpro 工单、service reports、serial details、equipment history 和 customer updates，支持 biomedical teams 和内部工程师交接。",
-      ".experience-timeline article:nth-child(2) span": "2019 年 12 月 - 2020 年 2 月",
+      ".experience-timeline article:nth-child(2) .experience-date": "2019 年 12 月 - 2020 年 2 月",
       ".experience-timeline article:nth-child(2) h3":
         "药物警戒部门助理 | Lundbeck Beijing",
       ".experience-timeline article:nth-child(2) .experience-meta":
