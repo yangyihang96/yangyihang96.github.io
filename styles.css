@@ -1169,32 +1169,6 @@ main:focus {
   line-height: 1.28;
 }
 
-.case-grid ul {
-  display: grid;
-  gap: 9px;
-  margin: 20px 0 0;
-  padding: 24px 0 0;
-  list-style: none;
-}
-
-.case-grid li {
-  position: relative;
-  padding-left: 18px;
-  color: var(--muted);
-  font-weight: 700;
-}
-
-.case-grid li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.72em;
-  width: 7px;
-  height: 7px;
-  border-radius: 999px;
-  background: var(--teal);
-}
-
 .process-section {
   padding: 96px 0;
   background: var(--paper);

@@ -58,8 +58,8 @@ test("site uses HTTPS canonical and sharing metadata", () => {
 });
 
 test("stylesheet and script use the current cache-busting version", () => {
-  assert.match(html, /href="styles\.css\?v=tablet-hero-1"/);
-  assert.match(html, /src="script\.js\?v=tablet-hero-1"/);
+  assert.match(html, /href="styles\.css\?v=case-density-1"/);
+  assert.match(html, /src="script\.js\?v=case-density-1"/);
 });
 
 test("hero exposes recruiter actions and downloadable resume files", () => {
@@ -302,6 +302,23 @@ test("case notes expose scenario action verification and handover outcomes", () 
   assert.match(script, /"\.case-grid article:nth-child\(1\) \.case-outcome dt:nth-of-type\(1\)": "场景"/);
   assert.match(css, /\.case-outcome\s*{[\s\S]*?display:\s*grid;[\s\S]*?grid-template-columns:\s*auto minmax\(0,\s*1fr\);/);
   assert.match(css, /@media \(max-width:\s*560px\)[\s\S]*?\.case-outcome\s*{[\s\S]*?grid-template-columns:\s*1fr;/);
+});
+
+test("case notes avoid duplicate bullet summaries after structured outcomes", () => {
+  const caseGridStart = html.indexOf('<div class="case-grid">');
+  const caseGridEnd = html.indexOf("</section>", caseGridStart);
+  assert.notEqual(caseGridStart, -1, "missing case grid");
+  assert.notEqual(caseGridEnd, -1, "missing case section end");
+
+  const caseGridSource = html.slice(caseGridStart, caseGridEnd);
+  assert.doesNotMatch(caseGridSource, /<ul>/);
+  assert.doesNotMatch(caseGridSource, /<li>/);
+
+  const publicSource = `${html}\n${script}`;
+  assert.doesNotMatch(publicSource, /Field condition check|Functional and performance testing|Service record close-out/);
+  assert.doesNotMatch(publicSource, /Fault symptom review|Test step documentation|Post-repair verification/);
+  assert.doesNotMatch(publicSource, /Equipment history cleanup|Work order alignment|Clear customer updates/);
+  assert.doesNotMatch(publicSource, /现场状态确认|功能与性能检查|故障现象复核|设备历史整理/);
 });
 
 test("training section maps certificates to equipment scope field work and verification evidence", () => {

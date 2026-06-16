@@ -250,9 +250,6 @@ const translations = {
       ".case-grid article:nth-child(1) .case-outcome dt:nth-of-type(4)": "Handover",
       ".case-grid article:nth-child(1) .case-outcome dd:nth-of-type(4)":
         "Clear next-use status for biomedical or site teams",
-      ".case-grid article:nth-child(1) li:nth-child(1)": "Field condition check",
-      ".case-grid article:nth-child(1) li:nth-child(2)": "Functional and performance testing",
-      ".case-grid article:nth-child(1) li:nth-child(3)": "Service record close-out",
       ".case-grid article:nth-child(2) span": "02 / Fault diagnosis",
       ".case-grid article:nth-child(2) h3": "Turning user feedback into a verifiable judgement",
       ".case-grid article:nth-child(2) p":
@@ -269,9 +266,6 @@ const translations = {
       ".case-grid article:nth-child(2) .case-outcome dt:nth-of-type(4)": "Handover",
       ".case-grid article:nth-child(2) .case-outcome dd:nth-of-type(4)":
         "Traceable finding for the next service decision",
-      ".case-grid article:nth-child(2) li:nth-child(1)": "Fault symptom review",
-      ".case-grid article:nth-child(2) li:nth-child(2)": "Test step documentation",
-      ".case-grid article:nth-child(2) li:nth-child(3)": "Post-repair verification",
       ".case-grid article:nth-child(3) span": "03 / Documentation",
       ".case-grid article:nth-child(3) h3": "Keeping service information reusable",
       ".case-grid article:nth-child(3) p":
@@ -288,9 +282,6 @@ const translations = {
       ".case-grid article:nth-child(3) .case-outcome dt:nth-of-type(4)": "Handover",
       ".case-grid article:nth-child(3) .case-outcome dd:nth-of-type(4)":
         "Clear record for biomedical teams and internal engineers",
-      ".case-grid article:nth-child(3) li:nth-child(1)": "Equipment history cleanup",
-      ".case-grid article:nth-child(3) li:nth-child(2)": "Work order alignment",
-      ".case-grid article:nth-child(3) li:nth-child(3)": "Clear customer updates",
       "#process .section-kicker": "Process",
       "#process-title": "I use a clear process to handle field problems.",
       "#process .section-intro":
@@ -675,9 +666,6 @@ const translations = {
       ".case-grid article:nth-child(1) .case-outcome dt:nth-of-type(4)": "交付",
       ".case-grid article:nth-child(1) .case-outcome dd:nth-of-type(4)":
         "给 biomedical 或现场团队清楚的下一次使用状态",
-      ".case-grid article:nth-child(1) li:nth-child(1)": "现场状态确认",
-      ".case-grid article:nth-child(1) li:nth-child(2)": "功能与性能检查",
-      ".case-grid article:nth-child(1) li:nth-child(3)": "服务记录 close-out",
       ".case-grid article:nth-child(2) span": "02 / 故障诊断",
       ".case-grid article:nth-child(2) h3": "先把故障描述变成可验证的问题",
       ".case-grid article:nth-child(2) p":
@@ -694,9 +682,6 @@ const translations = {
       ".case-grid article:nth-child(2) .case-outcome dt:nth-of-type(4)": "交付",
       ".case-grid article:nth-child(2) .case-outcome dd:nth-of-type(4)":
         "给下一次服务决策可追踪的判断",
-      ".case-grid article:nth-child(2) li:nth-child(1)": "故障现象复核",
-      ".case-grid article:nth-child(2) li:nth-child(2)": "测试步骤记录",
-      ".case-grid article:nth-child(2) li:nth-child(3)": "维修后验证",
       ".case-grid article:nth-child(3) span": "03 / 服务记录",
       ".case-grid article:nth-child(3) h3": "记录写清楚，后面才接得住",
       ".case-grid article:nth-child(3) p":
@@ -713,9 +698,6 @@ const translations = {
       ".case-grid article:nth-child(3) .case-outcome dt:nth-of-type(4)": "交付",
       ".case-grid article:nth-child(3) .case-outcome dd:nth-of-type(4)":
         "给 biomedical team 和内部工程师清楚记录",
-      ".case-grid article:nth-child(3) li:nth-child(1)": "设备历史整理",
-      ".case-grid article:nth-child(3) li:nth-child(2)": "工单信息对齐",
-      ".case-grid article:nth-child(3) li:nth-child(3)": "客户更新清晰",
       "#process .section-kicker": "流程",
       "#process-title": "我的处理顺序：先看清，再判断，再验证，再记录。",
       "#process .section-intro":
