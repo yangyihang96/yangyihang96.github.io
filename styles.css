@@ -2557,6 +2557,21 @@ body.resume-style {
     margin-top: 14px;
   }
 
+  .resume-style.resume-compact .hero-action-path {
+    gap: 4px;
+    margin-top: 10px;
+  }
+
+  .resume-style.resume-compact .hero-action-path div {
+    grid-template-columns: 1fr;
+    padding: 6px 8px;
+    text-align: center;
+  }
+
+  .resume-style.resume-compact .hero-action-path span {
+    display: none;
+  }
+
   .resume-style.resume-compact .resume-link {
     grid-column: auto;
   }

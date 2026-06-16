@@ -58,8 +58,8 @@ test("site uses HTTPS canonical and sharing metadata", () => {
 });
 
 test("stylesheet and script use the current cache-busting version", () => {
-  assert.match(html, /href="styles\.css\?v=clean-public-source-1"/);
-  assert.match(html, /src="script\.js\?v=clean-public-source-1"/);
+  assert.match(html, /href="styles\.css\?v=responsive-hero-image-1"/);
+  assert.match(html, /src="script\.js\?v=responsive-hero-image-1"/);
 });
 
 test("hero exposes recruiter actions and downloadable resume files", () => {
@@ -478,10 +478,26 @@ test("published visual assets are referenced by the site", () => {
 });
 
 test("site images declare stable dimensions", () => {
-  assert.match(html, /src="assets\/yihang-professional-headshot-formal-4k\.jpg"[^>]*width="1407"[^>]*height="2200"/);
+  assert.match(html, /src="assets\/yihang-professional-headshot-720\.jpg"[^>]*width="720"[^>]*height="1125"/);
   assert.match(html, /src="assets\/logo-nova-biomedical\.jpg"[^>]*width="182"[^>]*height="108"/);
   assert.match(html, /src="assets\/logo-lundbeck\.svg"[^>]*width="485"[^>]*height="206"/);
   assert.match(html, /src="assets\/study-life\.jpg"[^>]*width="1448"[^>]*height="1086"/);
+});
+
+test("hero portrait serves responsive image candidates", () => {
+  const sourceOriginal = path.join(root, "assets/yihang-professional-headshot-formal-4k.jpg");
+  const source720 = path.join(root, "assets/yihang-professional-headshot-720.jpg");
+  const source420 = path.join(root, "assets/yihang-professional-headshot-420.jpg");
+
+  assert.match(
+    html,
+    /<img src="assets\/yihang-professional-headshot-720\.jpg"[^>]*srcset="assets\/yihang-professional-headshot-420\.jpg 420w, assets\/yihang-professional-headshot-720\.jpg 720w, assets\/yihang-professional-headshot-formal-4k\.jpg 1407w"[^>]*sizes="\(max-width: 560px\) 64px, \(max-width: 920px\) 112px, 300px"[^>]*fetchpriority="high"[^>]*decoding="async"/
+  );
+  assert.ok(fs.existsSync(source720), "720px hero portrait candidate should exist");
+  assert.ok(fs.existsSync(source420), "420px hero portrait candidate should exist");
+  assert.ok(fs.statSync(source720).size < fs.statSync(sourceOriginal).size, "720px candidate should be lighter than the source portrait");
+  assert.ok(fs.statSync(source420).size < fs.statSync(source720).size, "420px candidate should be lighter than the 720px candidate");
+  assert.match(css, /\.resume-style\.resume-compact \.hero-profile-card img\s*{[\s\S]*?width:\s*100%;[\s\S]*?height:\s*auto;/);
 });
 
 test("hero portrait stays visually constrained after image dimensions load", () => {
@@ -550,6 +566,18 @@ test("mobile compact hero keeps recruiter actions inside a short first screen", 
   assert.match(
     css,
     /@media \(max-width:\s*560px\)[\s\S]*?\.resume-style\.resume-compact \.hero-actions\s*{[\s\S]*?grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\);[\s\S]*?gap:\s*8px;/
+  );
+  assert.match(
+    css,
+    /@media \(max-width:\s*560px\)[\s\S]*?\.resume-style\.resume-compact \.hero-action-path\s*{[\s\S]*?gap:\s*4px;[\s\S]*?margin-top:\s*10px;/
+  );
+  assert.match(
+    css,
+    /@media \(max-width:\s*560px\)[\s\S]*?\.resume-style\.resume-compact \.hero-action-path div\s*{[\s\S]*?padding:\s*6px 8px;/
+  );
+  assert.match(
+    css,
+    /@media \(max-width:\s*560px\)[\s\S]*?\.resume-style\.resume-compact \.hero-action-path span\s*{[\s\S]*?display:\s*none;/
   );
   assert.match(
     css,
