@@ -59,8 +59,8 @@ test("site uses HTTPS canonical and sharing metadata", () => {
 });
 
 test("stylesheet and script use the current cache-busting version", () => {
-  assert.match(html, /href="styles\.css\?v=contact-copy-email-1"/);
-  assert.match(html, /src="script\.js\?v=contact-copy-email-1"/);
+  assert.match(html, /href="styles\.css\?v=short-hero-1"/);
+  assert.match(html, /src="script\.js\?v=short-hero-1"/);
 });
 
 test("hero exposes recruiter actions and downloadable resume files", () => {
@@ -559,7 +559,7 @@ test("hero portrait stays visually constrained after image dimensions load", () 
   );
 });
 
-test("desktop compact hero leaves the next recruiter section visible on short screens", () => {
+test("desktop compact hero keeps first-screen recruiter actions visible on short desktop screens", () => {
   assert.match(
     css,
     /\.resume-style\.resume-compact \.hero-copy\s*{[\s\S]*?grid-template-columns:\s*minmax\(0,\s*1fr\) minmax\(240px,\s*300px\);[\s\S]*?padding:\s*88px 0 26px;/
@@ -575,6 +575,18 @@ test("desktop compact hero leaves the next recruiter section visible on short sc
   assert.match(
     css,
     /\.resume-style\.resume-compact \.hero-card-note\s*{[\s\S]*?font-size:\s*13px;[\s\S]*?line-height:\s*1.42;/
+  );
+  assert.match(
+    css,
+    /@media \(max-height:\s*720px\) and \(min-width:\s*921px\)\s*{[\s\S]*?\.resume-style\.resume-compact \.hero-copy\s*{[\s\S]*?grid-template-columns:\s*minmax\(0,\s*1fr\) minmax\(220px,\s*240px\);[\s\S]*?padding:\s*76px 0 18px;/
+  );
+  assert.match(
+    css,
+    /@media \(max-height:\s*720px\) and \(min-width:\s*921px\)\s*{[\s\S]*?\.resume-style\.resume-compact \.hero-card-note\s*{[\s\S]*?-webkit-line-clamp:\s*2;[\s\S]*?overflow:\s*hidden;/
+  );
+  assert.match(
+    css,
+    /@media \(max-height:\s*720px\) and \(min-width:\s*921px\)\s*{[\s\S]*?\.resume-style\.resume-compact \.hero-action-path div\s*{[\s\S]*?padding:\s*8px 10px;/
   );
 });
 
