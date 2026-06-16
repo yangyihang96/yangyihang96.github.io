@@ -27,13 +27,14 @@ const translations = {
       ".hero-meta div:nth-child(3) dd": "English / Mandarin",
       ".hero-meta div:nth-child(4) dt": "Availability",
       ".hero-meta div:nth-child(4) dd": "Sydney field travel",
-      ".resume-link": "Download Resume",
+      ".resume-link": "Download PDF",
+      ".resume-docx-link": "Download DOCX",
       ".email-action": "Email Me",
       ".github-action": "GitHub",
       ".hero-profile-card .hero-card-kicker": "Current profile",
       ".hero-profile-card strong": "Biomedical field service engineer",
       ".hero-profile-card .hero-card-note":
-        "Resume available now. Credentials and employment-check documents can be provided privately when required.",
+        "Resume PDF and DOCX available. Credentials and employment-check documents can be provided privately when required.",
       ".fit-strip .section-kicker": "Best fit for",
       "#fit-title": "Biomedical field service roles that need practical device judgement.",
       ".fit-strip .section-intro":
@@ -327,13 +328,14 @@ const translations = {
       ".hero-meta div:nth-child(3) dd": "英文 / 中文",
       ".hero-meta div:nth-child(4) dt": "可支持",
       ".hero-meta div:nth-child(4) dd": "悉尼现场出行",
-      ".resume-link": "下载简历",
+      ".resume-link": "下载 PDF 简历",
+      ".resume-docx-link": "下载 DOCX",
       ".email-action": "发邮件联系我",
       ".github-action": "GitHub",
       ".hero-profile-card .hero-card-kicker": "当前身份",
       ".hero-profile-card strong": "生物医学现场服务工程师",
       ".hero-profile-card .hero-card-note":
-        "简历可直接下载。学历、培训证书和雇佣检查材料可在正式流程中私下提供。",
+        "PDF 和 DOCX 简历都可下载。学历、培训证书和雇佣检查材料可在正式流程中私下提供。",
       ".fit-strip .section-kicker": "适合岗位",
       "#fit-title": "需要现场判断和设备服务能力的 biomedical field service 岗位。",
       ".fit-strip .section-intro":

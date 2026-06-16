@@ -33,16 +33,19 @@ test("site uses HTTPS canonical and sharing metadata", () => {
 });
 
 test("stylesheet and script use the current cache-busting version", () => {
-  assert.match(html, /href="styles\.css\?v=source-cleanup-1"/);
-  assert.match(html, /src="script\.js\?v=source-cleanup-1"/);
+  assert.match(html, /href="styles\.css\?v=resume-pdf-1"/);
+  assert.match(html, /src="script\.js\?v=resume-pdf-1"/);
 });
 
-test("hero exposes recruiter actions and downloadable resume file", () => {
-  assert.match(html, /Download Resume/);
+test("hero exposes recruiter actions and downloadable resume files", () => {
+  assert.match(html, /Download PDF/);
+  assert.match(html, /Download DOCX/);
+  assert.match(html, /href="assets\/Henry_Yang_Biomedical_Engineer_Resume\.pdf"/);
   assert.match(html, /href="assets\/Henry_Yang_Biomedical_Engineer_Resume\.docx"/);
-  assert.match(html, /download/);
+  assert.match(html, /Resume PDF and DOCX available/);
   assert.match(html, /github\.com\/yangyihang96/);
   assert.ok(fs.existsSync(path.join(root, "assets/Henry_Yang_Biomedical_Engineer_Resume.docx")));
+  assert.ok(fs.existsSync(path.join(root, "assets/Henry_Yang_Biomedical_Engineer_Resume.pdf")));
 });
 
 test("compact homepage keeps capability matrix visible", () => {
@@ -97,6 +100,14 @@ test("published visual assets are referenced by the site", () => {
   assetFiles.forEach((file) => {
     assert.match(publicSource, new RegExp(`assets/${file.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}`));
   });
+});
+
+test("site images declare stable dimensions", () => {
+  assert.match(html, /src="assets\/yihang-professional-headshot-formal-4k\.jpg"[^>]*width="1407"[^>]*height="2200"/);
+  assert.match(html, /src="assets\/work-bench\.jpg"[^>]*width="1448"[^>]*height="1086"/);
+  assert.match(html, /src="assets\/logo-nova-biomedical\.jpg"[^>]*width="182"[^>]*height="108"/);
+  assert.match(html, /src="assets\/logo-lundbeck\.svg"[^>]*width="485"[^>]*height="206"/);
+  assert.match(html, /src="assets\/study-life\.jpg"[^>]*width="1448"[^>]*height="1086"/);
 });
 
 test("person structured data is present and parseable", () => {
