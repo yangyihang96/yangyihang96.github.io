@@ -20,9 +20,14 @@ const articleCount = (className) => {
 };
 
 test("site uses HTTPS canonical and sharing metadata", () => {
+  assert.match(html, /<meta name="robots" content="index, follow">/);
   assert.match(html, /<link rel="canonical" href="https:\/\/yangyihang96\.com\/">/);
   assert.match(html, /property="og:url" content="https:\/\/yangyihang96\.com\/"/);
   assert.match(html, /property="og:image" content="https:\/\/yangyihang96\.com\/assets\//);
+  assert.match(html, /property="og:image:width" content="2200"/);
+  assert.match(html, /property="og:image:height" content="1238"/);
+  assert.match(html, /property="og:image:alt" content="Professional portrait and biomedical service profile for Yihang Yang"/);
+  assert.match(html, /name="twitter:image:alt" content="Professional portrait and biomedical service profile for Yihang Yang"/);
   assert.doesNotMatch(html, /http:\/\/yangyihang96\.com/);
 });
 
@@ -39,6 +44,14 @@ test("compact homepage keeps capability matrix visible", () => {
   assert.match(html, /Employment checks/);
   assert.match(html, /Sydney field travel/);
   assert.doesNotMatch(css, /\.resume-style\.resume-compact \.capabilities[\s\S]{0,180}display:\s*none/);
+});
+
+test("keyboard users can skip fixed navigation", () => {
+  assert.match(html, /<body id="top" class="resume-style resume-compact">/);
+  assert.match(html, /<a class="skip-link" href="#main-content">Skip to content<\/a>/);
+  assert.match(html, /<main id="main-content" tabindex="-1">/);
+  assert.match(css, /\.skip-link:focus\s*{[\s\S]*?transform:\s*translateY\(0\)/);
+  assert.match(css, /a:focus-visible,\s*button:focus-visible/);
 });
 
 test("recruiter-facing content is compact and quick to scan", () => {
@@ -67,8 +80,12 @@ test("person structured data is present and parseable", () => {
   assert.equal(data["@type"], "Person");
   assert.equal(data.name, "Yihang (Henry) Yang");
   assert.equal(data.jobTitle, "Biomedical Field Service Engineer");
+  assert.match(data.description, /Sydney-based biomedical field service engineer/);
   assert.equal(data.url, "https://yangyihang96.com/");
+  assert.equal(data.image, "https://yangyihang96.com/assets/yihang-professional-headshot-formal-4k.jpg");
   assert.equal(data.email, "mailto:yangyihang96@gmail.com");
+  assert.ok(data.knowsAbout.includes("Medical device maintenance"));
+  assert.ok(data.knowsAbout.includes("Service documentation"));
   assert.deepEqual(data.sameAs, ["https://github.com/yangyihang96"]);
 });
 

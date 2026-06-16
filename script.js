@@ -10,6 +10,7 @@ const translations = {
     description:
       "Personal website for Yihang (Henry) Yang, covering biomedical field service, medical device maintenance, testing, documentation, education, selected training records, resume download, and contact details.",
     text: {
+      ".skip-link": "Skip to content",
       ".site-nav a:nth-child(1)": "Experience",
       ".site-nav a:nth-child(2)": "Cases",
       ".site-nav a:nth-child(3)": "Skills",
@@ -465,6 +466,7 @@ const translations = {
     description:
       "Yihang (Henry) Yang 的个人网站，记录医疗设备现场服务、测试验证、工程背景、培训证书、简历下载和联系方式。",
     text: {
+      ".skip-link": "跳到主要内容",
       ".site-nav a:nth-child(1)": "经历",
       ".site-nav a:nth-child(2)": "案例",
       ".site-nav a:nth-child(3)": "能力",
