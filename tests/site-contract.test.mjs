@@ -70,6 +70,7 @@ test("hidden personal galleries are not loaded by the compact homepage", () => {
   assert.doesNotMatch(html, /id="family"/);
   assert.doesNotMatch(html, /id="moments"/);
   assert.doesNotMatch(html, /id="gallery"/);
+  assert.ok(!fs.existsSync(path.join(root, "assets/personal-gallery")), "personal-gallery should not be published");
 });
 
 test("person structured data is present and parseable", () => {
@@ -94,5 +95,6 @@ test("robots and sitemap advertise the live domain", () => {
   const sitemap = read("sitemap.xml");
 
   assert.match(robots, /Sitemap: https:\/\/yangyihang96\.com\/sitemap\.xml/);
+  assert.match(robots, /Disallow: \/assets\/personal-gallery\//);
   assert.match(sitemap, /<loc>https:\/\/yangyihang96\.com\/<\/loc>/);
 });

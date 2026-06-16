@@ -1,4 +1,5 @@
 User-agent: *
+Disallow: /assets/personal-gallery/
 Allow: /
 
 Sitemap: https://yangyihang96.com/sitemap.xml
