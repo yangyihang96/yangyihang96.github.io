@@ -78,8 +78,8 @@ test("site uses HTTPS canonical and sharing metadata", () => {
 });
 
 test("stylesheet and script use the current cache-busting version", () => {
-  assert.match(html, /href="styles\.css\?v=training-nav-1"/);
-  assert.match(html, /src="script\.js\?v=training-nav-1"/);
+  assert.match(html, /href="styles\.css\?v=hero-peek-1"/);
+  assert.match(html, /src="script\.js\?v=hero-peek-1"/);
 });
 
 test("language preference is restored when the page loads", () => {
@@ -781,23 +781,35 @@ test("hero portrait stays visually constrained after image dimensions load", () 
 test("desktop compact hero keeps first-screen recruiter actions visible on short desktop screens", () => {
   assert.match(
     css,
-    /\.resume-style\.resume-compact \.hero-copy\s*{[\s\S]*?grid-template-columns:\s*minmax\(0,\s*1fr\) minmax\(240px,\s*300px\);[\s\S]*?padding:\s*88px 0 26px;/
+    /\.resume-style\.resume-compact \.hero\s*{[\s\S]*?min-height:\s*min\(720px,\s*86svh\);/
   );
   assert.match(
     css,
-    /\.resume-style\.resume-compact \.hero-card-body\s*{[\s\S]*?padding:\s*14px 4px 0;/
+    /\.resume-style\.resume-compact \.hero-copy\s*{[\s\S]*?grid-template-columns:\s*minmax\(0,\s*1fr\) minmax\(220px,\s*260px\);[\s\S]*?gap:\s*clamp\(24px,\s*3\.6vw,\s*44px\);[\s\S]*?padding:\s*72px 0 18px;/
   );
   assert.match(
     css,
-    /\.resume-style\.resume-compact \.hero-profile-card strong\s*{[\s\S]*?font-size:\s*20px;/
+    /\.resume-style\.resume-compact \.hero h1\s*{[\s\S]*?font-size:\s*clamp\(42px,\s*5\.8vw,\s*68px\);/
   );
   assert.match(
     css,
-    /\.resume-style\.resume-compact \.hero-card-note\s*{[\s\S]*?font-size:\s*13px;[\s\S]*?line-height:\s*1.42;/
+    /\.resume-style\.resume-compact \.hero-meta div\s*{[\s\S]*?min-height:\s*0;[\s\S]*?padding:\s*10px 12px;/
   );
   assert.match(
     css,
-    /@media \(max-height:\s*720px\) and \(min-width:\s*921px\)\s*{[\s\S]*?\.resume-style\.resume-compact \.hero-copy\s*{[\s\S]*?grid-template-columns:\s*minmax\(0,\s*1fr\) minmax\(220px,\s*240px\);[\s\S]*?padding:\s*76px 0 18px;/
+    /\.resume-style\.resume-compact \.hero-card-body\s*{[\s\S]*?padding:\s*10px 2px 0;/
+  );
+  assert.match(
+    css,
+    /\.resume-style\.resume-compact \.hero-profile-card strong\s*{[\s\S]*?font-size:\s*18px;/
+  );
+  assert.match(
+    css,
+    /\.resume-style\.resume-compact \.hero-card-note\s*{[\s\S]*?font-size:\s*12px;[\s\S]*?line-height:\s*1\.34;/
+  );
+  assert.match(
+    css,
+    /@media \(max-height:\s*720px\) and \(min-width:\s*921px\)\s*{[\s\S]*?\.resume-style\.resume-compact \.hero-copy\s*{[\s\S]*?grid-template-columns:\s*minmax\(0,\s*1fr\) minmax\(210px,\s*230px\);[\s\S]*?padding:\s*64px 0 14px;/
   );
   assert.match(
     css,
@@ -836,7 +848,7 @@ test("tablet compact hero keeps quick facts scannable without over-tall stacking
 test("mobile compact hero keeps recruiter actions inside a short first screen", () => {
   assert.match(
     css,
-    /@media \(max-width:\s*560px\)[\s\S]*?\.resume-style\.resume-compact \.hero-copy\s*{[\s\S]*?gap:\s*18px;[\s\S]*?padding-top:\s*108px;[\s\S]*?padding-bottom:\s*24px;/
+    /@media \(max-width:\s*560px\)[\s\S]*?\.resume-style\.resume-compact \.hero-copy\s*{[\s\S]*?gap:\s*14px;[\s\S]*?padding-top:\s*100px;[\s\S]*?padding-bottom:\s*18px;/
   );
   assert.match(
     css,
@@ -844,11 +856,11 @@ test("mobile compact hero keeps recruiter actions inside a short first screen", 
   );
   assert.match(
     css,
-    /@media \(max-width:\s*560px\)[\s\S]*?\.resume-style\.resume-compact \.hero-actions\s*{[\s\S]*?grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\);[\s\S]*?gap:\s*8px;/
+    /@media \(max-width:\s*560px\)[\s\S]*?\.resume-style\.resume-compact \.hero-actions\s*{[\s\S]*?grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\);[\s\S]*?gap:\s*6px;/
   );
   assert.match(
     css,
-    /@media \(max-width:\s*560px\)[\s\S]*?\.resume-style\.resume-compact \.hero-action-path\s*{[\s\S]*?gap:\s*4px;[\s\S]*?margin-top:\s*10px;/
+    /@media \(max-width:\s*560px\)[\s\S]*?\.resume-style\.resume-compact \.hero-action-path\s*{[\s\S]*?grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\);[\s\S]*?gap:\s*4px;[\s\S]*?margin-top:\s*10px;/
   );
   assert.match(
     css,
@@ -861,6 +873,18 @@ test("mobile compact hero keeps recruiter actions inside a short first screen", 
   assert.match(
     css,
     /@media \(max-width:\s*560px\)[\s\S]*?\.resume-style\.resume-compact \.resume-link\s*{[\s\S]*?grid-column:\s*auto;/
+  );
+  assert.match(
+    css,
+    /@media \(max-width:\s*380px\) and \(max-height:\s*760px\)\s*{[\s\S]*?\.resume-style\.resume-compact \.hero-action-path\s*{[\s\S]*?display:\s*none;/
+  );
+  assert.match(
+    css,
+    /@media \(max-width:\s*380px\) and \(max-height:\s*760px\)\s*{[\s\S]*?\.resume-style\.resume-compact \.profile-status-strip div:nth-child\(2\)\s*{[\s\S]*?display:\s*none;/
+  );
+  assert.match(
+    css,
+    /@media \(max-width:\s*380px\) and \(max-height:\s*760px\)\s*{[\s\S]*?\.resume-style\.resume-compact \.hero-meta dd\s*{[\s\S]*?font-size:\s*12px;[\s\S]*?line-height:\s*1\.2;/
   );
 });
 
