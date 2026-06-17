@@ -212,7 +212,7 @@ const translations = {
         "Maintain Simpro work orders, service reports, serial details, equipment history, and customer updates so technical decisions remain traceable.",
       ".experience-timeline article:nth-child(1) .experience-date": "Jul 2023 - Present",
       ".experience-timeline article:nth-child(1) h3":
-        "Biomedical Engineer | Nova Biomedical Pty Ltd",
+        "Biomedical Engineer | Nova Biomedical Australia",
       ".experience-timeline article:nth-child(1) .experience-meta":
         "Australia-wide field service / workshop support · Full-time, 38 hours per week",
       ".experience-evidence div:nth-child(1) strong": "Equipment",
@@ -575,7 +575,7 @@ const translations = {
         "维护 Simpro 工单、service reports、serial details、equipment history 和 customer updates，让技术判断可以追踪和交接。",
       ".experience-timeline article:nth-child(1) .experience-date": "2023 年 7 月 - 至今",
       ".experience-timeline article:nth-child(1) h3":
-        "Biomedical Engineer | Nova Biomedical Pty Ltd",
+        "Biomedical Engineer | Nova Biomedical Australia",
       ".experience-timeline article:nth-child(1) .experience-meta":
         "澳大利亚范围现场服务 / workshop support · 全职，每周 38 小时",
       ".experience-evidence div:nth-child(1) strong": "设备",

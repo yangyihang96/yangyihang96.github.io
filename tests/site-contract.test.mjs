@@ -78,8 +78,8 @@ test("site uses HTTPS canonical and sharing metadata", () => {
 });
 
 test("stylesheet and script use the current cache-busting version", () => {
-  assert.match(html, /href="styles\.css\?v=work-checks-1"/);
-  assert.match(html, /src="script\.js\?v=work-checks-1"/);
+  assert.match(html, /href="styles\.css\?v=australia-employer-1"/);
+  assert.match(html, /src="script\.js\?v=australia-employer-1"/);
 });
 
 test("language preference is restored when the page loads", () => {
@@ -714,6 +714,14 @@ test("Nova employer mark uses the Australian Nova Biomedical logo source", () =>
   assert.ok(!fs.existsSync(path.join(root, "assets/logo-nova-biomedical.jpg")));
 });
 
+test("current employer copy consistently identifies the Australian Nova Biomedical entity", () => {
+  const publicSource = `${html}\n${script}`;
+
+  assert.match(html, /<h3>Biomedical Engineer \| Nova Biomedical Australia<\/h3>/);
+  assert.match(script, /"Biomedical Engineer \| Nova Biomedical Australia"/);
+  assert.doesNotMatch(publicSource, /Biomedical Engineer \| Nova Biomedical Pty Ltd/);
+});
+
 test("hero portrait serves responsive image candidates", () => {
   const sourceOriginal = path.join(root, "assets/yihang-professional-headshot-formal-4k.jpg");
   const source720 = path.join(root, "assets/yihang-professional-headshot-720.jpg");
@@ -869,6 +877,11 @@ test("person structured data is present and parseable", () => {
   assert.equal(data.url, "https://yangyihang96.com/");
   assert.equal(data.image, "https://yangyihang96.com/assets/yihang-professional-headshot-formal-4k.jpg");
   assert.equal(data.email, "mailto:yangyihang96@gmail.com");
+  assert.deepEqual(data.worksFor, {
+    "@type": "Organization",
+    name: "Nova Biomedical Australia",
+    url: "https://www.novabiomedical.com.au/",
+  });
   assert.ok(data.knowsAbout.includes("Medical device maintenance"));
   assert.ok(data.knowsAbout.includes("Service documentation"));
   assert.deepEqual(data.sameAs, ["https://github.com/yangyihang96"]);
