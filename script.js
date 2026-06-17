@@ -83,6 +83,10 @@ const translations = {
       ".hero-profile-card strong": "Biomedical field service engineer",
       ".hero-profile-card .hero-card-note":
         "Resume PDF and DOCX available. Credentials and pre-employment screening material can be provided privately when required.",
+      ".profile-status-strip div:nth-child(1) strong": "Updated",
+      ".profile-status-strip div:nth-child(1) span": "June 2026",
+      ".profile-status-strip div:nth-child(2) strong": "Proof boundary",
+      ".profile-status-strip div:nth-child(2) span": "Public-safe summary; private documents after role fit.",
       ".fit-strip .section-kicker": "Best fit for",
       "#fit-title": "Biomedical field service roles that need practical device judgement.",
       ".fit-strip .section-intro":
@@ -395,6 +399,7 @@ const translations = {
       ".language-switch": { "aria-label": "Language switcher" },
       ".hero-meta": { "aria-label": "Quick profile" },
       ".hero-profile-card": { "aria-label": "Profile snapshot" },
+      ".profile-status-strip": { "aria-label": "Profile currency and proof boundary" },
       ".fit-grid": { "aria-label": "Recruiter quick match" },
       ".experience-summary-grid": { "aria-label": "Work experience summary" },
       ".nav-email-link": { "aria-label": "Email Yihang Henry Yang", href: recruiterEmailHrefEn },
@@ -470,6 +475,10 @@ const translations = {
       ".hero-profile-card strong": "生物医学现场服务工程师",
       ".hero-profile-card .hero-card-note":
         "PDF 和 DOCX 简历都可下载。学历、培训证书和入职前筛选材料可在正式流程中私下提供。",
+      ".profile-status-strip div:nth-child(1) strong": "更新",
+      ".profile-status-strip div:nth-child(1) span": "2026 年 6 月",
+      ".profile-status-strip div:nth-child(2) strong": "证明边界",
+      ".profile-status-strip div:nth-child(2) span": "公开安全摘要；正式匹配后私下提供文件。",
       ".fit-strip .section-kicker": "适合岗位",
       "#fit-title": "需要现场判断和设备服务能力的 biomedical field service 岗位。",
       ".fit-strip .section-intro":
@@ -780,6 +789,7 @@ const translations = {
       ".language-switch": { "aria-label": "语言切换" },
       ".hero-meta": { "aria-label": "快速资料" },
       ".hero-profile-card": { "aria-label": "个人资料快照" },
+      ".profile-status-strip": { "aria-label": "资料更新时间和证明边界" },
       ".fit-grid": { "aria-label": "招聘方快速匹配" },
       ".experience-summary-grid": { "aria-label": "工作经历摘要" },
       ".nav-email-link": { "aria-label": "发邮件联系 Yihang Henry Yang", href: recruiterEmailHrefZh },

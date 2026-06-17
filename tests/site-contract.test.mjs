@@ -78,8 +78,8 @@ test("site uses HTTPS canonical and sharing metadata", () => {
 });
 
 test("stylesheet and script use the current cache-busting version", () => {
-  assert.match(html, /href="styles\.css\?v=mobile-hero-order-1"/);
-  assert.match(html, /src="script\.js\?v=mobile-hero-order-1"/);
+  assert.match(html, /href="styles\.css\?v=profile-status-1"/);
+  assert.match(html, /src="script\.js\?v=profile-status-1"/);
 });
 
 test("language preference is restored when the page loads", () => {
@@ -136,6 +136,31 @@ test("hero exposes recruiter actions and downloadable resume files", () => {
   assert.match(html, /github\.com\/yangyihang96/);
   assert.ok(fs.existsSync(path.join(root, "assets/Henry_Yang_Biomedical_Engineer_Resume.docx")));
   assert.ok(fs.existsSync(path.join(root, "assets/Henry_Yang_Biomedical_Engineer_Resume.pdf")));
+});
+
+test("hero profile card shows profile currency and public proof boundary", () => {
+  assert.match(html, /class="profile-status-strip" aria-label="Profile currency and proof boundary"/);
+  assert.match(html, /<strong>Updated<\/strong>\s*<span>June 2026<\/span>/);
+  assert.match(
+    html,
+    /<strong>Proof boundary<\/strong>\s*<span>Public-safe summary; private documents after role fit\.<\/span>/
+  );
+  assert.match(script, /"\.profile-status-strip div:nth-child\(1\) strong": "Updated"/);
+  assert.match(script, /"\.profile-status-strip div:nth-child\(1\) span": "June 2026"/);
+  assert.match(script, /"\.profile-status-strip div:nth-child\(2\) strong": "Proof boundary"/);
+  assert.match(
+    script,
+    /"\.profile-status-strip div:nth-child\(2\) span": "Public-safe summary; private documents after role fit\."/
+  );
+  assert.match(script, /"\.profile-status-strip div:nth-child\(1\) strong": "更新"/);
+  assert.match(script, /"\.profile-status-strip div:nth-child\(1\) span": "2026 年 6 月"/);
+  assert.match(script, /"\.profile-status-strip div:nth-child\(2\) strong": "证明边界"/);
+  assert.match(script, /"\.profile-status-strip div:nth-child\(2\) span": "公开安全摘要；正式匹配后私下提供文件。"/);
+  assert.match(script, /"\.profile-status-strip": { "aria-label": "Profile currency and proof boundary" }/);
+  assert.match(script, /"\.profile-status-strip": { "aria-label": "资料更新时间和证明边界" }/);
+  assert.match(css, /\.profile-status-strip\s*{[\s\S]*?display:\s*grid;[\s\S]*?grid-template-columns:\s*1fr;/);
+  assert.match(css, /\.profile-status-strip div\s*{[\s\S]*?border-radius:\s*6px;/);
+  assert.match(css, /@media \(max-width:\s*560px\)[\s\S]*?\.resume-style\.resume-compact \.profile-status-strip\s*{[\s\S]*?grid-template-columns:\s*1fr;[\s\S]*?gap:\s*6px;/);
 });
 
 test("email actions prefill recruiter context instead of opening a blank email", () => {

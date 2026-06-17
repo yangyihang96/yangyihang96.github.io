@@ -2473,6 +2473,38 @@ body.resume-style {
   line-height: 1.42;
 }
 
+.profile-status-strip {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+
+.profile-status-strip div {
+  min-width: 0;
+  padding: 8px 10px;
+  border: 1px solid rgba(19, 33, 31, 0.10);
+  border-radius: 6px;
+  background: rgba(246, 248, 244, 0.86);
+}
+
+.resume-style.resume-compact .profile-status-strip strong {
+  display: block;
+  color: var(--teal);
+  font-size: 10px;
+  font-weight: 850;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.resume-style.resume-compact .profile-status-strip span {
+  display: block;
+  margin-top: 4px;
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 750;
+  line-height: 1.3;
+}
+
 .resume-style.resume-compact .brief-section,
 .resume-style.resume-compact .fit-strip,
 .resume-style.resume-compact .proof-strip,
@@ -2689,6 +2721,15 @@ body.resume-style {
 
   .resume-style.resume-compact .hero-card-note {
     display: none;
+  }
+
+  .resume-style.resume-compact .profile-status-strip {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .resume-style.resume-compact .profile-status-strip div {
+    padding: 6px 8px;
   }
 
   .resume-style.resume-compact .life-section {
