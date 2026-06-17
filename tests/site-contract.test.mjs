@@ -78,8 +78,8 @@ test("site uses HTTPS canonical and sharing metadata", () => {
 });
 
 test("stylesheet and script use the current cache-busting version", () => {
-  assert.match(html, /href="styles\.css\?v=study-proof-boundary-1"/);
-  assert.match(html, /src="script\.js\?v=study-proof-boundary-1"/);
+  assert.match(html, /href="styles\.css\?v=study-coursework-proof-1"/);
+  assert.match(html, /src="script\.js\?v=study-coursework-proof-1"/);
 });
 
 test("language preference is restored when the page loads", () => {
@@ -564,20 +564,23 @@ test("recruiter-facing content is compact and quick to scan", () => {
   assert.equal(articleCount("capability-row"), 6);
   assert.equal(articleCount("case-grid"), 3);
   assert.equal(articleCount("study-grid"), 3);
-  assert.equal(articleCount("study-proof-strip"), 3);
+  assert.equal(articleCount("study-proof-strip"), 4);
   assert.equal(articleCount("certification-grid"), 3);
 });
 
 test("education section adds a public-safe academic and work-right proof path", () => {
   assert.match(html, /<div class="study-proof-strip" aria-label="Academic and work-right evidence path">/);
   assert.match(html, /<strong>Academic records<\/strong>\s*<span>University certificate, academic transcripts, and degree evidence are organized offline for formal checks\.<\/span>/);
+  assert.match(html, /<strong>Coursework trail<\/strong>\s*<span>BMET, ELEC, ENGG, CHNG, and lab-note records show biomedical systems, electronics, design, and data-analysis foundation\.<\/span>/);
   assert.match(html, /<strong>Research evidence<\/strong>\s*<span>MPhil thesis, submission\/examination documents, and lab records support the research claims\.<\/span>/);
   assert.match(html, /<strong>Work-right checks<\/strong>\s*<span>Right-to-work, identity, and screening documents stay private until a formal hiring process\.<\/span>/);
   assert.match(script, /"\.study-proof-strip article:nth-child\(1\) strong": "Academic records"/);
   assert.match(script, /"\.study-proof-strip article:nth-child\(1\) strong": "学历记录"/);
+  assert.match(script, /"\.study-proof-strip article:nth-child\(2\) strong": "Coursework trail"/);
+  assert.match(script, /"\.study-proof-strip article:nth-child\(2\) strong": "课程记录"/);
   assert.match(script, /"\.study-proof-strip": { "aria-label": "Academic and work-right evidence path" }/);
   assert.match(script, /"\.study-proof-strip": { "aria-label": "学历和工作权利证明链路" }/);
-  assert.match(css, /\.study-proof-strip\s*{[\s\S]*?display:\s*grid;[\s\S]*?grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\);/);
+  assert.match(css, /\.study-proof-strip\s*{[\s\S]*?display:\s*grid;[\s\S]*?grid-template-columns:\s*repeat\(4,\s*minmax\(0,\s*1fr\)\);/);
   assert.match(css, /@media \(max-width:\s*920px\)[\s\S]*?\.study-proof-strip\s*{[\s\S]*?grid-template-columns:\s*1fr;/);
 
   const publicSource = `${html}\n${script}`;

@@ -314,11 +314,14 @@ const translations = {
       ".study-proof-strip article:nth-child(1) strong": "Academic records",
       ".study-proof-strip article:nth-child(1) span":
         "University certificate, academic transcripts, and degree evidence are organized offline for formal checks.",
-      ".study-proof-strip article:nth-child(2) strong": "Research evidence",
+      ".study-proof-strip article:nth-child(2) strong": "Coursework trail",
       ".study-proof-strip article:nth-child(2) span":
-        "MPhil thesis, submission/examination documents, and lab records support the research claims.",
-      ".study-proof-strip article:nth-child(3) strong": "Work-right checks",
+        "BMET, ELEC, ENGG, CHNG, and lab-note records show biomedical systems, electronics, design, and data-analysis foundation.",
+      ".study-proof-strip article:nth-child(3) strong": "Research evidence",
       ".study-proof-strip article:nth-child(3) span":
+        "MPhil thesis, submission/examination documents, and lab records support the research claims.",
+      ".study-proof-strip article:nth-child(4) strong": "Work-right checks",
+      ".study-proof-strip article:nth-child(4) span":
         "Right-to-work, identity, and screening documents stay private until a formal hiring process.",
       ".certification-section .section-kicker": "Selected Training",
       "#certification-title": "Training records support the service work behind the profile.",
@@ -689,11 +692,14 @@ const translations = {
       ".study-proof-strip article:nth-child(1) strong": "学历记录",
       ".study-proof-strip article:nth-child(1) span":
         "大学证书、成绩单和学位证明已在本地整理好，可在正式流程中私下核验。",
-      ".study-proof-strip article:nth-child(2) strong": "研究证据",
+      ".study-proof-strip article:nth-child(2) strong": "课程记录",
       ".study-proof-strip article:nth-child(2) span":
-        "MPhil 论文、提交/审查文件和实验记录可以支撑页面里的研究经历。",
-      ".study-proof-strip article:nth-child(3) strong": "工作权利核验",
+        "BMET、ELEC、ENGG、CHNG 和实验笔记记录，能支撑 biomedical systems、electronics、design 和 data-analysis 基础。",
+      ".study-proof-strip article:nth-child(3) strong": "研究证据",
       ".study-proof-strip article:nth-child(3) span":
+        "MPhil 论文、提交/审查文件和实验记录可以支撑页面里的研究经历。",
+      ".study-proof-strip article:nth-child(4) strong": "工作权利核验",
+      ".study-proof-strip article:nth-child(4) span":
         "工作权利、身份和入职前筛选材料只在正式招聘流程中私下提供。",
       ".certification-section .section-kicker": "培训证书",
       "#certification-title": "证书部分展示能力范围，不公开证书原件。",
