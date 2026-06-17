@@ -311,6 +311,15 @@ const translations = {
         "Flexible Electrodes for Smart Bandages: Feasibility Exploration",
       ".study-grid article:nth-child(3) p":
         "Wearable medical-device feasibility work using electrode geometry, silver ink coating, impedance measurement, and manufacturability trade-offs.",
+      ".study-proof-strip article:nth-child(1) strong": "Academic records",
+      ".study-proof-strip article:nth-child(1) span":
+        "University certificate, academic transcripts, and degree evidence are organized offline for formal checks.",
+      ".study-proof-strip article:nth-child(2) strong": "Research evidence",
+      ".study-proof-strip article:nth-child(2) span":
+        "MPhil thesis, submission/examination documents, and lab records support the research claims.",
+      ".study-proof-strip article:nth-child(3) strong": "Work-right checks",
+      ".study-proof-strip article:nth-child(3) span":
+        "Right-to-work, identity, and screening documents stay private until a formal hiring process.",
       ".certification-section .section-kicker": "Selected Training",
       "#certification-title": "Training records support the service work behind the profile.",
       ".certification-section .section-intro":
@@ -428,6 +437,7 @@ const translations = {
       ".case-grid article:nth-child(1) .case-outcome": { "aria-label": "Public-safe case outcome" },
       ".case-grid article:nth-child(2) .case-outcome": { "aria-label": "Public-safe case outcome" },
       ".case-grid article:nth-child(3) .case-outcome": { "aria-label": "Public-safe case outcome" },
+      ".study-proof-strip": { "aria-label": "Academic and work-right evidence path" },
       ".certification-grid article:nth-child(1) .training-evidence": { "aria-label": "Training evidence map" },
       ".certification-grid article:nth-child(2) .training-evidence": { "aria-label": "Training evidence map" },
       ".certification-grid article:nth-child(3) .training-evidence": { "aria-label": "Training evidence map" },
@@ -676,6 +686,15 @@ const translations = {
         "Flexible Electrodes for Smart Bandages: Feasibility Exploration",
       ".study-grid article:nth-child(3) p":
         "围绕 wearable medical device 可行性，处理柔性电极几何、银墨涂层、阻抗测量和可制造性权衡。",
+      ".study-proof-strip article:nth-child(1) strong": "学历记录",
+      ".study-proof-strip article:nth-child(1) span":
+        "大学证书、成绩单和学位证明已在本地整理好，可在正式流程中私下核验。",
+      ".study-proof-strip article:nth-child(2) strong": "研究证据",
+      ".study-proof-strip article:nth-child(2) span":
+        "MPhil 论文、提交/审查文件和实验记录可以支撑页面里的研究经历。",
+      ".study-proof-strip article:nth-child(3) strong": "工作权利核验",
+      ".study-proof-strip article:nth-child(3) span":
+        "工作权利、身份和入职前筛选材料只在正式招聘流程中私下提供。",
       ".certification-section .section-kicker": "培训证书",
       "#certification-title": "证书部分展示能力范围，不公开证书原件。",
       ".certification-section .section-intro":
@@ -821,6 +840,7 @@ const translations = {
       ".case-grid article:nth-child(1) .case-outcome": { "aria-label": "公开安全的案例结果" },
       ".case-grid article:nth-child(2) .case-outcome": { "aria-label": "公开安全的案例结果" },
       ".case-grid article:nth-child(3) .case-outcome": { "aria-label": "公开安全的案例结果" },
+      ".study-proof-strip": { "aria-label": "学历和工作权利证明链路" },
       ".certification-grid article:nth-child(1) .training-evidence": { "aria-label": "培训证书能力映射" },
       ".certification-grid article:nth-child(2) .training-evidence": { "aria-label": "培训证书能力映射" },
       ".certification-grid article:nth-child(3) .training-evidence": { "aria-label": "培训证书能力映射" },

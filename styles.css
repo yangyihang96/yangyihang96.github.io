@@ -1183,6 +1183,39 @@ main:focus {
   margin-top: 12px;
 }
 
+.study-proof-strip {
+  width: min(1120px, calc(100% - 48px));
+  margin: 18px auto 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.study-proof-strip article {
+  min-height: 112px;
+  padding: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.study-proof-strip strong {
+  display: block;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 850;
+  line-height: 1.24;
+}
+
+.study-proof-strip span {
+  display: block;
+  margin-top: 8px;
+  color: rgba(255, 255, 255, 0.74);
+  font-size: 14px;
+  font-weight: 650;
+  line-height: 1.38;
+}
+
 .capabilities {
   background: var(--white);
 }
@@ -1601,6 +1634,7 @@ main:focus {
   .section-heading,
   .case-grid,
   .study-grid,
+  .study-proof-strip,
   .capability-row,
   .contact-inner {
     width: min(100% - 32px, 720px);
@@ -1673,6 +1707,7 @@ main:focus {
   }
 
   .study-grid,
+  .study-proof-strip,
   .brief-grid,
   .proof-grid,
   .experience-summary-grid,
@@ -1684,6 +1719,7 @@ main:focus {
   }
 
   .study-grid article,
+  .study-proof-strip article,
   .brief-grid article,
   .proof-grid article,
   .experience-timeline article,
@@ -1694,6 +1730,10 @@ main:focus {
 
   .case-grid article {
     min-height: 0;
+  }
+
+  .study-proof-strip {
+    grid-template-columns: 1fr;
   }
 
 }
@@ -1991,6 +2031,7 @@ main:focus {
   }
 
   .study-grid article,
+  .study-proof-strip article,
   .brief-grid article,
   .certification-grid article,
   .case-grid article,
