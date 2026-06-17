@@ -81,11 +81,11 @@ const translations = {
       ".hero-action-path div:nth-child(2) span": "PDF and DOCX ready",
       ".hero-action-path div:nth-child(3) strong": "Private proof",
       ".hero-action-path div:nth-child(3) span":
-        "Credentials, training, right-to-work, and reference checks after fit",
+        "Formal checks only after role fit",
       ".hero-profile-card .hero-card-kicker": "Current profile",
       ".hero-profile-card strong": "Biomedical field service engineer",
       ".hero-profile-card .hero-card-note":
-        "Resume PDF and DOCX available. Credentials and pre-employment screening material can be provided privately when required.",
+        "Resume PDF and DOCX available. Further checks stay off-page until a formal process requires them.",
       ".profile-status-strip div:nth-child(1) strong": "Updated",
       ".profile-status-strip div:nth-child(1) span": "June 2026",
       ".profile-status-strip div:nth-child(2) strong": "Proof boundary",
@@ -117,7 +117,7 @@ const translations = {
         "Role scope, equipment families, service method, and safe case patterns.",
       ".proof-boundary div:nth-child(2) strong": "Private after fit",
       ".proof-boundary div:nth-child(2) span":
-        "Certificates, identity, right-to-work checks, references, and pre-employment screening.",
+        "Formal hiring checks stay off-page until the role fit is clear.",
       ".proof-boundary div:nth-child(3) strong": "Not published",
       ".proof-boundary div:nth-child(3) span":
         "Customer names, serial numbers, internal records, and site-specific details.",
@@ -164,7 +164,7 @@ const translations = {
       ".brief-grid article:nth-child(2) span": "Private proof",
       ".brief-grid article:nth-child(2) h3": "Request documents after fit",
       ".brief-grid article:nth-child(2) p":
-        "Resume files are public; credentials, training records, and screening material stay private until needed.",
+        "Resume files are public; formal check material stays off-page until needed.",
       ".brief-grid article:nth-child(3) span": "Best next role",
       ".brief-grid article:nth-child(3) h3": "Biomedical field service",
       ".brief-grid article:nth-child(3) p":
@@ -196,7 +196,7 @@ const translations = {
       ".capability-row article:nth-child(6) span": "Pre-employment checks",
       ".capability-row article:nth-child(6) h3": "Sydney travel + private proof",
       ".capability-row article:nth-child(6) p":
-        "Sydney field travel, resume download, and private degree, training, identity, and right-to-work proof for formal hiring checks.",
+        "Sydney field travel, resume download, and formal hiring checks handled only after role fit.",
       ".experience-section .section-kicker": "Work Experience",
       "#experience-title":
         "Professional experience across field service, workshop support, and healthcare records.",
@@ -315,7 +315,7 @@ const translations = {
         "Wearable medical-device feasibility work using electrode geometry, silver ink coating, impedance measurement, and manufacturability trade-offs.",
       ".study-proof-strip article:nth-child(1) strong": "Academic records",
       ".study-proof-strip article:nth-child(1) span":
-        "University certificate, academic transcripts, and degree evidence are organized offline for formal checks.",
+        "Formal academic evidence is kept offline for authorized checks.",
       ".study-proof-strip article:nth-child(2) strong": "Coursework trail",
       ".study-proof-strip article:nth-child(2) span":
         "BMET, ELEC, ENGG, CHNG, and lab-note records show biomedical systems, electronics, design, and data-analysis foundation.",
@@ -324,7 +324,7 @@ const translations = {
         "MPhil thesis, submission/examination documents, and lab records support the research claims.",
       ".study-proof-strip article:nth-child(4) strong": "Work-right checks",
       ".study-proof-strip article:nth-child(4) span":
-        "Right-to-work, identity, and screening documents stay private until a formal hiring process.",
+        "Eligibility checks stay private until a formal hiring process.",
       ".certification-section .section-kicker": "Selected Training",
       "#certification-title": "Training records support the service work behind the profile.",
       ".certification-section .section-intro":
@@ -383,7 +383,7 @@ const translations = {
         "Share device type, service setting, travel area, and start timing.",
       ".contact-intake div:nth-child(2) strong": "Proof needed",
       ".contact-intake div:nth-child(2) span":
-        "List degree, transcript, training, identity, right-to-work, reference, or screening checks needed for the next step.",
+        "List only the formal checks required for the next step.",
       ".contact-intake div:nth-child(3) strong": "Next step",
       ".contact-intake div:nth-child(3) span":
         "Send interview time, role description, or technical screen format.",
@@ -399,7 +399,7 @@ const translations = {
       ".contact-actions-note strong": "Direct email",
       ".contact-email-text": "yangyihang96@gmail.com",
       ".contact-privacy-note":
-        "Private credentials and pre-employment screening material are shared only when required.",
+        "Sensitive check material stays off-page until formally required.",
       ".contact-call-note": "Phone or video calls can be arranged after email confirmation.",
     },
     html: {
@@ -489,11 +489,11 @@ const translations = {
       ".hero-action-path div:nth-child(2) span": "PDF 和 DOCX 可下载",
       ".hero-action-path div:nth-child(3) strong": "私下核验",
       ".hero-action-path div:nth-child(3) span":
-        "学历、培训、工作权利和推荐人核验在匹配后私下提供",
+        "正式核验只在岗位匹配后进行",
       ".hero-profile-card .hero-card-kicker": "当前身份",
       ".hero-profile-card strong": "生物医学现场服务工程师",
       ".hero-profile-card .hero-card-note":
-        "PDF 和 DOCX 简历都可下载。学历、培训证书和入职前筛选材料可在正式流程中私下提供。",
+        "PDF 和 DOCX 简历都可下载。进一步核验材料不放在公开页面。",
       ".profile-status-strip div:nth-child(1) strong": "更新",
       ".profile-status-strip div:nth-child(1) span": "2026 年 6 月",
       ".profile-status-strip div:nth-child(2) strong": "证明边界",
@@ -525,7 +525,7 @@ const translations = {
         "岗位范围、设备类别、服务方法和适合公开的案例框架。",
       ".proof-boundary div:nth-child(2) strong": "匹配后私下核验",
       ".proof-boundary div:nth-child(2) span":
-        "证书、身份、工作权利核验、推荐人核验和入职前筛选材料。",
+        "正式招聘核验只在岗位匹配清楚后进行。",
       ".proof-boundary div:nth-child(3) strong": "不公开",
       ".proof-boundary div:nth-child(3) span":
         "客户名称、序列号、内部记录和具体现场细节。",
@@ -572,7 +572,7 @@ const translations = {
       ".brief-grid article:nth-child(2) span": "私下核验",
       ".brief-grid article:nth-child(2) h3": "匹配后再要证明文件",
       ".brief-grid article:nth-child(2) p":
-        "公开页面只放简历；学历、培训和筛选材料需要时再私下提供。",
+        "公开页面只放简历；正式核验材料不放在页面上。",
       ".brief-grid article:nth-child(3) span": "最适合下一步",
       ".brief-grid article:nth-child(3) h3": "Biomedical field service",
       ".brief-grid article:nth-child(3) p":
@@ -693,7 +693,7 @@ const translations = {
         "围绕 wearable medical device 可行性，处理柔性电极几何、银墨涂层、阻抗测量和可制造性权衡。",
       ".study-proof-strip article:nth-child(1) strong": "学历记录",
       ".study-proof-strip article:nth-child(1) span":
-        "大学证书、成绩单和学位证明已在本地整理好，可在正式流程中私下核验。",
+        "正式学习证明材料不放在公开页面，只用于授权核验。",
       ".study-proof-strip article:nth-child(2) strong": "课程记录",
       ".study-proof-strip article:nth-child(2) span":
         "BMET、ELEC、ENGG、CHNG 和实验笔记记录，能支撑 biomedical systems、electronics、design 和 data-analysis 基础。",
@@ -702,7 +702,7 @@ const translations = {
         "MPhil 论文、提交/审查文件和实验记录可以支撑页面里的研究经历。",
       ".study-proof-strip article:nth-child(4) strong": "工作权利核验",
       ".study-proof-strip article:nth-child(4) span":
-        "工作权利、身份和入职前筛选材料只在正式招聘流程中私下提供。",
+        "资格核验材料只在正式招聘流程中处理。",
       ".certification-section .section-kicker": "培训证书",
       "#certification-title": "证书部分展示能力范围，不公开证书原件。",
       ".certification-section .section-intro":
@@ -771,7 +771,7 @@ const translations = {
       ".capability-row article:nth-child(6) span": "入职前筛选",
       ".capability-row article:nth-child(6) h3": "悉尼出行 + 私下核验证明",
       ".capability-row article:nth-child(6) p":
-        "可支持悉尼现场出行，简历可下载，学历、培训、身份证明和工作权利材料可在正式流程中提供。",
+        "可支持悉尼现场出行，简历可下载，正式核验只在岗位匹配后处理。",
       "#contact .section-kicker": "联系",
       "#contact-title": "可以在这里联系我。",
       ".contact-inner > p:not(.section-kicker)":
@@ -789,7 +789,7 @@ const translations = {
         "说明设备类型、服务环境、出行范围和开始时间。",
       ".contact-intake div:nth-child(2) strong": "需要核验",
       ".contact-intake div:nth-child(2) span":
-        "列明下一步需要的学历、成绩单、培训、身份、工作权利、推荐人或筛选核验材料。",
+        "只列明下一步正式流程需要的核验项目。",
       ".contact-intake div:nth-child(3) strong": "下一步",
       ".contact-intake div:nth-child(3) span":
         "发送面试时间、岗位说明或技术筛选形式。",
@@ -805,7 +805,7 @@ const translations = {
       ".contact-actions-note strong": "直接邮箱",
       ".contact-email-text": "yangyihang96@gmail.com",
       ".contact-privacy-note":
-        "学历、培训证书和入职前筛选材料只在正式需要时私下提供。",
+        "敏感核验材料不放在公开页面，只在正式需要时处理。",
       ".contact-call-note": "电话或视频沟通可在邮件确认后安排。",
     },
     html: {
