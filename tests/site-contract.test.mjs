@@ -78,8 +78,8 @@ test("site uses HTTPS canonical and sharing metadata", () => {
 });
 
 test("stylesheet and script use the current cache-busting version", () => {
-  assert.match(html, /href="styles\.css\?v=australia-employer-1"/);
-  assert.match(html, /src="script\.js\?v=australia-employer-1"/);
+  assert.match(html, /href="styles\.css\?v=training-nav-1"/);
+  assert.match(html, /src="script\.js\?v=training-nav-1"/);
 });
 
 test("language preference is restored when the page loads", () => {
@@ -378,14 +378,43 @@ test("fixed header keeps persistent contact and resume actions", () => {
 test("primary navigation follows the visible recruiter reading order", () => {
   assert.match(
     html,
-    /<nav class="site-nav" aria-label="Primary navigation">\s*<a href="#experience">Experience<\/a>\s*<a href="#capabilities">Skills<\/a>\s*<a href="#case-notes">Cases<\/a>\s*<a href="#study">Education<\/a>\s*<a href="#contact">Contact<\/a>\s*<\/nav>/
+    /<nav class="site-nav" aria-label="Primary navigation">\s*<a href="#experience">Experience<\/a>\s*<a href="#capabilities">Skills<\/a>\s*<a href="#case-notes">Cases<\/a>\s*<a href="#study">Education<\/a>\s*<a href="#certifications">Training<\/a>\s*<a href="#contact">Contact<\/a>\s*<\/nav>/
   );
   assert.match(script, /"\.site-nav a:nth-child\(1\)": "Experience"/);
   assert.match(script, /"\.site-nav a:nth-child\(2\)": "Skills"/);
   assert.match(script, /"\.site-nav a:nth-child\(3\)": "Cases"/);
+  assert.match(script, /"\.site-nav a:nth-child\(4\)": "Education"/);
+  assert.match(script, /"\.site-nav a:nth-child\(5\)": "Training"/);
+  assert.match(script, /"\.site-nav a:nth-child\(6\)": "Contact"/);
   assert.match(script, /"\.site-nav a:nth-child\(1\)": "经历"/);
   assert.match(script, /"\.site-nav a:nth-child\(2\)": "能力"/);
   assert.match(script, /"\.site-nav a:nth-child\(3\)": "案例"/);
+  assert.match(script, /"\.site-nav a:nth-child\(4\)": "背景"/);
+  assert.match(script, /"\.site-nav a:nth-child\(5\)": "培训"/);
+  assert.match(script, /"\.site-nav a:nth-child\(6\)": "联系"/);
+});
+
+test("primary navigation marks hash targets active on click and hash changes", () => {
+  assert.match(script, /const setActiveNavLink = \(hash\) => \{/);
+  assert.match(script, /let activeHashLock = null;/);
+  assert.match(script, /let activeHashLockUntil = 0;/);
+  assert.match(script, /const lockActiveHash = \(hash\) => \{/);
+  assert.match(script, /activeHashLock = hash;/);
+  assert.match(script, /activeHashLockUntil = window\.performance\.now\(\) \+ 1800;/);
+  assert.match(script, /const shouldKeepHashActive = \(hash\) => \{/);
+  assert.match(script, /const currentHash = window\.location\.hash;/);
+  assert.match(
+    script,
+    /const isHashLocked =\s*currentHash &&\s*activeHashLock === currentHash &&\s*window\.performance\.now\(\) < activeHashLockUntil;/
+  );
+  assert.match(script, /if \(isHashLocked \|\| shouldKeepHashActive\(currentHash\)\) \{/);
+  assert.match(script, /setActiveNavLink\(currentHash\);/);
+  assert.match(script, /navLink\.classList\.toggle\("is-active", navLink\.getAttribute\("href"\) === hash\);/);
+  assert.match(script, /const hash = link\.getAttribute\("href"\);/);
+  assert.match(script, /lockActiveHash\(hash\);/);
+  assert.match(script, /setActiveNavLink\(hash\);/);
+  assert.match(script, /lockActiveHash\(window\.location\.hash\);/);
+  assert.match(script, /setActiveNavLink\(window\.location\.hash\);/);
 });
 
 test("compact homepage keeps capability matrix visible", () => {

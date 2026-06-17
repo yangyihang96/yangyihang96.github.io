@@ -54,7 +54,8 @@ const translations = {
       ".site-nav a:nth-child(2)": "Skills",
       ".site-nav a:nth-child(3)": "Cases",
       ".site-nav a:nth-child(4)": "Education",
-      ".site-nav a:nth-child(5)": "Contact",
+      ".site-nav a:nth-child(5)": "Training",
+      ".site-nav a:nth-child(6)": "Contact",
       ".nav-email-link": "Email",
       ".nav-resume-link": "Resume PDF",
       ".eyebrow": "Sydney · Biomedical Engineering · Field Service",
@@ -446,7 +447,8 @@ const translations = {
       ".site-nav a:nth-child(2)": "能力",
       ".site-nav a:nth-child(3)": "案例",
       ".site-nav a:nth-child(4)": "背景",
-      ".site-nav a:nth-child(5)": "联系",
+      ".site-nav a:nth-child(5)": "培训",
+      ".site-nav a:nth-child(6)": "联系",
       ".nav-email-link": "邮件",
       ".nav-resume-link": "PDF 简历",
       ".eyebrow": "悉尼 · 生物医学工程 · 现场服务",
@@ -979,6 +981,37 @@ const navLinks = Array.from(document.querySelectorAll(".site-nav a"));
 const sections = navLinks
   .map((link) => document.querySelector(link.getAttribute("href")))
   .filter(Boolean);
+let activeHashLock = null;
+let activeHashLockUntil = 0;
+
+const setActiveNavLink = (hash) => {
+  if (!hash) {
+    return;
+  }
+
+  navLinks.forEach((navLink) => {
+    navLink.classList.toggle("is-active", navLink.getAttribute("href") === hash);
+  });
+};
+
+const lockActiveHash = (hash) => {
+  if (!hash) {
+    return;
+  }
+
+  activeHashLock = hash;
+  activeHashLockUntil = window.performance.now() + 1800;
+};
+
+const shouldKeepHashActive = (hash) => {
+  const target = hash ? document.querySelector(hash) : null;
+  if (!target) {
+    return false;
+  }
+
+  const rect = target.getBoundingClientRect();
+  return rect.top >= 0 && rect.top <= window.innerHeight * 0.5;
+};
 
 const revealItems = Array.from(document.querySelectorAll(".reveal"));
 
@@ -990,7 +1023,10 @@ const revealTarget = (target) => {
 
 navLinks.forEach((link) => {
   link.addEventListener("click", () => {
-    revealTarget(document.querySelector(link.getAttribute("href")));
+    const hash = link.getAttribute("href");
+    revealTarget(document.querySelector(hash));
+    lockActiveHash(hash);
+    setActiveNavLink(hash);
   });
 });
 
@@ -1026,9 +1062,18 @@ if ("IntersectionObserver" in window && sections.length > 0) {
         return;
       }
 
-      navLinks.forEach((link) => {
-        link.classList.toggle("is-active", link.getAttribute("href") === `#${visible.target.id}`);
-      });
+      const currentHash = window.location.hash;
+      const isHashLocked =
+        currentHash &&
+        activeHashLock === currentHash &&
+        window.performance.now() < activeHashLockUntil;
+
+      if (isHashLocked || shouldKeepHashActive(currentHash)) {
+        setActiveNavLink(currentHash);
+        return;
+      }
+
+      setActiveNavLink(`#${visible.target.id}`);
     },
     {
       rootMargin: "-30% 0px -55% 0px",
@@ -1041,8 +1086,12 @@ if ("IntersectionObserver" in window && sections.length > 0) {
 
 if (window.location.hash) {
   revealTarget(document.querySelector(window.location.hash));
+  lockActiveHash(window.location.hash);
+  setActiveNavLink(window.location.hash);
 }
 
 window.addEventListener("hashchange", () => {
   revealTarget(document.querySelector(window.location.hash));
+  lockActiveHash(window.location.hash);
+  setActiveNavLink(window.location.hash);
 });
