@@ -78,8 +78,8 @@ test("site uses HTTPS canonical and sharing metadata", () => {
 });
 
 test("stylesheet and script use the current cache-busting version", () => {
-  assert.match(html, /href="styles\.css\?v=profile-status-1"/);
-  assert.match(html, /src="script\.js\?v=profile-status-1"/);
+  assert.match(html, /href="styles\.css\?v=work-checks-1"/);
+  assert.match(html, /src="script\.js\?v=work-checks-1"/);
 });
 
 test("language preference is restored when the page loads", () => {
@@ -161,6 +161,19 @@ test("hero profile card shows profile currency and public proof boundary", () =>
   assert.match(css, /\.profile-status-strip\s*{[\s\S]*?display:\s*grid;[\s\S]*?grid-template-columns:\s*1fr;/);
   assert.match(css, /\.profile-status-strip div\s*{[\s\S]*?border-radius:\s*6px;/);
   assert.match(css, /@media \(max-width:\s*560px\)[\s\S]*?\.resume-style\.resume-compact \.profile-status-strip\s*{[\s\S]*?grid-template-columns:\s*1fr;[\s\S]*?gap:\s*6px;/);
+});
+
+test("hero quick facts surface hiring-check boundary without exposing private documents", () => {
+  const heroMetaHtml = html.match(/<dl class="hero-meta"[^>]*>[\s\S]*?<\/dl>/)?.[0] ?? "";
+
+  assert.match(html, /<dt>Work checks<\/dt>\s*<dd>Private proof after fit<\/dd>/);
+  assert.doesNotMatch(html, /<dt>Availability<\/dt>\s*<dd>Sydney field travel<\/dd>/);
+  assert.match(script, /"\.hero-meta div:nth-child\(4\) dt": "Work checks"/);
+  assert.match(script, /"\.hero-meta div:nth-child\(4\) dd": "Private proof after fit"/);
+  assert.match(script, /"\.hero-meta div:nth-child\(4\) dt": "核验"/);
+  assert.match(script, /"\.hero-meta div:nth-child\(4\) dd": "匹配后私下提供"/);
+  assert.match(`${html}\n${script}`, /Sydney field travel/);
+  assert.doesNotMatch(heroMetaHtml, /visa status|passport|身份证|护照|签证状态/);
 });
 
 test("email actions prefill recruiter context instead of opening a blank email", () => {
