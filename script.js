@@ -363,6 +363,7 @@ const translations = {
       ".contact-copy-email-action": "Copy Email",
       ".contact-resume-link": "Resume PDF",
       ".contact-docx-link": "Resume DOCX",
+      ".contact-resume-format-note": "PDF for quick review; DOCX for ATS or recruiter systems.",
       ".contact-intake div:nth-child(1) strong": "Role scope",
       ".contact-intake div:nth-child(1) span":
         "Share device type, service setting, travel area, and start timing.",
@@ -754,6 +755,7 @@ const translations = {
       ".contact-copy-email-action": "复制邮箱",
       ".contact-resume-link": "PDF 简历",
       ".contact-docx-link": "DOCX 简历",
+      ".contact-resume-format-note": "PDF 适合快速查看；DOCX 适合 ATS 或招聘系统。",
       ".contact-intake div:nth-child(1) strong": "岗位范围",
       ".contact-intake div:nth-child(1) span":
         "说明设备类型、服务环境、出行范围和开始时间。",

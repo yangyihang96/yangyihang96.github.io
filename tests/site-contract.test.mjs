@@ -78,8 +78,8 @@ test("site uses HTTPS canonical and sharing metadata", () => {
 });
 
 test("stylesheet and script use the current cache-busting version", () => {
-  assert.match(html, /href="styles\.css\?v=hiring-docs-1"/);
-  assert.match(html, /src="script\.js\?v=hiring-docs-1"/);
+  assert.match(html, /href="styles\.css\?v=resume-file-hints-1"/);
+  assert.match(html, /src="script\.js\?v=resume-file-hints-1"/);
 });
 
 test("language preference is restored when the page loads", () => {
@@ -267,9 +267,12 @@ test("contact section repeats recruiter conversion actions at the close", () => 
   assert.match(html, /class="button secondary contact-copy-email-action" type="button" data-copy-email="yangyihang96@gmail\.com"/);
   assert.match(html, /class="button secondary contact-resume-link" href="assets\/Henry_Yang_Biomedical_Engineer_Resume\.pdf" type="application\/pdf" download/);
   assert.match(html, /class="button secondary contact-docx-link" href="assets\/Henry_Yang_Biomedical_Engineer_Resume\.docx" download/);
+  assert.match(html, /class="contact-resume-format-note">PDF for quick review; DOCX for ATS or recruiter systems\.<\/span>/);
   assert.match(html, /Private credentials and pre-employment screening material are shared only when required/);
   assert.match(script, /"\.contact-actions-title": "Ready for field service conversations\."/);
   assert.match(script, /"\.contact-actions-title": "可以继续聊医疗设备现场服务机会。"/);
+  assert.match(script, /"\.contact-resume-format-note": "PDF for quick review; DOCX for ATS or recruiter systems\."/);
+  assert.match(script, /"\.contact-resume-format-note": "PDF 适合快速查看；DOCX 适合 ATS 或招聘系统。"/);
   assert.match(html, /class="contact-intake" aria-label="Recruiter email checklist"/);
   assert.match(html, /<strong>Role scope<\/strong>\s*<span>Share device type, service setting, travel area, and start timing\.<\/span>/);
   assert.match(html, /<strong>Proof needed<\/strong>\s*<span>Ask privately for degree, training, identity, right-to-work, or reference-check material when required\.<\/span>/);
@@ -288,10 +291,14 @@ test("contact section repeats recruiter conversion actions at the close", () => 
   assert.match(script, /"\.contact-response-strip": { "aria-label": "招聘方回复预期" }/);
   assert.match(css, /\.contact-intake\s*{[\s\S]*?display:\s*grid;[\s\S]*?grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\);/);
   assert.match(css, /\.contact-response-strip\s*{[\s\S]*?display:\s*grid;[\s\S]*?grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\);/);
+  assert.match(css, /\.contact-action-buttons\s*{[\s\S]*?justify-self:\s*end;[\s\S]*?width:\s*100%;[\s\S]*?max-width:\s*480px;/);
+  assert.match(css, /\.contact-resume-format-note\s*{[\s\S]*?width:\s*100%;[\s\S]*?text-align:\s*right;/);
   assert.match(css, /@media \(max-width:\s*760px\)[\s\S]*?\.contact-intake\s*{[\s\S]*?grid-template-columns:\s*1fr;/);
   assert.match(css, /@media \(max-width:\s*760px\)[\s\S]*?\.contact-response-strip\s*{[\s\S]*?grid-template-columns:\s*1fr;/);
-  assert.match(css, /\.contact-actions\s*{[\s\S]*?grid-template-columns:\s*minmax\(0,\s*1fr\) auto;/);
+  assert.match(css, /@media \(max-width:\s*920px\)[\s\S]*?\.contact-action-buttons\s*{[\s\S]*?justify-self:\s*stretch;[\s\S]*?width:\s*100%;/);
+  assert.match(css, /\.contact-actions\s*{[\s\S]*?grid-template-columns:\s*minmax\(320px,\s*1fr\) minmax\(0,\s*480px\);/);
   assert.match(css, /@media \(max-width:\s*560px\)[\s\S]*?\.contact-action-buttons\s*{[\s\S]*?grid-template-columns:\s*1fr;/);
+  assert.match(css, /@media \(max-width:\s*560px\)[\s\S]*?\.contact-resume-format-note\s*{[\s\S]*?text-align:\s*left;/);
 });
 
 test("contact offers a copy-email fallback when mail clients are unavailable", () => {

@@ -1243,7 +1243,7 @@ main:focus {
 
 .contact-actions {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-columns: minmax(320px, 1fr) minmax(0, 480px);
   gap: 16px 22px;
   align-items: center;
   margin-top: 28px;
@@ -1277,6 +1277,18 @@ main:focus {
   flex-wrap: wrap;
   gap: 10px;
   justify-content: flex-end;
+  justify-self: end;
+  width: 100%;
+  max-width: 480px;
+}
+
+.contact-resume-format-note {
+  width: 100%;
+  color: rgba(255, 255, 255, 0.74);
+  font-size: 12px;
+  font-weight: 720;
+  line-height: 1.35;
+  text-align: right;
 }
 
 .contact-copy-email-action.is-copied {
@@ -1607,6 +1619,8 @@ main:focus {
 
   .contact-action-buttons {
     justify-content: flex-start;
+    justify-self: stretch;
+    width: 100%;
   }
 
   .contact-intake {
@@ -1894,6 +1908,10 @@ main:focus {
   .contact-action-buttons {
     display: grid;
     grid-template-columns: 1fr;
+  }
+
+  .contact-resume-format-note {
+    text-align: left;
   }
 
   .contact-actions .button {
