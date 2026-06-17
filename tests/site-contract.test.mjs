@@ -700,15 +700,17 @@ test("published visual assets are referenced by the site", () => {
 
 test("site images declare stable dimensions", () => {
   assert.match(html, /src="assets\/yihang-professional-headshot-720\.jpg"[^>]*width="720"[^>]*height="1125"/);
-  assert.match(html, /src="assets\/logo-nova-biomedical\.svg"[^>]*width="511"[^>]*height="276"/);
+  assert.match(html, /src="assets\/logo-nova-biomedical-au\.png"[^>]*width="300"[^>]*height="78"/);
   assert.match(html, /src="assets\/logo-lundbeck\.svg"[^>]*width="485"[^>]*height="206"/);
   assert.match(html, /src="assets\/study-life\.jpg"[^>]*width="1448"[^>]*height="1086"/);
 });
 
-test("Nova employer mark uses the current vector asset instead of the legacy raster logo", () => {
-  assert.match(html, /src="assets\/logo-nova-biomedical\.svg"/);
+test("Nova employer mark uses the Australian Nova Biomedical logo source", () => {
+  assert.match(html, /src="assets\/logo-nova-biomedical-au\.png"/);
+  assert.match(html, /alt="Nova Biomedical Australia logo"/);
+  assert.ok(fs.existsSync(path.join(root, "assets/logo-nova-biomedical-au.png")));
+  assert.ok(!fs.existsSync(path.join(root, "assets/logo-nova-biomedical.svg")));
   assert.doesNotMatch(html, /src="assets\/logo-nova-biomedical\.jpg"/);
-  assert.ok(fs.existsSync(path.join(root, "assets/logo-nova-biomedical.svg")));
   assert.ok(!fs.existsSync(path.join(root, "assets/logo-nova-biomedical.jpg")));
 });
 
