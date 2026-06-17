@@ -10,6 +10,7 @@ const read = (file) => fs.readFileSync(path.join(root, file), "utf8");
 const html = read("index.html");
 const css = read("styles.css");
 const script = read("script.js");
+const zhCopy = script.slice(script.indexOf("  zh: {"), script.indexOf("const getStoredLanguage"));
 const escapeRegExp = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 const recruiterEmailAddress = "yangyihang96@gmail.com";
 const recruiterEmailHrefEn = `mailto:${recruiterEmailAddress}?subject=${encodeURIComponent(
@@ -74,13 +75,13 @@ test("site uses HTTPS canonical and sharing metadata", () => {
   assert.match(script, /title: "Yihang \(Henry\) Yang \| 医疗设备现场服务工程师"/);
   assert.match(
     script,
-    /description:\s*"Yihang \(Henry\) Yang 是悉尼医疗设备现场服务工程师，重点展示设备维护、故障排查、验证记录、服务文档和简历下载。"/
+    /description:\s*"Yihang \(Henry\) Yang 常驻悉尼，专注医疗设备现场服务、故障排查、验证测试、服务记录和简历下载。"/
   );
 });
 
 test("stylesheet and script use the current cache-busting version", () => {
-  assert.match(html, /href="styles\.css\?v=proof-list-redaction-1"/);
-  assert.match(html, /src="script\.js\?v=proof-list-redaction-1"/);
+  assert.match(html, /href="styles\.css\?v=zh-copy-polish-1"/);
+  assert.match(html, /src="script\.js\?v=zh-copy-polish-1"/);
 });
 
 test("language preference is restored when the page loads", () => {
@@ -101,6 +102,23 @@ test("screening copy uses standard HR terms in both languages", () => {
   assert.doesNotMatch(`${html}\n${script}`, /学历、成绩单、培训、身份、工作权利、推荐人/);
   assert.doesNotMatch(`${html}\n${script}`, /证书、身份、工作权利核验、推荐人核验/);
   assert.doesNotMatch(`${html}\n${script}`, /大学证书、成绩单和学位证明/);
+});
+
+test("Chinese copy reads as professional localized content instead of direct English fragments", () => {
+  assert.match(
+    zhCopy,
+    /"常驻悉尼的医疗设备现场服务工程师，重点处理设备维护、故障排查、验证测试和清晰可交接的服务记录。"/
+  );
+  assert.match(zhCopy, /"当前岗位摘要展示功能检查、性能验证、服务报告和升级处理状态。"/);
+  assert.match(zhCopy, /"最强匹配是需要现场服务、出行、记录、故障排查和闭环跟进的岗位。"/);
+  assert.match(zhCopy, /"预防性维护、故障排查、维修、安装支持、工作台服务，以及服务闭环。"/);
+  assert.match(zhCopy, /"处理工单、服务报告、设备历史、序列信息、行动记录和简洁的跟进说明。"/);
+  assert.match(zhCopy, /"和临床用户、医院工程团队、厂商、内部工程师对齐现场信息、限制条件和下一步。"/);
+  assert.match(zhCopy, /"如果有医疗设备现场服务相关机会，可以通过下面入口联系我；中文或英文都可以。"/);
+  assert.doesNotMatch(
+    zhCopy,
+    /ownership|close-out|vendor|vendors|work orders|service reports|serial details|equipment history|customer updates|functional checks|performance evidence|escalation status|bench service|workshop support|workshop 工作|biomedical team|Biomedical teams/
+  );
 });
 
 test("structural accessibility labels are translated with the visible language", () => {
@@ -160,7 +178,7 @@ test("hero profile card shows profile currency and public proof boundary", () =>
   assert.match(script, /"\.profile-status-strip div:nth-child\(1\) strong": "更新"/);
   assert.match(script, /"\.profile-status-strip div:nth-child\(1\) span": "2026 年 6 月"/);
   assert.match(script, /"\.profile-status-strip div:nth-child\(2\) strong": "证明边界"/);
-  assert.match(script, /"\.profile-status-strip div:nth-child\(2\) span": "公开安全摘要；正式匹配后私下提供文件。"/);
+  assert.match(script, /"\.profile-status-strip div:nth-child\(2\) span": "公开页面只保留安全摘要；正式匹配后再处理核验文件。"/);
   assert.match(script, /"\.profile-status-strip": { "aria-label": "Profile currency and proof boundary" }/);
   assert.match(script, /"\.profile-status-strip": { "aria-label": "资料更新时间和证明边界" }/);
   assert.match(css, /\.profile-status-strip\s*{[\s\S]*?display:\s*grid;[\s\S]*?grid-template-columns:\s*1fr;/);

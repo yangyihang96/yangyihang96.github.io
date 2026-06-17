@@ -452,7 +452,7 @@ const translations = {
     lang: "zh-CN",
     title: "Yihang (Henry) Yang | 医疗设备现场服务工程师",
     description:
-      "Yihang (Henry) Yang 是悉尼医疗设备现场服务工程师，重点展示设备维护、故障排查、验证记录、服务文档和简历下载。",
+      "Yihang (Henry) Yang 常驻悉尼，专注医疗设备现场服务、故障排查、验证测试、服务记录和简历下载。",
     copyEmail: {
       default: "复制邮箱",
       copied: "已复制",
@@ -470,7 +470,7 @@ const translations = {
       ".nav-resume-link": "PDF 简历",
       ".eyebrow": "悉尼 · 生物医学工程 · 现场服务",
       ".hero-subtitle":
-        "我在悉尼做医疗设备现场服务，关注的不只是把设备修好，而是把现场判断、测试验证和服务记录做成可交接的闭环。",
+        "常驻悉尼的医疗设备现场服务工程师，重点处理设备维护、故障排查、验证测试和清晰可交接的服务记录。",
       ".hero-meta div:nth-child(1) dt": "地点",
       ".hero-meta div:nth-child(1) dd": "澳大利亚悉尼",
       ".hero-meta div:nth-child(2) dt": "重点",
@@ -491,23 +491,23 @@ const translations = {
       ".hero-action-path div:nth-child(3) span":
         "正式核验只在岗位匹配后进行",
       ".hero-profile-card .hero-card-kicker": "当前身份",
-      ".hero-profile-card strong": "生物医学现场服务工程师",
+      ".hero-profile-card strong": "医疗设备现场服务工程师",
       ".hero-profile-card .hero-card-note":
-        "PDF 和 DOCX 简历都可下载。进一步核验材料不放在公开页面。",
+        "PDF 和 DOCX 简历可下载；进一步核验材料不放在公开页面，只在正式流程中处理。",
       ".profile-status-strip div:nth-child(1) strong": "更新",
       ".profile-status-strip div:nth-child(1) span": "2026 年 6 月",
       ".profile-status-strip div:nth-child(2) strong": "证明边界",
-      ".profile-status-strip div:nth-child(2) span": "公开安全摘要；正式匹配后私下提供文件。",
+      ".profile-status-strip div:nth-child(2) span": "公开页面只保留安全摘要；正式匹配后再处理核验文件。",
       ".fit-strip .section-kicker": "适合岗位",
-      "#fit-title": "需要现场判断和设备服务能力的 biomedical field service 岗位。",
+      "#fit-title": "适合需要现场判断、设备服务和清楚记录的医疗设备现场服务岗位。",
       ".fit-strip .section-intro":
-        "快速判断：常驻悉尼，可支持现场出行，中英文沟通，重点在医疗设备维护、故障排查、验证测试和清楚的服务记录。",
+        "快速判断：常驻悉尼，可支持现场出行，中英文沟通，熟悉医疗设备维护、故障排查、验证测试和服务记录。",
       ".fit-verdict div:nth-child(1) strong": "最适合",
       ".fit-verdict div:nth-child(1) span":
-        "需要设备服务、验证记录和清楚交接的 biomedical field service 岗位。",
+        "需要设备服务、验证记录和清楚交接的医疗设备现场服务岗位。",
       ".fit-verdict div:nth-child(2) strong": "证据路径",
       ".fit-verdict div:nth-child(2) span":
-        "下面先看正式工作经历，再看证据点、案例和培训记录。",
+        "先看正式工作经历，再看证据点、服务案例和培训记录。",
       ".fit-grid article:nth-child(1) span": "岗位",
       ".fit-grid article:nth-child(1) strong": "Biomedical Field Service Engineer",
       ".fit-grid article:nth-child(2) span": "服务内容",
@@ -533,15 +533,15 @@ const translations = {
       ".proof-grid article:nth-child(1) h3": "设备范围",
       ".proof-grid article:nth-child(1) .proof-evidence dt:nth-of-type(1)": "公开证据",
       ".proof-grid article:nth-child(1) .proof-evidence dd:nth-of-type(1)":
-        "工作经历卡片和能力矩阵显示 ventilation、monitoring、ultrasound、DEXA、pharmacy automation 和通用 biomedical equipment。",
+        "工作经历卡片和能力矩阵展示呼吸设备、监护设备、超声、DEXA、药房自动化和通用医疗设备经验。",
       ".proof-grid article:nth-child(1) .proof-evidence dt:nth-of-type(2)": "私下核验",
       ".proof-grid article:nth-child(1) .proof-evidence dd:nth-of-type(2)":
-        "岗位匹配清楚后，再要求相关 training records 或 certificate context。",
+        "岗位匹配清楚后，再按正式流程核验相关培训记录或证书背景。",
       ".proof-grid article:nth-child(2) span": "验证",
       ".proof-grid article:nth-child(2) h3": "验证方法",
       ".proof-grid article:nth-child(2) .proof-evidence dt:nth-of-type(1)": "公开证据",
       ".proof-grid article:nth-child(2) .proof-evidence dd:nth-of-type(1)":
-        "当前岗位摘要展示 functional checks、performance evidence、service reports 和 escalation status。",
+        "当前岗位摘要展示功能检查、性能验证、服务报告和升级处理状态。",
       ".proof-grid article:nth-child(2) .proof-evidence dt:nth-of-type(2)": "私下核验",
       ".proof-grid article:nth-child(2) .proof-evidence dd:nth-of-type(2)":
         "面试时让他讲一个设备问题：症状、测试步骤、验证结果和交接方式。",
@@ -549,15 +549,15 @@ const translations = {
       ".proof-grid article:nth-child(3) h3": "记录链路",
       ".proof-grid article:nth-child(3) .proof-evidence dt:nth-of-type(1)": "公开证据",
       ".proof-grid article:nth-child(3) .proof-evidence dd:nth-of-type(1)":
-        "经历结果里列出 Simpro work orders、service reports、serial details、equipment history 和 customer updates。",
+        "经历结果里列出 Simpro 工单、服务报告、设备序列信息、设备历史和客户更新。",
       ".proof-grid article:nth-child(3) .proof-evidence dt:nth-of-type(2)": "私下核验",
       ".proof-grid article:nth-child(3) .proof-evidence dd:nth-of-type(2)":
-        "询问他如何写记录，让下一位工程师或 biomedical team 可以安全继续处理。",
+        "面试时可询问记录如何支持下一位工程师或医院工程团队继续处理。",
       ".proof-grid article:nth-child(4) span": "交接",
       ".proof-grid article:nth-child(4) h3": "交接路径",
       ".proof-grid article:nth-child(4) .proof-evidence dt:nth-of-type(1)": "公开证据",
       ".proof-grid article:nth-child(4) .proof-evidence dd:nth-of-type(1)":
-        "案例笔记展示 scenario、action、verification 和 handover，同时不暴露客户或序列号。",
+        "案例笔记展示场景、处理动作、验证结果和交接方式，同时不暴露客户或序列号。",
       ".proof-grid article:nth-child(4) .proof-evidence dt:nth-of-type(2)": "私下核验",
       ".proof-grid article:nth-child(4) .proof-evidence dd:nth-of-type(2)":
         "询问交接对象是谁，以及设备下一次使用状态如何被说明。",
@@ -574,49 +574,49 @@ const translations = {
       ".brief-grid article:nth-child(2) p":
         "公开页面只放简历；正式核验材料不放在页面上。",
       ".brief-grid article:nth-child(3) span": "最适合下一步",
-      ".brief-grid article:nth-child(3) h3": "Biomedical field service",
+      ".brief-grid article:nth-child(3) h3": "医疗设备现场服务",
       ".brief-grid article:nth-child(3) p":
-        "最强匹配是需要现场服务、出行、记录、故障排查和后续跟进 ownership 的岗位。",
+        "最强匹配是需要现场服务、出行、记录、故障排查和闭环跟进的岗位。",
       ".experience-section .section-kicker": "工作经历",
-      "#experience-title": "正式履历覆盖现场服务、workshop support 和医疗记录相关工作。",
+      "#experience-title": "正式履历覆盖现场服务、工作台支持和医疗记录相关工作。",
       ".experience-section .section-intro":
         "下面只放适合公开展示的履历摘要，不公开客户名称、序列号、内部文件或具体现场细节。",
       ".experience-summary > p":
-        "我目前从事 biomedical field service 工作，服务对象覆盖医院和药房相关医疗设备，工作内容包括预防性维护、故障排查、维修、安装支持、验证测试和服务记录。",
+        "我目前从事医疗设备现场服务工作，服务对象覆盖医院和药房相关医疗设备，工作内容包括预防性维护、故障排查、维修、安装支持、验证测试和服务记录。",
       ".experience-summary-grid div:nth-child(1) strong": "服务闭环",
       ".experience-summary-grid div:nth-child(1) span":
-        "覆盖设备准备、现场或 workshop 服务、安装支持、功能检查、安全意识下的验证和后续跟进。",
+        "覆盖设备准备、现场或工作台服务、安装支持、功能检查、验证测试和后续跟进。",
       ".experience-summary-grid div:nth-child(2) strong": "设备范围",
       ".experience-summary-grid div:nth-child(2) span":
-        "接触 ventilation、patient monitoring、ultrasound、DEXA、pharmacy automation 和通用 biomedical equipment。",
+        "接触呼吸设备、患者监护、超声、DEXA、药房自动化和通用医疗设备。",
       ".experience-summary-grid div:nth-child(3) strong": "记录能力",
       ".experience-summary-grid div:nth-child(3) span":
-        "维护 Simpro 工单、service reports、serial details、equipment history 和 customer updates，让技术判断可以追踪和交接。",
+        "维护 Simpro 工单、服务报告、设备序列信息、设备历史和客户更新，让技术判断可以追踪和交接。",
       ".experience-timeline article:nth-child(1) .experience-date": "2023 年 7 月 - 至今",
       ".experience-timeline article:nth-child(1) h3":
         "Biomedical Engineer | Nova Biomedical Australia",
       ".experience-timeline article:nth-child(1) .experience-meta":
-        "澳大利亚范围现场服务 / workshop support · 全职，每周 38 小时",
+        "澳大利亚范围现场服务 / 工作台支持 · 全职，每周 38 小时",
       ".experience-evidence div:nth-child(1) strong": "设备",
       ".experience-evidence div:nth-child(1) span": "Ventilation / monitoring / ultrasound / DEXA",
       ".experience-evidence div:nth-child(2) strong": "服务动作",
       ".experience-evidence div:nth-child(2) span": "PM / 维修 / 安装支持 / 验证",
       ".experience-evidence div:nth-child(3) strong": "记录",
-      ".experience-evidence div:nth-child(3) span": "Simpro / service reports / equipment history",
+      ".experience-evidence div:nth-child(3) span": "Simpro / 服务报告 / 设备历史",
       ".experience-evidence div:nth-child(4) strong": "服务场景",
-      ".experience-evidence div:nth-child(4) span": "医院 / 药房 / workshop support",
+      ".experience-evidence div:nth-child(4) span": "医院 / 药房 / 工作台支持",
       ".experience-outcome dt:nth-of-type(1)": "服务环境",
       ".experience-outcome dd:nth-of-type(1)":
-        "医院、药房、workshop 和现场支持环境",
+        "医院、药房、工作台和现场支持环境",
       ".experience-outcome dt:nth-of-type(2)": "验证结果",
       ".experience-outcome dd:nth-of-type(2)":
         "设备以功能检查、性能证据或清楚升级状态结束",
       ".experience-outcome dt:nth-of-type(3)": "记录链路",
       ".experience-outcome dd:nth-of-type(3)":
-        "Simpro 工单、service report、serial details、equipment history 和 customer update 对齐",
+        "Simpro 工单、服务报告、设备序列信息、设备历史和客户更新保持一致",
       ".experience-outcome dt:nth-of-type(4)": "交接对象",
       ".experience-outcome dd:nth-of-type(4)":
-        "Biomedical teams、临床用户、vendors 和内部工程师能看到下一次使用状态",
+        "医院工程团队、临床用户、厂商和内部工程师能看到下一次使用状态",
       ".experience-timeline article:nth-child(2) .experience-date": "2019 年 12 月 - 2020 年 2 月",
       ".experience-timeline article:nth-child(2) h3":
         "药物警戒部门助理 | Lundbeck Beijing",
@@ -642,10 +642,10 @@ const translations = {
         "状态确认、流程步骤和性能证据",
       ".case-grid article:nth-child(1) .case-outcome dt:nth-of-type(3)": "验证",
       ".case-grid article:nth-child(1) .case-outcome dd:nth-of-type(3)":
-        "功能检查和服务记录 close-out",
+        "功能检查和服务记录闭环",
       ".case-grid article:nth-child(1) .case-outcome dt:nth-of-type(4)": "交付",
       ".case-grid article:nth-child(1) .case-outcome dd:nth-of-type(4)":
-        "给 biomedical 或现场团队清楚的下一次使用状态",
+        "给医院工程团队或现场团队清楚的下一次使用状态",
       ".case-grid article:nth-child(2) span": "02 / 故障诊断",
       ".case-grid article:nth-child(2) h3": "先把故障描述变成可验证的问题",
       ".case-grid article:nth-child(2) p":
@@ -665,25 +665,25 @@ const translations = {
       ".case-grid article:nth-child(3) span": "03 / 服务记录",
       ".case-grid article:nth-child(3) h3": "记录写清楚，后面才接得住",
       ".case-grid article:nth-child(3) p":
-        "服务结束以后，信息不能只留在记忆里。我会把 serial、work order、service report、parts/action 和 customer update 对齐，让后续排查不用重新猜。",
+        "服务结束以后，信息不能只留在记忆里。我会把序列信息、工单、服务报告、部件和处理动作、客户更新对齐，让后续排查不用重新猜。",
       ".case-grid article:nth-child(3) .case-outcome dt:nth-of-type(1)": "场景",
       ".case-grid article:nth-child(3) .case-outcome dd:nth-of-type(1)":
         "后续排查需要复用的服务轨迹",
       ".case-grid article:nth-child(3) .case-outcome dt:nth-of-type(2)": "动作",
       ".case-grid article:nth-child(3) .case-outcome dd:nth-of-type(2)":
-        "对齐 serial、work order、service report 和 actions",
+        "对齐序列信息、工单、服务报告和处理动作",
       ".case-grid article:nth-child(3) .case-outcome dt:nth-of-type(3)": "验证",
       ".case-grid article:nth-child(3) .case-outcome dd:nth-of-type(3)":
-        "交叉检查 equipment history 和 customer update",
+        "交叉检查设备历史和客户更新",
       ".case-grid article:nth-child(3) .case-outcome dt:nth-of-type(4)": "交付",
       ".case-grid article:nth-child(3) .case-outcome dd:nth-of-type(4)":
-        "给 biomedical team 和内部工程师清楚记录",
+        "给医院工程团队和内部工程师清楚记录",
       "#study .section-kicker": "教育",
       "#study-title": "工程背景让我更习惯用证据说话。",
       "#study .section-intro":
-        "从 biomedical engineering 到现场服务，我一直在练习同一件事：把复杂问题拆开，找到证据，再把结论写清楚。",
+        "从生物医学工程学习到现场服务，我一直训练同一件事：拆解复杂问题，找到证据，再把结论写清楚。",
       ".study-grid article:nth-child(1) p:nth-of-type(2)":
-        "Biomedical engineering research、实验计划、验证证据和技术文档。",
+        "生物医学工程研究、实验计划、验证证据和技术文档。",
       ".study-grid article:nth-child(2) p:nth-of-type(2)":
         "Medical science、biomedical design、data analysis 和 engineering design tools。",
       ".study-grid article:nth-child(3) span": "MPhil 论文题目",
@@ -747,35 +747,35 @@ const translations = {
       "#capabilities .section-kicker": "能力矩阵",
       "#capabilities-title": "我能在服务环境里承担什么。",
       "#capabilities .section-intro":
-        "招聘方可以先看这一部分，快速判断我在设备服务、测试验证、记录、沟通、工具和入职前筛选材料方面是否匹配。",
+        "招聘方可以先看这一部分，快速判断我在设备服务、测试验证、记录、沟通、工具和正式流程配合方面是否匹配。",
       ".capability-row article:nth-child(1) span": "服务",
-      ".capability-row article:nth-child(1) h3": "现场和 workshop 工作",
+      ".capability-row article:nth-child(1) h3": "现场和工作台服务",
       ".capability-row article:nth-child(1) p":
-        "预防性维护、故障排查、维修、安装支持、bench service，以及服务 close-out。",
+        "预防性维护、故障排查、维修、安装支持、工作台服务，以及服务闭环。",
       ".capability-row article:nth-child(2) span": "测试",
       ".capability-row article:nth-child(2) h3": "可复查的验证证据",
       ".capability-row article:nth-child(2) p":
-        "按流程做 functional test、performance check，保持 electrical safety awareness，并留下后续能复查的测试记录。",
+        "按流程完成功能测试和性能检查，保持电气安全意识，并留下后续能复查的测试记录。",
       ".capability-row article:nth-child(3) span": "设备",
       ".capability-row article:nth-child(3) h3": "医疗设备范围",
       ".capability-row article:nth-child(3) p":
-        "接触 ventilation、patient monitoring、ultrasound、DEXA、pharmacy automation 和通用 biomedical equipment。",
+        "接触呼吸设备、患者监护、超声、DEXA、药房自动化和通用医疗设备。",
       ".capability-row article:nth-child(4) span": "记录",
       ".capability-row article:nth-child(4) h3": "可追踪的服务记录",
       ".capability-row article:nth-child(4) p":
-        "处理 work orders、service reports、equipment history、serial details、action logs 和简洁的 follow-up notes。",
+        "处理工单、服务报告、设备历史、序列信息、行动记录和简洁的跟进说明。",
       ".capability-row article:nth-child(5) span": "沟通",
       ".capability-row article:nth-child(5) h3": "清楚交接",
       ".capability-row article:nth-child(5) p":
-        "和临床用户、医院 biomedical team、vendor、内部工程师对齐现场信息、限制条件和下一步。",
+        "和临床用户、医院工程团队、厂商、内部工程师对齐现场信息、限制条件和下一步。",
       ".capability-row article:nth-child(6) span": "入职前筛选",
       ".capability-row article:nth-child(6) h3": "悉尼出行 + 私下核验证明",
       ".capability-row article:nth-child(6) p":
         "可支持悉尼现场出行，简历可下载，正式核验只在岗位匹配后处理。",
       "#contact .section-kicker": "联系",
-      "#contact-title": "可以在这里联系我。",
+      "#contact-title": "可以通过这里联系我。",
       ".contact-inner > p:not(.section-kicker)":
-        "如果有 biomedical / medical device field service 相关机会，可以用下面的行动入口联系我。中文和英文都可以。",
+        "如果有医疗设备现场服务相关机会，可以通过下面入口联系我；中文或英文都可以。",
       ".contact-actions-title": "可以继续聊医疗设备现场服务机会。",
       ".contact-actions-summary":
         "适合需要悉尼现场出行、医疗设备服务、验证记录和中英文沟通的岗位。",
