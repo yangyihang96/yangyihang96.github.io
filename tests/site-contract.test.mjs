@@ -24,6 +24,7 @@ const recruiterEmailHrefEn = `mailto:${recruiterEmailAddress}?subject=${encodeUR
     "Device scope: ",
     "Location / travel: ",
     "Preferred call times: ",
+    "Documents needed (if any): ",
     "",
     "Regards,",
   ].join("\r\n")
@@ -78,8 +79,8 @@ test("site uses HTTPS canonical and sharing metadata", () => {
 });
 
 test("stylesheet and script use the current cache-busting version", () => {
-  assert.match(html, /href="styles\.css\?v=study-coursework-proof-1"/);
-  assert.match(html, /src="script\.js\?v=study-coursework-proof-1"/);
+  assert.match(html, /href="styles\.css\?v=contact-proof-request-1"/);
+  assert.match(html, /src="script\.js\?v=contact-proof-request-1"/);
 });
 
 test("language preference is restored when the page loads", () => {
@@ -190,11 +191,14 @@ test("email actions prefill recruiter context instead of opening a blank email",
   assert.match(html, /Device%20scope%3A%20/);
   assert.match(html, /Location%20%2F%20travel%3A%20/);
   assert.match(html, /Preferred%20call%20times%3A%20/);
+  assert.match(html, /Documents%20needed%20\(if%20any\)%3A%20/);
   assert.match(script, /const recruiterEmailHrefEn =/);
   assert.match(script, /const recruiterEmailHrefZh =/);
   assert.match(script, /encodeURIComponent\(\s*"Biomedical field service opportunity"\s*\)/);
   assert.match(script, /encodeURIComponent\(\s*"医疗设备现场服务机会"\s*\)/);
   assert.match(script, /"Role scope: "/);
+  assert.match(script, /"Documents needed \(if any\): "/);
+  assert.match(script, /"需要核验的材料（如有）："/);
   assert.match(script, /"设备范围："/);
   assert.match(script, /"\.nav-email-link": { "aria-label": "Email Yihang Henry Yang", href: recruiterEmailHrefEn }/);
   assert.match(script, /"\.email-action": { "aria-label": "Email Yihang Henry Yang", href: recruiterEmailHrefEn }/);
@@ -275,11 +279,11 @@ test("contact section repeats recruiter conversion actions at the close", () => 
   assert.match(script, /"\.contact-resume-format-note": "PDF 适合快速查看；DOCX 适合 ATS 或招聘系统。"/);
   assert.match(html, /class="contact-intake" aria-label="Recruiter email checklist"/);
   assert.match(html, /<strong>Role scope<\/strong>\s*<span>Share device type, service setting, travel area, and start timing\.<\/span>/);
-  assert.match(html, /<strong>Proof needed<\/strong>\s*<span>Ask privately for degree, training, identity, right-to-work, or reference-check material when required\.<\/span>/);
+  assert.match(html, /<strong>Proof needed<\/strong>\s*<span>List degree, transcript, training, identity, right-to-work, reference, or screening checks needed for the next step\.<\/span>/);
   assert.match(html, /<strong>Next step<\/strong>\s*<span>Send interview time, role description, or technical screen format\.<\/span>/);
   assert.match(html, /class="contact-response-strip" aria-label="Recruiter response expectations"/);
   assert.match(html, /<strong>Reply window<\/strong>\s*<span>I aim to reply within 1 business day for role-fit, interview, or document requests\.<\/span>/);
-  assert.match(html, /<strong>Best format<\/strong>\s*<span>Email the role description, device scope, location, and preferred call times\.<\/span>/);
+  assert.match(html, /<strong>Best format<\/strong>\s*<span>Email the role description, device scope, location, preferred call times, and any formal document checklist\.<\/span>/);
   assert.match(html, /<strong>Document order<\/strong>\s*<span>Resume first; sensitive checks only after role fit and formal process are clear\.<\/span>/);
   assert.match(script, /"\.contact-intake div:nth-child\(1\) strong": "Role scope"/);
   assert.match(script, /"\.contact-intake div:nth-child\(1\) strong": "岗位范围"/);

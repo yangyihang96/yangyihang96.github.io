@@ -16,6 +16,7 @@ const recruiterEmailHrefEn = `mailto:${recruiterEmailAddress}?subject=${encodeUR
     "Device scope: ",
     "Location / travel: ",
     "Preferred call times: ",
+    "Documents needed (if any): ",
     "",
     "Regards,",
   ].join("\r\n")
@@ -32,6 +33,7 @@ const recruiterEmailHrefZh = `mailto:${recruiterEmailAddress}?subject=${encodeUR
     "设备范围：",
     "地点 / 出行：",
     "合适通话时间：",
+    "需要核验的材料（如有）：",
     "",
     "谢谢。",
   ].join("\r\n")
@@ -381,7 +383,7 @@ const translations = {
         "Share device type, service setting, travel area, and start timing.",
       ".contact-intake div:nth-child(2) strong": "Proof needed",
       ".contact-intake div:nth-child(2) span":
-        "Ask privately for degree, training, identity, right-to-work, or reference-check material when required.",
+        "List degree, transcript, training, identity, right-to-work, reference, or screening checks needed for the next step.",
       ".contact-intake div:nth-child(3) strong": "Next step",
       ".contact-intake div:nth-child(3) span":
         "Send interview time, role description, or technical screen format.",
@@ -390,7 +392,7 @@ const translations = {
         "I aim to reply within 1 business day for role-fit, interview, or document requests.",
       ".contact-response-strip div:nth-child(2) strong": "Best format",
       ".contact-response-strip div:nth-child(2) span":
-        "Email the role description, device scope, location, and preferred call times.",
+        "Email the role description, device scope, location, preferred call times, and any formal document checklist.",
       ".contact-response-strip div:nth-child(3) strong": "Document order",
       ".contact-response-strip div:nth-child(3) span":
         "Resume first; sensitive checks only after role fit and formal process are clear.",
@@ -787,7 +789,7 @@ const translations = {
         "说明设备类型、服务环境、出行范围和开始时间。",
       ".contact-intake div:nth-child(2) strong": "需要核验",
       ".contact-intake div:nth-child(2) span":
-        "需要时可私下索取学历、培训、身份、工作权利或推荐人核验材料。",
+        "列明下一步需要的学历、成绩单、培训、身份、工作权利、推荐人或筛选核验材料。",
       ".contact-intake div:nth-child(3) strong": "下一步",
       ".contact-intake div:nth-child(3) span":
         "发送面试时间、岗位说明或技术筛选形式。",
@@ -796,7 +798,7 @@ const translations = {
         "岗位匹配、面试或材料请求，我会尽量在 1 个工作日内回复。",
       ".contact-response-strip div:nth-child(2) strong": "最佳格式",
       ".contact-response-strip div:nth-child(2) span":
-        "邮件里请附岗位说明、设备范围、地点和合适的通话时间。",
+        "邮件里请附岗位说明、设备范围、地点、合适通话时间和正式材料清单。",
       ".contact-response-strip div:nth-child(3) strong": "材料顺序",
       ".contact-response-strip div:nth-child(3) span":
         "先看简历；敏感核验材料只在岗位匹配和正式流程清楚后提供。",
