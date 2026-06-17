@@ -80,8 +80,8 @@ test("site uses HTTPS canonical and sharing metadata", () => {
 });
 
 test("stylesheet and script use the current cache-busting version", () => {
-  assert.match(html, /href="styles\.css\?v=zh-copy-polish-1"/);
-  assert.match(html, /src="script\.js\?v=zh-copy-polish-1"/);
+  assert.match(html, /href="styles\.css\?v=zh-translation-polish-2"/);
+  assert.match(html, /src="script\.js\?v=zh-translation-polish-2"/);
 });
 
 test("language preference is restored when the page loads", () => {
@@ -111,13 +111,21 @@ test("Chinese copy reads as professional localized content instead of direct Eng
   );
   assert.match(zhCopy, /"当前岗位摘要展示功能检查、性能验证、服务报告和升级处理状态。"/);
   assert.match(zhCopy, /"最强匹配是需要现场服务、出行、记录、故障排查和闭环跟进的岗位。"/);
-  assert.match(zhCopy, /"预防性维护、故障排查、维修、安装支持、工作台服务，以及服务闭环。"/);
+  assert.match(zhCopy, /"预防性维护、故障排查、维修、安装支持、车间维修支持，以及服务闭环。"/);
   assert.match(zhCopy, /"处理工单、服务报告、设备历史、序列信息、行动记录和简洁的跟进说明。"/);
   assert.match(zhCopy, /"和临床用户、医院工程团队、厂商、内部工程师对齐现场信息、限制条件和下一步。"/);
-  assert.match(zhCopy, /"如果有医疗设备现场服务相关机会，可以通过下面入口联系我；中文或英文都可以。"/);
+  assert.match(zhCopy, /"招聘方可先核对这些关键信息。"/);
+  assert.match(zhCopy, /"面试中可围绕一个设备服务案例展开讨论：症状、测试步骤、验证结果和交接方式。"/);
+  assert.match(zhCopy, /"匹配后再进行材料核验"/);
+  assert.match(zhCopy, /"现场服务与车间支持"/);
+  assert.match(zhCopy, /再结合服务手册、测量结果和替换验证去收窄判断。/);
+  assert.match(zhCopy, /"医学科学、生物医学设计、数据分析和工程设计工具。"/);
+  assert.match(zhCopy, /"围绕可穿戴医疗设备可行性，处理柔性电极几何、银墨涂层、阻抗测量和可制造性权衡。"/);
+  assert.match(zhCopy, /"BMET、ELEC、ENGG、CHNG 和实验笔记记录，能支撑生物医学系统、电子学、设计和数据分析基础。"/);
+  assert.match(zhCopy, /"欢迎联系"/);
   assert.doesNotMatch(
     zhCopy,
-    /ownership|close-out|vendor|vendors|work orders|service reports|serial details|equipment history|customer updates|functional checks|performance evidence|escalation status|bench service|workshop support|workshop 工作|biomedical team|Biomedical teams/
+    /ownership|close-out|vendor|vendors|work orders|service reports|serial details|equipment history|customer updates|functional checks|performance evidence|escalation status|bench service|workshop support|workshop 工作|biomedical team|Biomedical teams|service manual|Medical science、|biomedical design、|data analysis 和|engineering design tools|wearable medical device|biomedical systems|data-analysis|工作台支持|工作台服务|让他讲|再要证明文件|可以通过这里联系我/
   );
 });
 
