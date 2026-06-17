@@ -2601,8 +2601,12 @@ body.resume-style {
     border-bottom: 0;
   }
 
+  .resume-style.resume-compact .hero-main {
+    order: 1;
+  }
+
   .resume-style.resume-compact .hero-profile-card {
-    order: -1;
+    order: 2;
     width: min(100%, 560px);
     display: grid;
     grid-template-columns: 112px 1fr;

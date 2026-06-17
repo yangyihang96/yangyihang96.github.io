@@ -78,8 +78,8 @@ test("site uses HTTPS canonical and sharing metadata", () => {
 });
 
 test("stylesheet and script use the current cache-busting version", () => {
-  assert.match(html, /href="styles\.css\?v=prefilled-email-1"/);
-  assert.match(html, /src="script\.js\?v=prefilled-email-1"/);
+  assert.match(html, /href="styles\.css\?v=mobile-hero-order-1"/);
+  assert.match(html, /src="script\.js\?v=mobile-hero-order-1"/);
 });
 
 test("language preference is restored when the page loads", () => {
@@ -778,6 +778,33 @@ test("mobile compact hero keeps recruiter actions inside a short first screen", 
     css,
     /@media \(max-width:\s*560px\)[\s\S]*?\.resume-style\.resume-compact \.resume-link\s*{[\s\S]*?grid-column:\s*auto;/
   );
+});
+
+test("mobile compact hero keeps the name and recruiter actions before the profile card", () => {
+  const heroMainIndex = html.indexOf('<div class="hero-main">');
+  const heroProfileIndex = html.indexOf('<aside class="hero-profile-card"');
+  assert.notEqual(heroMainIndex, -1, "missing hero main copy");
+  assert.notEqual(heroProfileIndex, -1, "missing hero profile card");
+  assert.ok(heroMainIndex < heroProfileIndex, "hero copy should be before the profile card in the source order");
+
+  const compactTabletMediaStart = css.indexOf(
+    "@media (max-width: 920px) {\n  .resume-style.resume-compact .hero-copy"
+  );
+  assert.notEqual(compactTabletMediaStart, -1, "missing compact tablet media block");
+
+  const compactTabletMediaEnd = css.indexOf("\n}\n\n@media (max-width: 760px)", compactTabletMediaStart);
+  assert.notEqual(compactTabletMediaEnd, -1, "missing end of compact tablet media block");
+  const compactTabletMedia = css.slice(compactTabletMediaStart, compactTabletMediaEnd);
+
+  assert.match(
+    compactTabletMedia,
+    /\.resume-style\.resume-compact \.hero-main\s*{[\s\S]*?order:\s*1;/
+  );
+  assert.match(
+    compactTabletMedia,
+    /\.resume-style\.resume-compact \.hero-profile-card\s*{[\s\S]*?order:\s*2;/
+  );
+  assert.doesNotMatch(compactTabletMedia, /\.resume-style\.resume-compact \.hero-profile-card\s*{[\s\S]*?order:\s*-1;/);
 });
 
 test("person structured data is present and parseable", () => {
