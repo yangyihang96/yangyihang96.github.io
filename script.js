@@ -217,7 +217,7 @@ const translations = {
       ".experience-timeline article:nth-child(1) h3":
         "Biomedical Engineer | Nova Biomedical Australia",
       ".experience-timeline article:nth-child(1) .experience-meta":
-        "Australia-wide field service / workshop support · Full-time, 38 hours per week",
+        "Australia-wide field service / workshop support",
       ".experience-evidence div:nth-child(1) strong": "Equipment",
       ".experience-evidence div:nth-child(1) span": "Ventilation / monitoring / ultrasound / DEXA",
       ".experience-evidence div:nth-child(2) strong": "Service actions",
@@ -596,7 +596,7 @@ const translations = {
       ".experience-timeline article:nth-child(1) h3":
         "Biomedical Engineer | Nova Biomedical Australia",
       ".experience-timeline article:nth-child(1) .experience-meta":
-        "澳大利亚范围现场服务 / 车间支持 · 全职，每周 38 小时",
+        "澳大利亚范围现场服务 / 车间支持",
       ".experience-evidence div:nth-child(1) strong": "设备",
       ".experience-evidence div:nth-child(1) span": "Ventilation / monitoring / ultrasound / DEXA",
       ".experience-evidence div:nth-child(2) strong": "服务动作",

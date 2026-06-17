@@ -80,8 +80,8 @@ test("site uses HTTPS canonical and sharing metadata", () => {
 });
 
 test("stylesheet and script use the current cache-busting version", () => {
-  assert.match(html, /href="styles\.css\?v=zh-translation-polish-2"/);
-  assert.match(html, /src="script\.js\?v=zh-translation-polish-2"/);
+  assert.match(html, /href="styles\.css\?v=remove-work-hours-1"/);
+  assert.match(html, /src="script\.js\?v=remove-work-hours-1"/);
 });
 
 test("language preference is restored when the page loads", () => {
@@ -627,6 +627,7 @@ test("current experience card exposes scannable field-service evidence", () => {
   assert.match(html, /<strong>Service actions<\/strong>\s*<span>PM \/ repair \/ installation \/ verification<\/span>/);
   assert.match(html, /<strong>Records<\/strong>\s*<span>Simpro \/ service reports \/ equipment history<\/span>/);
   assert.match(html, /<strong>Service settings<\/strong>\s*<span>Hospital \/ pharmacy \/ workshop support<\/span>/);
+  assert.doesNotMatch(`${html}\n${script}`, /Full-time,\s*38 hours per week|38 hours per week|全职，每周 38 小时/);
   assert.match(script, /"\.experience-evidence div:nth-child\(1\) strong": "Equipment"/);
   assert.match(script, /"\.experience-evidence div:nth-child\(1\) strong": "设备"/);
   assert.match(
