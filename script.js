@@ -386,6 +386,7 @@ const translations = {
       ".contact-email-text": "yangyihang96@gmail.com",
       ".contact-privacy-note":
         "Private credentials and pre-employment screening material are shared only when required.",
+      ".contact-call-note": "Phone or video calls can be arranged after email confirmation.",
     },
     html: {
       ".life-notes p:nth-child(1)":
@@ -778,6 +779,7 @@ const translations = {
       ".contact-email-text": "yangyihang96@gmail.com",
       ".contact-privacy-note":
         "学历、培训证书和入职前筛选材料只在正式需要时私下提供。",
+      ".contact-call-note": "电话或视频沟通可在邮件确认后安排。",
     },
     html: {
       ".life-notes p:nth-child(1)":

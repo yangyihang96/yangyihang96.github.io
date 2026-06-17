@@ -78,8 +78,8 @@ test("site uses HTTPS canonical and sharing metadata", () => {
 });
 
 test("stylesheet and script use the current cache-busting version", () => {
-  assert.match(html, /href="styles\.css\?v=resume-file-hints-1"/);
-  assert.match(html, /src="script\.js\?v=resume-file-hints-1"/);
+  assert.match(html, /href="styles\.css\?v=call-setup-boundary-1"/);
+  assert.match(html, /src="script\.js\?v=call-setup-boundary-1"/);
 });
 
 test("language preference is restored when the page loads", () => {
@@ -333,11 +333,17 @@ test("contact section keeps one mail action and a compact visible email line", (
   assert.doesNotMatch(contactSource, /class="email-link"/);
   assert.match(contactSource, /class="contact-email-text">yangyihang96@gmail\.com<\/span>/);
   assert.match(contactSource, /class="contact-privacy-note">Private credentials and pre-employment screening material are shared only when required\.<\/span>/);
+  assert.match(contactSource, /class="contact-call-note">Phone or video calls can be arranged after email confirmation\.<\/span>/);
+  assert.doesNotMatch(contactSource, /tel:|\+61\s?4|\b04\d{2}\b|phone-number|mobile-number/);
   assert.match(script, /"\.contact-actions-note strong": "Direct email"/);
   assert.match(script, /"\.contact-actions-note strong": "直接邮箱"/);
+  assert.match(script, /"\.contact-call-note": "Phone or video calls can be arranged after email confirmation\."/);
+  assert.match(script, /"\.contact-call-note": "电话或视频沟通可在邮件确认后安排。"/);
   assert.doesNotMatch(css, /\.email-link\s*{/);
   assert.match(css, /\.contact-actions-note\s*{[\s\S]*?display:\s*grid;[\s\S]*?grid-template-columns:\s*auto auto minmax\(0,\s*1fr\);/);
+  assert.match(css, /\.contact-call-note\s*{[\s\S]*?grid-column:\s*3 \/ -1;/);
   assert.match(css, /@media \(max-width:\s*560px\)[\s\S]*?\.contact-actions-note\s*{[\s\S]*?grid-template-columns:\s*1fr;/);
+  assert.match(css, /@media \(max-width:\s*560px\)[\s\S]*?\.contact-call-note\s*{[\s\S]*?grid-column:\s*auto;/);
 });
 
 test("contact appears before optional personal life content in the recruiter reading flow", () => {

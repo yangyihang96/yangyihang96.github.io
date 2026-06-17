@@ -1398,9 +1398,14 @@ main:focus {
   overflow-wrap: anywhere;
 }
 
-.contact-privacy-note {
+.contact-privacy-note,
+.contact-call-note {
   min-width: 0;
   color: rgba(255, 255, 255, 0.78);
+}
+
+.contact-call-note {
+  grid-column: 3 / -1;
 }
 
 .site-footer {
@@ -1948,6 +1953,10 @@ main:focus {
     gap: 4px;
     padding-top: 12px;
     font-size: 13px;
+  }
+
+  .contact-call-note {
+    grid-column: auto;
   }
 
   .resume-style.resume-compact .proof-grid article {
