@@ -10,239 +10,237 @@ const read = (file) => fs.readFileSync(path.join(root, file), "utf8");
 const html = read("index.html");
 const css = read("styles.css");
 const script = read("script.js");
-const zhCopy = script.slice(script.indexOf("  zh: {"), script.indexOf("const getStoredLanguage"));
-const escapeRegExp = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-const recruiterEmailAddress = "yangyihang96@gmail.com";
-const recruiterEmailHrefEn = `mailto:${recruiterEmailAddress}?subject=${encodeURIComponent(
-  "Biomedical field service opportunity"
-)}&body=${encodeURIComponent(
-  [
-    "Hi Yihang,",
-    "",
-    "I'm contacting you about a biomedical field service role.",
-    "",
-    "Role scope: ",
-    "Device scope: ",
-    "Location / travel: ",
-    "Preferred call times: ",
-    "Documents needed (if any): ",
-    "",
-    "Regards,",
-  ].join("\r\n")
-)}`;
-const recruiterEmailHrefEnHtml = recruiterEmailHrefEn.replace("&body=", "&amp;body=");
+const publicSource = `${html}\n${css}\n${script}`;
+const linkedinUrl = "https://au.linkedin.com/in/henry-yang-9644382bb";
+const githubUrl = "https://github.com/yangyihang96";
+const privacySentence =
+  "De-identified service examples are shown here. Formal certificates, customer-specific records, and sensitive documents are available only through an authorized hiring process.";
 
-const sectionBody = (className) => {
-  const match = html.match(new RegExp(`<div class="${className}"[^>]*>([\\s\\S]*?)</div>`));
-  assert.ok(match, `missing ${className}`);
-  return match[1];
+const sectionById = (id) => {
+  const start = html.indexOf(`<section id="${id}"`);
+  assert.notEqual(start, -1, `missing section #${id}`);
+  const end = html.indexOf("</section>", start);
+  assert.notEqual(end, -1, `missing end for section #${id}`);
+  return html.slice(start, end);
 };
 
-const articleCount = (className) => {
-  return (sectionBody(className).match(/<article>/g) || []).length;
+const sectionByClass = (className) => {
+  const start = html.indexOf(`<section class="${className}`);
+  assert.notEqual(start, -1, `missing section .${className}`);
+  const end = html.indexOf("</section>", start);
+  assert.notEqual(end, -1, `missing end for section .${className}`);
+  return html.slice(start, end);
 };
 
-test("site uses HTTPS canonical and sharing metadata", () => {
-  assert.match(html, /<title>Yihang \(Henry\) Yang \| Biomedical Field Service Engineer<\/title>/);
+const articleCount = (source) => (source.match(/<article>/g) || []).length;
+
+const extractPdfText = () =>
+  execFileSync(
+    "python3",
+    [
+      "-c",
+      [
+        "from pypdf import PdfReader",
+        "r=PdfReader('assets/Henry_Yang_Biomedical_Engineer_Resume.pdf')",
+        "print('\\n'.join((p.extract_text() or '') for p in r.pages))",
+      ].join("; "),
+    ],
+    { cwd: root, encoding: "utf8" }
+  );
+
+const extractDocxText = () =>
+  execFileSync(
+    "python3",
+    [
+      "-c",
+      [
+        "from docx import Document",
+        "d=Document('assets/Henry_Yang_Biomedical_Engineer_Resume.docx')",
+        "print('\\n'.join(p.text for p in d.paragraphs if p.text))",
+      ].join("; "),
+    ],
+    { cwd: root, encoding: "utf8" }
+  );
+
+test("metadata targets a Sydney biomedical field-service recruiter", () => {
+  assert.match(html, /<title>Yihang \(Henry\) Yang \| Biomedical Field Service Engineer in Sydney<\/title>/);
   assert.match(
     html,
-    /<meta name="description" content="Sydney-based Biomedical Field Service Engineer focused on medical device maintenance, troubleshooting, verification, service documentation, and resume download\.">/
+    /<meta name="description" content="Sydney-based Biomedical Field Service Engineer with nearly three years of field and workshop service experience across hospital and pharmacy medical equipment\."/
   );
-  assert.match(html, /<meta name="robots" content="index, follow">/);
+  assert.match(html, /href="styles\.css\?v=recruiter-conversion-1"/);
+  assert.match(html, /src="script\.js\?v=recruiter-conversion-1"/);
   assert.match(html, /<link rel="canonical" href="https:\/\/yangyihang96\.com\/">/);
-  assert.match(html, /property="og:title" content="Yihang \(Henry\) Yang \| Biomedical Field Service Engineer"/);
-  assert.match(
-    html,
-    /property="og:description" content="Sydney-based Biomedical Field Service Engineer focused on medical device maintenance, troubleshooting, verification, service documentation, and resume download\."/
-  );
-  assert.match(html, /name="twitter:title" content="Yihang \(Henry\) Yang \| Biomedical Field Service Engineer"/);
-  assert.match(
-    html,
-    /name="twitter:description" content="Sydney-based Biomedical Field Service Engineer focused on medical device maintenance, troubleshooting, verification, service documentation, and resume download\."/
-  );
-  assert.match(html, /property="og:url" content="https:\/\/yangyihang96\.com\/"/);
-  assert.match(html, /property="og:image" content="https:\/\/yangyihang96\.com\/assets\//);
-  assert.match(html, /property="og:image:width" content="2200"/);
-  assert.match(html, /property="og:image:height" content="1238"/);
-  assert.match(html, /property="og:image:alt" content="Professional portrait and biomedical service profile for Yihang Yang"/);
-  assert.match(html, /name="twitter:image:alt" content="Professional portrait and biomedical service profile for Yihang Yang"/);
   assert.doesNotMatch(html, /http:\/\/yangyihang96\.com/);
-  assert.match(script, /title: "Yihang \(Henry\) Yang \| Biomedical Field Service Engineer"/);
-  assert.match(
-    script,
-    /description:\s*"Sydney-based Biomedical Field Service Engineer focused on medical device maintenance, troubleshooting, verification, service documentation, and resume download\."/
+
+  const match = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/);
+  assert.ok(match, "missing JSON-LD");
+  const data = JSON.parse(match[1]);
+  assert.equal(data.name, "Yihang (Henry) Yang");
+  assert.equal(data.jobTitle, "Biomedical Field Service Engineer");
+  assert.equal(
+    data.description,
+    "Sydney-based Biomedical Field Service Engineer with nearly three years of field and workshop service experience across hospital and pharmacy medical equipment."
   );
-  assert.match(script, /title: "Yihang \(Henry\) Yang \| 医疗设备现场服务工程师"/);
+  assert.deepEqual(data.sameAs, [linkedinUrl, githubUrl]);
+});
+
+test("hero leads with role, experience, mobility, work-right readiness, and three primary actions", () => {
+  const hero = sectionByClass("hero");
+  const heroActions = hero.match(/<div class="hero-actions">([\s\S]*?)<\/div>/)?.[1] ?? "";
+
+  assert.match(hero, /<p class="eyebrow">Yihang \(Henry\) Yang · Sydney<\/p>/);
+  assert.match(hero, /<h1 id="hero-title">Biomedical Field Service Engineer \| Sydney<\/h1>/);
   assert.match(
-    script,
-    /description:\s*"Yihang \(Henry\) Yang 常驻悉尼，专注医疗设备现场服务、故障排查、验证测试、服务记录和简历下载。"/
+    hero,
+    /Nearly three years of full-time field and workshop service experience across hospital and pharmacy medical equipment - PM, fault diagnosis, repair, installation support, verification, and service documentation\./
   );
+  assert.match(hero, /<dt>Experience<\/dt>\s*<dd>Nearly 3 years<\/dd>/);
+  assert.match(hero, /<dt>Mobility<\/dt>\s*<dd>Driver licence \+ field travel<\/dd>/);
+  assert.match(hero, /<dt>Work rights<\/dt>\s*<dd>Formal check ready<\/dd>/);
+  assert.match(hero, /class="hero-skill-tags"/);
+  assert.match(hero, /Ventilation/);
+  assert.match(hero, /Patient Monitoring/);
+  assert.match(hero, /Pharmacy Automation/);
+  assert.match(hero, /Simpro/);
+  assert.match(heroActions, />Download Resume</);
+  assert.match(heroActions, />Email Henry</);
+  assert.match(heroActions, />View De-identified Cases</);
+  assert.doesNotMatch(heroActions, /GitHub|DOCX|Private proof|Hiring docs/);
 });
 
-test("stylesheet and script use the current cache-busting version", () => {
-  assert.match(html, /href="styles\.css\?v=remove-work-hours-1"/);
-  assert.match(html, /src="script\.js\?v=remove-work-hours-1"/);
-});
-
-test("language preference is restored when the page loads", () => {
-  assert.match(script, /const getInitialLanguage = \(\) => \{/);
-  assert.match(script, /const storedLanguage = getStoredLanguage\(\);/);
-  assert.match(script, /return translations\[storedLanguage\] \? storedLanguage : "en";/);
-  assert.match(script, /applyLanguage\(getInitialLanguage\(\), false\);/);
-  assert.doesNotMatch(script, /applyLanguage\("en", false\);/);
-});
-
-test("screening copy uses standard HR terms in both languages", () => {
-  assert.doesNotMatch(`${html}\n${script}`, /employment-check/);
-  assert.match(`${html}\n${script}`, /pre-employment screening/);
-  assert.match(script, /入职前筛选/);
-  assert.doesNotMatch(script, /雇佣检查|雇佣核验/);
-  assert.doesNotMatch(script, /right-to-work 材料|right-to-work 或 reference|reference 材料/);
-  assert.doesNotMatch(`${html}\n${script}`, /degree, transcript, training, identity, right-to-work, reference/);
-  assert.doesNotMatch(`${html}\n${script}`, /学历、成绩单、培训、身份、工作权利、推荐人/);
-  assert.doesNotMatch(`${html}\n${script}`, /证书、身份、工作权利核验、推荐人核验/);
-  assert.doesNotMatch(`${html}\n${script}`, /大学证书、成绩单和学位证明/);
-});
-
-test("Chinese copy reads as professional localized content instead of direct English fragments", () => {
-  assert.match(
-    zhCopy,
-    /"常驻悉尼的医疗设备现场服务工程师，重点处理设备维护、故障排查、验证测试和清晰可交接的服务记录。"/
-  );
-  assert.match(zhCopy, /"当前岗位摘要展示功能检查、性能验证、服务报告和升级处理状态。"/);
-  assert.match(zhCopy, /"最强匹配是需要现场服务、出行、记录、故障排查和闭环跟进的岗位。"/);
-  assert.match(zhCopy, /"预防性维护、故障排查、维修、安装支持、车间维修支持，以及服务闭环。"/);
-  assert.match(zhCopy, /"处理工单、服务报告、设备历史、序列信息、行动记录和简洁的跟进说明。"/);
-  assert.match(zhCopy, /"和临床用户、医院工程团队、厂商、内部工程师对齐现场信息、限制条件和下一步。"/);
-  assert.match(zhCopy, /"招聘方可先核对这些关键信息。"/);
-  assert.match(zhCopy, /"面试中可围绕一个设备服务案例展开讨论：症状、测试步骤、验证结果和交接方式。"/);
-  assert.match(zhCopy, /"匹配后再进行材料核验"/);
-  assert.match(zhCopy, /"现场服务与车间支持"/);
-  assert.match(zhCopy, /再结合服务手册、测量结果和替换验证去收窄判断。/);
-  assert.match(zhCopy, /"医学科学、生物医学设计、数据分析和工程设计工具。"/);
-  assert.match(zhCopy, /"围绕可穿戴医疗设备可行性，处理柔性电极几何、银墨涂层、阻抗测量和可制造性权衡。"/);
-  assert.match(zhCopy, /"BMET、ELEC、ENGG、CHNG 和实验笔记记录，能支撑生物医学系统、电子学、设计和数据分析基础。"/);
-  assert.match(zhCopy, /"欢迎联系"/);
+test("defensive privacy language is compressed to one clear boundary", () => {
+  const matches = publicSource.match(new RegExp(privacySentence.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g")) || [];
+  assert.equal(matches.length, 1);
   assert.doesNotMatch(
-    zhCopy,
-    /ownership|close-out|vendor|vendors|work orders|service reports|serial details|equipment history|customer updates|functional checks|performance evidence|escalation status|bench service|workshop support|workshop 工作|biomedical team|Biomedical teams|service manual|Medical science、|biomedical design、|data analysis 和|engineering design tools|wearable medical device|biomedical systems|data-analysis|工作台支持|工作台服务|让他讲|再要证明文件|可以通过这里联系我/
+    publicSource,
+    /Private proof|Proof boundary|Screening Snapshot|Hiring docs|Public-safe summary|Private after role fit|Sensitive check material|Request documents after fit/
+  );
+  assert.doesNotMatch(
+    publicSource,
+    /passport|VEVO|visa grant|visa subclass|date of birth|DOB|student ID|护照|签证号|签证批签|出生日期|学生号/i
   );
 });
 
-test("structural accessibility labels are translated with the visible language", () => {
-  assert.match(html, /<a class="brand" href="#top" aria-label="Back to top">/);
-  assert.match(html, /<nav class="site-nav" aria-label="Primary navigation">/);
-  assert.match(html, /<div class="language-switch" aria-label="Language switcher">/);
-  assert.match(html, /<dl class="hero-meta" aria-label="Quick profile">/);
-  assert.match(html, /<aside class="hero-profile-card" aria-label="Profile snapshot">/);
-  assert.match(html, /<div class="fit-grid" aria-label="Recruiter quick match">/);
-  assert.match(html, /<div class="experience-summary-grid" aria-label="Work experience summary">/);
-  assert.match(html, /<div class="contact-actions" aria-label="Recruiter contact actions">/);
-
-  assert.match(script, /"\.brand": { "aria-label": "Back to top" }/);
-  assert.match(script, /"\.site-nav": { "aria-label": "Primary navigation" }/);
-  assert.match(script, /"\.language-switch": { "aria-label": "Language switcher" }/);
-  assert.match(script, /"\.hero-meta": { "aria-label": "Quick profile" }/);
-  assert.match(script, /"\.hero-profile-card": { "aria-label": "Profile snapshot" }/);
-  assert.match(script, /"\.fit-grid": { "aria-label": "Recruiter quick match" }/);
-  assert.match(script, /"\.experience-summary-grid": { "aria-label": "Work experience summary" }/);
-  assert.match(script, /"\.contact-actions": { "aria-label": "Recruiter contact actions" }/);
-
-  assert.match(script, /"\.brand": { "aria-label": "返回页面顶部" }/);
-  assert.match(script, /"\.site-nav": { "aria-label": "主导航" }/);
-  assert.match(script, /"\.language-switch": { "aria-label": "语言切换" }/);
-  assert.match(script, /"\.hero-meta": { "aria-label": "快速资料" }/);
-  assert.match(script, /"\.hero-profile-card": { "aria-label": "个人资料快照" }/);
-  assert.match(script, /"\.fit-grid": { "aria-label": "招聘方快速匹配" }/);
-  assert.match(script, /"\.experience-summary-grid": { "aria-label": "工作经历摘要" }/);
-  assert.match(script, /"\.contact-actions": { "aria-label": "招聘方联系操作" }/);
-});
-
-test("hero exposes recruiter actions and downloadable resume files", () => {
-  assert.match(html, /Download PDF/);
-  assert.match(html, /Download DOCX/);
-  assert.match(html, /href="assets\/Henry_Yang_Biomedical_Engineer_Resume\.pdf"/);
-  assert.match(html, /href="assets\/Henry_Yang_Biomedical_Engineer_Resume\.docx"/);
-  assert.match(html, /Resume PDF and DOCX available/);
-  assert.match(html, /github\.com\/yangyihang96/);
-  assert.ok(fs.existsSync(path.join(root, "assets/Henry_Yang_Biomedical_Engineer_Resume.docx")));
-  assert.ok(fs.existsSync(path.join(root, "assets/Henry_Yang_Biomedical_Engineer_Resume.pdf")));
-});
-
-test("hero profile card shows profile currency and public proof boundary", () => {
-  assert.match(html, /class="profile-status-strip" aria-label="Profile currency and proof boundary"/);
-  assert.match(html, /<strong>Updated<\/strong>\s*<span>June 2026<\/span>/);
+test("navigation and section order follow the recruiter reading path", () => {
   assert.match(
     html,
-    /<strong>Proof boundary<\/strong>\s*<span>Public-safe summary; private documents after role fit\.<\/span>/
+    /<nav class="site-nav" aria-label="Primary navigation">\s*<a href="#experience">Experience<\/a>\s*<a href="#capabilities">Scope<\/a>\s*<a href="#case-notes">Cases<\/a>\s*<a href="#study">Education<\/a>\s*<a href="#contact">Contact<\/a>\s*<\/nav>/
   );
-  assert.match(script, /"\.profile-status-strip div:nth-child\(1\) strong": "Updated"/);
-  assert.match(script, /"\.profile-status-strip div:nth-child\(1\) span": "June 2026"/);
-  assert.match(script, /"\.profile-status-strip div:nth-child\(2\) strong": "Proof boundary"/);
-  assert.match(
-    script,
-    /"\.profile-status-strip div:nth-child\(2\) span": "Public-safe summary; private documents after role fit\."/
-  );
-  assert.match(script, /"\.profile-status-strip div:nth-child\(1\) strong": "更新"/);
-  assert.match(script, /"\.profile-status-strip div:nth-child\(1\) span": "2026 年 6 月"/);
-  assert.match(script, /"\.profile-status-strip div:nth-child\(2\) strong": "证明边界"/);
-  assert.match(script, /"\.profile-status-strip div:nth-child\(2\) span": "公开页面只保留安全摘要；正式匹配后再处理核验文件。"/);
-  assert.match(script, /"\.profile-status-strip": { "aria-label": "Profile currency and proof boundary" }/);
-  assert.match(script, /"\.profile-status-strip": { "aria-label": "资料更新时间和证明边界" }/);
-  assert.match(css, /\.profile-status-strip\s*{[\s\S]*?display:\s*grid;[\s\S]*?grid-template-columns:\s*1fr;/);
-  assert.match(css, /\.profile-status-strip div\s*{[\s\S]*?border-radius:\s*6px;/);
-  assert.match(css, /@media \(max-width:\s*560px\)[\s\S]*?\.resume-style\.resume-compact \.profile-status-strip\s*{[\s\S]*?grid-template-columns:\s*1fr;[\s\S]*?gap:\s*6px;/);
+
+  const fitIndex = html.indexOf('<section class="fit-strip');
+  const experienceIndex = html.indexOf('<section id="experience"');
+  const scopeIndex = html.indexOf('<section id="capabilities"');
+  const caseIndex = html.indexOf('<section id="case-notes"');
+  const studyIndex = html.indexOf('<section id="study"');
+  const contactIndex = html.indexOf('<section id="contact"');
+
+  assert.ok(fitIndex > -1, "missing quick fit section");
+  assert.ok(fitIndex < experienceIndex);
+  assert.ok(experienceIndex < scopeIndex);
+  assert.ok(scopeIndex < caseIndex);
+  assert.ok(caseIndex < studyIndex);
+  assert.ok(studyIndex < contactIndex);
+  assert.equal(html.includes('<section class="proof-strip'), false);
+  assert.equal(html.includes('<section class="brief-section'), false);
+  assert.equal(html.includes('<section id="certifications"'), false);
 });
 
-test("hero quick facts surface hiring-document boundary without exposing private documents", () => {
-  const heroMetaHtml = html.match(/<dl class="hero-meta"[^>]*>[\s\S]*?<\/dl>/)?.[0] ?? "";
+test("quick fit and proof points answer HR questions without sounding like an interview script", () => {
+  const fit = sectionByClass("fit-strip");
 
-  assert.match(html, /<dt>Hiring docs<\/dt>\s*<dd>Private after role fit<\/dd>/);
-  assert.doesNotMatch(html, /<dt>Work checks<\/dt>\s*<dd>Private proof after fit<\/dd>/);
-  assert.doesNotMatch(html, /<dt>Availability<\/dt>\s*<dd>Sydney field travel<\/dd>/);
-  assert.match(script, /"\.hero-meta div:nth-child\(4\) dt": "Hiring docs"/);
-  assert.match(script, /"\.hero-meta div:nth-child\(4\) dd": "Private after role fit"/);
-  assert.match(script, /"\.hero-meta div:nth-child\(4\) dt": "招聘材料"/);
-  assert.match(script, /"\.hero-meta div:nth-child\(4\) dd": "岗位匹配后私下提供"/);
-  assert.doesNotMatch(script, /"\.hero-meta div:nth-child\(4\) dt": "Work checks"/);
-  assert.doesNotMatch(script, /"\.hero-meta div:nth-child\(4\) dd": "Private proof after fit"/);
-  assert.match(`${html}\n${script}`, /Sydney field travel/);
-  assert.doesNotMatch(heroMetaHtml, /visa status|passport|身份证|护照|签证状态/);
+  assert.match(fit, /<p class="section-kicker">Quick Fit<\/p>/);
+  assert.match(fit, /<h2 id="fit-title">What a recruiter needs to know in the first 20 seconds\.<\/h2>/);
+  assert.match(fit, /Nearly 3 years field\/workshop service/);
+  assert.match(fit, /Driver licence and Sydney field travel/);
+  assert.match(fit, /Work-right check ready for formal process/);
+  assert.match(fit, /class="proof-grid" aria-label="Recruiter proof points"/);
+  assert.equal(articleCount(fit.match(/<div class="proof-grid"[\s\S]*?<\/div>/)?.[0] ?? ""), 4);
+  assert.doesNotMatch(fit, /Ask in interview|Private check|Public evidence|what proof to request/i);
 });
 
-test("email actions prefill recruiter context instead of opening a blank email", () => {
-  const htmlPrefilledEmailCount = (html.match(new RegExp(escapeRegExp(recruiterEmailHrefEnHtml), "g")) || [])
-    .length;
+test("equipment and service scope merges skills and training into equipment categories", () => {
+  const scope = sectionById("capabilities");
 
-  assert.equal(htmlPrefilledEmailCount, 3);
-  assert.doesNotMatch(html, /href="mailto:yangyihang96@gmail\.com" aria-label="Email Yihang Henry Yang"/);
-  assert.match(html, /subject=Biomedical%20field%20service%20opportunity/);
-  assert.match(html, /Role%20scope%3A%20/);
-  assert.match(html, /Device%20scope%3A%20/);
-  assert.match(html, /Location%20%2F%20travel%3A%20/);
-  assert.match(html, /Preferred%20call%20times%3A%20/);
-  assert.match(html, /Documents%20needed%20\(if%20any\)%3A%20/);
-  assert.match(script, /const recruiterEmailHrefEn =/);
-  assert.match(script, /const recruiterEmailHrefZh =/);
-  assert.match(script, /encodeURIComponent\(\s*"Biomedical field service opportunity"\s*\)/);
-  assert.match(script, /encodeURIComponent\(\s*"医疗设备现场服务机会"\s*\)/);
-  assert.match(script, /"Role scope: "/);
-  assert.match(script, /"Documents needed \(if any\): "/);
-  assert.match(script, /"需要核验的材料（如有）："/);
-  assert.match(script, /"设备范围："/);
-  assert.match(script, /"\.nav-email-link": { "aria-label": "Email Yihang Henry Yang", href: recruiterEmailHrefEn }/);
-  assert.match(script, /"\.email-action": { "aria-label": "Email Yihang Henry Yang", href: recruiterEmailHrefEn }/);
-  assert.match(script, /"\.contact-email-action": { "aria-label": "Email Yihang Henry Yang", href: recruiterEmailHrefEn }/);
-  assert.match(script, /"\.nav-email-link": { "aria-label": "发邮件联系 Yihang Henry Yang", href: recruiterEmailHrefZh }/);
-  assert.match(script, /"\.email-action": { "aria-label": "发邮件联系 Yihang Henry Yang", href: recruiterEmailHrefZh }/);
-  assert.match(script, /"\.contact-email-action": { "aria-label": "发邮件联系 Yihang Henry Yang", href: recruiterEmailHrefZh }/);
+  assert.match(scope, /<p class="section-kicker">Equipment &amp; Service Scope<\/p>/);
+  assert.match(scope, /<h2 id="capabilities-title">Where the service experience is strongest\.<\/h2>/);
+  assert.equal(articleCount(scope), 6);
+  assert.match(scope, /Respiratory service/);
+  assert.match(scope, /Patient monitoring/);
+  assert.match(scope, /Ultrasound systems/);
+  assert.match(scope, /DEXA and X-ray support/);
+  assert.match(scope, /Pharmacy automation/);
+  assert.match(scope, /Service records and handover/);
+  assert.match(scope, /Hands-on service exposure/);
+  assert.match(scope, /Training completed/);
+  assert.match(scope, /Installation support/);
+  assert.match(scope, /Documentation \/ handover exposure/);
 });
 
-test("downloadable resume files expose professional document metadata", () => {
-  const pdfSource = fs.readFileSync(
-    path.join(root, "assets/Henry_Yang_Biomedical_Engineer_Resume.pdf"),
-    "latin1"
-  );
+test("case notes include de-identified outcomes and operational value", () => {
+  const cases = sectionById("case-notes");
+
+  assert.match(cases, new RegExp(privacySentence.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+  assert.equal((cases.match(/<dt>Outcome<\/dt>/g) || []).length, 3);
+  assert.match(cases, /Returned equipment with a clear next-use status and service close-out trail/);
+  assert.match(cases, /Separated use condition, repair history, reproducible symptoms, and manual-led checks before returning the device with post-repair verification/);
+  assert.match(cases, /Reduced repeat troubleshooting time by keeping service actions, test notes, equipment history, and customer updates aligned in Simpro/);
+  assert.doesNotMatch(cases, /customer names|serial numbers|internal records/i);
+});
+
+test("education stays concise and work-right proof is not over-explained", () => {
+  const study = sectionById("study");
+
+  assert.equal(articleCount(study), 3);
+  assert.match(study, /Master of Philosophy/);
+  assert.match(study, /Bachelor of Biomedical Engineering/);
+  assert.match(study, /Flexible Electrodes for Smart Bandages/);
+  assert.doesNotMatch(study, /study-proof-strip|Academic records|submission\/examination documents|Eligibility checks stay private/);
+});
+
+test("contact prioritizes email, resume, LinkedIn, GitHub, availability, and field readiness", () => {
+  const contact = sectionById("contact");
+
+  assert.match(contact, /Ready for biomedical field service conversations\./);
+  assert.match(contact, /Email Henry/);
+  assert.match(contact, /Resume PDF/);
+  assert.match(contact, /Resume DOCX/);
+  assert.match(contact, new RegExp(linkedinUrl.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+  assert.match(contact, new RegExp(githubUrl.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+  assert.match(contact, /<strong>Availability<\/strong>\s*<span>Upon discussion<\/span>/);
+  assert.match(contact, /<strong>Driver licence<\/strong>\s*<span>Sydney field travel ready<\/span>/);
+  assert.match(contact, /<strong>Work rights<\/strong>\s*<span>Formal check ready<\/span>/);
+  assert.doesNotMatch(contact, /tel:|\+61\s?4|\b04\d{2}\b|phone-number|mobile-number/);
+});
+
+test("links remain recognizable in body copy while navigation and buttons stay button-like", () => {
+  assert.doesNotMatch(css, /a\s*{\s*color:\s*inherit;\s*text-decoration:\s*none;\s*}/);
+  assert.match(css, /a\s*{[\s\S]*?color:\s*var\(--teal\);[\s\S]*?text-decoration:\s*underline;/);
+  assert.match(css, /\.site-nav a,[\s\S]*?\.button,[\s\S]*?\.brand,[\s\S]*?\.nav-email-link,[\s\S]*?\.nav-resume-link[\s\S]*?text-decoration:\s*none;/);
+  assert.match(css, /@media \(prefers-reduced-motion:\s*reduce\)/);
+  assert.match(css, /animation-duration:\s*0\.001ms !important;/);
+  assert.match(css, /transition-duration:\s*0\.001ms !important;/);
+});
+
+test("resume PDF and DOCX match the revised HR-first positioning", () => {
+  const pdfText = extractPdfText();
+  const docxText = extractDocxText();
+  const combined = `${pdfText}\n${docxText}`;
+
+  assert.match(combined, /Biomedical Field Service Engineer \| Sydney/);
+  assert.match(combined, /Nearly three years of full-time field and workshop service experience at Nova Biomedical Australia/);
+  assert.match(combined, /Sydney field travel/);
+  assert.match(combined, /Driver licence/);
+  assert.match(combined, /Work-right check ready/);
+  assert.match(combined, /PM, fault diagnosis, repair, installation support, verification, and service documentation/);
+  assert.match(combined, /Nova Biomedical Australia/);
+  assert.match(combined, /Returned devices with functional checks, performance evidence, or clear escalation status/);
+  assert.match(combined, /Simpro work orders, service reports, equipment history, and customer updates/);
+  assert.doesNotMatch(combined, /Full-time,\s*38 hours per week|38 hours per week|Nova Biomedical Pty Ltd/);
+});
+
+test("downloadable resume files keep professional metadata", () => {
+  const pdfSource = fs.readFileSync(path.join(root, "assets/Henry_Yang_Biomedical_Engineer_Resume.pdf"), "latin1");
   const docxCoreProperties = execFileSync(
     "/usr/bin/unzip",
     ["-p", path.join(root, "assets/Henry_Yang_Biomedical_Engineer_Resume.docx"), "docProps/core.xml"],
@@ -252,770 +250,22 @@ test("downloadable resume files expose professional document metadata", () => {
   assert.match(pdfSource, /\/Title \(Henry Yang Biomedical Field Service Engineer Resume\)/);
   assert.match(pdfSource, /\/Author \(Yihang Henry Yang\)/);
   assert.doesNotMatch(pdfSource, /127\.0\.0\.1|localhost|HeadlessChrome|Mozilla\/5\.0|Skia\/PDF/);
-
   assert.match(docxCoreProperties, /<dc:title>Henry Yang Biomedical Field Service Engineer Resume<\/dc:title>/);
   assert.match(docxCoreProperties, /<dc:creator>Yihang Henry Yang<\/dc:creator>/);
   assert.match(docxCoreProperties, /<dc:description>Biomedical field service resume for Yihang Henry Yang<\/dc:description>/);
-  assert.match(docxCoreProperties, /<cp:lastModifiedBy>Yihang Henry Yang<\/cp:lastModifiedBy>/);
-  assert.match(docxCoreProperties, /<dcterms:created xsi:type="dcterms:W3CDTF">2026-06-16T00:00:00Z<\/dcterms:created>/);
-  assert.match(docxCoreProperties, /<dcterms:modified xsi:type="dcterms:W3CDTF">2026-06-16T00:00:00Z<\/dcterms:modified>/);
-  assert.doesNotMatch(docxCoreProperties, /python-docx|generated by python-docx|2013-12-23/);
 });
 
-test("hero shows a compact recruiter action path near first-screen CTAs", () => {
-  assert.match(html, /class="hero-action-path" aria-label="Recruiter action path"/);
-  assert.match(html, /<strong>Contact<\/strong>\s*<span>Email for field-service fit<\/span>/);
-  assert.match(html, /<strong>Resume<\/strong>\s*<span>PDF and DOCX ready<\/span>/);
-  assert.match(html, /<strong>Private proof<\/strong>\s*<span>Formal checks only after role fit<\/span>/);
-  assert.match(script, /"\.hero-action-path div:nth-child\(1\) strong": "Contact"/);
-  assert.match(script, /"\.hero-action-path div:nth-child\(1\) strong": "联系"/);
-  assert.match(script, /"\.hero-action-path": { "aria-label": "Recruiter action path" }/);
-  assert.match(script, /"\.hero-action-path": { "aria-label": "招聘方行动路径" }/);
-  assert.match(css, /\.hero-action-path\s*{[\s\S]*?display:\s*grid;[\s\S]*?grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\);/);
-  assert.match(css, /@media \(max-width:\s*560px\)[\s\S]*?\.hero-action-path\s*{[\s\S]*?grid-template-columns:\s*1fr;/);
-});
-
-test("recruiter actions expose clear accessible labels for file type and destination", () => {
-  assert.match(html, /class="button primary resume-link"[^>]*aria-label="Download Henry Yang resume as PDF"/);
-  assert.match(html, /class="button secondary resume-docx-link"[^>]*aria-label="Download Henry Yang resume as DOCX"/);
-  assert.match(html, /class="button secondary email-action"[^>]*aria-label="Email Yihang Henry Yang"/);
-  assert.match(html, /class="button tertiary github-action"[^>]*aria-label="Open Yihang Yang GitHub profile"/);
-  assert.match(html, /class="nav-email-link"[^>]*aria-label="Email Yihang Henry Yang"/);
-  assert.match(html, /class="nav-resume-link"[^>]*aria-label="Download Henry Yang resume PDF"/);
-  assert.match(html, /class="button primary contact-email-action"[^>]*aria-label="Email Yihang Henry Yang"/);
-  assert.match(html, /class="button secondary contact-copy-email-action"[^>]*aria-label="Copy Yihang Henry Yang email address"/);
-  assert.match(html, /class="button secondary contact-resume-link"[^>]*aria-label="Download Henry Yang resume as PDF"/);
-  assert.match(html, /class="button secondary contact-docx-link"[^>]*aria-label="Download Henry Yang resume as DOCX"/);
-  assert.match(script, /attrs:\s*{[\s\S]*?"\.resume-link":\s*{ "aria-label": "Download Henry Yang resume as PDF" }/);
-  assert.match(script, /attrs:\s*{[\s\S]*?"\.resume-link":\s*{ "aria-label": "下载 Henry Yang PDF 简历" }/);
-});
-
-test("contact section repeats recruiter conversion actions at the close", () => {
-  assert.match(html, /class="contact-actions"/);
-  assert.match(html, /Ready for field service conversations/);
-  assert.match(html, /Sydney field travel, medical device service, verification records, and bilingual communication/);
-  assert.match(
-    html,
-    new RegExp(`class="button primary contact-email-action" href="${escapeRegExp(recruiterEmailHrefEnHtml)}"`)
-  );
-  assert.match(html, /class="button secondary contact-copy-email-action" type="button" data-copy-email="yangyihang96@gmail\.com"/);
-  assert.match(html, /class="button secondary contact-resume-link" href="assets\/Henry_Yang_Biomedical_Engineer_Resume\.pdf" type="application\/pdf" download/);
-  assert.match(html, /class="button secondary contact-docx-link" href="assets\/Henry_Yang_Biomedical_Engineer_Resume\.docx" download/);
-  assert.match(html, /class="contact-resume-format-note">PDF for quick review; DOCX for ATS or recruiter systems\.<\/span>/);
-  assert.match(html, /Sensitive check material stays off-page until formally required/);
-  assert.match(script, /"\.contact-actions-title": "Ready for field service conversations\."/);
-  assert.match(script, /"\.contact-actions-title": "可以继续聊医疗设备现场服务机会。"/);
-  assert.match(script, /"\.contact-resume-format-note": "PDF for quick review; DOCX for ATS or recruiter systems\."/);
-  assert.match(script, /"\.contact-resume-format-note": "PDF 适合快速查看；DOCX 适合 ATS 或招聘系统。"/);
-  assert.match(html, /class="contact-intake" aria-label="Recruiter email checklist"/);
-  assert.match(html, /<strong>Role scope<\/strong>\s*<span>Share device type, service setting, travel area, and start timing\.<\/span>/);
-  assert.match(html, /<strong>Proof needed<\/strong>\s*<span>List only the formal checks required for the next step\.<\/span>/);
-  assert.match(html, /<strong>Next step<\/strong>\s*<span>Send interview time, role description, or technical screen format\.<\/span>/);
-  assert.match(html, /class="contact-response-strip" aria-label="Recruiter response expectations"/);
-  assert.match(html, /<strong>Reply window<\/strong>\s*<span>I aim to reply within 1 business day for role-fit, interview, or document requests\.<\/span>/);
-  assert.match(html, /<strong>Best format<\/strong>\s*<span>Email the role description, device scope, location, preferred call times, and any formal document checklist\.<\/span>/);
-  assert.match(html, /<strong>Document order<\/strong>\s*<span>Resume first; sensitive checks only after role fit and formal process are clear\.<\/span>/);
-  assert.match(script, /"\.contact-intake div:nth-child\(1\) strong": "Role scope"/);
-  assert.match(script, /"\.contact-intake div:nth-child\(1\) strong": "岗位范围"/);
-  assert.match(script, /"\.contact-response-strip div:nth-child\(1\) strong": "Reply window"/);
-  assert.match(script, /"\.contact-response-strip div:nth-child\(1\) strong": "回复预期"/);
-  assert.match(script, /"\.contact-intake": { "aria-label": "Recruiter email checklist" }/);
-  assert.match(script, /"\.contact-intake": { "aria-label": "招聘方邮件清单" }/);
-  assert.match(script, /"\.contact-response-strip": { "aria-label": "Recruiter response expectations" }/);
-  assert.match(script, /"\.contact-response-strip": { "aria-label": "招聘方回复预期" }/);
-  assert.match(css, /\.contact-intake\s*{[\s\S]*?display:\s*grid;[\s\S]*?grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\);/);
-  assert.match(css, /\.contact-response-strip\s*{[\s\S]*?display:\s*grid;[\s\S]*?grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\);/);
-  assert.match(css, /\.contact-action-buttons\s*{[\s\S]*?justify-self:\s*end;[\s\S]*?width:\s*100%;[\s\S]*?max-width:\s*480px;/);
-  assert.match(css, /\.contact-resume-format-note\s*{[\s\S]*?width:\s*100%;[\s\S]*?text-align:\s*right;/);
-  assert.match(css, /@media \(max-width:\s*760px\)[\s\S]*?\.contact-intake\s*{[\s\S]*?grid-template-columns:\s*1fr;/);
-  assert.match(css, /@media \(max-width:\s*760px\)[\s\S]*?\.contact-response-strip\s*{[\s\S]*?grid-template-columns:\s*1fr;/);
-  assert.match(css, /@media \(max-width:\s*920px\)[\s\S]*?\.contact-action-buttons\s*{[\s\S]*?justify-self:\s*stretch;[\s\S]*?width:\s*100%;/);
-  assert.match(css, /\.contact-actions\s*{[\s\S]*?grid-template-columns:\s*minmax\(320px,\s*1fr\) minmax\(0,\s*480px\);/);
-  assert.match(css, /@media \(max-width:\s*560px\)[\s\S]*?\.contact-action-buttons\s*{[\s\S]*?grid-template-columns:\s*1fr;/);
-  assert.match(css, /@media \(max-width:\s*560px\)[\s\S]*?\.contact-resume-format-note\s*{[\s\S]*?text-align:\s*left;/);
-});
-
-test("contact offers a copy-email fallback when mail clients are unavailable", () => {
-  const contactStart = html.indexOf('<section id="contact"');
-  const contactEnd = html.indexOf("</section>", contactStart);
-  assert.notEqual(contactStart, -1, "missing contact section");
-  assert.notEqual(contactEnd, -1, "missing contact section end");
-
-  const contactSource = html.slice(contactStart, contactEnd);
-  assert.match(
-    contactSource,
-    /<button class="button secondary contact-copy-email-action" type="button" data-copy-email="yangyihang96@gmail\.com" aria-label="Copy Yihang Henry Yang email address">Copy Email<\/button>/
-  );
-  assert.match(script, /"\.contact-copy-email-action": "Copy Email"/);
-  assert.match(script, /"\.contact-copy-email-action": "复制邮箱"/);
-  assert.match(script, /copyEmail:\s*{[\s\S]*?default:\s*"Copy Email"[\s\S]*?copied:\s*"Copied"[\s\S]*?failed:\s*"Copy failed"/);
-  assert.match(script, /copyEmail:\s*{[\s\S]*?default:\s*"复制邮箱"[\s\S]*?copied:\s*"已复制"[\s\S]*?failed:\s*"复制失败"/);
-  assert.match(script, /document\.querySelectorAll\("\[data-copy-email\]"\)/);
-  assert.match(script, /navigator\.clipboard\.writeText\(text\)/);
-  assert.match(script, /document\.execCommand\("copy"\)/);
-  assert.match(css, /\.contact-copy-email-action\.is-copied\s*{/);
-});
-
-test("contact section keeps one mail action and a compact visible email line", () => {
-  const contactStart = html.indexOf('<section id="contact"');
-  const contactEnd = html.indexOf("</section>", contactStart);
-  assert.notEqual(contactStart, -1, "missing contact section");
-  assert.notEqual(contactEnd, -1, "missing contact section end");
-
-  const contactSource = html.slice(contactStart, contactEnd);
-  assert.equal((contactSource.match(/href="mailto:/g) || []).length, 1);
-  assert.doesNotMatch(contactSource, /class="email-link"/);
-  assert.match(contactSource, /class="contact-email-text">yangyihang96@gmail\.com<\/span>/);
-  assert.match(contactSource, /class="contact-privacy-note">Sensitive check material stays off-page until formally required\.<\/span>/);
-  assert.match(contactSource, /class="contact-call-note">Phone or video calls can be arranged after email confirmation\.<\/span>/);
-  assert.doesNotMatch(contactSource, /tel:|\+61\s?4|\b04\d{2}\b|phone-number|mobile-number/);
-  assert.match(script, /"\.contact-actions-note strong": "Direct email"/);
-  assert.match(script, /"\.contact-actions-note strong": "直接邮箱"/);
-  assert.match(script, /"\.contact-call-note": "Phone or video calls can be arranged after email confirmation\."/);
-  assert.match(script, /"\.contact-call-note": "电话或视频沟通可在邮件确认后安排。"/);
-  assert.doesNotMatch(css, /\.email-link\s*{/);
-  assert.match(css, /\.contact-actions-note\s*{[\s\S]*?display:\s*grid;[\s\S]*?grid-template-columns:\s*auto auto minmax\(0,\s*1fr\);/);
-  assert.match(css, /\.contact-call-note\s*{[\s\S]*?grid-column:\s*3 \/ -1;/);
-  assert.match(css, /@media \(max-width:\s*560px\)[\s\S]*?\.contact-actions-note\s*{[\s\S]*?grid-template-columns:\s*1fr;/);
-  assert.match(css, /@media \(max-width:\s*560px\)[\s\S]*?\.contact-call-note\s*{[\s\S]*?grid-column:\s*auto;/);
-});
-
-test("contact appears before optional personal life content in the recruiter reading flow", () => {
-  const certificationsIndex = html.indexOf('<section id="certifications"');
-  const contactIndex = html.indexOf('<section id="contact"');
-  const lifeIndex = html.indexOf('<section id="life"');
-
-  assert.ok(certificationsIndex > -1, "missing certifications section");
-  assert.ok(contactIndex > -1, "missing contact section");
-  assert.ok(lifeIndex > -1, "missing life section");
-  assert.ok(certificationsIndex < contactIndex, "contact should follow professional training evidence");
-  assert.ok(contactIndex < lifeIndex, "contact should appear before optional personal life content");
-});
-
-test("fixed header keeps persistent contact and resume actions", () => {
-  assert.match(
-    html,
-    new RegExp(
-      `<a class="nav-email-link" href="${escapeRegExp(
-        recruiterEmailHrefEnHtml
-      )}" aria-label="Email Yihang Henry Yang">Email</a>\\s*<a class="nav-resume-link" href="assets/Henry_Yang_Biomedical_Engineer_Resume\\.pdf" type="application/pdf" download aria-label="Download Henry Yang resume PDF">Resume PDF</a>`
-    )
-  );
-  assert.match(
-    html,
-    /<a class="nav-resume-link" href="assets\/Henry_Yang_Biomedical_Engineer_Resume\.pdf" type="application\/pdf" download aria-label="Download Henry Yang resume PDF">Resume PDF<\/a>/
-  );
-  assert.match(script, /"\.nav-email-link": "Email"/);
-  assert.match(script, /"\.nav-email-link": "邮件"/);
-  assert.match(script, /"\.nav-resume-link": "Resume PDF"/);
-  assert.match(script, /"\.nav-resume-link": "PDF 简历"/);
-  assert.match(css, /\.nav-email-link\s*{[\s\S]*?flex:\s*0 0 auto;[\s\S]*?min-height:\s*36px;/);
-  assert.match(css, /\.nav-resume-link\s*{[\s\S]*?flex:\s*0 0 auto;[\s\S]*?min-height:\s*36px;/);
-  assert.match(
-    css,
-    /@media \(max-width:\s*760px\)[\s\S]*?\.nav-email-link\s*{[\s\S]*?position:\s*absolute;[\s\S]*?top:\s*12px;[\s\S]*?right:\s*240px;/
-  );
-  assert.match(
-    css,
-    /@media \(max-width:\s*760px\)[\s\S]*?\.nav-resume-link\s*{[\s\S]*?position:\s*absolute;[\s\S]*?top:\s*12px;[\s\S]*?right:\s*118px;/
-  );
-  assert.match(
-    css,
-    /@media \(max-width:\s*340px\)[\s\S]*?\.nav-resume-link::after\s*{[\s\S]*?content:\s*"PDF";/
-  );
-});
-
-test("primary navigation follows the visible recruiter reading order", () => {
-  assert.match(
-    html,
-    /<nav class="site-nav" aria-label="Primary navigation">\s*<a href="#experience">Experience<\/a>\s*<a href="#capabilities">Skills<\/a>\s*<a href="#case-notes">Cases<\/a>\s*<a href="#study">Education<\/a>\s*<a href="#certifications">Training<\/a>\s*<a href="#contact">Contact<\/a>\s*<\/nav>/
-  );
-  assert.match(script, /"\.site-nav a:nth-child\(1\)": "Experience"/);
-  assert.match(script, /"\.site-nav a:nth-child\(2\)": "Skills"/);
-  assert.match(script, /"\.site-nav a:nth-child\(3\)": "Cases"/);
-  assert.match(script, /"\.site-nav a:nth-child\(4\)": "Education"/);
-  assert.match(script, /"\.site-nav a:nth-child\(5\)": "Training"/);
-  assert.match(script, /"\.site-nav a:nth-child\(6\)": "Contact"/);
-  assert.match(script, /"\.site-nav a:nth-child\(1\)": "经历"/);
-  assert.match(script, /"\.site-nav a:nth-child\(2\)": "能力"/);
-  assert.match(script, /"\.site-nav a:nth-child\(3\)": "案例"/);
-  assert.match(script, /"\.site-nav a:nth-child\(4\)": "背景"/);
-  assert.match(script, /"\.site-nav a:nth-child\(5\)": "培训"/);
-  assert.match(script, /"\.site-nav a:nth-child\(6\)": "联系"/);
-});
-
-test("primary navigation marks hash targets active on click and hash changes", () => {
-  assert.match(script, /const setActiveNavLink = \(hash\) => \{/);
-  assert.match(script, /let activeHashLock = null;/);
-  assert.match(script, /let activeHashLockUntil = 0;/);
-  assert.match(script, /const lockActiveHash = \(hash\) => \{/);
-  assert.match(script, /activeHashLock = hash;/);
-  assert.match(script, /activeHashLockUntil = window\.performance\.now\(\) \+ 1800;/);
-  assert.match(script, /const shouldKeepHashActive = \(hash\) => \{/);
-  assert.match(script, /const currentHash = window\.location\.hash;/);
-  assert.match(
-    script,
-    /const isHashLocked =\s*currentHash &&\s*activeHashLock === currentHash &&\s*window\.performance\.now\(\) < activeHashLockUntil;/
-  );
-  assert.match(script, /if \(isHashLocked \|\| shouldKeepHashActive\(currentHash\)\) \{/);
-  assert.match(script, /setActiveNavLink\(currentHash\);/);
-  assert.match(script, /navLink\.classList\.toggle\("is-active", navLink\.getAttribute\("href"\) === hash\);/);
-  assert.match(script, /const hash = link\.getAttribute\("href"\);/);
-  assert.match(script, /lockActiveHash\(hash\);/);
-  assert.match(script, /setActiveNavLink\(hash\);/);
-  assert.match(script, /lockActiveHash\(window\.location\.hash\);/);
-  assert.match(script, /setActiveNavLink\(window\.location\.hash\);/);
-});
-
-test("compact homepage keeps capability matrix visible", () => {
-  assert.match(html, /id="capabilities"/);
-  assert.match(html, /Pre-employment checks/);
-  assert.match(html, /Sydney field travel/);
-  assert.doesNotMatch(css, /\.resume-style\.resume-compact \.capabilities[\s\S]{0,180}display:\s*none/);
-});
-
-test("fit section gives a recruiter-facing role-fit verdict", () => {
-  assert.match(html, /class="fit-verdict" aria-label="Recruiter role-fit verdict"/);
-  assert.match(html, /<strong>Best match<\/strong>\s*<span>Biomedical field service roles needing device service, verification records, and clear handover\.<\/span>/);
-  assert.match(html, /<strong>Evidence path<\/strong>\s*<span>Work experience comes next, followed by proof points, cases, and training records\.<\/span>/);
-  assert.match(script, /"\.fit-verdict div:nth-child\(1\) strong": "Best match"/);
-  assert.match(script, /"\.fit-verdict div:nth-child\(1\) strong": "最适合"/);
-  assert.match(script, /"\.fit-verdict": { "aria-label": "Recruiter role-fit verdict" }/);
-  assert.match(script, /"\.fit-verdict": { "aria-label": "招聘方岗位匹配判断" }/);
-  assert.match(css, /\.fit-verdict\s*{[\s\S]*?display:\s*grid;[\s\S]*?grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\);/);
-  assert.match(css, /@media \(max-width:\s*760px\)[\s\S]*?\.fit-verdict\s*{[\s\S]*?grid-template-columns:\s*1fr;/);
-});
-
-test("early recruiter proof points summarize equipment, verification, records, and handover", () => {
-  assert.match(html, /class="proof-strip reveal"/);
-  assert.match(html, /aria-label="Recruiter evidence checklist"/);
-  assert.equal(articleCount("proof-grid"), 4);
-  assert.equal((html.match(/class="proof-evidence"/g) || []).length, 4);
-  assert.match(html, /<dt>Public evidence<\/dt>\s*<dd>Experience card and skills matrix show ventilation, monitoring, ultrasound, DEXA, pharmacy automation, and general biomedical equipment\.<\/dd>/);
-  assert.match(html, /<dt>Private check<\/dt>\s*<dd>Ask for relevant training records or certificate context only after role fit is clear\.<\/dd>/);
-  assert.match(html, /<dt>Public evidence<\/dt>\s*<dd>Current role summary shows functional checks, performance evidence, service reports, and escalation status\.<\/dd>/);
-  assert.match(html, /<dt>Private check<\/dt>\s*<dd>Ask in interview for one device issue: symptom, test step, verified result, and handover\.<\/dd>/);
-  assert.match(script, /"\.proof-grid": { "aria-label": "Recruiter evidence checklist" }/);
-  assert.match(script, /"\.proof-grid": { "aria-label": "招聘方证据核对清单" }/);
-  assert.match(script, /"\.proof-grid article:nth-child\(1\) h3": "Equipment scope"/);
-  assert.match(script, /"\.proof-grid article:nth-child\(1\) h3": "设备范围"/);
-  assert.match(css, /\.proof-grid\s*{[^}]*grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\);/);
-  assert.match(css, /\.proof-evidence\s*{[^}]*display:\s*grid;[^}]*grid-template-columns:\s*minmax\(96px,\s*auto\) minmax\(0,\s*1fr\);/);
-  assert.match(css, /@media \(max-width:\s*560px\)\s*{(?:(?!@media)[\s\S])*?\.resume-style\.resume-compact \.proof-grid article\s*{[^}]*padding:\s*14px;/);
-  assert.match(css, /@media \(max-width:\s*560px\)\s*{(?:(?!@media)[\s\S])*?\.proof-evidence\s*{[^}]*font-size:\s*13px;/);
-  assert.match(css, /@media \(max-width:\s*560px\)[\s\S]*?\.proof-evidence\s*{[\s\S]*?grid-template-columns:\s*1fr;/);
-  assert.match(css, /@media \(max-width:\s*760px\)[\s\S]*?\.proof-heading\s*{[\s\S]*?grid-template-columns:\s*1fr;/);
-  assert.match(css, /@media \(max-width:\s*760px\)[\s\S]*?\.proof-grid article\s*{[\s\S]*?min-height:\s*0;[\s\S]*?padding:\s*18px;/);
-  assert.match(css, /@media \(max-width:\s*760px\)[\s\S]*?\.resume-style \.proof-grid article\s*{[\s\S]*?padding:\s*18px;/);
-  assert.match(css, /@media \(max-width:\s*760px\)[\s\S]*?\.resume-style\.resume-compact \.proof-strip,[\s\S]*?padding-top:\s*52px;/);
-  assert.doesNotMatch(css, /\.resume-style\.resume-compact \.proof-strip[\s\S]{0,180}display:\s*none/);
-});
-
-test("proof section states the public and private evidence boundary before detailed cards", () => {
-  const proofStart = html.indexOf('<section class="proof-strip');
-  const proofGridStart = html.indexOf('<div class="proof-grid"', proofStart);
-  assert.notEqual(proofStart, -1, "missing proof section");
-  assert.notEqual(proofGridStart, -1, "missing proof grid");
-
-  const proofLeadSource = html.slice(proofStart, proofGridStart);
-  assert.match(proofLeadSource, /class="proof-boundary" aria-label="Public and private evidence boundary"/);
-  assert.match(proofLeadSource, /<strong>Public now<\/strong>\s*<span>Role scope, equipment families, service method, and safe case patterns\.<\/span>/);
-  assert.match(proofLeadSource, /<strong>Private after fit<\/strong>\s*<span>Formal hiring checks stay off-page until the role fit is clear\.<\/span>/);
-  assert.match(proofLeadSource, /<strong>Not published<\/strong>\s*<span>Customer names, serial numbers, internal records, and site-specific details\.<\/span>/);
-  assert.match(script, /"\.proof-boundary div:nth-child\(1\) strong": "Public now"/);
-  assert.match(script, /"\.proof-boundary div:nth-child\(1\) strong": "当前公开"/);
-  assert.match(script, /"岗位范围、设备类别、服务方法和适合公开的案例框架。"/);
-  assert.match(script, /"正式招聘核验只在岗位匹配清楚后进行。"/);
-  assert.match(script, /"\.proof-boundary": { "aria-label": "Public and private evidence boundary" }/);
-  assert.match(script, /"\.proof-boundary": { "aria-label": "公开与私下核验证据边界" }/);
-  assert.match(css, /\.proof-boundary\s*{[\s\S]*?display:\s*grid;[\s\S]*?grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\);/);
-  assert.match(css, /@media \(max-width:\s*760px\)[\s\S]*?\.proof-boundary\s*{[\s\S]*?grid-template-columns:\s*1fr;/);
-  assert.match(css, /@media \(max-width:\s*560px\)[\s\S]*?\.proof-boundary div\s*{[\s\S]*?padding:\s*10px 12px;/);
-});
-
-test("brief section acts as a recruiter screening snapshot", () => {
-  assert.match(html, /<p class="section-kicker">Screening Snapshot<\/p>/);
-  assert.match(html, /<h2 id="brief-title">How to assess the fit quickly after the first screen\.<\/h2>/);
-  assert.match(html, /class="brief-grid" aria-label="Recruiter screening snapshot"/);
-  assert.equal(articleCount("brief-grid"), 3);
-  assert.match(html, /<span>Interview focus<\/span>\s*<h3>Ask for a service example<\/h3>\s*<p>Use one device issue to discuss symptom capture, test steps, verification evidence, and handover\.<\/p>/);
-  assert.match(html, /<span>Private proof<\/span>\s*<h3>Request documents after fit<\/h3>\s*<p>Resume files are public; formal check material stays off-page until needed\.<\/p>/);
-  assert.match(html, /<span>Best next role<\/span>\s*<h3>Biomedical field service<\/h3>\s*<p>Strongest match is hands-on service work with travel, documentation, troubleshooting, and follow-up ownership\.<\/p>/);
-  assert.match(script, /"\.brief-section \.section-kicker": "Screening Snapshot"/);
-  assert.match(script, /"\.brief-section \.section-kicker": "招聘筛选快照"/);
-  assert.match(script, /"公开页面只放简历；正式核验材料不放在页面上。"/);
-  assert.match(script, /"\.brief-grid": { "aria-label": "Recruiter screening snapshot" }/);
-  assert.match(script, /"\.brief-grid": { "aria-label": "招聘方筛选快照" }/);
-  assert.match(css, /\.brief-grid article\s*{[\s\S]*?min-height:\s*240px;/);
-  assert.doesNotMatch(html, /Professional Brief/);
-  assert.doesNotMatch(html, /A practical engineering profile built around service reliability/);
-});
-
-test("compact homepage prioritizes real work experience over supporting preamble", () => {
-  const fitIndex = html.indexOf('<section class="fit-strip');
-  const experienceIndex = html.indexOf('<section id="experience"');
-  const proofIndex = html.indexOf('<section class="proof-strip');
-  const briefIndex = html.indexOf('<section class="brief-section');
-  const capabilitiesIndex = html.indexOf('<section id="capabilities"');
-
-  assert.ok(fitIndex !== -1, "fit section should exist");
-  assert.ok(experienceIndex !== -1, "experience section should exist");
-  assert.ok(fitIndex < experienceIndex, "experience should follow the role-fit summary");
-  assert.ok(experienceIndex < proofIndex, "experience should appear before supporting proof cards");
-  assert.ok(experienceIndex < briefIndex, "experience should appear before interview guidance");
-  assert.ok(experienceIndex < capabilitiesIndex, "experience should appear before the skill matrix");
-
-  assert.doesNotMatch(html, /Life Rhythm/);
-  assert.doesNotMatch(html, /This site answers five practical questions first/);
-});
-
-test("legacy hidden recruiter sections are not shipped in the compact public site", () => {
-  const publicSource = `${html}\n${css}\n${script}`;
-
-  assert.doesNotMatch(html, /class="overview-section|class="scope-section|id="work"|id="process"|id="credentials"/);
-  assert.doesNotMatch(publicSource, /overview-section|scope-section|scope-grid|work-section|process-section|credentials-section/);
-  assert.doesNotMatch(publicSource, /Review Path|Service Scope|The work covers more than one moment|Field service is not only fixing equipment|I use a clear process|Education credentials are kept public-safe/);
-  assert.doesNotMatch(publicSource, /招聘方阅读路径|服务范围|一次服务不是|我做现场服务|我的处理顺序|学历证明/);
-  assert.doesNotMatch(publicSource, /work-bench\.jpg/);
-  assert.doesNotMatch(publicSource, /\.statement|\.profile-panel|\.profile-photo|\.feature-list|@keyframes lineGrow/);
-  assert.ok(!fs.existsSync(path.join(root, "assets/work-bench.jpg")), "unused hidden-section image should not be published");
-});
-
-test("keyboard users can skip fixed navigation", () => {
-  assert.match(html, /<body id="top" class="resume-style resume-compact">/);
-  assert.match(html, /<a class="skip-link" href="#main-content">Skip to content<\/a>/);
-  assert.match(html, /<main id="main-content" tabindex="-1">/);
-  assert.match(css, /\.skip-link:focus\s*{[\s\S]*?transform:\s*translateY\(0\)/);
-  assert.match(css, /a:focus-visible,\s*button:focus-visible/);
-});
-
-test("recruiter-facing content is compact and quick to scan", () => {
-  assert.match(html, /id="fit-title"/);
-  assert.match(html, /Best fit for/);
-  assert.match(html, /Resume and checks ready/);
-  assert.equal(articleCount("fit-grid"), 5);
-  assert.equal(articleCount("proof-grid"), 4);
-  assert.equal(articleCount("capability-row"), 6);
-  assert.equal(articleCount("case-grid"), 3);
-  assert.equal(articleCount("study-grid"), 3);
-  assert.equal(articleCount("study-proof-strip"), 4);
-  assert.equal(articleCount("certification-grid"), 3);
-});
-
-test("education section adds a public-safe academic and work-right proof path", () => {
-  assert.match(html, /<div class="study-proof-strip" aria-label="Academic and work-right evidence path">/);
-  assert.match(html, /<strong>Academic records<\/strong>\s*<span>Formal academic evidence is kept offline for authorized checks\.<\/span>/);
-  assert.match(html, /<strong>Coursework trail<\/strong>\s*<span>BMET, ELEC, ENGG, CHNG, and lab-note records show biomedical systems, electronics, design, and data-analysis foundation\.<\/span>/);
-  assert.match(html, /<strong>Research evidence<\/strong>\s*<span>MPhil thesis, submission\/examination documents, and lab records support the research claims\.<\/span>/);
-  assert.match(html, /<strong>Work-right checks<\/strong>\s*<span>Eligibility checks stay private until a formal hiring process\.<\/span>/);
-  assert.match(script, /"\.study-proof-strip article:nth-child\(1\) strong": "Academic records"/);
-  assert.match(script, /"\.study-proof-strip article:nth-child\(1\) strong": "学历记录"/);
-  assert.match(script, /"\.study-proof-strip article:nth-child\(2\) strong": "Coursework trail"/);
-  assert.match(script, /"\.study-proof-strip article:nth-child\(2\) strong": "课程记录"/);
-  assert.match(script, /"\.study-proof-strip": { "aria-label": "Academic and work-right evidence path" }/);
-  assert.match(script, /"\.study-proof-strip": { "aria-label": "学历和工作权利证明链路" }/);
-  assert.match(css, /\.study-proof-strip\s*{[\s\S]*?display:\s*grid;[\s\S]*?grid-template-columns:\s*repeat\(4,\s*minmax\(0,\s*1fr\)\);/);
-  assert.match(css, /@media \(max-width:\s*920px\)[\s\S]*?\.study-proof-strip\s*{[\s\S]*?grid-template-columns:\s*1fr;/);
-
-  const publicSource = `${html}\n${script}`;
-  assert.doesNotMatch(publicSource, /passport|VEVO|visa grant|visa subclass|date of birth|DOB|470034974|护照|签证号|签证批签|出生日期|学生号/i);
-});
-
-test("current experience card exposes scannable field-service evidence", () => {
-  assert.match(html, /class="experience-evidence" aria-label="Current field-service evidence"/);
-  assert.match(html, /<strong>Equipment<\/strong>\s*<span>Ventilation \/ monitoring \/ ultrasound \/ DEXA<\/span>/);
-  assert.match(html, /<strong>Service actions<\/strong>\s*<span>PM \/ repair \/ installation \/ verification<\/span>/);
-  assert.match(html, /<strong>Records<\/strong>\s*<span>Simpro \/ service reports \/ equipment history<\/span>/);
-  assert.match(html, /<strong>Service settings<\/strong>\s*<span>Hospital \/ pharmacy \/ workshop support<\/span>/);
-  assert.doesNotMatch(`${html}\n${script}`, /Full-time,\s*38 hours per week|38 hours per week|全职，每周 38 小时/);
-  assert.match(script, /"\.experience-evidence div:nth-child\(1\) strong": "Equipment"/);
-  assert.match(script, /"\.experience-evidence div:nth-child\(1\) strong": "设备"/);
-  assert.match(
-    css,
-    /\.experience-evidence\s*{[\s\S]*?display:\s*grid;[\s\S]*?grid-template-columns:\s*repeat\(4,\s*minmax\(0,\s*1fr\)\);/
-  );
-  assert.match(
-    css,
-    /@media \(max-width:\s*760px\)[\s\S]*?\.experience-evidence\s*{[\s\S]*?grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\);/
-  );
-  assert.match(
-    css,
-    /@media \(max-width:\s*560px\)[\s\S]*?\.experience-evidence\s*{[\s\S]*?grid-template-columns:\s*1fr;/
-  );
-});
-
-test("current experience card summarizes service outcomes settings records and handover", () => {
-  assert.match(html, /class="experience-outcome" aria-label="Current role service outcome summary"/);
-  assert.match(html, /<dt>Service setting<\/dt>\s*<dd>Hospital, pharmacy, workshop, and field-support environments<\/dd>/);
-  assert.match(html, /<dt>Verified outcome<\/dt>\s*<dd>Devices returned with functional checks, performance evidence, or clear escalation status<\/dd>/);
-  assert.match(html, /<dt>Record trail<\/dt>\s*<dd>Simpro work order, service report, serial details, equipment history, and customer update aligned<\/dd>/);
-  assert.match(html, /<dt>Handover<\/dt>\s*<dd>Biomedical teams, clinical users, vendors, and internal engineers can see next-use status<\/dd>/);
-  assert.match(script, /"\.experience-outcome dt:nth-of-type\(1\)": "Service setting"/);
-  assert.match(script, /"\.experience-outcome dt:nth-of-type\(1\)": "服务环境"/);
-  assert.match(css, /\.experience-outcome\s*{[\s\S]*?display:\s*grid;[\s\S]*?grid-template-columns:\s*minmax\(124px,\s*auto\) minmax\(0,\s*1fr\);/);
-  assert.match(css, /@media \(max-width:\s*560px\)[\s\S]*?\.experience-outcome\s*{[\s\S]*?grid-template-columns:\s*1fr;/);
-});
-
-test("current experience card avoids duplicate bullet summaries after structured outcomes", () => {
-  const firstCardStart = html.indexOf('<div class="experience-body">');
-  const secondCardStart = html.indexOf('<div class="experience-body">', firstCardStart + 1);
-  assert.notEqual(firstCardStart, -1, "missing current experience body");
-  assert.notEqual(secondCardStart, -1, "missing second experience body");
-
-  const currentExperienceSource = html.slice(firstCardStart, secondCardStart);
-  assert.doesNotMatch(currentExperienceSource, /<ul>/);
-  assert.doesNotMatch(currentExperienceSource, /<li>/);
-
-  const secondExperienceSource = html.slice(secondCardStart, html.indexOf("</section>", secondCardStart));
-  assert.match(secondExperienceSource, /<ul>/);
-  assert.equal((secondExperienceSource.match(/<li>/g) || []).length, 2);
-
-  const publicSource = `${html}\n${script}`;
-  assert.doesNotMatch(script, /\.experience-timeline article:nth-child\(1\) li/);
-  assert.doesNotMatch(publicSource, /Perform field and workshop service for hospital and pharmacy medical equipment/);
-  assert.doesNotMatch(publicSource, /Support ventilation, patient monitoring, ultrasound, DEXA/);
-  assert.doesNotMatch(publicSource, /Maintain Simpro work orders, service reports, serial details, equipment history, and customer updates for biomedical teams and internal engineers/);
-  assert.doesNotMatch(publicSource, /为医院和药房医疗设备提供现场和 workshop 服务/);
-  assert.doesNotMatch(publicSource, /服务范围覆盖 ventilation、patient monitoring、ultrasound、DEXA/);
-  assert.doesNotMatch(publicSource, /维护 Simpro 工单、service reports、serial details、equipment history 和 customer updates，支持 biomedical teams 和内部工程师交接/);
-});
-
-test("case notes expose scenario action verification and handover outcomes", () => {
-  assert.equal((html.match(/class="case-outcome" aria-label="Public-safe case outcome"/g) || []).length, 3);
-  assert.match(html, /<dt>Scenario<\/dt>\s*<dd>Scheduled service with site constraints<\/dd>/);
-  assert.match(html, /<dt>Action<\/dt>\s*<dd>Condition check, procedure steps, and performance evidence<\/dd>/);
-  assert.match(html, /<dt>Verification<\/dt>\s*<dd>Functional check and service record close-out<\/dd>/);
-  assert.match(html, /<dt>Handover<\/dt>\s*<dd>Clear next-use status for biomedical or site teams<\/dd>/);
-  assert.match(html, /<dd>User-reported symptom with repair history<\/dd>/);
-  assert.match(html, /<dd>Reusable service trail for later troubleshooting<\/dd>/);
-  assert.match(script, /"\.case-grid article:nth-child\(1\) \.case-outcome dt:nth-of-type\(1\)": "Scenario"/);
-  assert.match(script, /"\.case-grid article:nth-child\(1\) \.case-outcome dt:nth-of-type\(1\)": "场景"/);
-  assert.match(css, /\.case-outcome\s*{[\s\S]*?display:\s*grid;[\s\S]*?grid-template-columns:\s*auto minmax\(0,\s*1fr\);/);
-  assert.match(css, /@media \(max-width:\s*560px\)[\s\S]*?\.case-outcome\s*{[\s\S]*?grid-template-columns:\s*1fr;/);
-});
-
-test("case notes avoid duplicate bullet summaries after structured outcomes", () => {
-  const caseGridStart = html.indexOf('<div class="case-grid">');
-  const caseGridEnd = html.indexOf("</section>", caseGridStart);
-  assert.notEqual(caseGridStart, -1, "missing case grid");
-  assert.notEqual(caseGridEnd, -1, "missing case section end");
-
-  const caseGridSource = html.slice(caseGridStart, caseGridEnd);
-  assert.doesNotMatch(caseGridSource, /<ul>/);
-  assert.doesNotMatch(caseGridSource, /<li>/);
-
-  const publicSource = `${html}\n${script}`;
-  assert.doesNotMatch(publicSource, /Field condition check|Functional and performance testing|Service record close-out/);
-  assert.doesNotMatch(publicSource, /Fault symptom review|Test step documentation|Post-repair verification/);
-  assert.doesNotMatch(publicSource, /Equipment history cleanup|Work order alignment|Clear customer updates/);
-  assert.doesNotMatch(publicSource, /现场状态确认|功能与性能检查|故障现象复核|设备历史整理/);
-});
-
-test("training section maps certificates to equipment scope field work and verification evidence", () => {
-  assert.equal((html.match(/class="training-evidence" aria-label="Training evidence map"/g) || []).length, 3);
-  assert.match(html, /<dt>Equipment scope<\/dt>\s*<dd>V60, V60 Plus, Trilogy, Avalon, Efficia, HeartStart<\/dd>/);
-  assert.match(html, /<dt>Field work<\/dt>\s*<dd>Planned service, troubleshooting preparation, functional checks<\/dd>/);
-  assert.match(html, /<dt>Evidence<\/dt>\s*<dd>Offline certificates and service records available for formal checks<\/dd>/);
-  assert.match(html, /<dd>EPIQ, Affiniti, CX30, CX50, Horizon DEXA, X-ray systems<\/dd>/);
-  assert.match(html, /<dd>BD FIX100 and vendor-led specialty service preparation<\/dd>/);
-  assert.match(script, /"\.certification-grid article:nth-child\(1\) \.training-evidence dt:nth-of-type\(1\)": "Equipment scope"/);
-  assert.match(script, /"\.certification-grid article:nth-child\(1\) \.training-evidence dt:nth-of-type\(1\)": "设备范围"/);
-  assert.match(css, /\.training-evidence\s*{[\s\S]*?display:\s*grid;[\s\S]*?grid-template-columns:\s*minmax\(96px,\s*auto\) minmax\(0,\s*1fr\);/);
-  assert.match(css, /@media \(max-width:\s*560px\)[\s\S]*?\.training-evidence\s*{[\s\S]*?grid-template-columns:\s*1fr;/);
-});
-
-test("training cards avoid duplicate bullet lists after evidence maps", () => {
-  const certificationGridStart = html.indexOf('<div class="certification-grid">');
-  const certificationGridEnd = html.indexOf("</section>", certificationGridStart);
-  assert.notEqual(certificationGridStart, -1, "missing certification grid");
-  assert.notEqual(certificationGridEnd, -1, "missing certification section end");
-
-  const certificationGridSource = html.slice(certificationGridStart, certificationGridEnd);
-  assert.doesNotMatch(certificationGridSource, /<ul>/);
-  assert.doesNotMatch(certificationGridSource, /<li>/);
-
-  const publicSource = `${html}\n${script}\n${css}`;
-  assert.doesNotMatch(script, /\.certification-grid article:nth-child\(\d+\) li/);
-  assert.doesNotMatch(css, /\.certification-grid ul|\.certification-grid li/);
-  assert.doesNotMatch(publicSource, /V60 \/ V60 Plus service training/);
-  assert.doesNotMatch(publicSource, /Trilogy 202 and Trilogy Evo service training/);
-  assert.doesNotMatch(publicSource, /Avalon FM20 \/ FM30, Efficia CM series, and HeartStart Intrepid training/);
-  assert.doesNotMatch(publicSource, /EPIQ \/ Affiniti and CX30 \/ CX50 ultrasound training/);
-  assert.doesNotMatch(publicSource, /BD FIX100 dispensing service basic training/);
-  assert.doesNotMatch(publicSource, /Trilogy 202 和 Trilogy Evo service training/);
-  assert.doesNotMatch(publicSource, /厂商技术培训和服务准备/);
-});
-
-test("hidden personal galleries are not loaded by the compact homepage", () => {
-  assert.doesNotMatch(html, /assets\/personal-gallery\//);
-  assert.doesNotMatch(html, /id="family"/);
-  assert.doesNotMatch(html, /id="moments"/);
-  assert.doesNotMatch(html, /id="gallery"/);
-  assert.ok(!fs.existsSync(path.join(root, "assets/personal-gallery")), "personal-gallery should not be published");
-});
-
-test("optional personal section stays professional and compact", () => {
-  const publicSource = `${html}\n${script}`;
-
-  assert.match(html, /<section id="life" class="story-section life-section reveal" aria-labelledby="life-title">/);
-  assert.match(html, /<p class="section-kicker">Professional Rhythm<\/p>/);
-  assert.match(html, /<h2 id="life-title">The personal note is kept short and work-adjacent\.<\/h2>/);
-  assert.match(html, /<p><strong>Structured weeks<\/strong> Keeping work, commuting, study, and admin organized so field-service days stay reliable\.<\/p>/);
-  assert.match(html, /<p><strong>Continuous learning<\/strong> Following medical technology, engineering tools, AI tools, and practical ways to improve service work\.<\/p>/);
-  assert.match(html, /<p><strong>Record discipline<\/strong> Turning scattered information into reusable notes, checklists, and handover structure\.<\/p>/);
-  assert.match(script, /"#life \.section-kicker": "Professional Rhythm"/);
-  assert.match(script, /"#life \.section-kicker": "职业节奏"/);
-  assert.match(script, /"#life-title": "The personal note is kept short and work-adjacent\."/);
-  assert.match(script, /"#life-title": "个人内容保持简短，并贴近工作习惯。"/);
-  assert.match(css, /\.resume-style\.resume-compact \.life-section\s*{[\s\S]*?grid-template-columns:\s*minmax\(460px,\s*0\.95fr\) minmax\(360px,\s*1\.05fr\);/);
-  assert.match(css, /\.resume-style\.resume-compact \.life-section \.story-content\s*{[\s\S]*?padding:\s*clamp\(42px,\s*4vw,\s*58px\);/);
-  assert.match(css, /@media \(max-width:\s*760px\)[\s\S]*?\.resume-style\.resume-compact \.life-section\s*{[\s\S]*?min-height:\s*0;/);
-  assert.match(css, /@media \(max-width:\s*760px\)[\s\S]*?\.resume-style\.resume-compact \.life-section \.story-media\s*{[\s\S]*?min-height:\s*240px;[\s\S]*?max-height:\s*260px;/);
-  assert.match(css, /@media \(max-width:\s*760px\)[\s\S]*?\.resume-style\.resume-compact \.life-section \.story-content\s*{[\s\S]*?padding:\s*38px 24px;/);
-  assert.match(css, /@media \(max-width:\s*760px\)[\s\S]*?\.resume-style\.resume-compact \.life-notes\s*{[\s\S]*?gap:\s*10px;[\s\S]*?margin-top:\s*24px;/);
-  assert.doesNotMatch(html, /<section id="interests"/);
-  assert.doesNotMatch(publicSource, /Food, coffee|Travel and city walks|The things I enjoy|Interests|兴趣爱好|食物、咖啡|旅行和城市观察/);
-  assert.doesNotMatch(css, /\.resume-style\.resume-compact \.interests-section/);
-});
-
-test("removed personal gallery copy is not shipped in public source", () => {
-  const publicSource = `${html}\n${css}\n${script}`;
-
-  assert.doesNotMatch(publicSource, /Personal Moments|Family Moments|family photos|家庭照片|生活合影/);
-  assert.doesNotMatch(publicSource, /moments-section|family-section|gallery-section|interests-section/);
-  assert.doesNotMatch(publicSource, /moments-grid|family-grid|gallery-grid|interest-grid/);
-});
-
-test("published visual assets are referenced by the site", () => {
-  const publicSource = `${html}\n${css}\n${script}`;
-  const ignoredAssetFiles = new Set(["Henry_Yang_Biomedical_Engineer_Resume.docx"]);
-  const assetFiles = fs
-    .readdirSync(path.join(root, "assets"))
-    .filter((file) => !ignoredAssetFiles.has(file));
-
-  assetFiles.forEach((file) => {
-    assert.match(publicSource, new RegExp(`assets/${file.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}`));
-  });
-});
-
-test("site images declare stable dimensions", () => {
-  assert.match(html, /src="assets\/yihang-professional-headshot-720\.jpg"[^>]*width="720"[^>]*height="1125"/);
-  assert.match(html, /src="assets\/logo-nova-biomedical-au\.png"[^>]*width="300"[^>]*height="78"/);
-  assert.match(html, /src="assets\/logo-lundbeck\.svg"[^>]*width="485"[^>]*height="206"/);
-  assert.match(html, /src="assets\/study-life\.jpg"[^>]*width="1448"[^>]*height="1086"/);
-});
-
-test("Nova employer mark uses the Australian Nova Biomedical logo source", () => {
+test("published assets, robots, and sitemap stay aligned with the live site", () => {
+  assert.ok(fs.existsSync(path.join(root, "assets/Henry_Yang_Biomedical_Engineer_Resume.pdf")));
+  assert.ok(fs.existsSync(path.join(root, "assets/Henry_Yang_Biomedical_Engineer_Resume.docx")));
+  assert.ok(fs.existsSync(path.join(root, "assets/logo-nova-biomedical-au.png")));
   assert.match(html, /src="assets\/logo-nova-biomedical-au\.png"/);
   assert.match(html, /alt="Nova Biomedical Australia logo"/);
-  assert.ok(fs.existsSync(path.join(root, "assets/logo-nova-biomedical-au.png")));
-  assert.ok(!fs.existsSync(path.join(root, "assets/logo-nova-biomedical.svg")));
-  assert.doesNotMatch(html, /src="assets\/logo-nova-biomedical\.jpg"/);
-  assert.ok(!fs.existsSync(path.join(root, "assets/logo-nova-biomedical.jpg")));
-});
 
-test("current employer copy consistently identifies the Australian Nova Biomedical entity", () => {
-  const publicSource = `${html}\n${script}`;
-
-  assert.match(html, /<h3>Biomedical Engineer \| Nova Biomedical Australia<\/h3>/);
-  assert.match(script, /"Biomedical Engineer \| Nova Biomedical Australia"/);
-  assert.doesNotMatch(publicSource, /Biomedical Engineer \| Nova Biomedical Pty Ltd/);
-});
-
-test("hero portrait serves responsive image candidates", () => {
-  const sourceOriginal = path.join(root, "assets/yihang-professional-headshot-formal-4k.jpg");
-  const source720 = path.join(root, "assets/yihang-professional-headshot-720.jpg");
-  const source420 = path.join(root, "assets/yihang-professional-headshot-420.jpg");
-
-  assert.match(
-    html,
-    /<img src="assets\/yihang-professional-headshot-720\.jpg"[^>]*srcset="assets\/yihang-professional-headshot-420\.jpg 420w, assets\/yihang-professional-headshot-720\.jpg 720w, assets\/yihang-professional-headshot-formal-4k\.jpg 1407w"[^>]*sizes="\(max-width: 560px\) 64px, \(max-width: 920px\) 112px, 300px"[^>]*fetchpriority="high"[^>]*decoding="async"/
-  );
-  assert.ok(fs.existsSync(source720), "720px hero portrait candidate should exist");
-  assert.ok(fs.existsSync(source420), "420px hero portrait candidate should exist");
-  assert.ok(fs.statSync(source720).size < fs.statSync(sourceOriginal).size, "720px candidate should be lighter than the source portrait");
-  assert.ok(fs.statSync(source420).size < fs.statSync(source720).size, "420px candidate should be lighter than the 720px candidate");
-  assert.match(css, /\.resume-style\.resume-compact \.hero-profile-card img\s*{[\s\S]*?width:\s*100%;[\s\S]*?height:\s*auto;/);
-});
-
-test("hero portrait stays visually constrained after image dimensions load", () => {
-  assert.match(
-    css,
-    /\.resume-style\.resume-compact \.hero-profile-card img\s*{[\s\S]*?aspect-ratio:\s*4\s*\/\s*5;[\s\S]*?height:\s*auto;[\s\S]*?object-fit:\s*cover;/
-  );
-  assert.match(
-    css,
-    /@media \(max-width:\s*920px\)[\s\S]*?\.resume-style\.resume-compact \.hero-profile-card img\s*{[\s\S]*?aspect-ratio:\s*1;[\s\S]*?height:\s*auto;/
-  );
-});
-
-test("desktop compact hero keeps first-screen recruiter actions visible on short desktop screens", () => {
-  assert.match(
-    css,
-    /\.resume-style\.resume-compact \.hero\s*{[\s\S]*?min-height:\s*min\(720px,\s*86svh\);/
-  );
-  assert.match(
-    css,
-    /\.resume-style\.resume-compact \.hero-copy\s*{[\s\S]*?grid-template-columns:\s*minmax\(0,\s*1fr\) minmax\(220px,\s*260px\);[\s\S]*?gap:\s*clamp\(24px,\s*3\.6vw,\s*44px\);[\s\S]*?padding:\s*72px 0 18px;/
-  );
-  assert.match(
-    css,
-    /\.resume-style\.resume-compact \.hero h1\s*{[\s\S]*?font-size:\s*clamp\(42px,\s*5\.8vw,\s*68px\);/
-  );
-  assert.match(
-    css,
-    /\.resume-style\.resume-compact \.hero-meta div\s*{[\s\S]*?min-height:\s*0;[\s\S]*?padding:\s*10px 12px;/
-  );
-  assert.match(
-    css,
-    /\.resume-style\.resume-compact \.hero-card-body\s*{[\s\S]*?padding:\s*10px 2px 0;/
-  );
-  assert.match(
-    css,
-    /\.resume-style\.resume-compact \.hero-profile-card strong\s*{[\s\S]*?font-size:\s*18px;/
-  );
-  assert.match(
-    css,
-    /\.resume-style\.resume-compact \.hero-card-note\s*{[\s\S]*?font-size:\s*12px;[\s\S]*?line-height:\s*1\.34;/
-  );
-  assert.match(
-    css,
-    /@media \(max-height:\s*720px\) and \(min-width:\s*921px\)\s*{[\s\S]*?\.resume-style\.resume-compact \.hero-copy\s*{[\s\S]*?grid-template-columns:\s*minmax\(0,\s*1fr\) minmax\(210px,\s*230px\);[\s\S]*?padding:\s*64px 0 14px;/
-  );
-  assert.match(
-    css,
-    /@media \(max-height:\s*720px\) and \(min-width:\s*921px\)\s*{[\s\S]*?\.resume-style\.resume-compact \.hero-card-note\s*{[\s\S]*?-webkit-line-clamp:\s*2;[\s\S]*?overflow:\s*hidden;/
-  );
-  assert.match(
-    css,
-    /@media \(max-height:\s*720px\) and \(min-width:\s*921px\)\s*{[\s\S]*?\.resume-style\.resume-compact \.hero-action-path div\s*{[\s\S]*?padding:\s*8px 10px;/
-  );
-});
-
-test("tablet compact hero keeps quick facts scannable without over-tall stacking", () => {
-  const compactTabletMediaStart = css.indexOf(
-    "@media (max-width: 920px) {\n  .resume-style.resume-compact .hero-copy"
-  );
-  assert.notEqual(compactTabletMediaStart, -1, "missing compact tablet media block");
-
-  const compactTabletMediaEnd = css.indexOf("\n}\n\n@media (max-width: 760px)", compactTabletMediaStart);
-  assert.notEqual(compactTabletMediaEnd, -1, "missing end of compact tablet media block");
-  const compactTabletMedia = css.slice(compactTabletMediaStart, compactTabletMediaEnd);
-
-  assert.match(
-    compactTabletMedia,
-    /\.resume-style\.resume-compact \.hero-meta\s*{[\s\S]*?grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\);/
-  );
-  assert.match(
-    compactTabletMedia,
-    /\.resume-style\.resume-compact \.hero-meta div:nth-child\(odd\)\s*{[\s\S]*?border-right:\s*1px solid rgba\(19,\s*33,\s*31,\s*0\.12\);/
-  );
-  assert.match(
-    compactTabletMedia,
-    /\.resume-style\.resume-compact \.hero-meta div:nth-last-child\(-n \+ 2\)\s*{[\s\S]*?border-bottom:\s*0;/
-  );
-});
-
-test("mobile compact hero keeps recruiter actions inside a short first screen", () => {
-  assert.match(
-    css,
-    /@media \(max-width:\s*560px\)[\s\S]*?\.resume-style\.resume-compact \.hero-copy\s*{[\s\S]*?gap:\s*14px;[\s\S]*?padding-top:\s*100px;[\s\S]*?padding-bottom:\s*18px;/
-  );
-  assert.match(
-    css,
-    /@media \(max-width:\s*560px\)[\s\S]*?\.resume-style\.resume-compact \.hero-card-note\s*{[\s\S]*?display:\s*none;/
-  );
-  assert.match(
-    css,
-    /@media \(max-width:\s*560px\)[\s\S]*?\.resume-style\.resume-compact \.hero-actions\s*{[\s\S]*?grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\);[\s\S]*?gap:\s*6px;/
-  );
-  assert.match(
-    css,
-    /@media \(max-width:\s*560px\)[\s\S]*?\.resume-style\.resume-compact \.hero-action-path\s*{[\s\S]*?grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\);[\s\S]*?gap:\s*4px;[\s\S]*?margin-top:\s*10px;/
-  );
-  assert.match(
-    css,
-    /@media \(max-width:\s*560px\)[\s\S]*?\.resume-style\.resume-compact \.hero-action-path div\s*{[\s\S]*?padding:\s*6px 8px;/
-  );
-  assert.match(
-    css,
-    /@media \(max-width:\s*560px\)[\s\S]*?\.resume-style\.resume-compact \.hero-action-path span\s*{[\s\S]*?display:\s*none;/
-  );
-  assert.match(
-    css,
-    /@media \(max-width:\s*560px\)[\s\S]*?\.resume-style\.resume-compact \.resume-link\s*{[\s\S]*?grid-column:\s*auto;/
-  );
-  assert.match(
-    css,
-    /@media \(max-width:\s*380px\) and \(max-height:\s*760px\)\s*{[\s\S]*?\.resume-style\.resume-compact \.hero-action-path\s*{[\s\S]*?display:\s*none;/
-  );
-  assert.match(
-    css,
-    /@media \(max-width:\s*380px\) and \(max-height:\s*760px\)\s*{[\s\S]*?\.resume-style\.resume-compact \.profile-status-strip div:nth-child\(2\)\s*{[\s\S]*?display:\s*none;/
-  );
-  assert.match(
-    css,
-    /@media \(max-width:\s*380px\) and \(max-height:\s*760px\)\s*{[\s\S]*?\.resume-style\.resume-compact \.hero-meta dd\s*{[\s\S]*?font-size:\s*12px;[\s\S]*?line-height:\s*1\.2;/
-  );
-});
-
-test("mobile compact hero keeps the name and recruiter actions before the profile card", () => {
-  const heroMainIndex = html.indexOf('<div class="hero-main">');
-  const heroProfileIndex = html.indexOf('<aside class="hero-profile-card"');
-  assert.notEqual(heroMainIndex, -1, "missing hero main copy");
-  assert.notEqual(heroProfileIndex, -1, "missing hero profile card");
-  assert.ok(heroMainIndex < heroProfileIndex, "hero copy should be before the profile card in the source order");
-
-  const compactTabletMediaStart = css.indexOf(
-    "@media (max-width: 920px) {\n  .resume-style.resume-compact .hero-copy"
-  );
-  assert.notEqual(compactTabletMediaStart, -1, "missing compact tablet media block");
-
-  const compactTabletMediaEnd = css.indexOf("\n}\n\n@media (max-width: 760px)", compactTabletMediaStart);
-  assert.notEqual(compactTabletMediaEnd, -1, "missing end of compact tablet media block");
-  const compactTabletMedia = css.slice(compactTabletMediaStart, compactTabletMediaEnd);
-
-  assert.match(
-    compactTabletMedia,
-    /\.resume-style\.resume-compact \.hero-main\s*{[\s\S]*?order:\s*1;/
-  );
-  assert.match(
-    compactTabletMedia,
-    /\.resume-style\.resume-compact \.hero-profile-card\s*{[\s\S]*?order:\s*2;/
-  );
-  assert.doesNotMatch(compactTabletMedia, /\.resume-style\.resume-compact \.hero-profile-card\s*{[\s\S]*?order:\s*-1;/);
-});
-
-test("person structured data is present and parseable", () => {
-  const match = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/);
-  assert.ok(match, "missing JSON-LD script");
-
-  const data = JSON.parse(match[1]);
-  assert.equal(data["@type"], "Person");
-  assert.equal(data.name, "Yihang (Henry) Yang");
-  assert.equal(data.jobTitle, "Biomedical Field Service Engineer");
-  assert.equal(
-    data.description,
-    "Sydney-based Biomedical Field Service Engineer focused on medical device maintenance, troubleshooting, verification, service documentation, and resume download."
-  );
-  assert.equal(data.url, "https://yangyihang96.com/");
-  assert.equal(data.image, "https://yangyihang96.com/assets/yihang-professional-headshot-formal-4k.jpg");
-  assert.equal(data.email, "mailto:yangyihang96@gmail.com");
-  assert.deepEqual(data.worksFor, {
-    "@type": "Organization",
-    name: "Nova Biomedical Australia",
-    url: "https://www.novabiomedical.com.au/",
-  });
-  assert.ok(data.knowsAbout.includes("Medical device maintenance"));
-  assert.ok(data.knowsAbout.includes("Service documentation"));
-  assert.deepEqual(data.sameAs, ["https://github.com/yangyihang96"]);
-});
-
-test("robots and sitemap advertise the live domain", () => {
   const robots = read("robots.txt");
   const sitemap = read("sitemap.xml");
-
   assert.match(robots, /Sitemap: https:\/\/yangyihang96\.com\/sitemap\.xml/);
   assert.match(robots, /Disallow: \/assets\/personal-gallery\//);
   assert.match(sitemap, /<loc>https:\/\/yangyihang96\.com\/<\/loc>/);
+  assert.match(sitemap, /<lastmod>2026-06-25<\/lastmod>/);
 });
