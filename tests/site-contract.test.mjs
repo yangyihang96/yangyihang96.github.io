@@ -68,8 +68,8 @@ test("metadata targets a Sydney biomedical field-service recruiter", () => {
     html,
     /<meta name="description" content="Sydney-based Biomedical Field Service Engineer with nearly three years of field and workshop service experience across hospital and pharmacy medical equipment\."/
   );
-  assert.match(html, /href="styles\.css\?v=recruiter-conversion-1"/);
-  assert.match(html, /src="script\.js\?v=recruiter-conversion-1"/);
+  assert.match(html, /href="styles\.css\?v=field-service-snapshot-1"/);
+  assert.match(html, /src="script\.js\?v=field-service-snapshot-1"/);
   assert.match(html, /<link rel="canonical" href="https:\/\/yangyihang96\.com\/">/);
   assert.doesNotMatch(html, /http:\/\/yangyihang96\.com/);
 
@@ -97,7 +97,7 @@ test("hero leads with role, experience, mobility, work-right readiness, and thre
   );
   assert.match(hero, /<dt>Experience<\/dt>\s*<dd>Nearly 3 years<\/dd>/);
   assert.match(hero, /<dt>Mobility<\/dt>\s*<dd>Driver licence \+ field travel<\/dd>/);
-  assert.match(hero, /<dt>Work rights<\/dt>\s*<dd>Formal check ready<\/dd>/);
+  assert.match(hero, /<dt>Work rights<\/dt>\s*<dd>Employer verification ready<\/dd>/);
   assert.match(hero, /class="hero-skill-tags"/);
   assert.match(hero, /Ventilation/);
   assert.match(hero, /Patient Monitoring/);
@@ -105,8 +105,9 @@ test("hero leads with role, experience, mobility, work-right readiness, and thre
   assert.match(hero, /Simpro/);
   assert.match(heroActions, />Download Resume</);
   assert.match(heroActions, />Email Henry</);
-  assert.match(heroActions, />View De-identified Cases</);
-  assert.doesNotMatch(heroActions, /GitHub|DOCX|Private proof|Hiring docs/);
+  assert.match(heroActions, />LinkedIn</);
+  assert.match(heroActions, new RegExp(linkedinUrl.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+  assert.doesNotMatch(heroActions, /GitHub|DOCX|View De-identified Cases|Private proof|Hiring docs/);
 });
 
 test("defensive privacy language is compressed to one clear boundary", () => {
@@ -131,6 +132,7 @@ test("navigation and section order follow the recruiter reading path", () => {
   const fitIndex = html.indexOf('<section class="fit-strip');
   const experienceIndex = html.indexOf('<section id="experience"');
   const scopeIndex = html.indexOf('<section id="capabilities"');
+  const targetRolesIndex = html.indexOf('<section class="target-roles');
   const caseIndex = html.indexOf('<section id="case-notes"');
   const studyIndex = html.indexOf('<section id="study"');
   const contactIndex = html.indexOf('<section id="contact"');
@@ -138,7 +140,8 @@ test("navigation and section order follow the recruiter reading path", () => {
   assert.ok(fitIndex > -1, "missing quick fit section");
   assert.ok(fitIndex < experienceIndex);
   assert.ok(experienceIndex < scopeIndex);
-  assert.ok(scopeIndex < caseIndex);
+  assert.ok(scopeIndex < targetRolesIndex);
+  assert.ok(targetRolesIndex < caseIndex);
   assert.ok(caseIndex < studyIndex);
   assert.ok(studyIndex < contactIndex);
   assert.equal(html.includes('<section class="proof-strip'), false);
@@ -149,14 +152,25 @@ test("navigation and section order follow the recruiter reading path", () => {
 test("quick fit and proof points answer HR questions without sounding like an interview script", () => {
   const fit = sectionByClass("fit-strip");
 
-  assert.match(fit, /<p class="section-kicker">Quick Fit<\/p>/);
-  assert.match(fit, /<h2 id="fit-title">What a recruiter needs to know in the first 20 seconds\.<\/h2>/);
+  assert.match(fit, /<p class="section-kicker">Field Service Snapshot<\/p>/);
+  assert.match(fit, /<h2 id="fit-title">Field-ready service profile for hospital and pharmacy equipment\.<\/h2>/);
   assert.match(fit, /Nearly 3 years field\/workshop service/);
   assert.match(fit, /Driver licence and Sydney field travel/);
-  assert.match(fit, /Work-right check ready for formal process/);
+  assert.match(fit, /<span>Records<\/span>\s*<strong>Simpro, service reports, equipment history, handover<\/strong>/);
   assert.match(fit, /class="proof-grid" aria-label="Recruiter proof points"/);
   assert.equal(articleCount(fit.match(/<div class="proof-grid"[\s\S]*?<\/div>/)?.[0] ?? ""), 4);
-  assert.doesNotMatch(fit, /Ask in interview|Private check|Public evidence|what proof to request/i);
+  assert.doesNotMatch(fit, /Quick Fit|What a recruiter needs|Ask in interview|Private check|Public evidence|what proof to request/i);
+});
+
+test("target roles make the career direction explicit without adding another proof section", () => {
+  const targetRoles = sectionByClass("target-roles");
+
+  assert.match(targetRoles, /<p class="section-kicker">Target Roles<\/p>/);
+  assert.match(targetRoles, /Biomedical Field Service Engineer/);
+  assert.match(targetRoles, /Medical Device Service Engineer/);
+  assert.match(targetRoles, /Clinical Engineering Service Support/);
+  assert.match(targetRoles, /Biomedical Technician \/ Service Technician/);
+  assert.doesNotMatch(targetRoles, /student|research assistant|data scientist/i);
 });
 
 test("equipment and service scope merges skills and training into equipment categories", () => {
@@ -183,8 +197,10 @@ test("case notes include de-identified outcomes and operational value", () => {
   assert.match(cases, new RegExp(privacySentence.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
   assert.equal((cases.match(/<dt>Outcome<\/dt>/g) || []).length, 3);
   assert.match(cases, /Returned equipment with a clear next-use status and service close-out trail/);
-  assert.match(cases, /Separated use condition, repair history, reproducible symptoms, and manual-led checks before returning the device with post-repair verification/);
-  assert.match(cases, /Reduced repeat troubleshooting time by keeping service actions, test notes, equipment history, and customer updates aligned in Simpro/);
+  assert.match(cases, /Anonymised troubleshooting example/);
+  assert.match(cases, /A user-reported intermittent fault was reviewed against device condition, service history, and reproducible symptoms/);
+  assert.match(cases, /Helped make repeat troubleshooting faster by keeping service actions, test notes, equipment history, and customer updates aligned in Simpro/);
+  assert.doesNotMatch(cases, /Reduced repeat troubleshooting time/);
   assert.doesNotMatch(cases, /customer names|serial numbers|internal records/i);
 });
 
@@ -193,6 +209,7 @@ test("education stays concise and work-right proof is not over-explained", () =>
 
   assert.equal(articleCount(study), 3);
   assert.match(study, /Master of Philosophy/);
+  assert.match(study, /Awarded Jun 2024/);
   assert.match(study, /Bachelor of Biomedical Engineering/);
   assert.match(study, /Flexible Electrodes for Smart Bandages/);
   assert.doesNotMatch(study, /study-proof-strip|Academic records|submission\/examination documents|Eligibility checks stay private/);
@@ -207,9 +224,11 @@ test("contact prioritizes email, resume, LinkedIn, GitHub, availability, and fie
   assert.match(contact, /Resume DOCX/);
   assert.match(contact, new RegExp(linkedinUrl.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
   assert.match(contact, new RegExp(githubUrl.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+  assert.doesNotMatch(contact.match(/<div class="contact-action-buttons">([\s\S]*?)<\/div>/)?.[1] ?? "", /GitHub/);
+  assert.match(contact, /<div class="contact-secondary-links" aria-label="Professional links">/);
   assert.match(contact, /<strong>Availability<\/strong>\s*<span>Upon discussion<\/span>/);
   assert.match(contact, /<strong>Driver licence<\/strong>\s*<span>Sydney field travel ready<\/span>/);
-  assert.match(contact, /<strong>Work rights<\/strong>\s*<span>Formal check ready<\/span>/);
+  assert.match(contact, /<strong>Work rights<\/strong>\s*<span>Employer verification ready<\/span>/);
   assert.doesNotMatch(contact, /tel:|\+61\s?4|\b04\d{2}\b|phone-number|mobile-number/);
 });
 
@@ -231,11 +250,18 @@ test("resume PDF and DOCX match the revised HR-first positioning", () => {
   assert.match(combined, /Nearly three years of full-time field and workshop service experience at Nova Biomedical Australia/);
   assert.match(combined, /Sydney field travel/);
   assert.match(combined, /Driver licence/);
-  assert.match(combined, /Work-right check ready/);
+  assert.match(combined, /Work-right evidence ready/);
   assert.match(combined, /PM, fault diagnosis, repair, installation support, verification, and service documentation/);
   assert.match(combined, /Nova Biomedical Australia/);
   assert.match(combined, /Returned devices with functional checks, performance evidence, or clear escalation status/);
   assert.match(combined, /Simpro work orders, service reports, equipment history, and customer updates/);
+  assert.match(combined, /Field service tools/i);
+  assert.match(combined, /Simpro \/ CMMS/);
+  assert.match(combined, /electrical safety testing awareness/i);
+  assert.match(combined, /Target roles/i);
+  assert.match(combined, /Biomedical Technician \/ Service Technician/);
+  assert.match(combined, /Master of Philosophy, The University of Sydney, awarded Jun 2024/);
+  assert.doesNotMatch(combined, /DOCUMENT FORMAT|PDF for quick review|Reduced repeat troubleshooting time/);
   assert.doesNotMatch(combined, /Full-time,\s*38 hours per week|38 hours per week|Nova Biomedical Pty Ltd/);
 });
 

@@ -26,7 +26,7 @@ PROFILE = (
 
 CONTACT_LINE = (
     "Sydney, NSW | 0436 016 660 | yangyihang96@gmail.com | Driver licence | "
-    "Sydney field travel | Work-right check ready"
+    "Sydney field travel | Work-right evidence ready"
 )
 
 SERVICE_BULLETS = [
@@ -45,8 +45,15 @@ SCOPE_BULLETS = [
 ]
 
 SKILL_BULLETS = [
-    "Functional testing, performance checks, electrical safety awareness, manufacturer procedures, and service reports.",
-    "Simpro, equipment history, serial tracking, customer updates, Microsoft Office, Excel, MATLAB, SolidWorks, and Visio.",
+    "PM procedures, fault diagnosis, functional testing, performance verification, and service reports.",
+    "Simpro / CMMS, equipment history, serial tracking, customer updates, manufacturer documentation, and Microsoft Office.",
+    "Electrical safety testing awareness, test equipment familiarity, customer handover, Mandarin Chinese, and professional working English.",
+]
+
+FIELD_SERVICE_TOOLS = [
+    "PM procedures, service manuals, functional testing, performance verification, and clear escalation notes.",
+    "Simpro / CMMS, service reports, equipment history, customer updates, and handover records.",
+    "Electrical safety testing awareness, test equipment familiarity, and manufacturer documentation.",
     "Mandarin Chinese native; English professional working proficiency.",
 ]
 
@@ -59,13 +66,14 @@ EDUCATION_BULLETS = [
 OUTCOME_BULLETS = [
     "Supported PM, repair, verification, and documentation across ventilation, monitoring, ultrasound, DEXA, pharmacy automation, and general biomedical equipment in hospital, pharmacy, and workshop settings.",
     "Diagnosed user-reported faults by separating use condition, repair history, reproducible symptoms, service-manual steps, and post-repair verification.",
-    "Reduced repeat troubleshooting time by keeping service actions, test notes, equipment history, and customer updates aligned in Simpro.",
+    "Helped make repeat troubleshooting faster by keeping service actions, test notes, equipment history, and customer updates aligned in Simpro.",
 ]
 
 ROLE_FIT_BULLETS = [
-    "Best fit: Biomedical Field Service Engineer, Medical Device Service Engineer, or Clinical Engineering service support roles.",
-    "Field readiness: Sydney-based, driver licence, open to field travel, English / Mandarin communication.",
-    "Screening readiness: work-right check ready for a formal hiring process.",
+    "Biomedical Field Service Engineer.",
+    "Medical Device Service Engineer.",
+    "Clinical Engineering Service Support.",
+    "Biomedical Technician / Service Technician.",
 ]
 
 
@@ -190,11 +198,8 @@ def build_pdf():
 
     y_left = y
     y_right = y
-    y_left = draw_section(c, "Role fit", ROLE_FIT_BULLETS, left, y_left, col_w, teal)
-    y_right = draw_section(c, "Document format", [
-        "PDF for quick review; DOCX for ATS or recruiter systems.",
-        "LinkedIn and GitHub are available from yangyihang96.com.",
-    ], x2, y_right, col_w, teal)
+    y_left = draw_section(c, "Target roles", ROLE_FIT_BULLETS, left, y_left, col_w, teal)
+    y_right = draw_section(c, "Field service tools", FIELD_SERVICE_TOOLS, x2, y_right, col_w, teal)
 
     footer_y = 34
     c.setStrokeColor(colors.Color(0.73, 0.80, 0.78))
@@ -292,8 +297,12 @@ def build_docx():
     for item in OUTCOME_BULLETS:
         add_bullet(doc, item)
 
-    add_heading(doc, "Role Fit")
+    add_heading(doc, "Target Roles")
     for item in ROLE_FIT_BULLETS:
+        add_bullet(doc, item)
+
+    add_heading(doc, "Field Service Tools")
+    for item in FIELD_SERVICE_TOOLS:
         add_bullet(doc, item)
 
     core = doc.core_properties

@@ -1306,6 +1306,53 @@ main:focus {
   line-height: 1.15;
 }
 
+.target-roles {
+  padding: 54px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: #f7f8f4;
+}
+
+.target-roles-inner {
+  width: min(1120px, calc(100% - 48px));
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(260px, 0.72fr) minmax(0, 1.28fr);
+  gap: 26px;
+  align-items: center;
+}
+
+.target-roles h2 {
+  max-width: 520px;
+  margin: 0;
+  font-size: clamp(26px, 3vw, 38px);
+  line-height: 1.08;
+  letter-spacing: 0;
+}
+
+.target-role-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--line);
+  background: var(--line);
+  list-style: none;
+}
+
+.target-role-list li {
+  min-height: 76px;
+  display: flex;
+  align-items: center;
+  padding: 18px 20px;
+  color: var(--ink);
+  background: #ffffff;
+  font-weight: 830;
+  line-height: 1.25;
+}
+
 .contact-section {
   padding: 108px 0;
   color: #ffffff;
@@ -1361,6 +1408,31 @@ main:focus {
   justify-self: end;
   width: 100%;
   max-width: 480px;
+}
+
+.contact-secondary-links {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  align-items: center;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 14px;
+}
+
+.contact-secondary-links strong {
+  color: #a8d6cd;
+  font-size: 12px;
+  font-weight: 850;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.contact-secondary-links a {
+  color: #ffffff;
+  font-weight: 820;
 }
 
 .contact-resume-format-note {
@@ -1719,11 +1791,16 @@ main:focus {
   .study-grid,
   .study-proof-strip,
   .capability-row,
+  .target-roles-inner,
   .contact-inner {
     width: min(100% - 32px, 720px);
   }
 
   .fit-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .target-roles-inner {
     grid-template-columns: 1fr;
   }
 
@@ -2709,6 +2786,7 @@ body.resume-style {
 .resume-style.resume-compact .fit-strip,
 .resume-style.resume-compact .proof-strip,
 .resume-style.resume-compact .capabilities,
+.resume-style.resume-compact .target-roles,
 .resume-style.resume-compact .experience-section,
 .resume-style.resume-compact .case-section,
 .resume-style.resume-compact .study-section,
@@ -2888,6 +2966,7 @@ body.resume-style {
   .resume-style.resume-compact .proof-strip,
   .resume-style.resume-compact .brief-section,
   .resume-style.resume-compact .capabilities,
+  .resume-style.resume-compact .target-roles,
   .resume-style.resume-compact .experience-section,
   .resume-style.resume-compact .case-section,
   .resume-style.resume-compact .study-section,
@@ -3010,8 +3089,12 @@ body.resume-style {
     grid-column: auto;
   }
 
-  .resume-style.resume-compact .case-action {
+  .resume-style.resume-compact .linkedin-action {
     grid-column: 1 / -1;
+  }
+
+  .target-role-list {
+    grid-template-columns: 1fr;
   }
 
   .resume-style.resume-compact .button {
