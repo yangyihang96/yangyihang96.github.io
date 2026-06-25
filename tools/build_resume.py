@@ -21,7 +21,7 @@ PROFILE = (
     "Nearly three years of full-time field and workshop service experience at "
     "Nova Biomedical Australia across hospital and pharmacy medical equipment. "
     "Core strengths include PM, fault diagnosis, repair, installation support, "
-    "verification, and service documentation."
+    "verification, service documentation, and safe return-to-use decisions."
 )
 
 CONTACT_LINE = (
@@ -33,8 +33,8 @@ SERVICE_BULLETS = [
     "Perform PM, fault diagnosis, repair, installation support, verification, and service documentation across field and workshop settings.",
     "Support ventilation, patient monitoring, ultrasound, DEXA, pharmacy automation, X-ray support, and general biomedical equipment.",
     "Returned devices with functional checks, performance evidence, or clear escalation status.",
-    "Maintain Simpro work orders, service reports, equipment history, and customer updates so service decisions remain traceable.",
-    "Hand over next-use status clearly to clinical users, biomedical teams, vendors, and internal engineers.",
+    "Use manufacturer-led checks, service history, and functional evidence to document whether equipment is ready for use, monitored, or escalated.",
+    "Maintain Simpro work orders, service reports, equipment history, and customer updates so service records as engineering evidence remain traceable.",
 ]
 
 SCOPE_BULLETS = [
@@ -45,14 +45,14 @@ SCOPE_BULLETS = [
 ]
 
 SKILL_BULLETS = [
-    "PM procedures, fault diagnosis, functional testing, performance verification, and service reports.",
-    "Simpro / CMMS, equipment history, serial tracking, customer updates, manufacturer documentation, and Microsoft Office.",
+    "PM procedures, fault diagnosis, functional testing, performance verification, service reports, and escalation notes.",
+    "Simpro / CMMS, equipment history, serial tracking, customer updates, traceability, manufacturer documentation, and Microsoft Office.",
     "Electrical safety testing awareness, test equipment familiarity, customer handover, Mandarin Chinese, and professional working English.",
 ]
 
 FIELD_SERVICE_TOOLS = [
     "PM procedures, service manuals, functional testing, performance verification, and clear escalation notes.",
-    "Simpro / CMMS, service reports, equipment history, customer updates, and handover records.",
+    "Simpro / CMMS, service reports, equipment history, customer updates, handover records, and service records as engineering evidence.",
     "Electrical safety testing awareness, test equipment familiarity, and manufacturer documentation.",
     "Mandarin Chinese native; English professional working proficiency.",
 ]
@@ -60,13 +60,13 @@ FIELD_SERVICE_TOOLS = [
 EDUCATION_BULLETS = [
     "Master of Philosophy, The University of Sydney, awarded Jun 2024.",
     "Bachelor of Biomedical Engineering, The University of Sydney, Feb 2017 - Dec 2020.",
-    "MPhil thesis: Flexible Electrodes for Smart Bandages: Feasibility Exploration.",
+    "MPhil thesis: flexible electrodes, impedance measurement, validation evidence, and technical documentation.",
 ]
 
 OUTCOME_BULLETS = [
     "Supported PM, repair, verification, and documentation across ventilation, monitoring, ultrasound, DEXA, pharmacy automation, and general biomedical equipment in hospital, pharmacy, and workshop settings.",
-    "Diagnosed user-reported faults by separating use condition, repair history, reproducible symptoms, service-manual steps, and post-repair verification.",
-    "Helped make repeat troubleshooting faster by keeping service actions, test notes, equipment history, and customer updates aligned in Simpro.",
+    "Diagnosed user-reported faults by separating device condition, accessory context, workflow, repair history, reproducible symptoms, manual-led checks, and post-repair verification.",
+    "Supported next-use decisions by documenting whether equipment was ready for use, monitored, or escalated based on post-service evidence.",
 ]
 
 ROLE_FIT_BULLETS = [

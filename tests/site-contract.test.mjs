@@ -68,8 +68,8 @@ test("metadata targets a Sydney biomedical field-service recruiter", () => {
     html,
     /<meta name="description" content="Sydney-based Biomedical Field Service Engineer with nearly three years of field and workshop service experience across hospital and pharmacy medical equipment\."/
   );
-  assert.match(html, /href="styles\.css\?v=field-service-snapshot-1"/);
-  assert.match(html, /src="script\.js\?v=field-service-snapshot-1"/);
+  assert.match(html, /href="styles\.css\?v=clinical-judgement-1"/);
+  assert.match(html, /src="script\.js\?v=clinical-judgement-1"/);
   assert.match(html, /<link rel="canonical" href="https:\/\/yangyihang96\.com\/">/);
   assert.doesNotMatch(html, /http:\/\/yangyihang96\.com/);
 
@@ -131,6 +131,7 @@ test("navigation and section order follow the recruiter reading path", () => {
 
   const fitIndex = html.indexOf('<section class="fit-strip');
   const experienceIndex = html.indexOf('<section id="experience"');
+  const judgementIndex = html.indexOf('<section class="judgement-section');
   const scopeIndex = html.indexOf('<section id="capabilities"');
   const targetRolesIndex = html.indexOf('<section class="target-roles');
   const caseIndex = html.indexOf('<section id="case-notes"');
@@ -139,7 +140,8 @@ test("navigation and section order follow the recruiter reading path", () => {
 
   assert.ok(fitIndex > -1, "missing quick fit section");
   assert.ok(fitIndex < experienceIndex);
-  assert.ok(experienceIndex < scopeIndex);
+  assert.ok(experienceIndex < judgementIndex);
+  assert.ok(judgementIndex < scopeIndex);
   assert.ok(scopeIndex < targetRolesIndex);
   assert.ok(targetRolesIndex < caseIndex);
   assert.ok(caseIndex < studyIndex);
@@ -159,7 +161,26 @@ test("quick fit and proof points answer HR questions without sounding like an in
   assert.match(fit, /<span>Records<\/span>\s*<strong>Simpro, service reports, equipment history, handover<\/strong>/);
   assert.match(fit, /class="proof-grid" aria-label="Recruiter proof points"/);
   assert.equal(articleCount(fit.match(/<div class="proof-grid"[\s\S]*?<\/div>/)?.[0] ?? ""), 4);
+  assert.match(fit, /Service traceability/);
+  assert.match(fit, /evidence for the next service decision, not just admin/);
   assert.doesNotMatch(fit, /Quick Fit|What a recruiter needs|Ask in interview|Private check|Public evidence|what proof to request/i);
+});
+
+test("clinical service judgement explains return-to-use, escalation, and regulated records", () => {
+  const judgement = sectionByClass("judgement-section");
+
+  assert.match(judgement, /<p class="section-kicker">Clinical Safety &amp; Service Judgement<\/p>/);
+  assert.match(judgement, /safe return-to-use decisions/);
+  assert.match(judgement, /Unsafe or uncertain devices should not be returned to use/);
+  assert.match(judgement, /verified ready/);
+  assert.match(judgement, /restricted or monitored use/);
+  assert.match(judgement, /escalated \/ not returned/);
+  assert.match(judgement, /AS\/NZS 3551-aware lifecycle thinking/);
+  assert.match(judgement, /Regulated healthcare documentation mindset/);
+  assert.match(judgement, /factual notes, traceable actions, escalation/);
+  assert.doesNotMatch(judgement, /expert|certified|qualified compliance/i);
+  assert.match(script, /\.judgement-lead > p:not\(\.section-kicker\)/);
+  assert.doesNotMatch(script, /"\.judgement-lead > p":/);
 });
 
 test("target roles make the career direction explicit without adding another proof section", () => {
@@ -177,29 +198,44 @@ test("equipment and service scope merges skills and training into equipment cate
   const scope = sectionById("capabilities");
 
   assert.match(scope, /<p class="section-kicker">Equipment &amp; Service Scope<\/p>/);
-  assert.match(scope, /<h2 id="capabilities-title">Where the service experience is strongest\.<\/h2>/);
+  assert.match(scope, /<h2 id="capabilities-title">Equipment scope with conservative verification evidence\.<\/h2>/);
   assert.equal(articleCount(scope), 6);
   assert.match(scope, /Respiratory service/);
   assert.match(scope, /Patient monitoring/);
   assert.match(scope, /Ultrasound systems/);
   assert.match(scope, /DEXA and X-ray support/);
   assert.match(scope, /Pharmacy automation/);
-  assert.match(scope, /Service records and handover/);
+  assert.match(scope, /Service traceability/);
   assert.match(scope, /Hands-on service exposure/);
   assert.match(scope, /Training completed/);
   assert.match(scope, /Installation support/);
   assert.match(scope, /Documentation \/ handover exposure/);
+  assert.equal((scope.match(/<dt>Verification evidence<\/dt>/g) || []).length, 6);
+  assert.match(scope, /Flow\/pressure-related checks/);
+  assert.match(scope, /ECG\/SpO2\/NIBP-related functional checks/);
+  assert.match(scope, /probe\/cable condition/);
+  assert.match(scope, /safety documentation and escalation pathway/);
+  assert.match(scope, /dispensing\/workflow check/);
 });
 
 test("case notes include de-identified outcomes and operational value", () => {
   const cases = sectionById("case-notes");
 
   assert.match(cases, new RegExp(privacySentence.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+  assert.match(cases, /Fault diagnosis approach/);
+  assert.match(cases, /Reported symptom/);
+  assert.match(cases, /safety screen/);
+  assert.match(cases, /device \/ accessory condition/);
+  assert.match(cases, /post-service verification/);
   assert.equal((cases.match(/<dt>Outcome<\/dt>/g) || []).length, 3);
+  assert.equal((cases.match(/<dt>Risk point<\/dt>/g) || []).length, 3);
+  assert.equal((cases.match(/<dt>Evidence used<\/dt>/g) || []).length, 3);
+  assert.equal((cases.match(/<dt>Release decision<\/dt>/g) || []).length, 3);
   assert.match(cases, /Returned equipment with a clear next-use status and service close-out trail/);
-  assert.match(cases, /Anonymised troubleshooting example/);
-  assert.match(cases, /A user-reported intermittent fault was reviewed against device condition, service history, and reproducible symptoms/);
-  assert.match(cases, /Helped make repeat troubleshooting faster by keeping service actions, test notes, equipment history, and customer updates aligned in Simpro/);
+  assert.match(cases, /Anonymised troubleshooting example - intermittent user-reported fault/);
+  assert.match(cases, /device condition, service history, accessories, user workflow, and reproducible symptoms/);
+  assert.match(cases, /ready for use, monitored, or escalated/);
+  assert.match(cases, /Service records are treated as engineering evidence/);
   assert.doesNotMatch(cases, /Reduced repeat troubleshooting time/);
   assert.doesNotMatch(cases, /customer names|serial numbers|internal records/i);
 });
@@ -212,7 +248,19 @@ test("education stays concise and work-right proof is not over-explained", () =>
   assert.match(study, /Awarded Jun 2024/);
   assert.match(study, /Bachelor of Biomedical Engineering/);
   assert.match(study, /Flexible Electrodes for Smart Bandages/);
+  assert.match(study, /impedance measurement, material\/process trade-offs, validation evidence, and technical documentation/);
+  assert.match(study, /measurement, evidence, and controlled documentation rather than assumption/);
   assert.doesNotMatch(study, /study-proof-strip|Academic records|submission\/examination documents|Eligibility checks stay private/);
+});
+
+test("professional development direction stays biomedical-service focused", () => {
+  const development = sectionById("life");
+
+  assert.match(development, /<p class="section-kicker">Professional Development<\/p>/);
+  assert.match(development, /Electrical safety testing and medical equipment performance verification/);
+  assert.match(development, /Biomedical asset management and CMMS record quality/);
+  assert.match(development, /Manufacturer training and procedure-led troubleshooting/);
+  assert.doesNotMatch(development, /AI tools|Structured weeks|personal note|study rhythm/i);
 });
 
 test("contact prioritizes email, resume, LinkedIn, GitHub, availability, and field readiness", () => {
@@ -255,6 +303,9 @@ test("resume PDF and DOCX match the revised HR-first positioning", () => {
   assert.match(combined, /Nova Biomedical Australia/);
   assert.match(combined, /Returned devices with functional checks, performance evidence, or clear escalation status/);
   assert.match(combined, /Simpro work orders, service reports, equipment history, and customer updates/);
+  assert.match(combined, /safe return-to-use decisions/i);
+  assert.match(combined, /ready for use, monitored, or escalated/i);
+  assert.match(combined, /service records as engineering evidence/i);
   assert.match(combined, /Field service tools/i);
   assert.match(combined, /Simpro \/ CMMS/);
   assert.match(combined, /electrical safety testing awareness/i);

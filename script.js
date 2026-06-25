@@ -116,9 +116,9 @@ const translations = {
       ".proof-grid article:nth-child(2) p":
         "Service decisions are closed with test notes, performance evidence, or clear escalation status.",
       ".proof-grid article:nth-child(3) span": "Records",
-      ".proof-grid article:nth-child(3) h3": "Simpro and service reports",
+      ".proof-grid article:nth-child(3) h3": "Service traceability",
       ".proof-grid article:nth-child(3) p":
-        "Work orders, service reports, equipment history, and customer updates stay aligned.",
+        "Work orders, test notes, equipment history, customer updates, and handover status become evidence for the next service decision, not just admin.",
       ".proof-grid article:nth-child(4) span": "Communication",
       ".proof-grid article:nth-child(4) h3": "English / Mandarin handover",
       ".proof-grid article:nth-child(4) p":
@@ -163,6 +163,29 @@ const translations = {
       ".experience-outcome dt:nth-of-type(4)": "Handover",
       ".experience-outcome dd:nth-of-type(4)":
         "Biomedical teams, clinical users, vendors, and internal engineers can see next-use status",
+      ".judgement-section .section-kicker": "Clinical Safety & Service Judgement",
+      "#judgement-title": "Safe service decisions need evidence, not assumptions.",
+      ".judgement-lead > p:not(.section-kicker)":
+        "My service approach is built around safe return-to-use decisions: understand the reported issue, check device condition and service history, follow manufacturer-led procedures, verify the result with functional or performance evidence, document the action clearly, and hand over a traceable next-use or escalation status.",
+      ".judgement-grid article:nth-child(1) span": "Return-to-use boundary",
+      ".judgement-grid article:nth-child(1) h3": "Do not return uncertain equipment",
+      ".judgement-grid article:nth-child(1) p":
+        "Unsafe or uncertain devices should not be returned to use until the result is verified or escalated.",
+      ".release-list li:nth-child(1)": "verified ready",
+      ".release-list li:nth-child(2)": "restricted or monitored use",
+      ".release-list li:nth-child(3)": "escalated / not returned",
+      ".judgement-grid article:nth-child(2) span": "Procedure discipline",
+      ".judgement-grid article:nth-child(2) h3": "Test equipment and procedure discipline",
+      ".judgement-grid article:nth-child(2) p":
+        "Service checks are performed using appropriate manufacturer procedures, controlled test equipment where required, and documented pass/fail or escalation notes.",
+      ".judgement-grid article:nth-child(3) span": "Australian biomedical service awareness",
+      ".judgement-grid article:nth-child(3) h3": "AS/NZS 3551-aware lifecycle thinking",
+      ".judgement-grid article:nth-child(3) p":
+        "Familiar with the importance of medical equipment lifecycle thinking: acceptance, planned service, fault management, routine testing, service records, disposal awareness, and escalation in line with manufacturer procedures and local biomedical governance.",
+      ".judgement-grid article:nth-child(4) span": "Regulated records",
+      ".judgement-grid article:nth-child(4) h3": "Regulated healthcare documentation mindset",
+      ".judgement-grid article:nth-child(4) p":
+        "Biomedical service work benefits from the same discipline used in regulated healthcare records: clear event history, factual notes, traceable actions, escalation when safety or performance concerns remain unresolved, and no unsupported assumptions.",
       ".experience-timeline article:nth-child(2) .experience-date": "Dec 2019 - Feb 2020",
       ".experience-timeline article:nth-child(2) h3":
         "Pharmacovigilance Department Assistant | Lundbeck Beijing",
@@ -172,38 +195,74 @@ const translations = {
       ".experience-timeline article:nth-child(2) li:nth-child(2)":
         "Assisted documentation work related to regulated healthcare records and cross-functional communication.",
       "#capabilities .section-kicker": "Equipment & Service Scope",
-      "#capabilities-title": "Where the service experience is strongest.",
+      "#capabilities-title": "Equipment scope with conservative verification evidence.",
       "#capabilities .section-intro":
-        "This combines practical service work and selected training into equipment families, so the scope is easier to judge than a generic skills list.",
+        "This separates equipment families, service exposure, and verification evidence so the scope is clearer than a generic skills list.",
       ".capability-row article:nth-child(1) span": "Respiratory",
       ".capability-row article:nth-child(1) h3": "Respiratory service",
       ".capability-row article:nth-child(1) p":
-        "V60, V60 Plus, Trilogy, functional checks, planned service, and troubleshooting preparation.",
+        "V60, V60 Plus, Trilogy, planned service, functional checks, and troubleshooting preparation.",
+      ".capability-row article:nth-child(1) .scope-evidence dt:nth-of-type(1)": "Service exposure",
+      ".capability-row article:nth-child(1) .scope-evidence dd:nth-of-type(1)":
+        "PM, functional checks, and troubleshooting preparation.",
+      ".capability-row article:nth-child(1) .scope-evidence dt:nth-of-type(2)": "Verification evidence",
+      ".capability-row article:nth-child(1) .scope-evidence dd:nth-of-type(2)":
+        "Flow/pressure-related checks, alarm/function confirmation, and manufacturer procedure notes where applicable.",
       ".capability-row article:nth-child(1) .scope-level": "Hands-on service exposure",
       ".capability-row article:nth-child(2) span": "Monitoring",
       ".capability-row article:nth-child(2) h3": "Patient monitoring",
       ".capability-row article:nth-child(2) p":
         "Avalon, Efficia, HeartStart and related monitoring-service preparation, checks, and handover notes.",
+      ".capability-row article:nth-child(2) .scope-evidence dt:nth-of-type(1)": "Service exposure",
+      ".capability-row article:nth-child(2) .scope-evidence dd:nth-of-type(1)":
+        "Monitoring-service preparation, checks, and handover.",
+      ".capability-row article:nth-child(2) .scope-evidence dt:nth-of-type(2)": "Verification evidence",
+      ".capability-row article:nth-child(2) .scope-evidence dd:nth-of-type(2)":
+        "ECG/SpO2/NIBP-related functional checks, visual inspection, and user-ready status where applicable.",
       ".capability-row article:nth-child(2) .scope-level": "Training completed",
       ".capability-row article:nth-child(3) span": "Imaging",
       ".capability-row article:nth-child(3) h3": "Ultrasound systems",
       ".capability-row article:nth-child(3) p":
         "EPIQ, Affiniti, CX30, CX50 support exposure across service preparation, installation support, and checks.",
+      ".capability-row article:nth-child(3) .scope-evidence dt:nth-of-type(1)": "Service exposure",
+      ".capability-row article:nth-child(3) .scope-evidence dd:nth-of-type(1)":
+        "Installation support, service preparation, and checks.",
+      ".capability-row article:nth-child(3) .scope-evidence dt:nth-of-type(2)": "Verification evidence",
+      ".capability-row article:nth-child(3) .scope-evidence dd:nth-of-type(2)":
+        "System function check, probe/cable condition, and image/function confirmation where applicable.",
       ".capability-row article:nth-child(3) .scope-level": "Installation support",
       ".capability-row article:nth-child(4) span": "Diagnostics",
       ".capability-row article:nth-child(4) h3": "DEXA and X-ray support",
       ".capability-row article:nth-child(4) p":
         "Horizon DEXA, X-ray installation and service training, with performance and service-record awareness.",
+      ".capability-row article:nth-child(4) .scope-evidence dt:nth-of-type(1)": "Service exposure",
+      ".capability-row article:nth-child(4) .scope-evidence dd:nth-of-type(1)":
+        "Installation and service training exposure.",
+      ".capability-row article:nth-child(4) .scope-evidence dt:nth-of-type(2)": "Verification evidence",
+      ".capability-row article:nth-child(4) .scope-evidence dd:nth-of-type(2)":
+        "Performance check awareness, safety documentation and escalation pathway.",
       ".capability-row article:nth-child(4) .scope-level": "Training completed",
       ".capability-row article:nth-child(5) span": "Automation",
       ".capability-row article:nth-child(5) h3": "Pharmacy automation",
       ".capability-row article:nth-child(5) p":
         "BD FIX100, Pyxis, ROWA and specialty workflow support where service notes and handover are critical.",
+      ".capability-row article:nth-child(5) .scope-evidence dt:nth-of-type(1)": "Service exposure",
+      ".capability-row article:nth-child(5) .scope-evidence dd:nth-of-type(1)":
+        "Workflow support, service notes, and customer handover.",
+      ".capability-row article:nth-child(5) .scope-evidence dt:nth-of-type(2)": "Verification evidence",
+      ".capability-row article:nth-child(5) .scope-evidence dd:nth-of-type(2)":
+        "Functional status, dispensing/workflow check, and customer update trail where applicable.",
       ".capability-row article:nth-child(5) .scope-level": "Documentation / handover exposure",
       ".capability-row article:nth-child(6) span": "Records",
-      ".capability-row article:nth-child(6) h3": "Service records and handover",
+      ".capability-row article:nth-child(6) h3": "Service traceability",
       ".capability-row article:nth-child(6) p":
         "Simpro work orders, service reports, serial details, equipment history, customer updates, and close-out notes.",
+      ".capability-row article:nth-child(6) .scope-evidence dt:nth-of-type(1)": "Service exposure",
+      ".capability-row article:nth-child(6) .scope-evidence dd:nth-of-type(1)":
+        "CMMS records, handover notes, and service history alignment.",
+      ".capability-row article:nth-child(6) .scope-evidence dt:nth-of-type(2)": "Verification evidence",
+      ".capability-row article:nth-child(6) .scope-evidence dd:nth-of-type(2)":
+        "Device condition, action taken, test result, parts or escalation status, customer update, and next-use decision.",
       ".capability-row article:nth-child(6) .scope-level": "Hands-on service exposure",
       ".target-roles .section-kicker": "Target Roles",
       "#target-roles-title": "The strongest fit is practical medical device service.",
@@ -215,63 +274,83 @@ const translations = {
       "#case-title": "Service examples should show judgement, not expose sensitive records.",
       "#case-notes .section-intro":
         "These cases are de-identified; formal certificates, customer-specific records, and sensitive documents are handled through an authorized hiring process.",
+      ".fault-approach h3": "Fault diagnosis approach",
+      ".fault-approach li:nth-child(1)": "Reported symptom",
+      ".fault-approach li:nth-child(2)": "safety screen",
+      ".fault-approach li:nth-child(3)": "device / accessory condition",
+      ".fault-approach li:nth-child(4)": "service history",
+      ".fault-approach li:nth-child(5)": "reproduce or isolate fault",
+      ".fault-approach li:nth-child(6)": "manual-led checks",
+      ".fault-approach li:nth-child(7)": "repair or escalation",
+      ".fault-approach li:nth-child(8)": "post-service verification",
+      ".fault-approach li:nth-child(9)": "documented handover",
       ".case-grid article:nth-child(1) span": "01 / Preventive maintenance",
       ".case-grid article:nth-child(1) h3": "Routine maintenance with a usable close-out",
       ".case-grid article:nth-child(1) p":
         "Scheduled service is handled by confirming condition, history, site limits, procedure steps, and performance evidence before handover.",
-      ".case-grid article:nth-child(1) .case-outcome dt:nth-of-type(1)": "Scenario",
+      ".case-grid article:nth-child(1) .case-outcome dt:nth-of-type(1)": "Risk point",
       ".case-grid article:nth-child(1) .case-outcome dd:nth-of-type(1)":
-        "Scheduled service with site constraints",
-      ".case-grid article:nth-child(1) .case-outcome dt:nth-of-type(2)": "Action",
+        "Scheduled equipment can still carry risk if condition, history, or site limits are unclear",
+      ".case-grid article:nth-child(1) .case-outcome dt:nth-of-type(2)": "Evidence used",
       ".case-grid article:nth-child(1) .case-outcome dd:nth-of-type(2)":
-        "Condition check, procedure steps, calibration or performance evidence",
-      ".case-grid article:nth-child(1) .case-outcome dt:nth-of-type(3)": "Verification",
+        "Device condition, service history, manufacturer procedure steps, and functional or performance evidence",
+      ".case-grid article:nth-child(1) .case-outcome dt:nth-of-type(3)": "Service action",
       ".case-grid article:nth-child(1) .case-outcome dd:nth-of-type(3)":
-        "Functional check and service record close-out",
-      ".case-grid article:nth-child(1) .case-outcome dt:nth-of-type(4)": "Handover",
+        "Planned service steps, condition check, and service record close-out",
+      ".case-grid article:nth-child(1) .case-outcome dt:nth-of-type(4)": "Verification",
       ".case-grid article:nth-child(1) .case-outcome dd:nth-of-type(4)":
-        "Clear next-use status for biomedical or site teams",
-      ".case-grid article:nth-child(1) .case-outcome dt:nth-of-type(5)": "Outcome",
+        "Functional check and documented next-use status",
+      ".case-grid article:nth-child(1) .case-outcome dt:nth-of-type(5)": "Release decision",
       ".case-grid article:nth-child(1) .case-outcome dd:nth-of-type(5)":
+        "Returned only when the service result supported a clear verified-ready status",
+      ".case-grid article:nth-child(1) .case-outcome dt:nth-of-type(6)": "Outcome",
+      ".case-grid article:nth-child(1) .case-outcome dd:nth-of-type(6)":
         "Returned equipment with a clear next-use status and service close-out trail",
       ".case-grid article:nth-child(2) span": "02 / Fault diagnosis",
-      ".case-grid article:nth-child(2) h3": "Anonymised troubleshooting example",
+      ".case-grid article:nth-child(2) h3":
+        "Anonymised troubleshooting example - intermittent user-reported fault",
       ".case-grid article:nth-child(2) p":
-        "A user-reported intermittent fault was reviewed against device condition, service history, and reproducible symptoms. I followed manual-led checks, documented measurement notes, confirmed post-repair function, and handed over the next-use status with a clear service trail.",
-      ".case-grid article:nth-child(2) .case-outcome dt:nth-of-type(1)": "Scenario",
+        "A user-reported intermittent fault was reviewed against device condition, service history, accessories, user workflow, and reproducible symptoms. I followed manual-led checks, recorded measurement notes, confirmed post-repair function, and documented whether the device was ready for use, monitored, or escalated.",
+      ".case-grid article:nth-child(2) .case-outcome dt:nth-of-type(1)": "Risk point",
       ".case-grid article:nth-child(2) .case-outcome dd:nth-of-type(1)":
-        "User-reported symptom with repair history",
-      ".case-grid article:nth-child(2) .case-outcome dt:nth-of-type(2)": "Action",
+        "Intermittent symptoms can be device, accessory, workflow, environment, or configuration related",
+      ".case-grid article:nth-child(2) .case-outcome dt:nth-of-type(2)": "Evidence used",
       ".case-grid article:nth-child(2) .case-outcome dd:nth-of-type(2)":
-        "Symptom review, reproducible path, and manual-led checks",
-      ".case-grid article:nth-child(2) .case-outcome dt:nth-of-type(3)": "Verification",
+        "Device condition, service history, accessories, user workflow, and reproducible symptoms",
+      ".case-grid article:nth-child(2) .case-outcome dt:nth-of-type(3)": "Service action",
       ".case-grid article:nth-child(2) .case-outcome dd:nth-of-type(3)":
-        "Measurement notes and post-repair confirmation",
-      ".case-grid article:nth-child(2) .case-outcome dt:nth-of-type(4)": "Handover",
+        "Symptom review, reproducible path, and manual-led checks",
+      ".case-grid article:nth-child(2) .case-outcome dt:nth-of-type(4)": "Verification",
       ".case-grid article:nth-child(2) .case-outcome dd:nth-of-type(4)":
-        "Traceable finding for the next service decision",
-      ".case-grid article:nth-child(2) .case-outcome dt:nth-of-type(5)": "Outcome",
+        "Measurement notes and post-repair confirmation",
+      ".case-grid article:nth-child(2) .case-outcome dt:nth-of-type(5)": "Release decision",
       ".case-grid article:nth-child(2) .case-outcome dd:nth-of-type(5)":
-        "Separated use condition, repair history, reproducible symptoms, and manual-led checks before returning the device with post-repair verification",
+        "Documented whether the device was ready for use, monitored, or escalated based on post-service evidence",
+      ".case-grid article:nth-child(2) .case-outcome dt:nth-of-type(6)": "Outcome",
+      ".case-grid article:nth-child(2) .case-outcome dd:nth-of-type(6)":
+        "Separated use condition, repair history, accessories, reproducible symptoms, and manual-led checks before handover",
       ".case-grid article:nth-child(3) span": "03 / Documentation",
-      ".case-grid article:nth-child(3) h3": "Making service information reusable",
+      ".case-grid article:nth-child(3) h3": "Traceability, not just admin",
       ".case-grid article:nth-child(3) p":
-        "Work orders, service actions, equipment history, and customer updates are kept aligned so the next troubleshooting pass starts from evidence.",
-      ".case-grid article:nth-child(3) .case-outcome dt:nth-of-type(1)": "Scenario",
+        "Service records are treated as engineering evidence: device condition, reported symptom, action taken, test result, parts or escalation status, customer update, and next-use decision.",
+      ".case-grid article:nth-child(3) .case-outcome dt:nth-of-type(1)": "Risk point",
       ".case-grid article:nth-child(3) .case-outcome dd:nth-of-type(1)":
-        "Reusable service trail for later troubleshooting",
-      ".case-grid article:nth-child(3) .case-outcome dt:nth-of-type(2)": "Action",
+        "Vague service notes make later troubleshooting slower and less defensible",
+      ".case-grid article:nth-child(3) .case-outcome dt:nth-of-type(2)": "Evidence used",
       ".case-grid article:nth-child(3) .case-outcome dd:nth-of-type(2)":
-        "Serial details, work order, service report, and actions aligned",
-      ".case-grid article:nth-child(3) .case-outcome dt:nth-of-type(3)": "Verification",
+        "Work order, service action, test note, equipment history, customer update, and escalation status",
+      ".case-grid article:nth-child(3) .case-outcome dt:nth-of-type(3)": "Service action",
       ".case-grid article:nth-child(3) .case-outcome dd:nth-of-type(3)":
-        "Equipment history and customer update cross-check",
-      ".case-grid article:nth-child(3) .case-outcome dt:nth-of-type(4)": "Handover",
+        "Serial details, work order, service report, and actions aligned",
+      ".case-grid article:nth-child(3) .case-outcome dt:nth-of-type(4)": "Verification",
       ".case-grid article:nth-child(3) .case-outcome dd:nth-of-type(4)":
-        "Clear record for biomedical teams and internal engineers",
-      ".case-grid article:nth-child(3) .case-outcome dt:nth-of-type(5)": "Outcome",
+        "Equipment history and customer update cross-check",
+      ".case-grid article:nth-child(3) .case-outcome dt:nth-of-type(5)": "Release decision",
       ".case-grid article:nth-child(3) .case-outcome dd:nth-of-type(5)":
-        "Helped make repeat troubleshooting faster by keeping service actions, test notes, equipment history, and customer updates aligned in Simpro",
+        "Next-use or escalation status recorded clearly for biomedical teams and internal engineers",
+      ".case-grid article:nth-child(3) .case-outcome dt:nth-of-type(6)": "Outcome",
+      ".case-grid article:nth-child(3) .case-outcome dd:nth-of-type(6)":
+        "Later service decisions start from evidence, not memory",
       "#study .section-kicker": "Education",
       "#study-title": "Biomedical engineering background with practical service focus.",
       "#study .section-intro":
@@ -280,7 +359,7 @@ const translations = {
       ".study-grid article:nth-child(1) h3": "Master of Philosophy",
       ".study-grid article:nth-child(1) p:nth-of-type(1)": "The University of Sydney",
       ".study-grid article:nth-child(1) p:nth-of-type(2)":
-        "Biomedical engineering research, experimental planning, validation evidence, and technical documentation.",
+        "Biomedical engineering research with a focus on experimental planning, impedance measurement, material/process trade-offs, validation evidence, and technical documentation. This research background supports a service style based on measurement, evidence, and controlled documentation rather than assumption.",
       ".study-grid article:nth-child(2) span": "2017 - 2020",
       ".study-grid article:nth-child(2) h3": "Bachelor of Biomedical Engineering",
       ".study-grid article:nth-child(2) p:nth-of-type(1)": "The University of Sydney",
@@ -313,20 +392,24 @@ const translations = {
       ".contact-readiness div:nth-child(3) span": "Employer verification ready",
       ".contact-readiness div:nth-child(4) strong": "Direct email",
       ".contact-email-text": "yangyihang96@gmail.com",
-      "#life .section-kicker": "Professional Rhythm",
-      "#life-title": "The personal note stays short and work-adjacent.",
+      "#life .section-kicker": "Professional Development",
+      "#life-title": "Development direction for clinical engineering service.",
       ".life-section .story-content > p:not(.section-kicker)":
-        "Outside work, I keep this section deliberately brief: enough to show learning rhythm and organization habits without distracting from the engineering profile.",
+        "The long-term direction is deeper biomedical service capability: safer verification, better traceability, and stronger procedure-led troubleshooting.",
     },
     html: {
       ".profile-status-strip div:nth-child(2) span":
         '<a href="https://au.linkedin.com/in/henry-yang-9644382bb" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://github.com/yangyihang96" target="_blank" rel="noopener">GitHub</a>',
       ".life-notes p:nth-child(1)":
-        "<strong>Structured weeks</strong> Keeping work, commuting, study, and admin organized so field-service days stay reliable.",
+        "<strong>Electrical safety testing</strong> Electrical safety testing and medical equipment performance verification.",
       ".life-notes p:nth-child(2)":
-        "<strong>Continuous learning</strong> Following medical technology, engineering tools, AI tools, and practical ways to improve service work.",
+        "<strong>Equipment depth</strong> Respiratory, monitoring, imaging, and pharmacy automation service depth.",
       ".life-notes p:nth-child(3)":
-        "<strong>Record discipline</strong> Turning scattered information into reusable notes, checklists, and handover structure.",
+        "<strong>CMMS quality</strong> Biomedical asset management and CMMS record quality.",
+      ".life-notes p:nth-child(4)":
+        "<strong>Procedure-led troubleshooting</strong> Manufacturer training and procedure-led troubleshooting.",
+      ".life-notes p:nth-child(5)":
+        "<strong>Clinical communication</strong> Clinical communication and safe handover.",
     },
     attrs: {
       ".brand": { "aria-label": "Back to top" },
@@ -342,6 +425,9 @@ const translations = {
       ".experience-summary-grid": { "aria-label": "Work experience summary" },
       ".experience-evidence": { "aria-label": "Current field-service evidence" },
       ".experience-outcome": { "aria-label": "Current role service outcome summary" },
+      ".judgement-grid": { "aria-label": "Clinical service judgement points" },
+      ".release-list": { "aria-label": "Next-use status options" },
+      ".fault-approach": { "aria-label": "Fault diagnosis approach" },
       ".case-grid article:nth-child(1) .case-outcome": { "aria-label": "De-identified case outcome" },
       ".case-grid article:nth-child(2) .case-outcome": { "aria-label": "De-identified case outcome" },
       ".case-grid article:nth-child(3) .case-outcome": { "aria-label": "De-identified case outcome" },
@@ -438,9 +524,9 @@ const translations = {
       ".proof-grid article:nth-child(2) p":
         "服务结论以测试记录、性能证据或明确升级状态收尾。",
       ".proof-grid article:nth-child(3) span": "记录",
-      ".proof-grid article:nth-child(3) h3": "Simpro 和服务报告",
+      ".proof-grid article:nth-child(3) h3": "服务可追踪性",
       ".proof-grid article:nth-child(3) p":
-        "工单、服务报告、设备历史和客户更新保持一致。",
+        "工单、测试记录、设备历史、客户更新和交接状态会成为下一次服务决策的证据，而不只是行政记录。",
       ".proof-grid article:nth-child(4) span": "沟通",
       ".proof-grid article:nth-child(4) h3": "中英文交接",
       ".proof-grid article:nth-child(4) p":
@@ -484,6 +570,29 @@ const translations = {
       ".experience-outcome dt:nth-of-type(4)": "交接",
       ".experience-outcome dd:nth-of-type(4)":
         "医院工程团队、临床用户、厂商和内部工程师能看到下一次使用状态",
+      ".judgement-section .section-kicker": "临床安全与服务判断",
+      "#judgement-title": "安全的服务决策需要证据，而不是假设。",
+      ".judgement-lead > p:not(.section-kicker)":
+        "我的服务方法围绕安全放行判断展开：理解报告问题，检查设备状态和服务历史，遵循厂家流程，用功能或性能证据验证结果，清楚记录动作，并交接可追踪的下一次使用或升级状态。",
+      ".judgement-grid article:nth-child(1) span": "放行边界",
+      ".judgement-grid article:nth-child(1) h3": "不确定的设备不应直接放回使用",
+      ".judgement-grid article:nth-child(1) p":
+        "不安全或结果不确定的设备，在完成验证或升级处理前，不应返回临床使用。",
+      ".release-list li:nth-child(1)": "已验证，可使用",
+      ".release-list li:nth-child(2)": "限制或观察使用",
+      ".release-list li:nth-child(3)": "升级处理 / 不返回使用",
+      ".judgement-grid article:nth-child(2) span": "流程纪律",
+      ".judgement-grid article:nth-child(2) h3": "测试设备和流程纪律",
+      ".judgement-grid article:nth-child(2) p":
+        "服务检查应按合适的厂家流程执行；需要时使用受控测试设备，并记录通过 / 未通过或升级说明。",
+      ".judgement-grid article:nth-child(3) span": "澳洲医疗设备服务意识",
+      ".judgement-grid article:nth-child(3) h3": "AS/NZS 3551 生命周期意识",
+      ".judgement-grid article:nth-child(3) p":
+        "理解医疗设备生命周期思维的重要性：验收、计划性服务、故障管理、例行测试、服务记录、报废意识，以及结合厂家流程和本地 biomedical governance 的升级路径。",
+      ".judgement-grid article:nth-child(4) span": "受监管记录",
+      ".judgement-grid article:nth-child(4) h3": "受监管医疗记录思维",
+      ".judgement-grid article:nth-child(4) p":
+        "医疗设备服务也需要受监管医疗记录的纪律：清楚事件历史、事实性记录、可追踪动作，在安全或性能疑问未解决时升级，并避免没有证据支持的假设。",
       ".experience-timeline article:nth-child(2) .experience-date": "2019 年 12 月 - 2020 年 2 月",
       ".experience-timeline article:nth-child(2) h3": "药物警戒部门助理 | Lundbeck Beijing",
       ".experience-timeline article:nth-child(2) .experience-meta": "实习 · 中国北京",
@@ -492,38 +601,74 @@ const translations = {
       ".experience-timeline article:nth-child(2) li:nth-child(2)":
         "参与受监管医疗记录相关文档整理，接触跨部门沟通和合规记录边界。",
       "#capabilities .section-kicker": "设备与服务范围",
-      "#capabilities-title": "服务经验最强的几个方向。",
+      "#capabilities-title": "设备范围与保守的验证证据。",
       "#capabilities .section-intro":
-        "这里把实际服务经验和培训记录合并到设备类别里，比单纯技能清单更容易判断匹配度。",
+        "这里把设备族、服务接触和验证证据分开写，避免把技能清单写得过泛，也避免过度承诺。",
       ".capability-row article:nth-child(1) span": "呼吸",
       ".capability-row article:nth-child(1) h3": "呼吸设备服务",
       ".capability-row article:nth-child(1) p":
         "V60、V60 Plus、Trilogy、功能检查、计划性服务和故障排查准备。",
+      ".capability-row article:nth-child(1) .scope-evidence dt:nth-of-type(1)": "服务接触",
+      ".capability-row article:nth-child(1) .scope-evidence dd:nth-of-type(1)":
+        "预防性维护、功能检查和故障排查准备。",
+      ".capability-row article:nth-child(1) .scope-evidence dt:nth-of-type(2)": "验证证据",
+      ".capability-row article:nth-child(1) .scope-evidence dd:nth-of-type(2)":
+        "适用时包括流量 / 压力相关检查、报警 / 功能确认和厂家流程记录。",
       ".capability-row article:nth-child(1) .scope-level": "实际服务接触",
       ".capability-row article:nth-child(2) span": "监护",
       ".capability-row article:nth-child(2) h3": "患者监护",
       ".capability-row article:nth-child(2) p":
         "Avalon、Efficia、HeartStart 相关监护设备服务准备、检查和交接记录。",
+      ".capability-row article:nth-child(2) .scope-evidence dt:nth-of-type(1)": "服务接触",
+      ".capability-row article:nth-child(2) .scope-evidence dd:nth-of-type(1)":
+        "监护设备服务准备、检查和交接。",
+      ".capability-row article:nth-child(2) .scope-evidence dt:nth-of-type(2)": "验证证据",
+      ".capability-row article:nth-child(2) .scope-evidence dd:nth-of-type(2)":
+        "适用时包括 ECG / SpO2 / NIBP 相关功能检查、外观检查和可使用状态。",
       ".capability-row article:nth-child(2) .scope-level": "培训已完成",
       ".capability-row article:nth-child(3) span": "影像",
       ".capability-row article:nth-child(3) h3": "超声系统",
       ".capability-row article:nth-child(3) p":
         "EPIQ、Affiniti、CX30、CX50 的服务准备、安装支持和检查接触。",
+      ".capability-row article:nth-child(3) .scope-evidence dt:nth-of-type(1)": "服务接触",
+      ".capability-row article:nth-child(3) .scope-evidence dd:nth-of-type(1)":
+        "安装支持、服务准备和检查。",
+      ".capability-row article:nth-child(3) .scope-evidence dt:nth-of-type(2)": "验证证据",
+      ".capability-row article:nth-child(3) .scope-evidence dd:nth-of-type(2)":
+        "适用时包括系统功能检查、探头 / 线缆状态和图像 / 功能确认。",
       ".capability-row article:nth-child(3) .scope-level": "安装支持",
       ".capability-row article:nth-child(4) span": "诊断",
       ".capability-row article:nth-child(4) h3": "DEXA 和 X-ray 支持",
       ".capability-row article:nth-child(4) p":
         "Horizon DEXA、X-ray 安装和服务培训，关注性能与服务记录。",
+      ".capability-row article:nth-child(4) .scope-evidence dt:nth-of-type(1)": "服务接触",
+      ".capability-row article:nth-child(4) .scope-evidence dd:nth-of-type(1)":
+        "安装和服务培训接触。",
+      ".capability-row article:nth-child(4) .scope-evidence dt:nth-of-type(2)": "验证证据",
+      ".capability-row article:nth-child(4) .scope-evidence dd:nth-of-type(2)":
+        "性能检查意识、安全文档和升级路径。",
       ".capability-row article:nth-child(4) .scope-level": "培训已完成",
       ".capability-row article:nth-child(5) span": "自动化",
       ".capability-row article:nth-child(5) h3": "药房自动化",
       ".capability-row article:nth-child(5) p":
         "BD FIX100、Pyxis、ROWA 和专项工作流支持，服务记录和交接很关键。",
+      ".capability-row article:nth-child(5) .scope-evidence dt:nth-of-type(1)": "服务接触",
+      ".capability-row article:nth-child(5) .scope-evidence dd:nth-of-type(1)":
+        "工作流支持、服务记录和客户交接。",
+      ".capability-row article:nth-child(5) .scope-evidence dt:nth-of-type(2)": "验证证据",
+      ".capability-row article:nth-child(5) .scope-evidence dd:nth-of-type(2)":
+        "适用时包括功能状态、发药 / 工作流检查和客户更新链路。",
       ".capability-row article:nth-child(5) .scope-level": "记录 / 交接接触",
       ".capability-row article:nth-child(6) span": "记录",
-      ".capability-row article:nth-child(6) h3": "服务记录和交接",
+      ".capability-row article:nth-child(6) h3": "服务可追踪性",
       ".capability-row article:nth-child(6) p":
         "Simpro 工单、服务报告、序列信息、设备历史、客户更新和闭环说明。",
+      ".capability-row article:nth-child(6) .scope-evidence dt:nth-of-type(1)": "服务接触",
+      ".capability-row article:nth-child(6) .scope-evidence dd:nth-of-type(1)":
+        "CMMS 记录、交接记录和服务历史对齐。",
+      ".capability-row article:nth-child(6) .scope-evidence dt:nth-of-type(2)": "验证证据",
+      ".capability-row article:nth-child(6) .scope-evidence dd:nth-of-type(2)":
+        "设备状态、处理动作、测试结果、备件或升级状态、客户更新和下一次使用判断。",
       ".capability-row article:nth-child(6) .scope-level": "实际服务接触",
       ".target-roles .section-kicker": "目标岗位",
       "#target-roles-title": "最匹配的是实际医疗设备服务岗位。",
@@ -535,55 +680,80 @@ const translations = {
       "#case-title": "服务案例应该展示判断方式，而不是暴露敏感记录。",
       "#case-notes .section-intro":
         "这里展示的是匿名服务案例。正式证书、客户相关记录和敏感文件只会在授权招聘流程中提供。",
+      ".fault-approach h3": "故障诊断路径",
+      ".fault-approach li:nth-child(1)": "报告现象",
+      ".fault-approach li:nth-child(2)": "安全初筛",
+      ".fault-approach li:nth-child(3)": "设备 / 附件状态",
+      ".fault-approach li:nth-child(4)": "服务历史",
+      ".fault-approach li:nth-child(5)": "复现或隔离故障",
+      ".fault-approach li:nth-child(6)": "按手册检查",
+      ".fault-approach li:nth-child(7)": "维修或升级",
+      ".fault-approach li:nth-child(8)": "服务后验证",
+      ".fault-approach li:nth-child(9)": "记录并交接",
       ".case-grid article:nth-child(1) span": "01 / 预防性维护",
       ".case-grid article:nth-child(1) h3": "例行维护也要有可交接的收尾",
       ".case-grid article:nth-child(1) p":
         "计划性服务会先确认设备状态、历史、现场限制、流程步骤和性能证据，再完成交接。",
-      ".case-grid article:nth-child(1) .case-outcome dt:nth-of-type(1)": "场景",
-      ".case-grid article:nth-child(1) .case-outcome dd:nth-of-type(1)": "有现场限制的计划性服务",
-      ".case-grid article:nth-child(1) .case-outcome dt:nth-of-type(2)": "动作",
+      ".case-grid article:nth-child(1) .case-outcome dt:nth-of-type(1)": "风险点",
+      ".case-grid article:nth-child(1) .case-outcome dd:nth-of-type(1)":
+        "计划性设备如果状态、历史或现场限制不清楚，仍然可能带来风险",
+      ".case-grid article:nth-child(1) .case-outcome dt:nth-of-type(2)": "使用证据",
       ".case-grid article:nth-child(1) .case-outcome dd:nth-of-type(2)":
-        "状态检查、流程步骤、校准或性能证据",
-      ".case-grid article:nth-child(1) .case-outcome dt:nth-of-type(3)": "验证",
-      ".case-grid article:nth-child(1) .case-outcome dd:nth-of-type(3)": "功能检查和服务记录闭环",
-      ".case-grid article:nth-child(1) .case-outcome dt:nth-of-type(4)": "交接",
+        "设备状态、服务历史、厂家流程步骤，以及功能或性能证据",
+      ".case-grid article:nth-child(1) .case-outcome dt:nth-of-type(3)": "服务动作",
+      ".case-grid article:nth-child(1) .case-outcome dd:nth-of-type(3)":
+        "计划性服务步骤、状态检查和服务记录收尾",
+      ".case-grid article:nth-child(1) .case-outcome dt:nth-of-type(4)": "验证",
       ".case-grid article:nth-child(1) .case-outcome dd:nth-of-type(4)":
-        "给医院工程团队或现场团队明确下一次使用状态",
-      ".case-grid article:nth-child(1) .case-outcome dt:nth-of-type(5)": "结果",
+        "功能检查和记录过的下一次使用状态",
+      ".case-grid article:nth-child(1) .case-outcome dt:nth-of-type(5)": "放行判断",
       ".case-grid article:nth-child(1) .case-outcome dd:nth-of-type(5)":
+        "只有当服务结果支持明确的已验证可用状态时才返回",
+      ".case-grid article:nth-child(1) .case-outcome dt:nth-of-type(6)": "结果",
+      ".case-grid article:nth-child(1) .case-outcome dd:nth-of-type(6)":
         "设备带着明确下一次使用状态和服务闭环记录返回",
       ".case-grid article:nth-child(2) span": "02 / 故障诊断",
-      ".case-grid article:nth-child(2) h3": "匿名故障排查案例",
+      ".case-grid article:nth-child(2) h3": "匿名故障排查案例 - 用户反馈的间歇性故障",
       ".case-grid article:nth-child(2) p":
-        "对用户反馈的间歇性故障，先结合设备状态、服务历史和可复现现象判断，再按手册检查，记录测量结果，确认维修后功能，并用清楚的服务轨迹交接下一次使用状态。",
-      ".case-grid article:nth-child(2) .case-outcome dt:nth-of-type(1)": "场景",
-      ".case-grid article:nth-child(2) .case-outcome dd:nth-of-type(1)": "带维修历史的用户反馈故障",
-      ".case-grid article:nth-child(2) .case-outcome dt:nth-of-type(2)": "动作",
+        "对用户反馈的间歇性故障，会结合设备状态、服务历史、附件、用户工作流和可复现现象判断；按手册检查，记录测量结果，确认维修后功能，并记录设备是可使用、需观察，还是需要升级。",
+      ".case-grid article:nth-child(2) .case-outcome dt:nth-of-type(1)": "风险点",
+      ".case-grid article:nth-child(2) .case-outcome dd:nth-of-type(1)":
+        "间歇性现象可能来自主机、附件、工作流、环境或配置",
+      ".case-grid article:nth-child(2) .case-outcome dt:nth-of-type(2)": "使用证据",
       ".case-grid article:nth-child(2) .case-outcome dd:nth-of-type(2)":
+        "设备状态、服务历史、附件、用户工作流和可复现现象",
+      ".case-grid article:nth-child(2) .case-outcome dt:nth-of-type(3)": "服务动作",
+      ".case-grid article:nth-child(2) .case-outcome dd:nth-of-type(3)":
         "现象复核、复现路径和手册引导检查",
-      ".case-grid article:nth-child(2) .case-outcome dt:nth-of-type(3)": "验证",
-      ".case-grid article:nth-child(2) .case-outcome dd:nth-of-type(3)": "测量记录和维修后确认",
-      ".case-grid article:nth-child(2) .case-outcome dt:nth-of-type(4)": "交接",
-      ".case-grid article:nth-child(2) .case-outcome dd:nth-of-type(4)": "给下一次服务决策可追踪的判断",
-      ".case-grid article:nth-child(2) .case-outcome dt:nth-of-type(5)": "结果",
+      ".case-grid article:nth-child(2) .case-outcome dt:nth-of-type(4)": "验证",
+      ".case-grid article:nth-child(2) .case-outcome dd:nth-of-type(4)": "测量记录和维修后确认",
+      ".case-grid article:nth-child(2) .case-outcome dt:nth-of-type(5)": "放行判断",
       ".case-grid article:nth-child(2) .case-outcome dd:nth-of-type(5)":
-        "区分使用条件、维修历史、可复现现象和手册检查后，再用维修后验证交回设备",
+        "根据服务后证据记录设备是可使用、需观察，还是需要升级",
+      ".case-grid article:nth-child(2) .case-outcome dt:nth-of-type(6)": "结果",
+      ".case-grid article:nth-child(2) .case-outcome dd:nth-of-type(6)":
+        "在交接前区分使用条件、维修历史、附件、可复现现象和手册检查结果",
       ".case-grid article:nth-child(3) span": "03 / 文档记录",
-      ".case-grid article:nth-child(3) h3": "让服务信息可以被下一次复用",
+      ".case-grid article:nth-child(3) h3": "可追踪性，而不只是行政记录",
       ".case-grid article:nth-child(3) p":
-        "工单、处理动作、设备历史和客户更新保持一致，下一次排查可以从证据开始。",
-      ".case-grid article:nth-child(3) .case-outcome dt:nth-of-type(1)": "场景",
-      ".case-grid article:nth-child(3) .case-outcome dd:nth-of-type(1)": "后续排查需要复用的服务轨迹",
-      ".case-grid article:nth-child(3) .case-outcome dt:nth-of-type(2)": "动作",
+        "服务记录会被当作工程证据：设备状态、报告现象、处理动作、测试结果、备件或升级状态、客户更新和下一次使用判断。",
+      ".case-grid article:nth-child(3) .case-outcome dt:nth-of-type(1)": "风险点",
+      ".case-grid article:nth-child(3) .case-outcome dd:nth-of-type(1)":
+        "模糊的服务记录会让后续排查更慢，也更难说明判断依据",
+      ".case-grid article:nth-child(3) .case-outcome dt:nth-of-type(2)": "使用证据",
       ".case-grid article:nth-child(3) .case-outcome dd:nth-of-type(2)":
+        "工单、服务动作、测试记录、设备历史、客户更新和升级状态",
+      ".case-grid article:nth-child(3) .case-outcome dt:nth-of-type(3)": "服务动作",
+      ".case-grid article:nth-child(3) .case-outcome dd:nth-of-type(3)":
         "对齐序列信息、工单、服务报告和处理动作",
-      ".case-grid article:nth-child(3) .case-outcome dt:nth-of-type(3)": "验证",
-      ".case-grid article:nth-child(3) .case-outcome dd:nth-of-type(3)": "交叉检查设备历史和客户更新",
-      ".case-grid article:nth-child(3) .case-outcome dt:nth-of-type(4)": "交接",
-      ".case-grid article:nth-child(3) .case-outcome dd:nth-of-type(4)": "给医院工程团队和内部工程师清楚记录",
-      ".case-grid article:nth-child(3) .case-outcome dt:nth-of-type(5)": "结果",
+      ".case-grid article:nth-child(3) .case-outcome dt:nth-of-type(4)": "验证",
+      ".case-grid article:nth-child(3) .case-outcome dd:nth-of-type(4)": "交叉检查设备历史和客户更新",
+      ".case-grid article:nth-child(3) .case-outcome dt:nth-of-type(5)": "放行判断",
       ".case-grid article:nth-child(3) .case-outcome dd:nth-of-type(5)":
-        "通过在 Simpro 中对齐服务动作、测试记录、设备历史和客户更新，让重复排查更快进入有效信息",
+        "为医院工程团队和内部工程师清楚记录下一次使用或升级状态",
+      ".case-grid article:nth-child(3) .case-outcome dt:nth-of-type(6)": "结果",
+      ".case-grid article:nth-child(3) .case-outcome dd:nth-of-type(6)":
+        "后续服务决策从证据开始，而不是只靠记忆",
       "#study .section-kicker": "教育",
       "#study-title": "生物医学工程背景，服务岗位导向。",
       "#study .section-intro": "学历部分保持简洁，因为现在最核心的卖点是现场服务经验。",
@@ -591,7 +761,7 @@ const translations = {
       ".study-grid article:nth-child(1) h3": "Master of Philosophy",
       ".study-grid article:nth-child(1) p:nth-of-type(1)": "The University of Sydney",
       ".study-grid article:nth-child(1) p:nth-of-type(2)":
-        "生物医学工程研究、实验计划、验证证据和技术文档。",
+        "生物医学工程研究，重点包括实验计划、阻抗测量、材料 / 工艺权衡、验证证据和技术文档。这个研究背景支持基于测量、证据和受控记录的服务方式，而不是基于假设。",
       ".study-grid article:nth-child(2) span": "2017 - 2020",
       ".study-grid article:nth-child(2) h3": "Bachelor of Biomedical Engineering",
       ".study-grid article:nth-child(2) p:nth-of-type(1)": "The University of Sydney",
@@ -624,20 +794,24 @@ const translations = {
       ".contact-readiness div:nth-child(3) span": "雇主核验材料已准备",
       ".contact-readiness div:nth-child(4) strong": "直接邮箱",
       ".contact-email-text": "yangyihang96@gmail.com",
-      "#life .section-kicker": "职业节奏",
-      "#life-title": "个人内容保持简短，并贴近工作习惯。",
+      "#life .section-kicker": "职业发展",
+      "#life-title": "面向临床工程服务的发展方向。",
       ".life-section .story-content > p:not(.section-kicker)":
-        "个人内容刻意保持简短：展示学习节奏和组织习惯，但不抢走工程履历的主线。",
+        "长期方向是更深的医疗设备服务能力：更安全的验证、更好的可追踪性，以及更强的按流程故障排查。",
     },
     html: {
       ".profile-status-strip div:nth-child(2) span":
         '<a href="https://au.linkedin.com/in/henry-yang-9644382bb" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://github.com/yangyihang96" target="_blank" rel="noopener">GitHub</a>',
       ".life-notes p:nth-child(1)":
-        "<strong>结构化安排</strong> 把工作、通勤、学习和个人事务安排清楚，让现场服务日保持可靠。",
+        "<strong>电气安全测试</strong> 电气安全测试和医疗设备性能验证。",
       ".life-notes p:nth-child(2)":
-        "<strong>持续学习</strong> 关注医疗技术、工程工具、AI 工具和能改善服务工作的实际做法。",
+        "<strong>设备深度</strong> 呼吸、监护、影像和药房自动化服务深度。",
       ".life-notes p:nth-child(3)":
-        "<strong>记录纪律</strong> 把零散信息整理成可复用的笔记、清单和交接结构。",
+        "<strong>CMMS 质量</strong> 医疗设备资产管理和 CMMS 记录质量。",
+      ".life-notes p:nth-child(4)":
+        "<strong>按流程排查</strong> 厂家培训和按流程故障排查。",
+      ".life-notes p:nth-child(5)":
+        "<strong>临床沟通</strong> 临床沟通和安全交接。",
     },
     attrs: {
       ".brand": { "aria-label": "返回页面顶部" },
@@ -653,6 +827,9 @@ const translations = {
       ".experience-summary-grid": { "aria-label": "工作经历摘要" },
       ".experience-evidence": { "aria-label": "当前现场服务证据" },
       ".experience-outcome": { "aria-label": "当前岗位服务结果摘要" },
+      ".judgement-grid": { "aria-label": "临床服务判断点" },
+      ".release-list": { "aria-label": "下一次使用状态选项" },
+      ".fault-approach": { "aria-label": "故障诊断路径" },
       ".case-grid article:nth-child(1) .case-outcome": { "aria-label": "匿名案例结果" },
       ".case-grid article:nth-child(2) .case-outcome": { "aria-label": "匿名案例结果" },
       ".case-grid article:nth-child(3) .case-outcome": { "aria-label": "匿名案例结果" },
