@@ -70,9 +70,9 @@ test("metadata targets a Sydney biomedical field-service recruiter", () => {
     html,
     /<meta name="description" content="Sydney-based Biomedical Field Service Engineer with nearly three years of field and workshop service experience across hospital and pharmacy medical equipment\."/
   );
-  assert.match(html, /src="theme-init\.js\?v=dark-auto-1"/);
-  assert.match(html, /href="styles\.css\?v=dark-auto-1"/);
-  assert.match(html, /src="script\.js\?v=dark-auto-1"/);
+  assert.match(html, /src="theme-init\.js\?v=enterprise-partners-1"/);
+  assert.match(html, /href="styles\.css\?v=enterprise-partners-1"/);
+  assert.match(html, /src="script\.js\?v=enterprise-partners-1"/);
   assert.match(html, /<link rel="canonical" href="https:\/\/yangyihang96\.com\/">/);
   assert.doesNotMatch(html, /http:\/\/yangyihang96\.com/);
 
@@ -219,16 +219,20 @@ test("commercial partner ecosystems are listed without overclaiming endorsement"
   const partners = sectionByClass("partners-section");
 
   assert.match(partners, /<p class="section-kicker">Commercial Partner Ecosystems<\/p>/);
-  assert.match(partners, /<h2 id="partners-title">Commercial partners add context to the service scope\.<\/h2>/);
-  assert.match(partners, /equipment and workflow context, not customer-specific records or public endorsements/);
-  assert.equal(articleCount(partners), 3);
-  assert.match(partners, /Philips/);
+  assert.match(partners, /<h2 id="partners-title">Large enterprise partner ecosystems add context to the service scope\.<\/h2>/);
+  assert.match(partners, /Small clinics, individual sites, job numbers, serial numbers, customer records, and public endorsements are intentionally not published/);
+  assert.equal(articleCount(partners), 5);
+  assert.match(partners, /Philips Healthcare/);
   assert.match(partners, /BD \/ BD Rowa/);
+  assert.match(partners, /Device Technologies/);
   assert.match(partners, /Hologic/);
+  assert.match(partners, /Jaeger Medical/);
   assert.match(partners, /Respiratory \/ monitoring \/ ultrasound/);
-  assert.match(partners, /Pharmacy automation/);
-  assert.match(partners, /Diagnostics \/ DEXA/);
-  assert.doesNotMatch(partners, /official partner|official endorsement|customer list|client list|strategic partner/i);
+  assert.match(partners, /Medication management \/ automation/);
+  assert.match(partners, /Critical care \/ resuscitation/);
+  assert.match(partners, /Diagnostics \/ DEXA \/ surgical imaging/);
+  assert.match(partners, /Respiratory diagnostics/);
+  assert.doesNotMatch(partners, /official partner|official endorsement|customer list|client list|strategic partner|Private Hospital|Medical Centre|Day Surgery|QAS/i);
 });
 
 test("quick fit and proof points answer HR questions without sounding like an interview script", () => {
@@ -374,7 +378,7 @@ test("links remain recognizable in body copy while navigation and buttons stay b
 
 test("dark mode follows system preference without a manual toggle", () => {
   assert.doesNotMatch(html, /theme-toggle|data-theme-toggle|Toggle dark mode/);
-  assert.ok(html.indexOf('src="theme-init.js?v=dark-auto-1"') < html.indexOf('href="styles.css?v=dark-auto-1"'));
+  assert.ok(html.indexOf('src="theme-init.js?v=enterprise-partners-1"') < html.indexOf('href="styles.css?v=enterprise-partners-1"'));
   assert.doesNotMatch(themeInit, /localStorage|siteTheme|storageKey/);
   assert.match(themeInit, /prefers-color-scheme: dark/);
   assert.match(themeInit, /const resolvedTheme = mediaQuery\?\.matches \? "dark" : "light"/);
