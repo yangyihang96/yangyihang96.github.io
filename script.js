@@ -558,7 +558,7 @@ const translations = {
       ".proof-grid article:nth-child(4) p":
         "面向临床用户、医院工程团队、厂商和内部工程师给出清楚更新。",
       ".experience-section .section-kicker": "工作经历",
-      "#experience-title": "现场服务和车间支持是最核心卖点。",
+      "#experience-title": "现场服务与车间支持经验最有说服力。",
       ".experience-section .section-intro":
         "经历按服务岗位最关心的内容组织：设备范围、服务动作、验证、记录和交接。",
       ".experience-summary > p":
@@ -782,7 +782,7 @@ const translations = {
         "后续服务决策从证据开始，而不是只靠记忆",
       "#study .section-kicker": "教育",
       "#study-title": "生物医学工程背景，服务岗位导向。",
-      "#study .section-intro": "学历部分保持简洁，因为现在最核心的卖点是现场服务经验。",
+      "#study .section-intro": "学历部分保持简洁，因为更能证明能力的是现场服务经验。",
       ".study-grid article:nth-child(1) span": "2024 年 6 月授予",
       ".study-grid article:nth-child(1) h3": "Master of Philosophy",
       ".study-grid article:nth-child(1) p:nth-of-type(1)": "The University of Sydney",
