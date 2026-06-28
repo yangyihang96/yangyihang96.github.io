@@ -530,7 +530,7 @@ const translations = {
       ".hero-meta div:nth-child(2) dt": "地点",
       ".hero-meta div:nth-child(2) dd": "悉尼 NSW",
       ".hero-meta div:nth-child(3) dt": "出行",
-      ".hero-meta div:nth-child(3) dd": "驾照 + 现场出行",
+      ".hero-meta div:nth-child(3) dd": "驾照 + 现场出勤",
       ".hero-meta div:nth-child(4) dt": "工作权利",
       ".hero-meta div:nth-child(4) dd": "可按雇主流程核验",
       ".hero-skill-tags li:nth-child(1)": "呼吸设备",
@@ -559,19 +559,19 @@ const translations = {
       ".fit-strip .section-kicker": "现场服务概览",
       "#fit-title": "适合医院与药房设备服务岗位的候选人画像。",
       ".fit-strip .section-intro":
-        "适合需要现场出行、实际故障排查、验证记录和清晰交接的医疗设备服务岗位。",
+        "适合需要现场出勤、实际故障排查、验证记录和明确交接的医疗设备服务岗位。",
       ".fit-grid article:nth-child(1) span": "经验",
-      ".fit-grid article:nth-child(1) strong": "近 3 年现场 / 车间服务",
+      ".fit-grid article:nth-child(1) strong": "近 3 年现场服务和车间支持经验",
       ".fit-grid article:nth-child(2) span": "设备",
-      ".fit-grid article:nth-child(2) strong": "呼吸、监护、超声、DEXA、自动化",
+      ".fit-grid article:nth-child(2) strong": "呼吸治疗、患者监护、超声、DEXA、药房自动化",
       ".fit-grid article:nth-child(3) span": "出行",
-      ".fit-grid article:nth-child(3) strong": "驾照和悉尼现场出行",
+      ".fit-grid article:nth-child(3) strong": "持有驾照，支持现场出勤",
       ".fit-grid article:nth-child(4) span": "记录",
-      ".fit-grid article:nth-child(4) strong": "Simpro、服务报告、设备历史、交接",
+      ".fit-grid article:nth-child(4) strong": "Simpro、服务报告、设备服务历史和交接记录",
       ".proof-grid article:nth-child(1) span": "服务",
-      ".proof-grid article:nth-child(1) h3": "预防性维护、维修、安装支持",
+      ".proof-grid article:nth-child(1) h3": "预防性维护、故障维修、安装支持",
       ".proof-grid article:nth-child(1) p":
-        "服务经验覆盖医院和药房医疗设备的现场与车间工作。",
+        "服务经验覆盖医院与药房医疗设备的现场服务和车间支持。",
       ".proof-grid article:nth-child(2) span": "验证",
       ".proof-grid article:nth-child(2) h3": "功能与性能检查",
       ".proof-grid article:nth-child(2) p":
@@ -579,7 +579,7 @@ const translations = {
       ".proof-grid article:nth-child(3) span": "记录",
       ".proof-grid article:nth-child(3) h3": "服务可追踪性",
       ".proof-grid article:nth-child(3) p":
-        "工单、测试记录、设备历史、客户更新和交接状态会成为下一次服务决策的证据，而不只是行政记录。",
+        "工单、测试记录、设备服务历史、客户沟通更新和交接状态会成为下一次服务决策的证据，而不只是行政记录。",
       ".proof-grid article:nth-child(4) span": "沟通",
       ".proof-grid article:nth-child(4) h3": "中英文交接",
       ".proof-grid article:nth-child(4) p":
@@ -598,7 +598,7 @@ const translations = {
         "呼吸设备、患者监护、超声、DEXA、药房自动化、X-ray 支持和通用医疗设备。",
       ".experience-summary-grid div:nth-child(3) strong": "运营价值",
       ".experience-summary-grid div:nth-child(3) span":
-        "后续排查从对齐过的服务记录、设备历史和客户更新开始，而不是只靠记忆。",
+        "后续排查从对齐过的服务记录、设备服务历史和客户沟通更新开始，而不是只靠记忆。",
       ".experience-timeline article:nth-child(1) .experience-date": "2023 年 7 月 - 至今",
       ".experience-timeline article:nth-child(1) h3":
         "Biomedical Engineer | Nova Biomedical Australia",
@@ -609,7 +609,7 @@ const translations = {
       ".experience-evidence div:nth-child(2) strong": "服务动作",
       ".experience-evidence div:nth-child(2) span": "PM / 维修 / 安装 / 验证",
       ".experience-evidence div:nth-child(3) strong": "记录",
-      ".experience-evidence div:nth-child(3) span": "Simpro / 服务报告 / 设备历史",
+      ".experience-evidence div:nth-child(3) span": "Simpro / 服务报告 / 设备服务历史",
       ".experience-evidence div:nth-child(4) strong": "服务场景",
       ".experience-evidence div:nth-child(4) span": "医院 / 药房 / 车间支持",
       ".experience-outcome dt:nth-of-type(1)": "服务环境",
@@ -619,7 +619,7 @@ const translations = {
         "设备以功能检查、性能证据或明确升级状态收尾",
       ".experience-outcome dt:nth-of-type(3)": "记录链路",
       ".experience-outcome dd:nth-of-type(3)":
-        "Simpro 工单、服务报告、设备历史和客户更新保持一致",
+        "Simpro 工单、服务报告、设备服务历史和客户沟通更新保持一致",
       ".experience-outcome dt:nth-of-type(4)": "交接",
       ".experience-outcome dd:nth-of-type(4)":
         "医院工程团队、临床用户、厂商和内部工程师能看到下一次使用状态",
@@ -754,13 +754,13 @@ const translations = {
       ".capability-row article:nth-child(6) span": "记录",
       ".capability-row article:nth-child(6) h3": "服务可追踪性",
       ".capability-row article:nth-child(6) p":
-        "Simpro 工单、服务报告、设备历史、客户更新和闭环说明。",
+        "Simpro 工单、服务报告、设备服务历史、客户沟通更新和闭环说明。",
       ".capability-row article:nth-child(6) .scope-evidence dt:nth-of-type(1)": "参与内容",
       ".capability-row article:nth-child(6) .scope-evidence dd:nth-of-type(1)":
-        "CMMS 记录、交接记录与服务历史保持一致。",
+        "CMMS 记录、交接记录与设备服务历史保持一致。",
       ".capability-row article:nth-child(6) .scope-evidence dt:nth-of-type(2)": "验证证据",
       ".capability-row article:nth-child(6) .scope-evidence dd:nth-of-type(2)":
-        "设备状态、处理动作、测试结果、备件或升级状态、客户更新和下一次使用判断。",
+        "设备状态、处理动作、测试结果、备件或升级状态、客户沟通更新和下一次使用判断。",
       ".capability-row article:nth-child(6) .scope-level": "实际服务经验",
       ".target-roles .section-kicker": "目标岗位",
       "#target-roles-title": "最匹配现场和临床工程服务岗位。",
@@ -834,12 +834,12 @@ const translations = {
         "模糊的服务记录会让后续排查更慢，也更难说明判断依据",
       ".case-grid article:nth-child(3) .case-outcome dt:nth-of-type(2)": "判断依据",
       ".case-grid article:nth-child(3) .case-outcome dd:nth-of-type(2)":
-        "工单、处理动作、测试记录、设备历史、客户沟通更新和升级状态",
+        "工单、处理动作、测试记录、设备服务历史、客户沟通更新和升级状态",
       ".case-grid article:nth-child(3) .case-outcome dt:nth-of-type(3)": "处理动作",
       ".case-grid article:nth-child(3) .case-outcome dd:nth-of-type(3)":
-        "对齐工单、服务报告、设备历史和处理动作",
+        "对齐工单、服务报告、设备服务历史和处理动作",
       ".case-grid article:nth-child(3) .case-outcome dt:nth-of-type(4)": "验证",
-      ".case-grid article:nth-child(3) .case-outcome dd:nth-of-type(4)": "交叉检查设备历史和客户更新",
+      ".case-grid article:nth-child(3) .case-outcome dd:nth-of-type(4)": "交叉检查设备服务历史和客户沟通更新",
       ".case-grid article:nth-child(3) .case-outcome dt:nth-of-type(5)": "放行判断",
       ".case-grid article:nth-child(3) .case-outcome dd:nth-of-type(5)":
         "为医院工程团队和内部工程师清楚记录下一次使用或升级状态",
@@ -881,7 +881,7 @@ const translations = {
       ".contact-readiness div:nth-child(1) strong": "可开始时间",
       ".contact-readiness div:nth-child(1) span": "可沟通",
       ".contact-readiness div:nth-child(2) strong": "驾照",
-      ".contact-readiness div:nth-child(2) span": "可支持悉尼现场出行",
+      ".contact-readiness div:nth-child(2) span": "可支持悉尼现场出勤",
       ".contact-readiness div:nth-child(3) strong": "工作权利",
       ".contact-readiness div:nth-child(3) span": "可按雇主流程核验",
       ".contact-readiness div:nth-child(4) strong": "直接邮箱",
