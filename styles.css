@@ -1095,6 +1095,73 @@ main:focus {
   background: var(--teal);
 }
 
+.partners-section {
+  padding: 74px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: #f7f8f4;
+}
+
+.partners-inner {
+  width: min(1120px, calc(100% - 48px));
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(280px, 0.68fr) minmax(0, 1.32fr);
+  gap: 28px;
+  align-items: start;
+}
+
+.partners-copy h2 {
+  max-width: 520px;
+  margin: 0;
+  font-size: clamp(30px, 3.6vw, 46px);
+  line-height: 1.06;
+  letter-spacing: 0;
+}
+
+.partners-copy > p:not(.section-kicker) {
+  max-width: 520px;
+  margin: 18px 0 0;
+  color: var(--ink-2);
+  font-size: 17px;
+}
+
+.partners-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.partners-grid article {
+  min-height: 220px;
+  padding: 24px;
+  border: 1px solid rgba(19, 33, 31, 0.12);
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 18px 50px rgba(19, 33, 31, 0.06);
+}
+
+.partners-grid span {
+  color: var(--teal);
+  font-size: 12px;
+  font-weight: 850;
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+
+.partners-grid h3 {
+  margin: 18px 0 10px;
+  color: var(--ink);
+  font-size: clamp(24px, 2.4vw, 34px);
+  line-height: 1.05;
+}
+
+.partners-grid p {
+  margin: 0;
+  color: var(--ink-2);
+  line-height: 1.58;
+}
+
 .case-section {
   padding: 96px 0;
   background: var(--white);
@@ -2084,6 +2151,7 @@ main:focus {
   .experience-timeline,
   .section-heading,
   .judgement-inner,
+  .partners-inner,
   .fault-approach,
   .case-grid,
   .study-grid,
@@ -2099,6 +2167,7 @@ main:focus {
   }
 
   .judgement-inner,
+  .partners-inner,
   .judgement-grid {
     grid-template-columns: 1fr;
   }
@@ -2178,6 +2247,7 @@ main:focus {
   .brief-grid,
   .proof-grid,
   .judgement-grid,
+  .partners-grid,
   .fault-approach ol,
   .experience-summary-grid,
   .experience-timeline article,
@@ -2529,6 +2599,7 @@ main:focus {
   .case-section,
   .study-section,
   .capabilities,
+  .partners-section,
   .contact-section {
     padding-top: 58px;
     padding-bottom: 58px;
@@ -2539,6 +2610,7 @@ main:focus {
   .brief-grid article,
   .certification-grid article,
   .case-grid article,
+  .partners-grid article,
   .capability-row article {
     padding: 22px;
   }
@@ -2716,6 +2788,7 @@ body.resume-style {
 .resume-style .proof-strip,
 .resume-style .brief-section,
 .resume-style .experience-section,
+.resume-style .partners-section,
 .resume-style .case-section,
 .resume-style .study-section,
 .resume-style .certification-section,
@@ -2741,6 +2814,7 @@ body.resume-style {
 
 .resume-style .brief-section,
 .resume-style .experience-section,
+.resume-style .partners-section,
 .resume-style .certification-section {
   background: #f7f8f4;
 }
@@ -2755,6 +2829,7 @@ body.resume-style {
 .resume-style .brief-grid,
 .resume-style .fit-grid,
 .resume-style .proof-grid,
+.resume-style .partners-grid,
 .resume-style .case-grid,
 .resume-style .study-grid,
 .resume-style .certification-grid {
@@ -2763,6 +2838,7 @@ body.resume-style {
 
 .resume-style .brief-grid article,
 .resume-style .proof-grid article,
+.resume-style .partners-grid article,
 .resume-style .case-grid article,
 .resume-style .study-grid article,
 .resume-style .certification-grid article {
@@ -2838,6 +2914,7 @@ body.resume-style {
 .resume-style .section-intro,
 .resume-style .fit-copy .section-intro,
 .resume-style .proof-grid p,
+.resume-style .partners-grid p,
 .resume-style .brief-grid p,
 .resume-style .case-grid p,
 .resume-style .study-grid p,
@@ -3606,6 +3683,7 @@ body.resume-style {
 :root[data-theme="dark"] .fit-strip,
 :root[data-theme="dark"] .proof-strip,
 :root[data-theme="dark"] .experience-section,
+:root[data-theme="dark"] .partners-section,
 :root[data-theme="dark"] .case-section,
 :root[data-theme="dark"] .capabilities,
 :root[data-theme="dark"] .target-roles,
@@ -3620,12 +3698,14 @@ body.resume-style {
 
 :root[data-theme="dark"] .resume-style .brief-section,
 :root[data-theme="dark"] .resume-style .experience-section,
+:root[data-theme="dark"] .resume-style .partners-section,
 :root[data-theme="dark"] .resume-style .certification-section {
   background: #101817;
 }
 
 :root[data-theme="dark"] .fit-grid,
 :root[data-theme="dark"] .target-role-list,
+:root[data-theme="dark"] .partners-grid,
 :root[data-theme="dark"] .experience-evidence {
   border-color: var(--line);
   background: var(--line);
@@ -3636,6 +3716,7 @@ body.resume-style {
 :root[data-theme="dark"] .brief-grid article,
 :root[data-theme="dark"] .experience-summary,
 :root[data-theme="dark"] .experience-timeline article,
+:root[data-theme="dark"] .partners-grid article,
 :root[data-theme="dark"] .case-grid article,
 :root[data-theme="dark"] .capability-row article,
 :root[data-theme="dark"] .target-role-list li,

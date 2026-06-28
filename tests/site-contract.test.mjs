@@ -193,6 +193,7 @@ test("navigation and section order follow the recruiter reading path", () => {
 
   const fitIndex = html.indexOf('<section class="fit-strip');
   const experienceIndex = html.indexOf('<section id="experience"');
+  const partnersIndex = html.indexOf('<section class="partners-section');
   const judgementIndex = html.indexOf('<section class="judgement-section');
   const scopeIndex = html.indexOf('<section id="capabilities"');
   const targetRolesIndex = html.indexOf('<section class="target-roles');
@@ -202,7 +203,8 @@ test("navigation and section order follow the recruiter reading path", () => {
 
   assert.ok(fitIndex > -1, "missing quick fit section");
   assert.ok(fitIndex < experienceIndex);
-  assert.ok(experienceIndex < judgementIndex);
+  assert.ok(experienceIndex < partnersIndex);
+  assert.ok(partnersIndex < judgementIndex);
   assert.ok(judgementIndex < scopeIndex);
   assert.ok(scopeIndex < targetRolesIndex);
   assert.ok(targetRolesIndex < caseIndex);
@@ -211,6 +213,22 @@ test("navigation and section order follow the recruiter reading path", () => {
   assert.equal(html.includes('<section class="proof-strip'), false);
   assert.equal(html.includes('<section class="brief-section'), false);
   assert.equal(html.includes('<section id="certifications"'), false);
+});
+
+test("commercial partner ecosystems are listed without overclaiming endorsement", () => {
+  const partners = sectionByClass("partners-section");
+
+  assert.match(partners, /<p class="section-kicker">Commercial Partner Ecosystems<\/p>/);
+  assert.match(partners, /<h2 id="partners-title">Commercial partners add context to the service scope\.<\/h2>/);
+  assert.match(partners, /equipment and workflow context, not customer-specific records or public endorsements/);
+  assert.equal(articleCount(partners), 3);
+  assert.match(partners, /Philips/);
+  assert.match(partners, /BD \/ BD Rowa/);
+  assert.match(partners, /Hologic/);
+  assert.match(partners, /Respiratory \/ monitoring \/ ultrasound/);
+  assert.match(partners, /Pharmacy automation/);
+  assert.match(partners, /Diagnostics \/ DEXA/);
+  assert.doesNotMatch(partners, /official partner|official endorsement|customer list|client list|strategic partner/i);
 });
 
 test("quick fit and proof points answer HR questions without sounding like an interview script", () => {
