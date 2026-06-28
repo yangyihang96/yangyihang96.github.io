@@ -102,11 +102,19 @@ test("document security policy constrains the static site surface", () => {
   assert.match(csp, /base-uri 'self'/);
   assert.match(csp, /object-src 'none'/);
   assert.match(csp, new RegExp(`script-src 'self' 'sha256-${jsonLdHash.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}'`));
+  assert.match(csp, new RegExp(`script-src-elem 'self' 'sha256-${jsonLdHash.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}'`));
+  assert.match(csp, /script-src-attr 'none'/);
   assert.match(csp, /style-src 'self'/);
+  assert.match(csp, /style-src-elem 'self'/);
+  assert.match(csp, /style-src-attr 'none'/);
   assert.match(csp, /img-src 'self' data:/);
   assert.match(csp, /connect-src 'none'/);
   assert.match(csp, /form-action 'none'/);
   assert.match(csp, /frame-src 'none'/);
+  assert.match(csp, /child-src 'none'/);
+  assert.match(csp, /worker-src 'none'/);
+  assert.match(csp, /require-trusted-types-for 'script'/);
+  assert.match(csp, /trusted-types default/);
   assert.match(csp, /upgrade-insecure-requests/);
   assert.doesNotMatch(csp, /unsafe-inline|unsafe-eval|\*/);
   assert.match(html, /<meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">/);
@@ -116,6 +124,7 @@ test("static security files document deployable response headers and reporting c
   const headers = read("_headers");
   const securityTxt = read(".well-known/security.txt");
   const jekyllConfig = read("_config.yml");
+  const workflow = read(".github/workflows/site-security.yml");
 
   assert.ok(fs.existsSync(path.join(root, ".nojekyll")));
   assert.match(jekyllConfig, /include:\s*\n\s*- \.well-known/);
@@ -126,12 +135,20 @@ test("static security files document deployable response headers and reporting c
   assert.match(headers, /frame-ancestors 'none'/);
   assert.match(headers, /X-Content-Type-Options: nosniff/);
   assert.match(headers, /X-Frame-Options: DENY/);
+  assert.match(headers, /Cross-Origin-Opener-Policy: same-origin-allow-popups/);
+  assert.match(headers, /Cross-Origin-Resource-Policy: same-origin/);
+  assert.match(headers, /Origin-Agent-Cluster: \?1/);
+  assert.match(headers, /X-Permitted-Cross-Domain-Policies: none/);
   assert.match(headers, /Permissions-Policy:/);
   assert.match(headers, /camera=\(\)/);
   assert.match(headers, /microphone=\(\)/);
   assert.match(headers, /geolocation=\(\)/);
   assert.match(headers, /Strict-Transport-Security: max-age=31536000; includeSubDomains; preload/);
+  assert.match(workflow, /permissions:\s*\n\s*contents: read/);
+  assert.match(workflow, /node-version: "24"/);
+  assert.match(workflow, /node --test/);
   assert.match(read("SECURITY.md"), /GitHub Pages does not let this repository set custom HTTP response headers/);
+  assert.match(read("SECURITY.md"), /The current DNS points directly to GitHub Pages/);
 });
 
 test("hero leads with role, experience, mobility, work-right readiness, and three primary actions", () => {

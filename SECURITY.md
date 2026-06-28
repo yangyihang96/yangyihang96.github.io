@@ -5,6 +5,7 @@ This is a static personal website. Security hardening is split between browser-e
 ## Active in the page
 
 - Meta Content Security Policy restricts scripts, images, connections, frames, objects, and form submissions to the static site surface.
+- CSP also blocks inline event handlers, inline style attributes, workers, child browsing contexts, and Trusted Types script sinks where supported.
 - Referrer Policy is set to `strict-origin-when-cross-origin`.
 - External links use `rel="noopener noreferrer"`.
 - Language switching builds rich content with DOM nodes instead of assigning HTML strings.
@@ -12,4 +13,6 @@ This is a static personal website. Security hardening is split between browser-e
 
 ## Hosting-layer headers
 
-GitHub Pages does not let this repository set custom HTTP response headers for the live custom domain. The `_headers` file is included for hosts that support it, such as Cloudflare Pages or Netlify, and should be applied if the site is moved behind a configurable edge.
+The current DNS points directly to GitHub Pages. GitHub Pages does not let this repository set custom HTTP response headers for the live custom domain, so HSTS, frame-ancestors, COOP, CORP, Origin-Agent-Cluster, X-Content-Type-Options, and Permissions-Policy cannot be enforced from this repository alone.
+
+The `_headers` file is included for hosts that support it, such as Cloudflare Pages or Netlify, and should be applied if the site is moved behind a configurable edge.
