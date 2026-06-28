@@ -1,0 +1,5 @@
+Contact: mailto:yangyihang96@gmail.com
+Expires: 2027-06-28T00:00:00Z
+Preferred-Languages: en, zh
+Canonical: https://yangyihang96.com/.well-known/security.txt
+Policy: https://yangyihang96.com/

@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import crypto from "node:crypto";
 import { execFileSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
@@ -10,7 +11,8 @@ const read = (file) => fs.readFileSync(path.join(root, file), "utf8");
 const html = read("index.html");
 const css = read("styles.css");
 const script = read("script.js");
-const publicSource = `${html}\n${css}\n${script}`;
+const themeInit = read("theme-init.js");
+const publicSource = `${html}\n${css}\n${script}\n${themeInit}`;
 const linkedinUrl = "https://au.linkedin.com/in/henry-yang-9644382bb";
 const githubUrl = "https://github.com/yangyihang96";
 const privacySentence =
@@ -68,8 +70,9 @@ test("metadata targets a Sydney biomedical field-service recruiter", () => {
     html,
     /<meta name="description" content="Sydney-based Biomedical Field Service Engineer with nearly three years of field and workshop service experience across hospital and pharmacy medical equipment\."/
   );
-  assert.match(html, /href="styles\.css\?v=clinical-judgement-1"/);
-  assert.match(html, /src="script\.js\?v=clinical-judgement-1"/);
+  assert.match(html, /src="theme-init\.js\?v=dark-security-1"/);
+  assert.match(html, /href="styles\.css\?v=dark-security-1"/);
+  assert.match(html, /src="script\.js\?v=dark-security-1"/);
   assert.match(html, /<link rel="canonical" href="https:\/\/yangyihang96\.com\/">/);
   assert.doesNotMatch(html, /http:\/\/yangyihang96\.com/);
 
@@ -83,6 +86,50 @@ test("metadata targets a Sydney biomedical field-service recruiter", () => {
     "Sydney-based Biomedical Field Service Engineer with nearly three years of field and workshop service experience across hospital and pharmacy medical equipment."
   );
   assert.deepEqual(data.sameAs, [linkedinUrl, githubUrl]);
+});
+
+test("document security policy constrains the static site surface", () => {
+  const csp = html.match(
+    /<meta http-equiv="Content-Security-Policy" content="([^"]+)">/
+  )?.[1];
+  assert.ok(csp, "missing CSP meta");
+
+  const jsonLd = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)?.[1];
+  assert.ok(jsonLd, "missing JSON-LD");
+  const jsonLdHash = crypto.createHash("sha256").update(jsonLd).digest("base64");
+
+  assert.match(csp, /default-src 'self'/);
+  assert.match(csp, /base-uri 'self'/);
+  assert.match(csp, /object-src 'none'/);
+  assert.match(csp, new RegExp(`script-src 'self' 'sha256-${jsonLdHash.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}'`));
+  assert.match(csp, /style-src 'self'/);
+  assert.match(csp, /img-src 'self' data:/);
+  assert.match(csp, /connect-src 'none'/);
+  assert.match(csp, /form-action 'none'/);
+  assert.match(csp, /frame-src 'none'/);
+  assert.match(csp, /upgrade-insecure-requests/);
+  assert.doesNotMatch(csp, /unsafe-inline|unsafe-eval|\*/);
+  assert.match(html, /<meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">/);
+});
+
+test("static security files document deployable response headers and reporting contact", () => {
+  const headers = read("_headers");
+  const securityTxt = read(".well-known/security.txt");
+
+  assert.ok(fs.existsSync(path.join(root, ".nojekyll")));
+  assert.match(securityTxt, /Contact: mailto:yangyihang96@gmail\.com/);
+  assert.match(securityTxt, /Expires: 2027-06-28T00:00:00Z/);
+  assert.match(securityTxt, /Canonical: https:\/\/yangyihang96\.com\/\.well-known\/security\.txt/);
+  assert.match(headers, /Content-Security-Policy: default-src 'self'/);
+  assert.match(headers, /frame-ancestors 'none'/);
+  assert.match(headers, /X-Content-Type-Options: nosniff/);
+  assert.match(headers, /X-Frame-Options: DENY/);
+  assert.match(headers, /Permissions-Policy:/);
+  assert.match(headers, /camera=\(\)/);
+  assert.match(headers, /microphone=\(\)/);
+  assert.match(headers, /geolocation=\(\)/);
+  assert.match(headers, /Strict-Transport-Security: max-age=31536000; includeSubDomains; preload/);
+  assert.match(read("SECURITY.md"), /GitHub Pages does not let this repository set custom HTTP response headers/);
 });
 
 test("hero leads with role, experience, mobility, work-right readiness, and three primary actions", () => {
@@ -289,6 +336,35 @@ test("links remain recognizable in body copy while navigation and buttons stay b
   assert.match(css, /transition-duration:\s*0\.001ms !important;/);
 });
 
+test("dark mode is supported by system preference and a persisted manual toggle", () => {
+  assert.match(html, /<button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">Dark<\/button>/);
+  assert.ok(html.indexOf('src="theme-init.js?v=dark-security-1"') < html.indexOf('href="styles.css?v=dark-security-1"'));
+  assert.match(themeInit, /localStorage\.getItem\(storageKey\)/);
+  assert.match(themeInit, /prefers-color-scheme: dark/);
+  assert.match(themeInit, /document\.documentElement\.dataset\.theme = resolvedTheme/);
+  assert.match(script, /themeStorageKey = "siteTheme"/);
+  assert.match(script, /data-theme-toggle/);
+  assert.match(script, /themePreferenceMedia\?\.addEventListener\("change"/);
+  assert.match(css, /:root\[data-theme="dark"\]/);
+  assert.match(css, /@media \(prefers-color-scheme: dark\)/);
+  assert.match(css, /color-scheme:\s*dark/);
+  assert.match(css, /--header-surface:/);
+  assert.match(css, /--hero-surface:/);
+});
+
+test("runtime translation avoids HTML string injection and external links isolate referrers", () => {
+  assert.doesNotMatch(script, /innerHTML|insertAdjacentHTML/);
+  assert.match(script, /replaceChildren/);
+  assert.match(script, /document\.createElement\("a"\)/);
+  assert.match(script, /link\.rel = "noopener noreferrer"/);
+
+  const externalLinks = [...html.matchAll(/<a\b[^>]*target="_blank"[^>]*>/g)].map((match) => match[0]);
+  assert.ok(externalLinks.length > 0, "expected external links");
+  externalLinks.forEach((link) => {
+    assert.match(link, /rel="noopener noreferrer"/);
+  });
+});
+
 test("resume PDF and DOCX match the revised HR-first positioning", () => {
   const pdfText = extractPdfText();
   const docxText = extractDocxText();
@@ -344,5 +420,5 @@ test("published assets, robots, and sitemap stay aligned with the live site", ()
   assert.match(robots, /Sitemap: https:\/\/yangyihang96\.com\/sitemap\.xml/);
   assert.match(robots, /Disallow: \/assets\/personal-gallery\//);
   assert.match(sitemap, /<loc>https:\/\/yangyihang96\.com\/<\/loc>/);
-  assert.match(sitemap, /<lastmod>2026-06-25<\/lastmod>/);
+  assert.match(sitemap, /<lastmod>2026-06-28<\/lastmod>/);
 });
