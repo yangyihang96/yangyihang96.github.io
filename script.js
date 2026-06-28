@@ -12,11 +12,11 @@ const recruiterEmailHrefEn = `mailto:${recruiterEmailAddress}?subject=${encodeUR
     "",
     "I'm contacting you about a biomedical field service role.",
     "",
-    "Role scope: ",
-    "Device scope: ",
-    "Location / travel: ",
+    "Role details: ",
+    "Device type / platform: ",
+    "Location / field travel: ",
     "Preferred call times: ",
-    "Formal checklist if needed: ",
+    "Next hiring step: ",
     "",
     "Regards,",
   ].join("\r\n")
@@ -33,7 +33,7 @@ const recruiterEmailHrefZh = `mailto:${recruiterEmailAddress}?subject=${encodeUR
     "设备范围：",
     "地点 / 现场服务范围：",
     "合适通话时间：",
-    "正式流程所需清单：",
+    "下一步流程：",
     "",
     "谢谢。",
   ].join("\r\n")
@@ -70,7 +70,7 @@ const translations = {
       ".hero-meta div:nth-child(3) dt": "Mobility",
       ".hero-meta div:nth-child(3) dd": "Driver licence + field travel",
       ".hero-meta div:nth-child(4) dt": "Work rights",
-      ".hero-meta div:nth-child(4) dd": "Employer verification ready",
+      ".hero-meta div:nth-child(4) dd": "Available for employer check",
       ".hero-skill-tags li:nth-child(1)": "Ventilation",
       ".hero-skill-tags li:nth-child(2)": "Patient Monitoring",
       ".hero-skill-tags li:nth-child(3)": "Ultrasound",
@@ -90,14 +90,14 @@ const translations = {
       ".hero-profile-card .hero-card-kicker": "Current profile",
       ".hero-profile-card strong": "Biomedical service, records, and handover",
       ".hero-profile-card .hero-card-note":
-        "Hands-on profile across preventive maintenance, troubleshooting, verification records, and service close-out.",
+        "Hands-on profile across preventive maintenance, troubleshooting, verification records, and service completion notes.",
       ".profile-status-strip div:nth-child(1) strong": "Updated",
       ".profile-status-strip div:nth-child(1) span": "June 2026",
       ".profile-status-strip div:nth-child(2) strong": "Professional links",
       ".fit-strip .section-kicker": "Field Service Snapshot",
       "#fit-title": "Field-ready service profile for hospital and pharmacy equipment.",
       ".fit-strip .section-intro":
-        "The strongest match is a biomedical or medical device field-service role that needs field travel, practical troubleshooting, verification records, and clear customer handover.",
+        "This profile suits biomedical or medical device field-service roles that need field travel, practical troubleshooting, verification records, and clear customer handover.",
       ".fit-grid article:nth-child(1) span": "Experience",
       ".fit-grid article:nth-child(1) strong": "Nearly 3 years field/workshop service",
       ".fit-grid article:nth-child(2) span": "Equipment",
@@ -114,17 +114,17 @@ const translations = {
       ".proof-grid article:nth-child(2) span": "Verification",
       ".proof-grid article:nth-child(2) h3": "Functional and performance checks",
       ".proof-grid article:nth-child(2) p":
-        "Service decisions are closed with test notes, performance evidence, or clear escalation status.",
+        "Service decisions are supported by test notes, performance evidence, or clear escalation status.",
       ".proof-grid article:nth-child(3) span": "Records",
       ".proof-grid article:nth-child(3) h3": "Service traceability",
       ".proof-grid article:nth-child(3) p":
-        "Work orders, test notes, equipment history, customer updates, and handover status become evidence for the next service decision, not just admin.",
+        "Work orders, test notes, equipment history, communication notes, and handover status become evidence for the next service decision, not just admin.",
       ".proof-grid article:nth-child(4) span": "Communication",
       ".proof-grid article:nth-child(4) h3": "English / Mandarin handover",
       ".proof-grid article:nth-child(4) p":
         "Clear updates for clinical users, biomedical teams, vendors, and internal engineers.",
       ".experience-section .section-kicker": "Work Experience",
-      "#experience-title": "Field service and workshop support are the main selling points.",
+      "#experience-title": "Field service and workshop support are the core evidence.",
       ".experience-section .section-intro":
         "The work history is organized around what matters for a service role: equipment range, service action, verification, records, and handover.",
       ".experience-summary > p":
@@ -137,7 +137,7 @@ const translations = {
         "Ventilation, patient monitoring, ultrasound, DEXA, pharmacy automation, X-ray support, and general biomedical equipment.",
       ".experience-summary-grid div:nth-child(3) strong": "Operational value",
       ".experience-summary-grid div:nth-child(3) span":
-        "Repeat troubleshooting starts from aligned service notes, equipment history, and customer updates instead of memory alone.",
+        "Repeat troubleshooting starts from aligned service notes, equipment history, and communication notes instead of memory alone.",
       ".experience-timeline article:nth-child(1) .experience-date": "Jul 2023 - Present",
       ".experience-timeline article:nth-child(1) h3":
         "Biomedical Engineer | Nova Biomedical Australia",
@@ -156,28 +156,28 @@ const translations = {
         "Hospital, pharmacy, workshop, and field-support environments",
       ".experience-outcome dt:nth-of-type(2)": "Verified outcome",
       ".experience-outcome dd:nth-of-type(2)":
-        "Devices returned with functional checks, performance evidence, or clear escalation status",
+        "Service outcomes documented with functional checks, performance evidence, or clear escalation status",
       ".experience-outcome dt:nth-of-type(3)": "Record trail",
       ".experience-outcome dd:nth-of-type(3)":
-        "Simpro work orders, service reports, equipment history, and customer updates aligned",
+        "Simpro work orders, service reports, equipment history, and communication notes aligned",
       ".experience-outcome dt:nth-of-type(4)": "Handover",
       ".experience-outcome dd:nth-of-type(4)":
         "Biomedical teams, clinical users, vendors, and internal engineers can see next-use status",
       ".partners-section .section-kicker": "Medical Technology Platforms",
-      "#partners-title": "Representative manufacturers and platforms show the device types and service settings.",
+      "#partners-title": "Selected device manufacturers and platforms from service records.",
       ".partners-copy > p:not(.section-kicker)":
-        "These entries describe equipment families, workflows, and field or workshop service contexts from the service record.",
+        "This section groups the device categories, platform workflows, and field or workshop service contexts I have worked around.",
       ".partners-grid article:nth-child(1) .partner-category": "Respiratory / monitoring / ultrasound",
       ".partners-grid article:nth-child(1) h3": "Philips Healthcare",
       ".partners-grid article:nth-child(1) p":
-        "Service preparation, field support, functional checks, upgrade support, and handover exposure across respiratory, patient monitoring, ultrasound, and ECG-cart contexts.",
+        "Service preparation, field support, functional checks, upgrade support, and handover work across respiratory, patient monitoring, ultrasound, and ECG-cart contexts.",
       ".partners-grid article:nth-child(1) .partner-equipment strong": "Equipment / platforms",
       ".partners-grid article:nth-child(1) .partner-equipment p":
         "Respironics V60, MX40/MX450, patient monitors, ultrasound systems, ECG carts, PNA testing.",
       ".partners-grid article:nth-child(2) .partner-category": "Medication management / automation",
       ".partners-grid article:nth-child(2) h3": "BD / BD Rowa",
       ".partners-grid article:nth-child(2) p":
-        "Pyxis, Rowa, and Alaris-related service contexts covering call-outs, workflow support, remediation support, service notes, customer updates, and handover.",
+        "Pyxis, Rowa, and Alaris-related service contexts covering call-outs, workflow support, remediation support, service notes, communication records, and handover.",
       ".partners-grid article:nth-child(2) .partner-equipment strong": "Equipment / platforms",
       ".partners-grid article:nth-child(2) .partner-equipment p":
         "BD Pyxis, BD Rowa Vmax/Smart, Prolog, Alaris remediation, pharmacy automation workflows.",
@@ -198,19 +198,19 @@ const translations = {
       ".partners-grid article:nth-child(5) .partner-category": "Respiratory diagnostics",
       ".partners-grid article:nth-child(5) h3": "Jaeger Medical",
       ".partners-grid article:nth-child(5) p":
-        "Respiratory diagnostic equipment service contexts covering planned service, functional checks, equipment condition notes, and traceable close-out records.",
+        "Respiratory diagnostic equipment service contexts covering planned service, functional checks, equipment condition notes, and traceable completion records.",
       ".partners-grid article:nth-child(5) .partner-equipment strong": "Equipment / platforms",
       ".partners-grid article:nth-child(5) .partner-equipment p":
         "Vyntus Body, Vyntus One, Vyntus Spiro, Vyntus CPX, Pneumo and SentrySuite-related support.",
       ".judgement-section .section-kicker": "Clinical Safety & Service Judgement",
       "#judgement-title": "Safe service decisions need evidence, not assumptions.",
       ".judgement-lead > p:not(.section-kicker)":
-        "My service approach is built around safe return-to-use decisions: understand the reported issue, check device condition and service history, follow manufacturer-led procedures, verify the result with functional or performance evidence, document the action clearly, and hand over a traceable next-use or escalation status.",
+        "My service approach is to understand the reported issue, check device condition and service history, follow manufacturer-led procedures, verify the result with functional or performance evidence, document the action clearly, and hand over a traceable next-use or escalation status.",
       ".judgement-grid article:nth-child(1) span": "Return-to-use boundary",
       ".judgement-grid article:nth-child(1) h3": "Do not return uncertain equipment",
       ".judgement-grid article:nth-child(1) p":
         "Unsafe or uncertain devices should not be returned to use until the result is verified or escalated.",
-      ".release-list li:nth-child(1)": "verified ready",
+      ".release-list li:nth-child(1)": "verified for use",
       ".release-list li:nth-child(2)": "restricted or monitored use",
       ".release-list li:nth-child(3)": "escalated / not returned",
       ".judgement-grid article:nth-child(2) span": "Procedure discipline",
@@ -218,9 +218,9 @@ const translations = {
       ".judgement-grid article:nth-child(2) p":
         "Service checks are performed using appropriate manufacturer procedures, controlled test equipment where required, and documented pass/fail or escalation notes.",
       ".judgement-grid article:nth-child(3) span": "Australian biomedical service awareness",
-      ".judgement-grid article:nth-child(3) h3": "AS/NZS 3551-aware lifecycle thinking",
+      ".judgement-grid article:nth-child(3) h3": "Lifecycle-aware biomedical service",
       ".judgement-grid article:nth-child(3) p":
-        "Familiar with the importance of medical equipment lifecycle thinking: acceptance, planned service, fault management, routine testing, service records, disposal awareness, and escalation in line with manufacturer procedures and local biomedical governance.",
+        "Aware of medical equipment lifecycle requirements such as acceptance, planned service, fault management, routine testing, service records, disposal, and escalation in line with manufacturer procedures and local biomedical processes.",
       ".judgement-grid article:nth-child(4) span": "Regulated records",
       ".judgement-grid article:nth-child(4) h3": "Regulated healthcare documentation mindset",
       ".judgement-grid article:nth-child(4) p":
@@ -234,9 +234,9 @@ const translations = {
       ".experience-timeline article:nth-child(2) li:nth-child(2)":
         "Assisted documentation work related to regulated healthcare records and cross-functional communication.",
       "#capabilities .section-kicker": "Equipment & Service Scope",
-      "#capabilities-title": "Equipment scope with conservative verification evidence.",
+      "#capabilities-title": "Equipment scope and verification evidence.",
       "#capabilities .section-intro":
-        "This separates equipment families, service exposure, and verification evidence so the scope is clearer than a generic skills list.",
+        "Equipment is grouped by category, service exposure, and verification evidence so the scope is clearer than a generic skills list.",
       ".capability-row article:nth-child(1) span": "Respiratory",
       ".capability-row article:nth-child(1) h3": "Respiratory service",
       ".capability-row article:nth-child(1) p":
@@ -247,7 +247,7 @@ const translations = {
       ".capability-row article:nth-child(1) .scope-evidence dt:nth-of-type(2)": "Verification evidence",
       ".capability-row article:nth-child(1) .scope-evidence dd:nth-of-type(2)":
         "Flow/pressure-related checks, alarm/function confirmation, and manufacturer procedure notes where applicable.",
-      ".capability-row article:nth-child(1) .scope-level": "Hands-on service exposure",
+      ".capability-row article:nth-child(1) .scope-level": "Hands-on service",
       ".capability-row article:nth-child(2) span": "Monitoring",
       ".capability-row article:nth-child(2) h3": "Patient monitoring",
       ".capability-row article:nth-child(2) p":
@@ -290,27 +290,27 @@ const translations = {
         "Workflow support, service notes, and customer handover.",
       ".capability-row article:nth-child(5) .scope-evidence dt:nth-of-type(2)": "Verification evidence",
       ".capability-row article:nth-child(5) .scope-evidence dd:nth-of-type(2)":
-        "Functional status, dispensing/workflow check, and customer update trail where applicable.",
-      ".capability-row article:nth-child(5) .scope-level": "Documentation / handover exposure",
+        "Functional status, dispensing/workflow check, and customer communication trail where applicable.",
+      ".capability-row article:nth-child(5) .scope-level": "Documentation / handover experience",
       ".capability-row article:nth-child(6) span": "Records",
       ".capability-row article:nth-child(6) h3": "Service traceability",
       ".capability-row article:nth-child(6) p":
-        "Simpro work orders, service reports, equipment history, customer updates, and close-out notes.",
+        "Simpro work orders, service reports, equipment history, communication notes, and service completion records.",
       ".capability-row article:nth-child(6) .scope-evidence dt:nth-of-type(1)": "Service exposure",
       ".capability-row article:nth-child(6) .scope-evidence dd:nth-of-type(1)":
         "CMMS records, handover notes, and service history alignment.",
       ".capability-row article:nth-child(6) .scope-evidence dt:nth-of-type(2)": "Verification evidence",
       ".capability-row article:nth-child(6) .scope-evidence dd:nth-of-type(2)":
-        "Device condition, action taken, test result, parts or escalation status, customer update, and next-use decision.",
-      ".capability-row article:nth-child(6) .scope-level": "Hands-on service exposure",
+        "Device condition, action taken, test result, parts or escalation status, communication note, and next-use decision.",
+      ".capability-row article:nth-child(6) .scope-level": "Hands-on service",
       ".target-roles .section-kicker": "Target Roles",
-      "#target-roles-title": "The strongest fit is practical medical device service.",
+      "#target-roles-title": "Target roles are practical medical device service roles.",
       ".target-role-list li:nth-child(1)": "Biomedical Field Service Engineer",
       ".target-role-list li:nth-child(2)": "Medical Device Service Engineer",
       ".target-role-list li:nth-child(3)": "Clinical Engineering Service Support",
       ".target-role-list li:nth-child(4)": "Biomedical Technician / Service Technician",
       "#case-notes .section-kicker": "Service Case Notes",
-      "#case-title": "Service examples show judgement, verification and handover.",
+      "#case-title": "Service cases focus on judgement, verification and handover.",
       "#case-notes .section-intro":
         "These examples focus on the service logic behind maintenance, troubleshooting, documentation and release decisions.",
       ".fault-approach h3": "Fault diagnosis approach",
@@ -324,7 +324,7 @@ const translations = {
       ".fault-approach li:nth-child(8)": "post-service verification",
       ".fault-approach li:nth-child(9)": "documented handover",
       ".case-grid article:nth-child(1) span": "01 / Preventive maintenance",
-      ".case-grid article:nth-child(1) h3": "Routine maintenance with a usable close-out",
+      ".case-grid article:nth-child(1) h3": "Routine maintenance with clear handover",
       ".case-grid article:nth-child(1) p":
         "Scheduled service is handled by confirming condition, history, site limits, procedure steps, and performance evidence before handover.",
       ".case-grid article:nth-child(1) .case-outcome dt:nth-of-type(1)": "Risk point",
@@ -335,21 +335,21 @@ const translations = {
         "Device condition, service history, manufacturer procedure steps, and functional or performance evidence",
       ".case-grid article:nth-child(1) .case-outcome dt:nth-of-type(3)": "Service action",
       ".case-grid article:nth-child(1) .case-outcome dd:nth-of-type(3)":
-        "Planned service steps, condition check, and service record close-out",
+        "Planned service steps, condition check, and service record completion",
       ".case-grid article:nth-child(1) .case-outcome dt:nth-of-type(4)": "Verification",
       ".case-grid article:nth-child(1) .case-outcome dd:nth-of-type(4)":
         "Functional check and documented next-use status",
       ".case-grid article:nth-child(1) .case-outcome dt:nth-of-type(5)": "Release decision",
       ".case-grid article:nth-child(1) .case-outcome dd:nth-of-type(5)":
-        "Returned only when the service result supported a clear verified-ready status",
+        "Documented as ready for use only when the service result supported a clear verified status",
       ".case-grid article:nth-child(1) .case-outcome dt:nth-of-type(6)": "Outcome",
       ".case-grid article:nth-child(1) .case-outcome dd:nth-of-type(6)":
-        "Returned equipment with a clear next-use status and service close-out trail",
+        "Documented equipment with a clear next-use status and service record",
       ".case-grid article:nth-child(2) span": "02 / Fault diagnosis",
       ".case-grid article:nth-child(2) h3":
         "Troubleshooting example - intermittent user-reported fault",
       ".case-grid article:nth-child(2) p":
-        "A user-reported intermittent fault was reviewed against device condition, service history, accessories, user workflow, and reproducible symptoms. I followed manual-led checks, recorded measurement notes, confirmed post-repair function, and documented whether the device was ready for use, monitored, or escalated.",
+        "A user-reported intermittent fault was reviewed against device condition, service history, accessories, user workflow, and reproducible symptoms. I followed manual-led checks, recorded measurement notes, confirmed post-repair function, and documented whether the device was ready for use, required monitoring, or needed escalation.",
       ".case-grid article:nth-child(2) .case-outcome dt:nth-of-type(1)": "Risk point",
       ".case-grid article:nth-child(2) .case-outcome dd:nth-of-type(1)":
         "Intermittent symptoms can be device, accessory, workflow, environment, or configuration related",
@@ -364,26 +364,26 @@ const translations = {
         "Measurement notes and post-repair confirmation",
       ".case-grid article:nth-child(2) .case-outcome dt:nth-of-type(5)": "Release decision",
       ".case-grid article:nth-child(2) .case-outcome dd:nth-of-type(5)":
-        "Documented whether the device was ready for use, monitored, or escalated based on post-service evidence",
+        "Documented whether the device was ready for use, required monitoring, or needed escalation based on post-service evidence",
       ".case-grid article:nth-child(2) .case-outcome dt:nth-of-type(6)": "Outcome",
       ".case-grid article:nth-child(2) .case-outcome dd:nth-of-type(6)":
         "Separated use condition, repair history, accessories, reproducible symptoms, and manual-led checks before handover",
       ".case-grid article:nth-child(3) span": "03 / Documentation",
-      ".case-grid article:nth-child(3) h3": "Traceability, not just admin",
+      ".case-grid article:nth-child(3) h3": "Traceable records support later service decisions",
       ".case-grid article:nth-child(3) p":
-        "Service records are treated as engineering evidence: device condition, reported symptom, action taken, test result, parts or escalation status, customer update, and next-use decision.",
+        "Service records are treated as engineering evidence: device condition, reported symptom, action taken, test result, parts or escalation status, communication note, and next-use decision.",
       ".case-grid article:nth-child(3) .case-outcome dt:nth-of-type(1)": "Risk point",
       ".case-grid article:nth-child(3) .case-outcome dd:nth-of-type(1)":
         "Vague service notes make later troubleshooting slower and less defensible",
       ".case-grid article:nth-child(3) .case-outcome dt:nth-of-type(2)": "Evidence used",
       ".case-grid article:nth-child(3) .case-outcome dd:nth-of-type(2)":
-        "Work order, service action, test note, equipment history, customer update, and escalation status",
+        "Work order, service action, test note, equipment history, communication note, and escalation status",
       ".case-grid article:nth-child(3) .case-outcome dt:nth-of-type(3)": "Service action",
       ".case-grid article:nth-child(3) .case-outcome dd:nth-of-type(3)":
         "Serial details, work order, service report, and actions aligned",
       ".case-grid article:nth-child(3) .case-outcome dt:nth-of-type(4)": "Verification",
       ".case-grid article:nth-child(3) .case-outcome dd:nth-of-type(4)":
-        "Equipment history and customer update cross-check",
+        "Equipment history and customer communication cross-check",
       ".case-grid article:nth-child(3) .case-outcome dt:nth-of-type(5)": "Release decision",
       ".case-grid article:nth-child(3) .case-outcome dd:nth-of-type(5)":
         "Next-use or escalation status recorded clearly for biomedical teams and internal engineers",
@@ -393,7 +393,7 @@ const translations = {
       "#study .section-kicker": "Education",
       "#study-title": "Biomedical engineering background with practical service focus.",
       "#study .section-intro":
-        "The academic story stays short because the main selling point is now field service experience.",
+        "Education is kept concise because field service experience is the main evidence.",
       ".study-grid article:nth-child(1) span": "Awarded Jun 2024",
       ".study-grid article:nth-child(1) h3": "Master of Philosophy",
       ".study-grid article:nth-child(1) p:nth-of-type(1)": "The University of Sydney",
@@ -410,12 +410,12 @@ const translations = {
       ".study-grid article:nth-child(3) p":
         "Wearable medical-device feasibility work using electrode geometry, silver ink coating, impedance measurement, and manufacturability trade-offs.",
       "#contact .section-kicker": "Contact",
-      "#contact-title": "Ready for biomedical field service conversations.",
+      "#contact-title": "Open to biomedical field service opportunities.",
       ".contact-inner > p:not(.section-kicker)":
         "For biomedical or medical device field service opportunities in Sydney, email is the best first step. English and Mandarin are both fine.",
-      ".contact-actions-title": "Email Henry with the role scope.",
+      ".contact-actions-title": "Email Henry with the role details.",
       ".contact-actions-summary":
-        "Useful details: device type, service setting, travel area, start timing, and formal checklist if the process needs one.",
+        "Useful details include device type, service setting, travel area, start timing, and the next hiring step.",
       ".contact-email-action": "Email Henry",
       ".contact-copy-email-action": "Copy Email",
       ".contact-resume-link": "Resume PDF",
@@ -428,13 +428,13 @@ const translations = {
       ".contact-readiness div:nth-child(2) strong": "Driver licence",
       ".contact-readiness div:nth-child(2) span": "Sydney field travel ready",
       ".contact-readiness div:nth-child(3) strong": "Work rights",
-      ".contact-readiness div:nth-child(3) span": "Employer verification ready",
+      ".contact-readiness div:nth-child(3) span": "Available for employer check",
       ".contact-readiness div:nth-child(4) strong": "Direct email",
       ".contact-email-text": "yangyihang96@gmail.com",
       "#life .section-kicker": "Professional Development",
       "#life-title": "Development direction for clinical engineering service.",
       ".life-section .story-content > p:not(.section-kicker)":
-        "The long-term direction is deeper biomedical service capability: safer verification, better traceability, and stronger procedure-led troubleshooting.",
+        "Development focus: stronger biomedical service capability, clearer verification, better traceability, and procedure-led troubleshooting.",
     },
     rich: {
       profileLinks: [
@@ -447,8 +447,8 @@ const translations = {
           body: "Electrical safety testing and medical equipment performance verification.",
         },
         {
-          title: "Equipment depth",
-          body: "Respiratory, monitoring, imaging, and pharmacy automation service depth.",
+          title: "Equipment experience",
+          body: "Respiratory, monitoring, imaging, and pharmacy automation service capability.",
         },
         {
           title: "CMMS quality",
@@ -552,7 +552,7 @@ const translations = {
       ".hero-profile-card .hero-card-kicker": "当前定位",
       ".hero-profile-card strong": "医疗设备服务记录与交接",
       ".hero-profile-card .hero-card-note":
-        "经验重点是预防性维护、故障排查、验证记录和服务闭环。",
+        "经验重点是预防性维护、故障排查、验证记录和服务完成记录。",
       ".profile-status-strip div:nth-child(1) strong": "更新",
       ".profile-status-strip div:nth-child(1) span": "2026 年 6 月",
       ".profile-status-strip div:nth-child(2) strong": "职业链接",
@@ -579,18 +579,18 @@ const translations = {
       ".proof-grid article:nth-child(3) span": "记录",
       ".proof-grid article:nth-child(3) h3": "服务可追踪性",
       ".proof-grid article:nth-child(3) p":
-        "工单、测试记录、设备服务历史、客户沟通更新和交接状态会成为下一次服务决策的证据，而不只是行政记录。",
+        "工单、测试记录、设备服务历史、沟通记录和交接状态会成为下一次服务决策的证据，而不只是行政记录。",
       ".proof-grid article:nth-child(4) span": "沟通",
       ".proof-grid article:nth-child(4) h3": "中英文沟通与交接",
       ".proof-grid article:nth-child(4) p":
         "能向临床用户、医院工程团队、厂商和内部工程师清楚说明服务状态。",
       ".experience-section .section-kicker": "工作经历",
-      "#experience-title": "最能体现能力的是现场服务和车间支持经验。",
+      "#experience-title": "核心经历是现场服务和车间支持。",
       ".experience-section .section-intro":
         "按服务岗位最关心的内容组织经历：设备范围、服务动作、验证、记录和交接。",
       ".experience-summary > p":
         "医疗设备现场服务工程师，拥有近三年全职经验，覆盖医院与药房医疗设备服务、预防性维护、故障诊断、维修、安装支持、验证测试和文档记录。",
-      ".experience-summary-grid div:nth-child(1) strong": "服务闭环",
+      ".experience-summary-grid div:nth-child(1) strong": "服务流程",
       ".experience-summary-grid div:nth-child(1) span":
         "准备设备，完成现场服务或车间支持，验证结果，记录工作，并交接下一次使用状态。",
       ".experience-summary-grid div:nth-child(2) strong": "设备范围",
@@ -598,7 +598,7 @@ const translations = {
         "呼吸设备、患者监护、超声、DEXA、药房自动化、X-ray 支持和通用医疗设备。",
       ".experience-summary-grid div:nth-child(3) strong": "运营价值",
       ".experience-summary-grid div:nth-child(3) span":
-        "后续排查从一致的服务记录、设备服务历史和客户沟通更新开始，而不是只靠记忆。",
+        "后续排查从一致的服务记录、设备服务历史和沟通记录开始，而不是只靠记忆。",
       ".experience-timeline article:nth-child(1) .experience-date": "2023 年 7 月 - 至今",
       ".experience-timeline article:nth-child(1) h3":
         "Biomedical Engineer | Nova Biomedical Australia",
@@ -619,14 +619,14 @@ const translations = {
         "服务结果以功能检查、性能证据或明确升级状态记录",
       ".experience-outcome dt:nth-of-type(3)": "记录链路",
       ".experience-outcome dd:nth-of-type(3)":
-        "Simpro 工单、服务报告、设备服务历史和客户沟通更新保持一致",
+        "Simpro 工单、服务报告、设备服务历史和沟通记录保持一致",
       ".experience-outcome dt:nth-of-type(4)": "交接",
       ".experience-outcome dd:nth-of-type(4)":
         "医院工程团队、临床用户、厂商和内部工程师能明确看到下一次使用状态",
       ".partners-section .section-kicker": "设备厂商与平台",
-      "#partners-title": "服务中接触过的医疗技术厂商与设备平台，可以说明设备类型和服务场景。",
+      "#partners-title": "按服务记录整理的主要设备厂商与平台。",
       ".partners-copy > p:not(.section-kicker)":
-        "以下按主要医疗技术厂商和设备平台列出设备类型、工作流和现场 / 车间服务场景。",
+        "这些条目用于说明接触过的设备类别、平台工作流，以及现场 / 车间服务场景。",
       ".partners-grid article:nth-child(1) .partner-category": "呼吸 / 监护 / 超声",
       ".partners-grid article:nth-child(1) h3": "Philips Healthcare 飞利浦医疗",
       ".partners-grid article:nth-child(1) p":
@@ -637,7 +637,7 @@ const translations = {
       ".partners-grid article:nth-child(2) .partner-category": "用药管理 / 自动化",
       ".partners-grid article:nth-child(2) h3": "BD / BD Rowa",
       ".partners-grid article:nth-child(2) p":
-        "围绕 Pyxis、Rowa 和 Alaris 相关场景，参与现场故障支持、工作流支持、整改项目支持、服务记录、客户沟通更新和交接。",
+        "围绕 Pyxis、Rowa 和 Alaris 相关场景，参与现场故障支持、工作流支持、整改项目支持、服务记录、沟通记录和交接。",
       ".partners-grid article:nth-child(2) .partner-equipment strong": "对应设备 / 平台",
       ".partners-grid article:nth-child(2) .partner-equipment p":
         "BD Pyxis、BD Rowa Vmax/Smart、Prolog、Alaris 整改、药房自动化工作流。",
@@ -651,14 +651,14 @@ const translations = {
       ".partners-grid article:nth-child(4) .partner-category": "诊断 / DEXA / 手术影像",
       ".partners-grid article:nth-child(4) h3": "Hologic",
       ".partners-grid article:nth-child(4) p":
-        "围绕 DEXA、TridentHD 和整改项目支持场景，关注性能证据、服务记录、升级路径和能否返回使用的状态。",
+        "围绕 DEXA、TridentHD 和整改项目支持场景，关注性能证据、服务记录、升级路径，以及是否可继续使用或需要升级处理的状态。",
       ".partners-grid article:nth-child(4) .partner-equipment strong": "对应设备 / 平台",
       ".partners-grid article:nth-child(4) .partner-equipment p":
         "Horizon DEXA、TridentHD、乳腺影像和活检系统、EMI 整改支持。",
       ".partners-grid article:nth-child(5) .partner-category": "呼吸诊断",
       ".partners-grid article:nth-child(5) h3": "Jaeger Medical",
       ".partners-grid article:nth-child(5) p":
-        "围绕呼吸诊断设备服务场景，参与计划性服务、功能检查、设备状态记录和可追踪的服务闭环记录。",
+        "围绕呼吸诊断设备服务场景，参与计划性服务、功能检查、设备状态记录和可追踪的完整服务记录。",
       ".partners-grid article:nth-child(5) .partner-equipment strong": "对应设备 / 平台",
       ".partners-grid article:nth-child(5) .partner-equipment p":
         "Vyntus Body、Vyntus One、Vyntus Spiro、Vyntus CPX、Pneumo、SentrySuite 相关支持。",
@@ -754,16 +754,16 @@ const translations = {
       ".capability-row article:nth-child(6) span": "记录",
       ".capability-row article:nth-child(6) h3": "服务可追踪性",
       ".capability-row article:nth-child(6) p":
-        "Simpro 工单、服务报告、设备服务历史、客户沟通更新和闭环说明。",
+        "Simpro 工单、服务报告、设备服务历史、沟通记录和服务完成记录。",
       ".capability-row article:nth-child(6) .scope-evidence dt:nth-of-type(1)": "参与内容",
       ".capability-row article:nth-child(6) .scope-evidence dd:nth-of-type(1)":
         "CMMS 记录、交接记录与设备服务历史保持一致。",
       ".capability-row article:nth-child(6) .scope-evidence dt:nth-of-type(2)": "验证证据",
       ".capability-row article:nth-child(6) .scope-evidence dd:nth-of-type(2)":
-        "设备状态、处理动作、测试结果、备件或升级状态、客户沟通更新和下一次使用判断。",
+        "设备状态、处理动作、测试结果、备件或升级状态、沟通记录和下一次使用判断。",
       ".capability-row article:nth-child(6) .scope-level": "实际服务经验",
       ".target-roles .section-kicker": "目标岗位",
-      "#target-roles-title": "最匹配现场服务和临床工程支持岗位。",
+      "#target-roles-title": "适合的岗位方向。",
       ".target-role-list li:nth-child(1)": "Biomedical Field Service Engineer",
       ".target-role-list li:nth-child(2)": "Medical Device Service Engineer",
       ".target-role-list li:nth-child(3)": "Clinical Engineering Service Support",
@@ -828,18 +828,18 @@ const translations = {
       ".case-grid article:nth-child(3) span": "03 / 服务记录",
       ".case-grid article:nth-child(3) h3": "可追踪性，而不只是行政记录",
       ".case-grid article:nth-child(3) p":
-        "服务记录会被当作工程证据：设备状态、报告现象、处理动作、测试结果、备件或升级状态、客户沟通更新和下一次使用判断。",
+        "服务记录会被当作工程证据：设备状态、报告现象、处理动作、测试结果、备件或升级状态、沟通记录和下一次使用判断。",
       ".case-grid article:nth-child(3) .case-outcome dt:nth-of-type(1)": "风险点",
       ".case-grid article:nth-child(3) .case-outcome dd:nth-of-type(1)":
         "模糊的服务记录会让后续排查更慢，也更难说明判断依据",
       ".case-grid article:nth-child(3) .case-outcome dt:nth-of-type(2)": "判断依据",
       ".case-grid article:nth-child(3) .case-outcome dd:nth-of-type(2)":
-        "工单、处理动作、测试记录、设备服务历史、客户沟通更新和升级状态",
+        "工单、处理动作、测试记录、设备服务历史、沟通记录和升级状态",
       ".case-grid article:nth-child(3) .case-outcome dt:nth-of-type(3)": "处理动作",
       ".case-grid article:nth-child(3) .case-outcome dd:nth-of-type(3)":
         "对齐工单、服务报告、设备服务历史和处理动作",
       ".case-grid article:nth-child(3) .case-outcome dt:nth-of-type(4)": "验证",
-      ".case-grid article:nth-child(3) .case-outcome dd:nth-of-type(4)": "交叉核对设备服务历史和客户沟通更新",
+      ".case-grid article:nth-child(3) .case-outcome dd:nth-of-type(4)": "交叉核对设备服务历史和沟通记录",
       ".case-grid article:nth-child(3) .case-outcome dt:nth-of-type(5)": "放行判断",
       ".case-grid article:nth-child(3) .case-outcome dd:nth-of-type(5)":
         "为医院工程团队和内部工程师清楚记录下一次使用或升级状态",
