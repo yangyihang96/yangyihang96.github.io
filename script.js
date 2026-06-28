@@ -29,9 +29,9 @@ const recruiterEmailHrefZh = `mailto:${recruiterEmailAddress}?subject=${encodeUR
     "",
     "我想联系你沟通一个医疗设备现场服务相关机会。",
     "",
-    "岗位范围：",
+    "岗位信息：",
     "设备范围：",
-    "地点 / 出行：",
+    "地点 / 现场服务范围：",
     "合适通话时间：",
     "正式流程所需清单：",
     "",
@@ -529,8 +529,8 @@ const translations = {
       ".hero-meta div:nth-child(1) dd": "近 3 年",
       ".hero-meta div:nth-child(2) dt": "地点",
       ".hero-meta div:nth-child(2) dd": "悉尼 NSW",
-      ".hero-meta div:nth-child(3) dt": "出行",
-      ".hero-meta div:nth-child(3) dd": "驾照 + 现场出勤",
+      ".hero-meta div:nth-child(3) dt": "现场",
+      ".hero-meta div:nth-child(3) dd": "驾照 + 现场服务",
       ".hero-meta div:nth-child(4) dt": "工作权利",
       ".hero-meta div:nth-child(4) dd": "可按雇主流程核验",
       ".hero-skill-tags li:nth-child(1)": "呼吸设备",
@@ -548,24 +548,24 @@ const translations = {
       ".hero-action-path div:nth-child(2) strong": "服务内容",
       ".hero-action-path div:nth-child(2) span": "维护 / 维修 / 验证",
       ".hero-action-path div:nth-child(3) strong": "下一步",
-      ".hero-action-path div:nth-child(3) span": "邮件确认岗位匹配",
+      ".hero-action-path div:nth-child(3) span": "邮件沟通岗位匹配",
       ".hero-profile-card .hero-card-kicker": "当前定位",
-      ".hero-profile-card strong": "医疗设备服务、记录和交接",
+      ".hero-profile-card strong": "医疗设备服务记录与交接",
       ".hero-profile-card .hero-card-note":
         "经验重点是预防性维护、故障排查、验证记录和服务闭环。",
       ".profile-status-strip div:nth-child(1) strong": "更新",
       ".profile-status-strip div:nth-child(1) span": "2026 年 6 月",
       ".profile-status-strip div:nth-child(2) strong": "职业链接",
       ".fit-strip .section-kicker": "现场服务概览",
-      "#fit-title": "适合医院与药房设备服务岗位的候选人画像。",
+      "#fit-title": "适合医院与药房医疗设备服务岗位。",
       ".fit-strip .section-intro":
-        "适合需要现场出勤、实际故障排查、验证记录和明确交接的医疗设备服务岗位。",
+        "适合需要现场服务、实际故障排查、验证记录和明确交接的医疗设备服务岗位。",
       ".fit-grid article:nth-child(1) span": "经验",
       ".fit-grid article:nth-child(1) strong": "近 3 年现场服务和车间支持经验",
       ".fit-grid article:nth-child(2) span": "设备",
       ".fit-grid article:nth-child(2) strong": "呼吸治疗、患者监护、超声、DEXA、药房自动化",
-      ".fit-grid article:nth-child(3) span": "出行",
-      ".fit-grid article:nth-child(3) strong": "持有驾照，支持现场出勤",
+      ".fit-grid article:nth-child(3) span": "现场",
+      ".fit-grid article:nth-child(3) strong": "持有驾照，支持现场服务",
       ".fit-grid article:nth-child(4) span": "记录",
       ".fit-grid article:nth-child(4) strong": "Simpro、服务报告、设备服务历史和交接记录",
       ".proof-grid article:nth-child(1) span": "服务",
@@ -575,35 +575,35 @@ const translations = {
       ".proof-grid article:nth-child(2) span": "验证",
       ".proof-grid article:nth-child(2) h3": "功能与性能检查",
       ".proof-grid article:nth-child(2) p":
-        "服务结论以测试记录、性能证据或明确升级状态收尾。",
+        "服务结论以测试记录、性能证据或明确升级状态为依据。",
       ".proof-grid article:nth-child(3) span": "记录",
       ".proof-grid article:nth-child(3) h3": "服务可追踪性",
       ".proof-grid article:nth-child(3) p":
         "工单、测试记录、设备服务历史、客户沟通更新和交接状态会成为下一次服务决策的证据，而不只是行政记录。",
       ".proof-grid article:nth-child(4) span": "沟通",
-      ".proof-grid article:nth-child(4) h3": "中英文交接",
+      ".proof-grid article:nth-child(4) h3": "中英文沟通与交接",
       ".proof-grid article:nth-child(4) p":
-        "面向临床用户、医院工程团队、厂商和内部工程师给出清楚更新。",
+        "能向临床用户、医院工程团队、厂商和内部工程师清楚说明服务状态。",
       ".experience-section .section-kicker": "工作经历",
-      "#experience-title": "现场服务与车间支持经验最有说服力。",
+      "#experience-title": "最能体现能力的是现场服务和车间支持经验。",
       ".experience-section .section-intro":
-        "经历按服务岗位最关心的内容组织：设备范围、服务动作、验证、记录和交接。",
+        "按服务岗位最关心的内容组织经历：设备范围、服务动作、验证、记录和交接。",
       ".experience-summary > p":
-        "医疗设备现场服务工程师，拥有近三年全职经验，覆盖医院和药房医疗设备服务、预防性维护、故障诊断、维修、安装支持、验证测试和文档记录。",
+        "医疗设备现场服务工程师，拥有近三年全职经验，覆盖医院与药房医疗设备服务、预防性维护、故障诊断、维修、安装支持、验证测试和文档记录。",
       ".experience-summary-grid div:nth-child(1) strong": "服务闭环",
       ".experience-summary-grid div:nth-child(1) span":
-        "准备设备，完成现场或车间服务，验证结果，记录工作，并交接下一次使用状态。",
+        "准备设备，完成现场服务或车间支持，验证结果，记录工作，并交接下一次使用状态。",
       ".experience-summary-grid div:nth-child(2) strong": "设备范围",
       ".experience-summary-grid div:nth-child(2) span":
         "呼吸设备、患者监护、超声、DEXA、药房自动化、X-ray 支持和通用医疗设备。",
       ".experience-summary-grid div:nth-child(3) strong": "运营价值",
       ".experience-summary-grid div:nth-child(3) span":
-        "后续排查从对齐过的服务记录、设备服务历史和客户沟通更新开始，而不是只靠记忆。",
+        "后续排查从一致的服务记录、设备服务历史和客户沟通更新开始，而不是只靠记忆。",
       ".experience-timeline article:nth-child(1) .experience-date": "2023 年 7 月 - 至今",
       ".experience-timeline article:nth-child(1) h3":
         "Biomedical Engineer | Nova Biomedical Australia",
       ".experience-timeline article:nth-child(1) .experience-meta":
-        "澳大利亚范围现场服务 / 车间支持",
+        "澳大利亚范围内现场服务 / 车间支持",
       ".experience-evidence div:nth-child(1) strong": "设备",
       ".experience-evidence div:nth-child(1) span": "呼吸 / 监护 / 超声 / DEXA",
       ".experience-evidence div:nth-child(2) strong": "服务动作",
@@ -616,17 +616,17 @@ const translations = {
       ".experience-outcome dd:nth-of-type(1)": "医院、药房、车间和现场支持环境",
       ".experience-outcome dt:nth-of-type(2)": "验证结果",
       ".experience-outcome dd:nth-of-type(2)":
-        "设备以功能检查、性能证据或明确升级状态收尾",
+        "服务结果以功能检查、性能证据或明确升级状态记录",
       ".experience-outcome dt:nth-of-type(3)": "记录链路",
       ".experience-outcome dd:nth-of-type(3)":
         "Simpro 工单、服务报告、设备服务历史和客户沟通更新保持一致",
       ".experience-outcome dt:nth-of-type(4)": "交接",
       ".experience-outcome dd:nth-of-type(4)":
-        "医院工程团队、临床用户、厂商和内部工程师能看到下一次使用状态",
+        "医院工程团队、临床用户、厂商和内部工程师能明确看到下一次使用状态",
       ".partners-section .section-kicker": "合作厂商与设备平台",
-      "#partners-title": "合作过的医疗技术厂商与设备平台能更直观看到服务范围。",
+      "#partners-title": "合作过的医疗技术厂商与设备平台可以更直观地说明服务范围。",
       ".partners-copy > p:not(.section-kicker)":
-        "下面列出的是主要医疗技术厂商和设备平台，用来说明现场服务与车间支持覆盖的设备类型、工作流和服务场景。",
+        "以下列出主要医疗技术厂商和设备平台，用来说明现场服务与车间支持覆盖的设备类型、工作流和服务场景。",
       ".partners-grid article:nth-child(1) .partner-category": "呼吸 / 监护 / 超声",
       ".partners-grid article:nth-child(1) h3": "Philips Healthcare 飞利浦医疗",
       ".partners-grid article:nth-child(1) p":
@@ -637,7 +637,7 @@ const translations = {
       ".partners-grid article:nth-child(2) .partner-category": "用药管理 / 自动化",
       ".partners-grid article:nth-child(2) h3": "BD / BD Rowa",
       ".partners-grid article:nth-child(2) p":
-        "围绕 Pyxis、Rowa 和 Alaris 相关场景，参与现场报修支持、工作流支持、整改项目支持、服务记录、客户沟通更新和交接。",
+        "围绕 Pyxis、Rowa 和 Alaris 相关场景，参与现场故障支持、工作流支持、整改项目支持、服务记录、客户沟通更新和交接。",
       ".partners-grid article:nth-child(2) .partner-equipment strong": "对应设备 / 平台",
       ".partners-grid article:nth-child(2) .partner-equipment p":
         "BD Pyxis、BD Rowa Vmax/Smart、Prolog、Alaris 整改、药房自动化工作流。",
@@ -651,7 +651,7 @@ const translations = {
       ".partners-grid article:nth-child(4) .partner-category": "诊断 / DEXA / 手术影像",
       ".partners-grid article:nth-child(4) h3": "Hologic",
       ".partners-grid article:nth-child(4) p":
-        "围绕 DEXA、TridentHD 和整改项目支持场景，关注性能证据、服务记录、升级路径和是否可放回使用的状态。",
+        "围绕 DEXA、TridentHD 和整改项目支持场景，关注性能证据、服务记录、升级路径和能否返回使用的状态。",
       ".partners-grid article:nth-child(4) .partner-equipment strong": "对应设备 / 平台",
       ".partners-grid article:nth-child(4) .partner-equipment p":
         "Horizon DEXA、TridentHD、乳腺影像和活检系统、EMI 整改支持。",
@@ -665,12 +665,12 @@ const translations = {
       ".judgement-section .section-kicker": "临床安全与服务判断",
       "#judgement-title": "安全的服务决策需要证据，而不是假设。",
       ".judgement-lead > p:not(.section-kicker)":
-        "我的服务方法围绕安全放行判断展开：理解报告问题，检查设备状态和服务历史，遵循厂家流程，用功能或性能证据验证结果，清楚记录动作，并交接可追踪的下一次使用或升级状态。",
+        "我做服务判断时，会先理解报告问题，查看设备状态和服务历史，遵循厂家流程，用功能或性能证据验证结果，清楚记录动作，并交接可追踪的下一次使用或升级状态。",
       ".judgement-grid article:nth-child(1) span": "放行边界",
-      ".judgement-grid article:nth-child(1) h3": "不确定的设备不应直接放回使用",
+      ".judgement-grid article:nth-child(1) h3": "不确定的设备不应直接返回临床使用",
       ".judgement-grid article:nth-child(1) p":
         "不安全或结果不确定的设备，在完成验证或升级处理前，不应返回临床使用。",
-      ".release-list li:nth-child(1)": "已验证，可使用",
+      ".release-list li:nth-child(1)": "已验证，可返回使用",
       ".release-list li:nth-child(2)": "限制或观察使用",
       ".release-list li:nth-child(3)": "升级处理 / 不返回使用",
       ".judgement-grid article:nth-child(2) span": "流程纪律",
@@ -680,11 +680,11 @@ const translations = {
       ".judgement-grid article:nth-child(3) span": "澳洲医疗设备服务意识",
       ".judgement-grid article:nth-child(3) h3": "AS/NZS 3551 生命周期意识",
       ".judgement-grid article:nth-child(3) p":
-        "理解医疗设备生命周期思维的重要性：验收、计划性服务、故障管理、例行测试、服务记录、报废意识，以及结合厂家流程和本地临床工程管理要求的升级路径。",
+        "理解医疗设备生命周期管理的重要性：验收、计划性服务、故障管理、例行测试、服务记录、退役 / 报废意识，以及结合厂家流程和本地临床工程管理要求的升级路径。",
       ".judgement-grid article:nth-child(4) span": "合规记录",
       ".judgement-grid article:nth-child(4) h3": "合规医疗记录思维",
       ".judgement-grid article:nth-child(4) p":
-        "医疗设备服务也需要合规记录的纪律：清楚事件历史、事实性记录、可追踪动作，在安全或性能疑问未解决时升级，并避免没有证据支持的假设。",
+        "医疗设备服务也需要合规记录纪律：清楚事件历史、事实性记录、可追踪动作，在安全或性能疑问未解决时升级，并避免没有证据支持的假设。",
       ".experience-timeline article:nth-child(2) .experience-date": "2019 年 12 月 - 2020 年 2 月",
       ".experience-timeline article:nth-child(2) h3": "药物警戒部门助理 | Lundbeck Beijing",
       ".experience-timeline article:nth-child(2) .experience-meta": "实习 · 中国北京",
@@ -693,35 +693,35 @@ const translations = {
       ".experience-timeline article:nth-child(2) li:nth-child(2)":
         "参与合规医疗记录相关文档整理，接触跨部门沟通和记录边界。",
       "#capabilities .section-kicker": "设备与服务范围",
-      "#capabilities-title": "按设备族说明服务范围和验证依据。",
+      "#capabilities-title": "按设备类别说明服务范围和验证依据。",
       "#capabilities .section-intro":
-        "这里把设备族、参与内容和验证方式分开写，让服务范围比普通技能清单更清楚。",
+        "这里按设备类别、参与内容和验证方式分开写，让服务范围比普通技能清单更清楚。",
       ".capability-row article:nth-child(1) span": "呼吸",
       ".capability-row article:nth-child(1) h3": "呼吸设备服务",
       ".capability-row article:nth-child(1) p":
-        "V60、V60 Plus、Trilogy、功能检查、计划性服务和故障排查准备。",
+        "V60、V60 Plus、Trilogy 等呼吸设备的计划性服务、功能检查和故障排查准备。",
       ".capability-row article:nth-child(1) .scope-evidence dt:nth-of-type(1)": "参与内容",
       ".capability-row article:nth-child(1) .scope-evidence dd:nth-of-type(1)":
         "预防性维护、功能检查和故障排查准备。",
       ".capability-row article:nth-child(1) .scope-evidence dt:nth-of-type(2)": "验证证据",
       ".capability-row article:nth-child(1) .scope-evidence dd:nth-of-type(2)":
-        "适用时包括流量 / 压力相关检查、报警 / 功能确认和厂家流程记录。",
+        "适用时包括流量 / 压力相关检查、报警和功能确认、厂家流程记录。",
       ".capability-row article:nth-child(1) .scope-level": "实际服务经验",
       ".capability-row article:nth-child(2) span": "监护",
       ".capability-row article:nth-child(2) h3": "患者监护",
       ".capability-row article:nth-child(2) p":
-        "Avalon、Efficia、HeartStart 相关监护设备服务准备、检查和交接记录。",
+        "Avalon、Efficia、HeartStart 等监护设备的服务准备、检查和交接记录。",
       ".capability-row article:nth-child(2) .scope-evidence dt:nth-of-type(1)": "参与内容",
       ".capability-row article:nth-child(2) .scope-evidence dd:nth-of-type(1)":
-        "监护设备服务准备、检查和交接。",
+        "监护设备的服务准备、检查和交接记录。",
       ".capability-row article:nth-child(2) .scope-evidence dt:nth-of-type(2)": "验证证据",
       ".capability-row article:nth-child(2) .scope-evidence dd:nth-of-type(2)":
-        "适用时包括 ECG / SpO2 / NIBP 相关功能检查、外观检查和可使用状态。",
+        "适用时包括 ECG / SpO2 / NIBP 相关功能检查、外观检查和可用状态确认。",
       ".capability-row article:nth-child(2) .scope-level": "培训已完成",
       ".capability-row article:nth-child(3) span": "影像",
       ".capability-row article:nth-child(3) h3": "超声系统",
       ".capability-row article:nth-child(3) p":
-        "EPIQ、Affiniti、CX30、CX50 的服务准备、安装支持和检查接触。",
+        "EPIQ、Affiniti、CX30、CX50 的服务准备、安装支持和检查。",
       ".capability-row article:nth-child(3) .scope-evidence dt:nth-of-type(1)": "参与内容",
       ".capability-row article:nth-child(3) .scope-evidence dd:nth-of-type(1)":
         "安装支持、服务准备和检查。",
@@ -732,10 +732,10 @@ const translations = {
       ".capability-row article:nth-child(4) span": "诊断",
       ".capability-row article:nth-child(4) h3": "DEXA 和 X-ray 支持",
       ".capability-row article:nth-child(4) p":
-        "Horizon DEXA、X-ray 安装和服务培训，关注性能与服务记录。",
+        "Horizon DEXA、X-ray 安装和服务培训，重点是性能检查和服务记录。",
       ".capability-row article:nth-child(4) .scope-evidence dt:nth-of-type(1)": "参与内容",
       ".capability-row article:nth-child(4) .scope-evidence dd:nth-of-type(1)":
-        "安装和服务培训接触。",
+        "安装支持和服务培训。",
       ".capability-row article:nth-child(4) .scope-evidence dt:nth-of-type(2)": "验证证据",
       ".capability-row article:nth-child(4) .scope-evidence dd:nth-of-type(2)":
         "性能检查意识、安全文档和升级路径。",
@@ -743,10 +743,10 @@ const translations = {
       ".capability-row article:nth-child(5) span": "自动化",
       ".capability-row article:nth-child(5) h3": "药房自动化",
       ".capability-row article:nth-child(5) p":
-        "BD FIX100、Pyxis、ROWA 和专项工作流支持，服务记录和交接很关键。",
+        "BD FIX100、Pyxis、ROWA 和专项工作流支持，重点是服务记录和交接。",
       ".capability-row article:nth-child(5) .scope-evidence dt:nth-of-type(1)": "参与内容",
       ".capability-row article:nth-child(5) .scope-evidence dd:nth-of-type(1)":
-        "工作流支持、服务记录和客户交接。",
+        "工作流支持、服务记录和客户沟通交接。",
       ".capability-row article:nth-child(5) .scope-evidence dt:nth-of-type(2)": "验证证据",
       ".capability-row article:nth-child(5) .scope-evidence dd:nth-of-type(2)":
         "适用时包括功能状态、发药流程 / 工作流检查和客户沟通记录。",
@@ -763,13 +763,13 @@ const translations = {
         "设备状态、处理动作、测试结果、备件或升级状态、客户沟通更新和下一次使用判断。",
       ".capability-row article:nth-child(6) .scope-level": "实际服务经验",
       ".target-roles .section-kicker": "目标岗位",
-      "#target-roles-title": "最匹配现场和临床工程服务岗位。",
+      "#target-roles-title": "最匹配现场服务和临床工程支持岗位。",
       ".target-role-list li:nth-child(1)": "Biomedical Field Service Engineer",
       ".target-role-list li:nth-child(2)": "Medical Device Service Engineer",
       ".target-role-list li:nth-child(3)": "Clinical Engineering Service Support",
       ".target-role-list li:nth-child(4)": "Biomedical Technician / Service Technician",
       "#case-notes .section-kicker": "服务案例",
-      "#case-title": "服务案例展示判断、验证和交接。",
+      "#case-title": "案例重点是判断、验证和交接。",
       "#case-notes .section-intro":
         "这些案例聚焦维护、故障诊断、记录和放行判断背后的服务逻辑。",
       ".fault-approach h3": "故障诊断路径",
@@ -783,7 +783,7 @@ const translations = {
       ".fault-approach li:nth-child(8)": "服务后验证",
       ".fault-approach li:nth-child(9)": "记录并交接",
       ".case-grid article:nth-child(1) span": "01 / 预防性维护",
-      ".case-grid article:nth-child(1) h3": "例行维护也要有可交接的收尾",
+      ".case-grid article:nth-child(1) h3": "例行维护也要留下清楚的交接结果",
       ".case-grid article:nth-child(1) p":
         "计划性服务会先确认设备状态、历史、现场限制、流程步骤和性能证据，再完成交接。",
       ".case-grid article:nth-child(1) .case-outcome dt:nth-of-type(1)": "风险点",
@@ -794,18 +794,18 @@ const translations = {
         "设备状态、服务历史、厂家流程步骤，以及功能或性能证据",
       ".case-grid article:nth-child(1) .case-outcome dt:nth-of-type(3)": "处理动作",
       ".case-grid article:nth-child(1) .case-outcome dd:nth-of-type(3)":
-        "计划性服务步骤、状态检查和服务记录收尾",
+        "计划性服务步骤、状态检查和服务记录完善",
       ".case-grid article:nth-child(1) .case-outcome dt:nth-of-type(4)": "验证",
       ".case-grid article:nth-child(1) .case-outcome dd:nth-of-type(4)":
-        "功能检查和记录过的下一次使用状态",
+        "功能检查和已记录的下一次使用状态",
       ".case-grid article:nth-child(1) .case-outcome dt:nth-of-type(5)": "放行判断",
       ".case-grid article:nth-child(1) .case-outcome dd:nth-of-type(5)":
-        "只有当服务结果支持明确的已验证可用状态时才返回",
+        "只有当服务结果支持明确的已验证可用状态时才返回使用",
       ".case-grid article:nth-child(1) .case-outcome dt:nth-of-type(6)": "结果",
       ".case-grid article:nth-child(1) .case-outcome dd:nth-of-type(6)":
-        "设备带有明确的下一次使用状态和服务闭环记录",
+        "设备带有明确的下一次使用状态和完整的服务记录",
       ".case-grid article:nth-child(2) span": "02 / 故障诊断",
-      ".case-grid article:nth-child(2) h3": "故障排查案例 - 用户反馈的间歇性故障",
+      ".case-grid article:nth-child(2) h3": "故障排查案例：用户反馈的间歇性故障",
       ".case-grid article:nth-child(2) p":
         "对用户反馈的间歇性故障，会结合设备状态、服务历史、附件、用户使用流程和可复现现象判断；按手册检查，记录测量结果，确认维修后功能，并记录设备是可使用、需观察使用，还是需要升级。",
       ".case-grid article:nth-child(2) .case-outcome dt:nth-of-type(1)": "风险点",
@@ -816,9 +816,9 @@ const translations = {
         "设备状态、服务历史、附件、用户使用流程和可复现现象",
       ".case-grid article:nth-child(2) .case-outcome dt:nth-of-type(3)": "处理动作",
       ".case-grid article:nth-child(2) .case-outcome dd:nth-of-type(3)":
-        "现象复核、复现路径和手册引导检查",
+        "现象复核、复现路径和按手册检查",
       ".case-grid article:nth-child(2) .case-outcome dt:nth-of-type(4)": "验证",
-      ".case-grid article:nth-child(2) .case-outcome dd:nth-of-type(4)": "测量记录和维修后确认",
+      ".case-grid article:nth-child(2) .case-outcome dd:nth-of-type(4)": "测量记录和维修后功能确认",
       ".case-grid article:nth-child(2) .case-outcome dt:nth-of-type(5)": "放行判断",
       ".case-grid article:nth-child(2) .case-outcome dd:nth-of-type(5)":
         "根据服务后证据记录设备是可使用、需观察使用，还是需要升级",
@@ -839,7 +839,7 @@ const translations = {
       ".case-grid article:nth-child(3) .case-outcome dd:nth-of-type(3)":
         "对齐工单、服务报告、设备服务历史和处理动作",
       ".case-grid article:nth-child(3) .case-outcome dt:nth-of-type(4)": "验证",
-      ".case-grid article:nth-child(3) .case-outcome dd:nth-of-type(4)": "交叉检查设备服务历史和客户沟通更新",
+      ".case-grid article:nth-child(3) .case-outcome dd:nth-of-type(4)": "交叉核对设备服务历史和客户沟通更新",
       ".case-grid article:nth-child(3) .case-outcome dt:nth-of-type(5)": "放行判断",
       ".case-grid article:nth-child(3) .case-outcome dd:nth-of-type(5)":
         "为医院工程团队和内部工程师清楚记录下一次使用或升级状态",
@@ -853,7 +853,7 @@ const translations = {
       ".study-grid article:nth-child(1) h3": "Master of Philosophy",
       ".study-grid article:nth-child(1) p:nth-of-type(1)": "The University of Sydney",
       ".study-grid article:nth-child(1) p:nth-of-type(2)":
-        "生物医学工程研究，重点包括实验计划、阻抗测量、材料 / 工艺权衡、验证证据和技术文档。这个研究背景支持基于测量、证据和受控记录的服务方式，而不是基于假设。",
+        "生物医学工程研究，重点包括实验计划、阻抗测量、材料 / 工艺权衡、验证证据和技术文档。这段研究经历也支持以测量、证据和规范记录为基础的服务方式，而不是凭假设判断。",
       ".study-grid article:nth-child(2) span": "2017 - 2020",
       ".study-grid article:nth-child(2) h3": "Bachelor of Biomedical Engineering",
       ".study-grid article:nth-child(2) p:nth-of-type(1)": "The University of Sydney",
@@ -865,12 +865,12 @@ const translations = {
       ".study-grid article:nth-child(3) p":
         "围绕可穿戴医疗设备可行性，处理柔性电极几何、银墨涂层、阻抗测量和可制造性权衡。",
       "#contact .section-kicker": "联系",
-      "#contact-title": "可以继续聊医疗设备现场服务机会。",
+      "#contact-title": "可以继续沟通医疗设备现场服务机会。",
       ".contact-inner > p:not(.section-kicker)":
         "如果是悉尼医疗设备现场服务相关岗位，邮件是最合适的第一步；中文或英文都可以。",
-      ".contact-actions-title": "请直接发送岗位范围。",
+      ".contact-actions-title": "请直接发送岗位信息。",
       ".contact-actions-summary":
-        "有用信息包括设备类型、服务环境、出行范围、开始时间，以及招聘流程的下一步安排。",
+        "有用信息包括设备类型、服务环境、现场服务范围、开始时间，以及招聘流程的下一步安排。",
       ".contact-email-action": "发邮件给 Henry",
       ".contact-copy-email-action": "复制邮箱",
       ".contact-resume-link": "PDF 简历",
@@ -881,7 +881,7 @@ const translations = {
       ".contact-readiness div:nth-child(1) strong": "可开始时间",
       ".contact-readiness div:nth-child(1) span": "可沟通",
       ".contact-readiness div:nth-child(2) strong": "驾照",
-      ".contact-readiness div:nth-child(2) span": "可支持悉尼现场出勤",
+      ".contact-readiness div:nth-child(2) span": "可支持悉尼现场服务",
       ".contact-readiness div:nth-child(3) strong": "工作权利",
       ".contact-readiness div:nth-child(3) span": "可按雇主流程核验",
       ".contact-readiness div:nth-child(4) strong": "直接邮箱",
@@ -902,15 +902,15 @@ const translations = {
           body: "电气安全测试和医疗设备性能验证。",
         },
         {
-          title: "设备深度",
-          body: "呼吸、监护、影像和药房自动化服务深度。",
+          title: "设备经验深度",
+          body: "加深呼吸、监护、影像和药房自动化服务能力。",
         },
         {
-          title: "CMMS 质量",
+          title: "CMMS 记录质量",
           body: "医疗设备资产管理和 CMMS 记录质量。",
         },
         {
-          title: "按流程排查",
+          title: "按流程故障排查",
           body: "厂家培训和按流程故障排查。",
         },
         {
