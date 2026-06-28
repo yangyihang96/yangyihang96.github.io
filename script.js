@@ -164,9 +164,9 @@ const translations = {
       ".experience-outcome dd:nth-of-type(4)":
         "Biomedical teams, clinical users, vendors, and internal engineers can see next-use status",
       ".partners-section .section-kicker": "Commercial Partner Ecosystems",
-      "#partners-title": "Large enterprise partner ecosystems add context to the service scope.",
+      "#partners-title": "Enterprise medical-technology ecosystems add context to the service scope.",
       ".partners-copy > p:not(.section-kicker)":
-        "Based on service records, this list keeps only large medical-technology and enterprise partner ecosystems. Small clinics, individual sites, job numbers, serial numbers, customer records, and public endorsements are intentionally not published.",
+        "Representative brands and platforms help show the equipment families, workflows, and service environments covered through field service and workshop support.",
       ".partners-grid article:nth-child(1) .partner-category": "Respiratory / monitoring / ultrasound",
       ".partners-grid article:nth-child(1) h3": "Philips Healthcare",
       ".partners-grid article:nth-child(1) p":
@@ -295,7 +295,7 @@ const translations = {
       ".capability-row article:nth-child(6) span": "Records",
       ".capability-row article:nth-child(6) h3": "Service traceability",
       ".capability-row article:nth-child(6) p":
-        "Simpro work orders, service reports, serial details, equipment history, customer updates, and close-out notes.",
+        "Simpro work orders, service reports, equipment history, customer updates, and close-out notes.",
       ".capability-row article:nth-child(6) .scope-evidence dt:nth-of-type(1)": "Service exposure",
       ".capability-row article:nth-child(6) .scope-evidence dd:nth-of-type(1)":
         "CMMS records, handover notes, and service history alignment.",
@@ -309,10 +309,10 @@ const translations = {
       ".target-role-list li:nth-child(2)": "Medical Device Service Engineer",
       ".target-role-list li:nth-child(3)": "Clinical Engineering Service Support",
       ".target-role-list li:nth-child(4)": "Biomedical Technician / Service Technician",
-      "#case-notes .section-kicker": "De-identified Case Notes",
-      "#case-title": "Service examples should show judgement, not expose sensitive records.",
+      "#case-notes .section-kicker": "Service Case Notes",
+      "#case-title": "Service examples show judgement, verification and handover.",
       "#case-notes .section-intro":
-        "These cases are de-identified; formal certificates, customer-specific records, and sensitive documents are handled through an authorized hiring process.",
+        "These examples focus on the service logic behind maintenance, troubleshooting, documentation and release decisions.",
       ".fault-approach h3": "Fault diagnosis approach",
       ".fault-approach li:nth-child(1)": "Reported symptom",
       ".fault-approach li:nth-child(2)": "safety screen",
@@ -347,7 +347,7 @@ const translations = {
         "Returned equipment with a clear next-use status and service close-out trail",
       ".case-grid article:nth-child(2) span": "02 / Fault diagnosis",
       ".case-grid article:nth-child(2) h3":
-        "Anonymised troubleshooting example - intermittent user-reported fault",
+        "Troubleshooting example - intermittent user-reported fault",
       ".case-grid article:nth-child(2) p":
         "A user-reported intermittent fault was reviewed against device condition, service history, accessories, user workflow, and reproducible symptoms. I followed manual-led checks, recorded measurement notes, confirmed post-repair function, and documented whether the device was ready for use, monitored, or escalated.",
       ".case-grid article:nth-child(2) .case-outcome dt:nth-of-type(1)": "Risk point",
@@ -481,9 +481,9 @@ const translations = {
       ".judgement-grid": { "aria-label": "Clinical service judgement points" },
       ".release-list": { "aria-label": "Next-use status options" },
       ".fault-approach": { "aria-label": "Fault diagnosis approach" },
-      ".case-grid article:nth-child(1) .case-outcome": { "aria-label": "De-identified case outcome" },
-      ".case-grid article:nth-child(2) .case-outcome": { "aria-label": "De-identified case outcome" },
-      ".case-grid article:nth-child(3) .case-outcome": { "aria-label": "De-identified case outcome" },
+      ".case-grid article:nth-child(1) .case-outcome": { "aria-label": "Service case outcome" },
+      ".case-grid article:nth-child(2) .case-outcome": { "aria-label": "Service case outcome" },
+      ".case-grid article:nth-child(3) .case-outcome": { "aria-label": "Service case outcome" },
       ".contact-actions": { "aria-label": "Recruiter contact actions" },
       ".contact-readiness": { "aria-label": "Recruiter readiness details" },
       ".nav-email-link": { "aria-label": "Email Yihang Henry Yang", href: recruiterEmailHrefEn },
@@ -624,9 +624,9 @@ const translations = {
       ".experience-outcome dd:nth-of-type(4)":
         "医院工程团队、临床用户、厂商和内部工程师能看到下一次使用状态",
       ".partners-section .section-kicker": "商业伙伴生态",
-      "#partners-title": "大型企业伙伴生态能补充说明服务范围。",
+      "#partners-title": "企业级医疗技术生态补充说明服务范围。",
       ".partners-copy > p:not(.section-kicker)":
-        "根据服务记录，这里只保留大型医疗技术厂商和企业级伙伴生态。小诊所、具体站点、工单号、序列号、客户记录和公开背书不在网页上发布。",
+        "这些代表性品牌和平台用于说明现场服务与车间支持覆盖的设备族、工作流和服务环境。",
       ".partners-grid article:nth-child(1) .partner-category": "呼吸 / 监护 / 超声",
       ".partners-grid article:nth-child(1) h3": "Philips Healthcare 飞利浦医疗",
       ".partners-grid article:nth-child(1) p":
@@ -754,7 +754,7 @@ const translations = {
       ".capability-row article:nth-child(6) span": "记录",
       ".capability-row article:nth-child(6) h3": "服务可追踪性",
       ".capability-row article:nth-child(6) p":
-        "Simpro 工单、服务报告、序列信息、设备历史、客户更新和闭环说明。",
+        "Simpro 工单、服务报告、设备历史、客户更新和闭环说明。",
       ".capability-row article:nth-child(6) .scope-evidence dt:nth-of-type(1)": "服务接触",
       ".capability-row article:nth-child(6) .scope-evidence dd:nth-of-type(1)":
         "CMMS 记录、交接记录和服务历史对齐。",
@@ -768,10 +768,10 @@ const translations = {
       ".target-role-list li:nth-child(2)": "Medical Device Service Engineer",
       ".target-role-list li:nth-child(3)": "Clinical Engineering Service Support",
       ".target-role-list li:nth-child(4)": "Biomedical Technician / Service Technician",
-      "#case-notes .section-kicker": "匿名服务案例",
-      "#case-title": "服务案例应该展示判断方式，而不是暴露敏感记录。",
+      "#case-notes .section-kicker": "服务案例",
+      "#case-title": "服务案例展示判断、验证和交接。",
       "#case-notes .section-intro":
-        "这里展示的是匿名服务案例。正式证书、客户相关记录和敏感文件只会在授权招聘流程中提供。",
+        "这些案例聚焦维护、故障诊断、记录和放行判断背后的服务逻辑。",
       ".fault-approach h3": "故障诊断路径",
       ".fault-approach li:nth-child(1)": "报告现象",
       ".fault-approach li:nth-child(2)": "安全初筛",
@@ -805,7 +805,7 @@ const translations = {
       ".case-grid article:nth-child(1) .case-outcome dd:nth-of-type(6)":
         "设备带着明确下一次使用状态和服务闭环记录返回",
       ".case-grid article:nth-child(2) span": "02 / 故障诊断",
-      ".case-grid article:nth-child(2) h3": "匿名故障排查案例 - 用户反馈的间歇性故障",
+      ".case-grid article:nth-child(2) h3": "故障排查案例 - 用户反馈的间歇性故障",
       ".case-grid article:nth-child(2) p":
         "对用户反馈的间歇性故障，会结合设备状态、服务历史、附件、用户工作流和可复现现象判断；按手册检查，记录测量结果，确认维修后功能，并记录设备是可使用、需观察，还是需要升级。",
       ".case-grid article:nth-child(2) .case-outcome dt:nth-of-type(1)": "风险点",
@@ -837,7 +837,7 @@ const translations = {
         "工单、服务动作、测试记录、设备历史、客户更新和升级状态",
       ".case-grid article:nth-child(3) .case-outcome dt:nth-of-type(3)": "服务动作",
       ".case-grid article:nth-child(3) .case-outcome dd:nth-of-type(3)":
-        "对齐序列信息、工单、服务报告和处理动作",
+        "对齐工单、服务报告、设备历史和处理动作",
       ".case-grid article:nth-child(3) .case-outcome dt:nth-of-type(4)": "验证",
       ".case-grid article:nth-child(3) .case-outcome dd:nth-of-type(4)": "交叉检查设备历史和客户更新",
       ".case-grid article:nth-child(3) .case-outcome dt:nth-of-type(5)": "放行判断",

@@ -15,8 +15,8 @@ const themeInit = read("theme-init.js");
 const publicSource = `${html}\n${css}\n${script}\n${themeInit}`;
 const linkedinUrl = "https://au.linkedin.com/in/henry-yang-9644382bb";
 const githubUrl = "https://github.com/yangyihang96";
-const privacySentence =
-  "De-identified service examples are shown here. Formal certificates, customer-specific records, and sensitive documents are available only through an authorized hiring process.";
+const defensiveCopyPattern =
+  /De-identified|Anonymised|Based on service records|Small clinics|individual sites|job numbers|serial numbers|customer records|public endorsements|intentionally not published|Formal certificates|customer-specific records|sensitive documents|authorized hiring process|不发布|不公开|小诊所|具体站点|工单号|序列号|客户记录|公开背书|敏感记录|敏感文件|授权招聘流程|匿名服务案例|匿名故障排查案例/i;
 
 const sectionById = (id) => {
   const start = html.indexOf(`<section id="${id}"`);
@@ -70,9 +70,9 @@ test("metadata targets a Sydney biomedical field-service recruiter", () => {
     html,
     /<meta name="description" content="Sydney-based Biomedical Field Service Engineer with nearly three years of field and workshop service experience across hospital and pharmacy medical equipment\."/
   );
-  assert.match(html, /src="theme-init\.js\?v=partner-equipment-1"/);
-  assert.match(html, /href="styles\.css\?v=partner-equipment-1"/);
-  assert.match(html, /src="script\.js\?v=partner-equipment-1"/);
+  assert.match(html, /src="theme-init\.js\?v=service-copy-1"/);
+  assert.match(html, /href="styles\.css\?v=service-copy-1"/);
+  assert.match(html, /src="script\.js\?v=service-copy-1"/);
   assert.match(html, /<link rel="canonical" href="https:\/\/yangyihang96\.com\/">/);
   assert.doesNotMatch(html, /http:\/\/yangyihang96\.com/);
 
@@ -172,9 +172,8 @@ test("hero leads with role, experience, mobility, work-right readiness, and thre
   assert.doesNotMatch(heroActions, /GitHub|DOCX|View De-identified Cases|Private proof|Hiring docs/);
 });
 
-test("defensive privacy language is compressed to one clear boundary", () => {
-  const matches = publicSource.match(new RegExp(privacySentence.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g")) || [];
-  assert.equal(matches.length, 1);
+test("defensive privacy language stays off the public page", () => {
+  assert.doesNotMatch(publicSource, defensiveCopyPattern);
   assert.doesNotMatch(
     publicSource,
     /Private proof|Proof boundary|Screening Snapshot|Hiring docs|Public-safe summary|Private after role fit|Sensitive check material|Request documents after fit/
@@ -219,8 +218,8 @@ test("commercial partner ecosystems are listed without overclaiming endorsement"
   const partners = sectionByClass("partners-section");
 
   assert.match(partners, /<p class="section-kicker">Commercial Partner Ecosystems<\/p>/);
-  assert.match(partners, /<h2 id="partners-title">Large enterprise partner ecosystems add context to the service scope\.<\/h2>/);
-  assert.match(partners, /Small clinics, individual sites, job numbers, serial numbers, customer records, and public endorsements are intentionally not published/);
+  assert.match(partners, /<h2 id="partners-title">Enterprise medical-technology ecosystems add context to the service scope\.<\/h2>/);
+  assert.match(partners, /Representative brands and platforms help show the equipment families, workflows, and service environments covered through field service and workshop support\./);
   assert.equal(articleCount(partners), 5);
   assert.match(partners, /src="assets\/logo-philips\.svg"/);
   assert.match(partners, /src="assets\/logo-bd\.svg"/);
@@ -244,7 +243,7 @@ test("commercial partner ecosystems are listed without overclaiming endorsement"
   assert.match(partners, /Vyntus Body/);
   assert.match(css, /\.partner-logo-frame/);
   assert.match(css, /\.partner-equipment/);
-  assert.doesNotMatch(partners, /official partner|official endorsement|customer list|client list|strategic partner|Private Hospital|Medical Centre|Day Surgery|QAS/i);
+  assert.doesNotMatch(partners, /official partner|official endorsement|customer list|client list|strategic partner|Private Hospital|Medical Centre|Day Surgery|QAS|Small clinics|not published|serial numbers/i);
 });
 
 test("quick fit and proof points answer HR questions without sounding like an interview script", () => {
@@ -314,10 +313,12 @@ test("equipment and service scope merges skills and training into equipment cate
   assert.match(scope, /dispensing\/workflow check/);
 });
 
-test("case notes include de-identified outcomes and operational value", () => {
+test("case notes include service outcomes and operational value", () => {
   const cases = sectionById("case-notes");
 
-  assert.match(cases, new RegExp(privacySentence.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+  assert.match(cases, /<p class="section-kicker">Service Case Notes<\/p>/);
+  assert.match(cases, /Service examples show judgement, verification and handover/);
+  assert.match(cases, /These examples focus on the service logic behind maintenance, troubleshooting, documentation and release decisions/);
   assert.match(cases, /Fault diagnosis approach/);
   assert.match(cases, /Reported symptom/);
   assert.match(cases, /safety screen/);
@@ -328,12 +329,12 @@ test("case notes include de-identified outcomes and operational value", () => {
   assert.equal((cases.match(/<dt>Evidence used<\/dt>/g) || []).length, 3);
   assert.equal((cases.match(/<dt>Release decision<\/dt>/g) || []).length, 3);
   assert.match(cases, /Returned equipment with a clear next-use status and service close-out trail/);
-  assert.match(cases, /Anonymised troubleshooting example - intermittent user-reported fault/);
+  assert.match(cases, /Troubleshooting example - intermittent user-reported fault/);
   assert.match(cases, /device condition, service history, accessories, user workflow, and reproducible symptoms/);
   assert.match(cases, /ready for use, monitored, or escalated/);
   assert.match(cases, /Service records are treated as engineering evidence/);
   assert.doesNotMatch(cases, /Reduced repeat troubleshooting time/);
-  assert.doesNotMatch(cases, /customer names|serial numbers|internal records/i);
+  assert.doesNotMatch(cases, /customer names|serial numbers|internal records|De-identified|Anonymised|sensitive records|authorized hiring/i);
 });
 
 test("education stays concise and work-right proof is not over-explained", () => {
@@ -390,7 +391,7 @@ test("links remain recognizable in body copy while navigation and buttons stay b
 
 test("dark mode follows system preference without a manual toggle", () => {
   assert.doesNotMatch(html, /theme-toggle|data-theme-toggle|Toggle dark mode/);
-  assert.ok(html.indexOf('src="theme-init.js?v=partner-equipment-1"') < html.indexOf('href="styles.css?v=partner-equipment-1"'));
+  assert.ok(html.indexOf('src="theme-init.js?v=service-copy-1"') < html.indexOf('href="styles.css?v=service-copy-1"'));
   assert.doesNotMatch(themeInit, /localStorage|siteTheme|storageKey/);
   assert.match(themeInit, /prefers-color-scheme: dark/);
   assert.match(themeInit, /const resolvedTheme = mediaQuery\?\.matches \? "dark" : "light"/);
