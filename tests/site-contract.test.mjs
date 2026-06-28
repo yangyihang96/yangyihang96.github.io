@@ -115,8 +115,10 @@ test("document security policy constrains the static site surface", () => {
 test("static security files document deployable response headers and reporting contact", () => {
   const headers = read("_headers");
   const securityTxt = read(".well-known/security.txt");
+  const jekyllConfig = read("_config.yml");
 
   assert.ok(fs.existsSync(path.join(root, ".nojekyll")));
+  assert.match(jekyllConfig, /include:\s*\n\s*- \.well-known/);
   assert.match(securityTxt, /Contact: mailto:yangyihang96@gmail\.com/);
   assert.match(securityTxt, /Expires: 2027-06-28T00:00:00Z/);
   assert.match(securityTxt, /Canonical: https:\/\/yangyihang96\.com\/\.well-known\/security\.txt/);
