@@ -70,9 +70,9 @@ test("metadata targets a Sydney biomedical field-service recruiter", () => {
     html,
     /<meta name="description" content="Sydney-based Biomedical Field Service Engineer with nearly three years of field and workshop service experience across hospital and pharmacy medical equipment\."/
   );
-  assert.match(html, /src="theme-init\.js\?v=zh-polish-1"/);
-  assert.match(html, /href="styles\.css\?v=zh-polish-1"/);
-  assert.match(html, /src="script\.js\?v=zh-polish-1"/);
+  assert.match(html, /src="theme-init\.js\?v=visual-polish-1"/);
+  assert.match(html, /href="styles\.css\?v=visual-polish-1"/);
+  assert.match(html, /src="script\.js\?v=visual-polish-1"/);
   assert.match(html, /<link rel="canonical" href="https:\/\/yangyihang96\.com\/">/);
   assert.doesNotMatch(html, /http:\/\/yangyihang96\.com/);
 
@@ -352,6 +352,20 @@ test("Chinese translation reads naturally for HR and field-service review", () =
   assert.doesNotMatch(script, /现场服务快照|现场服务画像|商业伙伴生态|服务接触|台面检查|用户工作流|客户更新链路|受监管医疗记录|本地 biomedical governance|避免过度承诺|雇主核验材料已准备/);
 });
 
+test("visual polish keeps the site professional without adding marketing clutter", () => {
+  assert.match(css, /\/\* Visual design polish pass \*\//);
+  assert.match(css, /--soft-shadow:/);
+  assert.match(css, /--grid-line:/);
+  assert.match(css, /\.resume-style\.resume-compact \.hero::before/);
+  assert.match(css, /\.resume-style \.resume-link::before/);
+  assert.match(css, /\.resume-style \.email-action::before/);
+  assert.match(css, /\.resume-style \.linkedin-action::before/);
+  assert.match(css, /\.resume-style\.resume-compact \.hero-meta div[\s\S]*?border-left:\s*3px solid/);
+  assert.match(css, /\.resume-style \.fit-grid article[\s\S]*?border-top:\s*3px solid/);
+  assert.match(css, /\.resume-style \.partners-section,[\s\S]*?\.resume-style \.capabilities[\s\S]*?background-size:\s*40px 40px/);
+  assert.doesNotMatch(css, /gradient orb|bokeh|decorative blob/i);
+});
+
 test("education stays concise and work-right proof is not over-explained", () => {
   const study = sectionById("study");
 
@@ -406,7 +420,7 @@ test("links remain recognizable in body copy while navigation and buttons stay b
 
 test("dark mode follows system preference without a manual toggle", () => {
   assert.doesNotMatch(html, /theme-toggle|data-theme-toggle|Toggle dark mode/);
-  assert.ok(html.indexOf('src="theme-init.js?v=zh-polish-1"') < html.indexOf('href="styles.css?v=zh-polish-1"'));
+  assert.ok(html.indexOf('src="theme-init.js?v=visual-polish-1"') < html.indexOf('href="styles.css?v=visual-polish-1"'));
   assert.doesNotMatch(themeInit, /localStorage|siteTheme|storageKey/);
   assert.match(themeInit, /prefers-color-scheme: dark/);
   assert.match(themeInit, /const resolvedTheme = mediaQuery\?\.matches \? "dark" : "light"/);
