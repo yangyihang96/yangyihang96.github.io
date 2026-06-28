@@ -18,36 +18,36 @@ PDF_PATH = ASSETS / "Henry_Yang_Biomedical_Engineer_Resume.pdf"
 DOCX_PATH = ASSETS / "Henry_Yang_Biomedical_Engineer_Resume.docx"
 
 PROFILE = (
-    "Nearly three years of full-time field and workshop service experience at "
-    "Nova Biomedical Australia across hospital and pharmacy medical equipment. "
-    "Core strengths include PM, fault diagnosis, repair, installation support, "
-    "verification, service documentation, and return-to-use or escalation records."
+    "Nearly three years of field and workshop service experience at "
+    "Nova Biomedical Australia with medical equipment used in hospital and pharmacy settings. "
+    "Core strengths include preventive maintenance (PM), fault diagnosis, repair, installation support, "
+    "verification, service documentation, and next-use or escalation records."
 )
 
 CONTACT_LINE = (
     "Sydney, NSW | 0436 016 660 | yangyihang96@gmail.com | Driver licence | "
-    "Sydney field travel | Work-right check ready"
+    "Available for Sydney field travel | Work rights available for employer verification"
 )
 
 SERVICE_BULLETS = [
-    "Perform PM, fault diagnosis, repair, installation support, verification, and service documentation across field and workshop settings.",
+    "Perform preventive maintenance (PM), fault diagnosis, repair, installation support, verification, and service documentation across field and workshop settings.",
     "Support ventilation, patient monitoring, ultrasound, DEXA, pharmacy automation, X-ray support, and general biomedical equipment.",
     "Document service outcomes with functional checks, performance evidence, or clear escalation status.",
-    "Use manufacturer-led checks, service history, and functional evidence to document whether equipment is ready for use, requires monitoring, or needs escalation.",
-    "Maintain Simpro work orders, service reports, equipment history, and communication notes so service records remain traceable engineering evidence.",
+    "Use manufacturer-led checks, service history, and functional evidence to document whether equipment is ready for use, requires follow-up, or needs escalation.",
+    "Maintain Simpro work orders, service reports, equipment history, and communication notes so service records remain traceable service evidence.",
 ]
 
 SCOPE_BULLETS = [
     "Respiratory: V60, V60 Plus, Trilogy; planned service, checks, and troubleshooting preparation.",
     "Monitoring: Avalon, Efficia, HeartStart; service preparation, checks, and handover notes.",
     "Imaging and diagnostics: EPIQ, Affiniti, CX30, CX50, Horizon DEXA, and X-ray support.",
-    "Pharmacy automation: BD FIX100, Pyxis, ROWA, workflow awareness, records, and handover.",
+    "Pharmacy automation: BD FIX100, Pyxis, ROWA, workflow support, records, and handover.",
 ]
 
 SKILL_BULLETS = [
     "PM procedures, fault diagnosis, functional testing, performance verification, service reports, and escalation notes.",
     "Simpro / CMMS, equipment history, equipment identifiers, communication notes, traceability, manufacturer documentation, and Microsoft Office.",
-    "Electrical safety testing awareness, test equipment familiarity, customer handover, Mandarin Chinese, and professional working English.",
+    "Electrical safety testing awareness, test equipment familiarity, service handover, Mandarin Chinese, and professional working proficiency in English.",
 ]
 
 FIELD_SERVICE_TOOLS = [
@@ -65,8 +65,8 @@ EDUCATION_BULLETS = [
 
 OUTCOME_BULLETS = [
     "Supported PM, repair, verification, and documentation across ventilation, monitoring, ultrasound, DEXA, pharmacy automation, and general biomedical equipment in hospital, pharmacy, and workshop settings.",
-    "Diagnosed user-reported faults by separating device condition, accessory context, workflow, repair history, reproducible symptoms, manual-led checks, and post-repair verification.",
-    "Supported next-use decisions by documenting whether equipment was ready for use, required monitoring, or needed escalation based on post-service evidence.",
+    "Diagnosed user-reported faults by separating device condition, accessory context, workflow, repair history, reproducible symptoms, procedure-led checks, and post-repair verification.",
+    "Supported next-use decisions by documenting whether equipment was ready for use, required follow-up, or needed escalation based on post-service evidence.",
 ]
 
 ROLE_FIT_BULLETS = [

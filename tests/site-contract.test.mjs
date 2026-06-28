@@ -68,11 +68,11 @@ test("metadata targets a Sydney biomedical field-service recruiter", () => {
   assert.match(html, /<title>Yihang \(Henry\) Yang \| Biomedical Field Service Engineer in Sydney<\/title>/);
   assert.match(
     html,
-    /<meta name="description" content="Sydney-based Biomedical Field Service Engineer with nearly three years of field and workshop service experience across hospital and pharmacy medical equipment\."/
+    /<meta name="description" content="Sydney-based Biomedical Field Service Engineer with nearly three years of field and workshop service experience with medical equipment used in hospital and pharmacy settings\."/
   );
-  assert.match(html, /src="theme-init\.js\?v=copy-audit-2"/);
-  assert.match(html, /href="styles\.css\?v=copy-audit-2"/);
-  assert.match(html, /src="script\.js\?v=copy-audit-2"/);
+  assert.match(html, /src="theme-init\.js\?v=english-copy-1"/);
+  assert.match(html, /href="styles\.css\?v=english-copy-1"/);
+  assert.match(html, /src="script\.js\?v=english-copy-1"/);
   assert.match(html, /<link rel="canonical" href="https:\/\/yangyihang96\.com\/">/);
   assert.doesNotMatch(html, /http:\/\/yangyihang96\.com/);
 
@@ -83,7 +83,7 @@ test("metadata targets a Sydney biomedical field-service recruiter", () => {
   assert.equal(data.jobTitle, "Biomedical Field Service Engineer");
   assert.equal(
     data.description,
-    "Sydney-based Biomedical Field Service Engineer with nearly three years of field and workshop service experience across hospital and pharmacy medical equipment."
+    "Sydney-based Biomedical Field Service Engineer with nearly three years of field and workshop service experience with medical equipment used in hospital and pharmacy settings."
   );
   assert.deepEqual(data.sameAs, [linkedinUrl, githubUrl]);
 });
@@ -155,11 +155,11 @@ test("hero leads with role, experience, mobility, work-right readiness, and thre
   assert.match(hero, /<h1 id="hero-title">Biomedical Field Service Engineer \| Sydney<\/h1>/);
   assert.match(
     hero,
-    /Nearly three years of full-time field and workshop service experience across hospital and pharmacy medical equipment - PM, fault diagnosis, repair, installation support, verification, and service documentation\./
+    /Nearly three years of field and workshop service experience with medical equipment used in hospital and pharmacy settings - preventive maintenance, fault diagnosis, repair, installation support, verification, and service documentation\./
   );
   assert.match(hero, /<dt>Experience<\/dt>\s*<dd>Nearly 3 years<\/dd>/);
-  assert.match(hero, /<dt>Mobility<\/dt>\s*<dd>Driver licence \+ field travel<\/dd>/);
-  assert.match(hero, /<dt>Work rights<\/dt>\s*<dd>Available for employer check<\/dd>/);
+  assert.match(hero, /<dt>Mobility<\/dt>\s*<dd>Driver licence; available for field travel<\/dd>/);
+  assert.match(hero, /<dt>Work rights<\/dt>\s*<dd>Available for employer verification<\/dd>/);
   assert.match(hero, /class="hero-skill-tags"/);
   assert.match(hero, /Ventilation/);
   assert.match(hero, /Patient Monitoring/);
@@ -218,8 +218,8 @@ test("medical technology platforms are listed without overclaiming endorsement",
   const partners = sectionByClass("partners-section");
 
   assert.match(partners, /<p class="section-kicker">Medical Technology Platforms<\/p>/);
-  assert.match(partners, /<h2 id="partners-title">Selected device manufacturers and platforms from service records\.<\/h2>/);
-  assert.match(partners, /This section groups the device categories, platform workflows, and field or workshop service contexts I have worked around\./);
+  assert.match(partners, /<h2 id="partners-title">Selected device manufacturers and platforms recorded in service work\.<\/h2>/);
+  assert.match(partners, /Grouped by device category, platform workflow, and field or workshop service context\./);
   assert.equal(articleCount(partners), 5);
   assert.match(partners, /src="assets\/logo-philips\.svg"/);
   assert.match(partners, /src="assets\/logo-bd\.svg"/);
@@ -250,28 +250,28 @@ test("quick fit and proof points answer HR questions without sounding like an in
   const fit = sectionByClass("fit-strip");
 
   assert.match(fit, /<p class="section-kicker">Field Service Snapshot<\/p>/);
-  assert.match(fit, /<h2 id="fit-title">Field-ready service profile for hospital and pharmacy equipment\.<\/h2>/);
+  assert.match(fit, /<h2 id="fit-title">Biomedical service profile for hospital and pharmacy equipment\.<\/h2>/);
   assert.match(fit, /Nearly 3 years field\/workshop service/);
   assert.match(fit, /Driver licence and Sydney field travel/);
   assert.match(fit, /<span>Records<\/span>\s*<strong>Simpro, service reports, equipment history, handover<\/strong>/);
   assert.match(fit, /class="proof-grid" aria-label="Recruiter proof points"/);
   assert.equal(articleCount(fit.match(/<div class="proof-grid"[\s\S]*?<\/div>/)?.[0] ?? ""), 4);
   assert.match(fit, /Service traceability/);
-  assert.match(fit, /evidence for the next service decision, not just admin/);
+  assert.match(fit, /support the next service decision rather than serving only as administration/);
   assert.doesNotMatch(fit, /Quick Fit|What a recruiter needs|Ask in interview|Private check|Public evidence|what proof to request/i);
 });
 
-test("clinical service judgement explains return-to-use, escalation, and regulated records", () => {
+test("clinical service judgement explains next-use status, escalation, and regulated records", () => {
   const judgement = sectionByClass("judgement-section");
 
   assert.match(judgement, /<p class="section-kicker">Clinical Safety &amp; Service Judgement<\/p>/);
   assert.match(judgement, /traceable next-use or escalation status/);
   assert.match(judgement, /Unsafe or uncertain devices should not be returned to use/);
   assert.match(judgement, /verified for use/);
-  assert.match(judgement, /restricted or monitored use/);
+  assert.match(judgement, /follow-up required/);
   assert.match(judgement, /escalated \/ not returned/);
   assert.match(judgement, /Lifecycle-aware biomedical service/);
-  assert.match(judgement, /Regulated healthcare documentation mindset/);
+  assert.match(judgement, /Regulated documentation mindset/);
   assert.match(judgement, /factual notes, traceable actions, escalation/);
   assert.doesNotMatch(judgement, /expert|certified|qualified compliance/i);
   assert.match(script, /\.judgement-lead > p:not\(\.section-kicker\)/);
@@ -293,7 +293,7 @@ test("equipment and service scope merges skills and training into equipment cate
   const scope = sectionById("capabilities");
 
   assert.match(scope, /<p class="section-kicker">Equipment &amp; Service Scope<\/p>/);
-  assert.match(scope, /<h2 id="capabilities-title">Equipment scope and verification evidence\.<\/h2>/);
+  assert.match(scope, /<h2 id="capabilities-title">Equipment scope and verification basis\.<\/h2>/);
   assert.equal(articleCount(scope), 6);
   assert.match(scope, /Respiratory service/);
   assert.match(scope, /Patient monitoring/);
@@ -305,7 +305,7 @@ test("equipment and service scope merges skills and training into equipment cate
   assert.match(scope, /Training completed/);
   assert.match(scope, /Installation support/);
   assert.match(scope, /Documentation \/ handover experience/);
-  assert.equal((scope.match(/<dt>Verification evidence<\/dt>/g) || []).length, 6);
+  assert.equal((scope.match(/<dt>Verification basis<\/dt>/g) || []).length, 6);
   assert.match(scope, /Flow\/pressure-related checks/);
   assert.match(scope, /ECG\/SpO2\/NIBP-related functional checks/);
   assert.match(scope, /probe\/cable condition/);
@@ -328,10 +328,10 @@ test("case notes include service outcomes and operational value", () => {
   assert.equal((cases.match(/<dt>Risk point<\/dt>/g) || []).length, 3);
   assert.equal((cases.match(/<dt>Evidence used<\/dt>/g) || []).length, 3);
   assert.equal((cases.match(/<dt>Release decision<\/dt>/g) || []).length, 3);
-  assert.match(cases, /Documented equipment with a clear next-use status and service record/);
+  assert.match(cases, /Equipment status documented with clear next-use notes and service records/);
   assert.match(cases, /Troubleshooting example - intermittent user-reported fault/);
   assert.match(cases, /device condition, service history, accessories, user workflow, and reproducible symptoms/);
-  assert.match(cases, /ready for use, required monitoring, or needed escalation/);
+  assert.match(cases, /ready for use, required follow-up, or needed escalation/);
   assert.match(cases, /Service records are treated as engineering evidence/);
   assert.doesNotMatch(cases, /Reduced repeat troubleshooting time/);
   assert.doesNotMatch(cases, /customer names|serial numbers|internal records|De-identified|Anonymised|sensitive records|authorized hiring/i);
@@ -410,8 +410,8 @@ test("contact prioritizes email, resume, LinkedIn, GitHub, availability, and fie
   assert.doesNotMatch(contact.match(/<div class="contact-action-buttons">([\s\S]*?)<\/div>/)?.[1] ?? "", /GitHub/);
   assert.match(contact, /<div class="contact-secondary-links" aria-label="Professional links">/);
   assert.match(contact, /<strong>Availability<\/strong>\s*<span>Upon discussion<\/span>/);
-  assert.match(contact, /<strong>Driver licence<\/strong>\s*<span>Sydney field travel ready<\/span>/);
-  assert.match(contact, /<strong>Work rights<\/strong>\s*<span>Available for employer check<\/span>/);
+  assert.match(contact, /<strong>Driver licence<\/strong>\s*<span>Available for Sydney field travel<\/span>/);
+  assert.match(contact, /<strong>Work rights<\/strong>\s*<span>Available for employer verification<\/span>/);
   assert.doesNotMatch(contact, /tel:|\+61\s?4|\b04\d{2}\b|phone-number|mobile-number/);
 });
 
@@ -426,7 +426,7 @@ test("links remain recognizable in body copy while navigation and buttons stay b
 
 test("dark mode follows system preference without a manual toggle", () => {
   assert.doesNotMatch(html, /theme-toggle|data-theme-toggle|Toggle dark mode/);
-  assert.ok(html.indexOf('src="theme-init.js?v=copy-audit-2"') < html.indexOf('href="styles.css?v=copy-audit-2"'));
+  assert.ok(html.indexOf('src="theme-init.js?v=english-copy-1"') < html.indexOf('href="styles.css?v=english-copy-1"'));
   assert.doesNotMatch(themeInit, /localStorage|siteTheme|storageKey/);
   assert.match(themeInit, /prefers-color-scheme: dark/);
   assert.match(themeInit, /const resolvedTheme = mediaQuery\?\.matches \? "dark" : "light"/);
@@ -460,24 +460,24 @@ test("resume PDF and DOCX match the revised HR-first positioning", () => {
   const combined = `${pdfText}\n${docxText}`;
 
   assert.match(combined, /Biomedical Field Service Engineer \| Sydney/);
-  assert.match(combined, /Nearly three years of full-time field and workshop service experience at Nova Biomedical Australia/);
+  assert.match(combined, /Nearly three years of field and workshop service experience at Nova Biomedical Australia/);
   assert.match(combined, /Sydney field travel/);
   assert.match(combined, /Driver licence/);
-  assert.match(combined, /Work-right check ready/);
-  assert.match(combined, /PM, fault diagnosis, repair, installation support, verification, and service documentation/);
+  assert.match(combined, /Work rights available for employer verification/);
+  assert.match(combined, /preventive maintenance \(PM\), fault diagnosis, repair, installation support, verification, and service documentation/);
   assert.match(combined, /Nova Biomedical Australia/);
   assert.match(combined, /Document service outcomes with functional checks, performance evidence, or clear escalation status/);
   assert.match(combined, /Simpro work orders, service reports, equipment history, and communication notes/);
-  assert.match(combined, /return-to-use or escalation records/i);
-  assert.match(combined, /ready for use, requires monitoring, or needs escalation/i);
-  assert.match(combined, /traceable engineering evidence/i);
+  assert.match(combined, /next-use or escalation records/i);
+  assert.match(combined, /ready for use, requires follow-up, or needs escalation/i);
+  assert.match(combined, /traceable service evidence/i);
   assert.match(combined, /Field service tools/i);
   assert.match(combined, /Simpro \/ CMMS/);
   assert.match(combined, /electrical safety testing awareness/i);
   assert.match(combined, /Target roles/i);
   assert.match(combined, /Biomedical Technician \/ Service Technician/);
   assert.match(combined, /Master of Philosophy, The University of Sydney, awarded Jun 2024/);
-  assert.doesNotMatch(combined, /DOCUMENT FORMAT|PDF for quick review|Reduced repeat troubleshooting time|Sensitive identity|authorized hiring process|customer-specific records|safe return-to-use decisions|Work-right evidence ready/);
+  assert.doesNotMatch(combined, /DOCUMENT FORMAT|PDF for quick review|Reduced repeat troubleshooting time|Sensitive identity|authorized hiring process|customer-specific records|safe return-to-use decisions|Work-right evidence ready|Work-right check ready|professional working English|manual-led checks/);
   assert.doesNotMatch(combined, /Full-time,\s*38 hours per week|38 hours per week|Nova Biomedical Pty Ltd/);
 });
 
