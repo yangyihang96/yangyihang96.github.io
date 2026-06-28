@@ -1361,6 +1361,10 @@ main:focus {
   height: auto;
 }
 
+.study-school-logo .study-school-logo-dark {
+  display: none;
+}
+
 .study-grid span {
   color: #a8d6cd;
   font-weight: 850;
@@ -2841,6 +2845,14 @@ body.resume-style {
   color: var(--ink-2);
 }
 
+.resume-style .study-section .section-intro {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.resume-style .study-grid h3 {
+  color: var(--ink);
+}
+
 .resume-style .contact-section {
   background: #102521;
 }
@@ -3640,6 +3652,23 @@ body.resume-style {
   background:
     linear-gradient(180deg, rgba(216, 243, 237, 0.05), rgba(120, 216, 206, 0.03)),
     var(--card-surface);
+}
+
+:root[data-theme="dark"] .study-school-logo {
+  border-color: rgba(216, 243, 237, 0.18);
+  background:
+    linear-gradient(180deg, rgba(216, 243, 237, 0.08), rgba(120, 216, 206, 0.04)),
+    #101817;
+  box-shadow: none;
+}
+
+:root[data-theme="dark"] .study-school-logo-light {
+  display: none;
+}
+
+:root[data-theme="dark"] .study-school-logo-dark {
+  display: block;
+  width: min(174px, 100%);
 }
 
 :root[data-theme="dark"] .capability-row article:hover {
