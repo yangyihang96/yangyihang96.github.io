@@ -70,9 +70,9 @@ test("metadata targets a Sydney biomedical field-service recruiter", () => {
     html,
     /<meta name="description" content="Sydney-based Biomedical Field Service Engineer with nearly three years of field and workshop service experience across hospital and pharmacy medical equipment\."/
   );
-  assert.match(html, /src="theme-init\.js\?v=enterprise-partners-1"/);
-  assert.match(html, /href="styles\.css\?v=enterprise-partners-1"/);
-  assert.match(html, /src="script\.js\?v=enterprise-partners-1"/);
+  assert.match(html, /src="theme-init\.js\?v=partner-equipment-1"/);
+  assert.match(html, /href="styles\.css\?v=partner-equipment-1"/);
+  assert.match(html, /src="script\.js\?v=partner-equipment-1"/);
   assert.match(html, /<link rel="canonical" href="https:\/\/yangyihang96\.com\/">/);
   assert.doesNotMatch(html, /http:\/\/yangyihang96\.com/);
 
@@ -222,6 +222,11 @@ test("commercial partner ecosystems are listed without overclaiming endorsement"
   assert.match(partners, /<h2 id="partners-title">Large enterprise partner ecosystems add context to the service scope\.<\/h2>/);
   assert.match(partners, /Small clinics, individual sites, job numbers, serial numbers, customer records, and public endorsements are intentionally not published/);
   assert.equal(articleCount(partners), 5);
+  assert.match(partners, /src="assets\/logo-philips\.svg"/);
+  assert.match(partners, /src="assets\/logo-bd\.svg"/);
+  assert.match(partners, /src="assets\/logo-device-technologies\.svg"/);
+  assert.match(partners, /src="assets\/logo-hologic\.svg"/);
+  assert.match(partners, /src="assets\/logo-jaeger\.svg"/);
   assert.match(partners, /Philips Healthcare/);
   assert.match(partners, /BD \/ BD Rowa/);
   assert.match(partners, /Device Technologies/);
@@ -232,6 +237,13 @@ test("commercial partner ecosystems are listed without overclaiming endorsement"
   assert.match(partners, /Critical care \/ resuscitation/);
   assert.match(partners, /Diagnostics \/ DEXA \/ surgical imaging/);
   assert.match(partners, /Respiratory diagnostics/);
+  assert.match(partners, /Respironics V60/);
+  assert.match(partners, /BD Pyxis/);
+  assert.match(partners, /Corpuls CPR arms/);
+  assert.match(partners, /Horizon DEXA/);
+  assert.match(partners, /Vyntus Body/);
+  assert.match(css, /\.partner-logo-frame/);
+  assert.match(css, /\.partner-equipment/);
   assert.doesNotMatch(partners, /official partner|official endorsement|customer list|client list|strategic partner|Private Hospital|Medical Centre|Day Surgery|QAS/i);
 });
 
@@ -378,7 +390,7 @@ test("links remain recognizable in body copy while navigation and buttons stay b
 
 test("dark mode follows system preference without a manual toggle", () => {
   assert.doesNotMatch(html, /theme-toggle|data-theme-toggle|Toggle dark mode/);
-  assert.ok(html.indexOf('src="theme-init.js?v=enterprise-partners-1"') < html.indexOf('href="styles.css?v=enterprise-partners-1"'));
+  assert.ok(html.indexOf('src="theme-init.js?v=partner-equipment-1"') < html.indexOf('href="styles.css?v=partner-equipment-1"'));
   assert.doesNotMatch(themeInit, /localStorage|siteTheme|storageKey/);
   assert.match(themeInit, /prefers-color-scheme: dark/);
   assert.match(themeInit, /const resolvedTheme = mediaQuery\?\.matches \? "dark" : "light"/);
@@ -455,9 +467,19 @@ test("published assets, robots, and sitemap stay aligned with the live site", ()
   assert.ok(fs.existsSync(path.join(root, "assets/logo-nova-biomedical-au.png")));
   assert.ok(fs.existsSync(path.join(root, "assets/logo-university-of-sydney.svg")));
   assert.ok(fs.existsSync(path.join(root, "assets/logo-university-of-sydney-white.svg")));
+  assert.ok(fs.existsSync(path.join(root, "assets/logo-philips.svg")));
+  assert.ok(fs.existsSync(path.join(root, "assets/logo-bd.svg")));
+  assert.ok(fs.existsSync(path.join(root, "assets/logo-device-technologies.svg")));
+  assert.ok(fs.existsSync(path.join(root, "assets/logo-hologic.svg")));
+  assert.ok(fs.existsSync(path.join(root, "assets/logo-jaeger.svg")));
   assert.match(html, /src="assets\/logo-nova-biomedical-au\.png"/);
   assert.match(html, /src="assets\/logo-university-of-sydney\.svg"/);
   assert.match(html, /src="assets\/logo-university-of-sydney-white\.svg"/);
+  assert.match(html, /src="assets\/logo-philips\.svg"/);
+  assert.match(html, /src="assets\/logo-bd\.svg"/);
+  assert.match(html, /src="assets\/logo-device-technologies\.svg"/);
+  assert.match(html, /src="assets\/logo-hologic\.svg"/);
+  assert.match(html, /src="assets\/logo-jaeger\.svg"/);
   assert.match(html, /alt="Nova Biomedical Australia logo"/);
 
   const robots = read("robots.txt");

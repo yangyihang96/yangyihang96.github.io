@@ -1104,7 +1104,9 @@ main:focus {
 }
 
 .partners-grid article {
-  min-height: 220px;
+  display: flex;
+  min-height: 430px;
+  flex-direction: column;
   padding: 24px;
   border: 1px solid rgba(19, 33, 31, 0.12);
   border-radius: 8px;
@@ -1112,7 +1114,34 @@ main:focus {
   box-shadow: 0 18px 50px rgba(19, 33, 31, 0.06);
 }
 
-.partners-grid span {
+.partner-logo-frame {
+  display: flex;
+  min-height: 58px;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 20px;
+  padding: 12px 14px;
+  border: 1px solid rgba(19, 33, 31, 0.10);
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.partner-logo {
+  width: auto;
+  max-width: 174px;
+  max-height: 34px;
+  object-fit: contain;
+}
+
+.partner-logo-device-technologies {
+  max-width: 188px;
+}
+
+.partner-logo-jaeger {
+  max-width: 160px;
+}
+
+.partners-grid .partner-category {
   color: var(--teal);
   font-size: 12px;
   font-weight: 850;
@@ -1121,7 +1150,7 @@ main:focus {
 }
 
 .partners-grid h3 {
-  margin: 18px 0 10px;
+  margin: 16px 0 10px;
   color: var(--ink);
   font-size: clamp(24px, 2.4vw, 34px);
   line-height: 1.05;
@@ -1131,6 +1160,26 @@ main:focus {
   margin: 0;
   color: var(--ink-2);
   line-height: 1.58;
+}
+
+.partner-equipment {
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid rgba(19, 33, 31, 0.12);
+}
+
+.partner-equipment strong {
+  display: block;
+  color: var(--teal);
+  font-size: 12px;
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+
+.partner-equipment p {
+  margin-top: 7px;
+  font-size: 14px;
+  line-height: 1.45;
 }
 
 .case-section {
@@ -2234,6 +2283,7 @@ main:focus {
   .proof-grid article,
   .experience-timeline article,
   .certification-grid article,
+  .partners-grid article,
   .capability-row article {
     min-height: 0;
   }
@@ -3681,6 +3731,15 @@ body.resume-style {
   border-color: var(--line);
   background: var(--card-surface);
   box-shadow: 0 18px 50px rgba(0, 0, 0, 0.20);
+}
+
+:root[data-theme="dark"] .partner-logo-frame {
+  border-color: rgba(216, 243, 237, 0.14);
+  background: #ffffff;
+}
+
+:root[data-theme="dark"] .partner-equipment {
+  border-top-color: var(--line);
 }
 
 :root[data-theme="dark"] .case-grid article {

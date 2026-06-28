@@ -167,26 +167,41 @@ const translations = {
       "#partners-title": "Large enterprise partner ecosystems add context to the service scope.",
       ".partners-copy > p:not(.section-kicker)":
         "Based on service records, this list keeps only large medical-technology and enterprise partner ecosystems. Small clinics, individual sites, job numbers, serial numbers, customer records, and public endorsements are intentionally not published.",
-      ".partners-grid article:nth-child(1) span": "Respiratory / monitoring / ultrasound",
+      ".partners-grid article:nth-child(1) .partner-category": "Respiratory / monitoring / ultrasound",
       ".partners-grid article:nth-child(1) h3": "Philips Healthcare",
       ".partners-grid article:nth-child(1) p":
         "Service preparation, field support, functional checks, upgrade support, and handover exposure across respiratory, patient monitoring, ultrasound, and ECG-cart contexts.",
-      ".partners-grid article:nth-child(2) span": "Medication management / automation",
+      ".partners-grid article:nth-child(1) .partner-equipment strong": "Equipment / platforms",
+      ".partners-grid article:nth-child(1) .partner-equipment p":
+        "Respironics V60, MX40/MX450, patient monitors, ultrasound systems, ECG carts, PNA testing.",
+      ".partners-grid article:nth-child(2) .partner-category": "Medication management / automation",
       ".partners-grid article:nth-child(2) h3": "BD / BD Rowa",
       ".partners-grid article:nth-child(2) p":
         "Pyxis, Rowa, and Alaris-related service contexts covering call-outs, workflow support, remediation support, service notes, customer updates, and handover.",
-      ".partners-grid article:nth-child(3) span": "Critical care / resuscitation",
+      ".partners-grid article:nth-child(2) .partner-equipment strong": "Equipment / platforms",
+      ".partners-grid article:nth-child(2) .partner-equipment p":
+        "BD Pyxis, BD Rowa Vmax/Smart, Prolog, Alaris remediation, pharmacy automation workflows.",
+      ".partners-grid article:nth-child(3) .partner-category": "Critical care / resuscitation",
       ".partners-grid article:nth-child(3) h3": "Device Technologies",
       ".partners-grid article:nth-child(3) p":
         "Corpuls and related critical-care support contexts covering workshop support, bench checks, field preparation, equipment status notes, and service handover.",
-      ".partners-grid article:nth-child(4) span": "Diagnostics / DEXA / surgical imaging",
+      ".partners-grid article:nth-child(3) .partner-equipment strong": "Equipment / platforms",
+      ".partners-grid article:nth-child(3) .partner-equipment p":
+        "Corpuls CPR arms, Corpuls systems, Hamilton T1, H-900 humidifiers, connectivity and PM support.",
+      ".partners-grid article:nth-child(4) .partner-category": "Diagnostics / DEXA / surgical imaging",
       ".partners-grid article:nth-child(4) h3": "Hologic",
       ".partners-grid article:nth-child(4) p":
         "DEXA, TridentHD, and remediation-support contexts with attention to performance evidence, service records, escalation pathways, and release status.",
-      ".partners-grid article:nth-child(5) span": "Respiratory diagnostics",
+      ".partners-grid article:nth-child(4) .partner-equipment strong": "Equipment / platforms",
+      ".partners-grid article:nth-child(4) .partner-equipment p":
+        "Horizon DEXA, TridentHD, mammography and biopsy systems, EMI remediation support.",
+      ".partners-grid article:nth-child(5) .partner-category": "Respiratory diagnostics",
       ".partners-grid article:nth-child(5) h3": "Jaeger Medical",
       ".partners-grid article:nth-child(5) p":
         "Respiratory diagnostic equipment service contexts covering planned service, functional checks, equipment condition notes, and traceable close-out records.",
+      ".partners-grid article:nth-child(5) .partner-equipment strong": "Equipment / platforms",
+      ".partners-grid article:nth-child(5) .partner-equipment p":
+        "Vyntus Body, Vyntus One, Vyntus Spiro, Vyntus CPX, Pneumo and SentrySuite-related support.",
       ".judgement-section .section-kicker": "Clinical Safety & Service Judgement",
       "#judgement-title": "Safe service decisions need evidence, not assumptions.",
       ".judgement-lead > p:not(.section-kicker)":
@@ -612,26 +627,41 @@ const translations = {
       "#partners-title": "大型企业伙伴生态能补充说明服务范围。",
       ".partners-copy > p:not(.section-kicker)":
         "根据服务记录，这里只保留大型医疗技术厂商和企业级伙伴生态。小诊所、具体站点、工单号、序列号、客户记录和公开背书不在网页上发布。",
-      ".partners-grid article:nth-child(1) span": "呼吸 / 监护 / 超声",
+      ".partners-grid article:nth-child(1) .partner-category": "呼吸 / 监护 / 超声",
       ".partners-grid article:nth-child(1) h3": "Philips Healthcare 飞利浦医疗",
       ".partners-grid article:nth-child(1) p":
         "围绕呼吸设备、患者监护、超声和 ECG 推车相关场景，接触服务准备、现场支持、功能检查、升级支持和交接记录。",
-      ".partners-grid article:nth-child(2) span": "用药管理 / 自动化",
+      ".partners-grid article:nth-child(1) .partner-equipment strong": "对应设备 / 平台",
+      ".partners-grid article:nth-child(1) .partner-equipment p":
+        "Respironics V60、MX40/MX450、患者监护仪、超声系统、ECG 推车、PNA 测试。",
+      ".partners-grid article:nth-child(2) .partner-category": "用药管理 / 自动化",
       ".partners-grid article:nth-child(2) h3": "BD / BD Rowa",
       ".partners-grid article:nth-child(2) p":
         "围绕 Pyxis、Rowa 和 Alaris 相关场景，接触 call-out、工作流支持、整改支持、服务记录、客户更新和交接。",
-      ".partners-grid article:nth-child(3) span": "急救 / 重症支持",
+      ".partners-grid article:nth-child(2) .partner-equipment strong": "对应设备 / 平台",
+      ".partners-grid article:nth-child(2) .partner-equipment p":
+        "BD Pyxis、BD Rowa Vmax/Smart、Prolog、Alaris 整改、药房自动化工作流。",
+      ".partners-grid article:nth-child(3) .partner-category": "急救 / 重症支持",
       ".partners-grid article:nth-child(3) h3": "Device Technologies",
       ".partners-grid article:nth-child(3) p":
         "围绕 Corpuls 等急救和重症相关设备场景，接触车间支持、台面检查、现场准备、设备状态记录和服务交接。",
-      ".partners-grid article:nth-child(4) span": "诊断 / DEXA / 手术影像",
+      ".partners-grid article:nth-child(3) .partner-equipment strong": "对应设备 / 平台",
+      ".partners-grid article:nth-child(3) .partner-equipment p":
+        "Corpuls CPR arm、Corpuls 系统、Hamilton T1、H-900 humidifier、连接测试和 PM 支持。",
+      ".partners-grid article:nth-child(4) .partner-category": "诊断 / DEXA / 手术影像",
       ".partners-grid article:nth-child(4) h3": "Hologic",
       ".partners-grid article:nth-child(4) p":
         "围绕 DEXA、TridentHD 和整改支持场景，关注性能证据、服务记录、升级路径和放行状态。",
-      ".partners-grid article:nth-child(5) span": "呼吸诊断",
+      ".partners-grid article:nth-child(4) .partner-equipment strong": "对应设备 / 平台",
+      ".partners-grid article:nth-child(4) .partner-equipment p":
+        "Horizon DEXA、TridentHD、乳腺影像和活检系统、EMI 整改支持。",
+      ".partners-grid article:nth-child(5) .partner-category": "呼吸诊断",
       ".partners-grid article:nth-child(5) h3": "Jaeger Medical",
       ".partners-grid article:nth-child(5) p":
         "围绕呼吸诊断设备服务场景，接触计划性服务、功能检查、设备状态记录和可追踪的服务关闭记录。",
+      ".partners-grid article:nth-child(5) .partner-equipment strong": "对应设备 / 平台",
+      ".partners-grid article:nth-child(5) .partner-equipment p":
+        "Vyntus Body、Vyntus One、Vyntus Spiro、Vyntus CPX、Pneumo、SentrySuite 相关支持。",
       ".judgement-section .section-kicker": "临床安全与服务判断",
       "#judgement-title": "安全的服务决策需要证据，而不是假设。",
       ".judgement-lead > p:not(.section-kicker)":
