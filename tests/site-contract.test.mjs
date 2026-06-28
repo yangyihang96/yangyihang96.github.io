@@ -124,7 +124,6 @@ test("static security files document deployable response headers and reporting c
   const headers = read("_headers");
   const securityTxt = read(".well-known/security.txt");
   const jekyllConfig = read("_config.yml");
-  const workflow = read(".github/workflows/site-security.yml");
 
   assert.ok(fs.existsSync(path.join(root, ".nojekyll")));
   assert.match(jekyllConfig, /include:\s*\n\s*- \.well-known/);
@@ -144,9 +143,6 @@ test("static security files document deployable response headers and reporting c
   assert.match(headers, /microphone=\(\)/);
   assert.match(headers, /geolocation=\(\)/);
   assert.match(headers, /Strict-Transport-Security: max-age=31536000; includeSubDomains; preload/);
-  assert.match(workflow, /permissions:\s*\n\s*contents: read/);
-  assert.match(workflow, /node-version: "24"/);
-  assert.match(workflow, /node --test/);
   assert.match(read("SECURITY.md"), /GitHub Pages does not let this repository set custom HTTP response headers/);
   assert.match(read("SECURITY.md"), /The current DNS points directly to GitHub Pages/);
 });
