@@ -70,9 +70,9 @@ test("metadata targets a Sydney biomedical field-service recruiter", () => {
     html,
     /<meta name="description" content="Sydney-based Biomedical Field Service Engineer with nearly three years of field and workshop service experience across hospital and pharmacy medical equipment\."/
   );
-  assert.match(html, /src="theme-init\.js\?v=service-copy-1"/);
-  assert.match(html, /href="styles\.css\?v=service-copy-1"/);
-  assert.match(html, /src="script\.js\?v=service-copy-1"/);
+  assert.match(html, /src="theme-init\.js\?v=zh-polish-1"/);
+  assert.match(html, /href="styles\.css\?v=zh-polish-1"/);
+  assert.match(html, /src="script\.js\?v=zh-polish-1"/);
   assert.match(html, /<link rel="canonical" href="https:\/\/yangyihang96\.com\/">/);
   assert.doesNotMatch(html, /http:\/\/yangyihang96\.com/);
 
@@ -337,6 +337,21 @@ test("case notes include service outcomes and operational value", () => {
   assert.doesNotMatch(cases, /customer names|serial numbers|internal records|De-identified|Anonymised|sensitive records|authorized hiring/i);
 });
 
+test("Chinese translation reads naturally for HR and field-service review", () => {
+  assert.match(script, /"现场服务概览"/);
+  assert.match(script, /"适合医院与药房设备服务岗位的候选人画像。"/);
+  assert.match(script, /"合作厂商与设备平台"/);
+  assert.match(script, /"合作过的医疗技术厂商与设备平台能更直观看到服务范围。"/);
+  assert.match(script, /参与车间支持、台架检查、现场准备、设备状态记录和服务交接/);
+  assert.match(script, /"按设备族说明服务范围和验证依据。"/);
+  assert.match(script, /"参与内容"/);
+  assert.match(script, /"判断依据"/);
+  assert.match(script, /"处理动作"/);
+  assert.match(script, /"请直接发送岗位范围。"/);
+  assert.match(script, /"可按雇主流程核验"/);
+  assert.doesNotMatch(script, /现场服务快照|现场服务画像|商业伙伴生态|服务接触|台面检查|用户工作流|客户更新链路|受监管医疗记录|本地 biomedical governance|避免过度承诺|雇主核验材料已准备/);
+});
+
 test("education stays concise and work-right proof is not over-explained", () => {
   const study = sectionById("study");
 
@@ -391,7 +406,7 @@ test("links remain recognizable in body copy while navigation and buttons stay b
 
 test("dark mode follows system preference without a manual toggle", () => {
   assert.doesNotMatch(html, /theme-toggle|data-theme-toggle|Toggle dark mode/);
-  assert.ok(html.indexOf('src="theme-init.js?v=service-copy-1"') < html.indexOf('href="styles.css?v=service-copy-1"'));
+  assert.ok(html.indexOf('src="theme-init.js?v=zh-polish-1"') < html.indexOf('href="styles.css?v=zh-polish-1"'));
   assert.doesNotMatch(themeInit, /localStorage|siteTheme|storageKey/);
   assert.match(themeInit, /prefers-color-scheme: dark/);
   assert.match(themeInit, /const resolvedTheme = mediaQuery\?\.matches \? "dark" : "light"/);
