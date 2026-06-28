@@ -70,9 +70,9 @@ test("metadata targets a Sydney biomedical field-service recruiter", () => {
     html,
     /<meta name="description" content="Sydney-based Biomedical Field Service Engineer with nearly three years of field and workshop service experience across hospital and pharmacy medical equipment\."/
   );
-  assert.match(html, /src="theme-init\.js\?v=zh-translation-fix-2"/);
-  assert.match(html, /href="styles\.css\?v=zh-translation-fix-2"/);
-  assert.match(html, /src="script\.js\?v=zh-translation-fix-2"/);
+  assert.match(html, /src="theme-init\.js\?v=platform-wording-1"/);
+  assert.match(html, /href="styles\.css\?v=platform-wording-1"/);
+  assert.match(html, /src="script\.js\?v=platform-wording-1"/);
   assert.match(html, /<link rel="canonical" href="https:\/\/yangyihang96\.com\/">/);
   assert.doesNotMatch(html, /http:\/\/yangyihang96\.com/);
 
@@ -214,12 +214,12 @@ test("navigation and section order follow the recruiter reading path", () => {
   assert.equal(html.includes('<section id="certifications"'), false);
 });
 
-test("commercial partner ecosystems are listed without overclaiming endorsement", () => {
+test("medical technology platforms are listed without overclaiming endorsement", () => {
   const partners = sectionByClass("partners-section");
 
-  assert.match(partners, /<p class="section-kicker">Commercial Partner Ecosystems<\/p>/);
-  assert.match(partners, /<h2 id="partners-title">Enterprise medical-technology ecosystems add context to the service scope\.<\/h2>/);
-  assert.match(partners, /Representative brands and platforms help show the equipment families, workflows, and service environments covered through field service and workshop support\./);
+  assert.match(partners, /<p class="section-kicker">Medical Technology Platforms<\/p>/);
+  assert.match(partners, /<h2 id="partners-title">Representative manufacturers and platforms show the device types and service settings\.<\/h2>/);
+  assert.match(partners, /These entries describe equipment families, workflows, and field or workshop service contexts from the service record\./);
   assert.equal(articleCount(partners), 5);
   assert.match(partners, /src="assets\/logo-philips\.svg"/);
   assert.match(partners, /src="assets\/logo-bd\.svg"/);
@@ -243,7 +243,7 @@ test("commercial partner ecosystems are listed without overclaiming endorsement"
   assert.match(partners, /Vyntus Body/);
   assert.match(css, /\.partner-logo-frame/);
   assert.match(css, /\.partner-equipment/);
-  assert.doesNotMatch(partners, /official partner|official endorsement|customer list|client list|strategic partner|Private Hospital|Medical Centre|Day Surgery|QAS|Small clinics|not published|serial numbers/i);
+  assert.doesNotMatch(partners, /official partner|official endorsement|customer list|client list|strategic partner|commercial partner|partner ecosystem|Private Hospital|Medical Centre|Day Surgery|QAS|Small clinics|not published|serial numbers/i);
 });
 
 test("quick fit and proof points answer HR questions without sounding like an interview script", () => {
@@ -345,8 +345,8 @@ test("Chinese translation reads naturally for HR and field-service review", () =
   assert.match(script, /"持有驾照，支持现场服务"/);
   assert.match(script, /"Simpro、服务报告、设备服务历史和交接记录"/);
   assert.match(script, /设备服务历史和客户沟通更新/);
-  assert.match(script, /"合作厂商与设备平台"/);
-  assert.match(script, /"合作过的医疗技术厂商与设备平台可以更直观地说明服务范围。"/);
+  assert.match(script, /"设备厂商与平台"/);
+  assert.match(script, /"服务中接触过的医疗技术厂商与设备平台，可以说明设备类型和服务场景。"/);
   assert.match(script, /参与车间支持、台架检查、现场准备、设备状态记录和服务交接/);
   assert.match(script, /"按设备类别说明服务范围和验证依据。"/);
   assert.match(script, /"参与内容"/);
@@ -354,7 +354,7 @@ test("Chinese translation reads naturally for HR and field-service review", () =
   assert.match(script, /"处理动作"/);
   assert.match(script, /"请直接发送岗位信息。"/);
   assert.match(script, /"可按雇主流程核验"/);
-  assert.doesNotMatch(script, /现场服务快照|现场服务画像|商业伙伴生态|服务接触|台面检查|用户工作流|客户更新链路|受监管医疗记录|本地 biomedical governance|避免过度承诺|雇主核验材料已准备|清晰交接|近 3 年现场 \/ 车间服务|呼吸、监护、超声、DEXA、自动化|驾照和悉尼现场出行|客户更新|现场出勤|候选人画像|设备族|收尾|客户交接|安装和服务培训接触|是否可放回使用|对齐过的服务记录|出行范围|岗位范围|设备深度/);
+  assert.doesNotMatch(script, /现场服务快照|现场服务画像|商业伙伴生态|商业伙伴|合作厂商|合作过的医疗技术厂商|补充说明设备范围|服务接触|台面检查|用户工作流|客户更新链路|受监管医疗记录|本地 biomedical governance|避免过度承诺|雇主核验材料已准备|清晰交接|近 3 年现场 \/ 车间服务|呼吸、监护、超声、DEXA、自动化|驾照和悉尼现场出行|客户更新|现场出勤|候选人画像|设备族|收尾|客户交接|安装和服务培训接触|是否可放回使用|对齐过的服务记录|出行范围|岗位范围|设备深度/);
 });
 
 test("visual polish keeps the site professional without adding marketing clutter", () => {
@@ -425,7 +425,7 @@ test("links remain recognizable in body copy while navigation and buttons stay b
 
 test("dark mode follows system preference without a manual toggle", () => {
   assert.doesNotMatch(html, /theme-toggle|data-theme-toggle|Toggle dark mode/);
-  assert.ok(html.indexOf('src="theme-init.js?v=zh-translation-fix-2"') < html.indexOf('href="styles.css?v=zh-translation-fix-2"'));
+  assert.ok(html.indexOf('src="theme-init.js?v=platform-wording-1"') < html.indexOf('href="styles.css?v=platform-wording-1"'));
   assert.doesNotMatch(themeInit, /localStorage|siteTheme|storageKey/);
   assert.match(themeInit, /prefers-color-scheme: dark/);
   assert.match(themeInit, /const resolvedTheme = mediaQuery\?\.matches \? "dark" : "light"/);

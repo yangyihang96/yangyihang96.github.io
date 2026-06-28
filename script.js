@@ -163,10 +163,10 @@ const translations = {
       ".experience-outcome dt:nth-of-type(4)": "Handover",
       ".experience-outcome dd:nth-of-type(4)":
         "Biomedical teams, clinical users, vendors, and internal engineers can see next-use status",
-      ".partners-section .section-kicker": "Commercial Partner Ecosystems",
-      "#partners-title": "Enterprise medical-technology ecosystems add context to the service scope.",
+      ".partners-section .section-kicker": "Medical Technology Platforms",
+      "#partners-title": "Representative manufacturers and platforms show the device types and service settings.",
       ".partners-copy > p:not(.section-kicker)":
-        "Representative brands and platforms help show the equipment families, workflows, and service environments covered through field service and workshop support.",
+        "These entries describe equipment families, workflows, and field or workshop service contexts from the service record.",
       ".partners-grid article:nth-child(1) .partner-category": "Respiratory / monitoring / ultrasound",
       ".partners-grid article:nth-child(1) h3": "Philips Healthcare",
       ".partners-grid article:nth-child(1) p":
@@ -623,10 +623,10 @@ const translations = {
       ".experience-outcome dt:nth-of-type(4)": "交接",
       ".experience-outcome dd:nth-of-type(4)":
         "医院工程团队、临床用户、厂商和内部工程师能明确看到下一次使用状态",
-      ".partners-section .section-kicker": "合作厂商与设备平台",
-      "#partners-title": "合作过的医疗技术厂商与设备平台可以更直观地说明服务范围。",
+      ".partners-section .section-kicker": "设备厂商与平台",
+      "#partners-title": "服务中接触过的医疗技术厂商与设备平台，可以说明设备类型和服务场景。",
       ".partners-copy > p:not(.section-kicker)":
-        "以下列出主要医疗技术厂商和设备平台，用来说明现场服务与车间支持覆盖的设备类型、工作流和服务场景。",
+        "以下按主要医疗技术厂商和设备平台列出设备类型、工作流和现场 / 车间服务场景。",
       ".partners-grid article:nth-child(1) .partner-category": "呼吸 / 监护 / 超声",
       ".partners-grid article:nth-child(1) h3": "Philips Healthcare 飞利浦医疗",
       ".partners-grid article:nth-child(1) p":
