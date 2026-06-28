@@ -244,35 +244,6 @@ main:focus {
   transform: translateY(-1px);
 }
 
-.theme-toggle {
-  display: inline-flex;
-  flex: 0 0 auto;
-  min-height: 36px;
-  align-items: center;
-  justify-content: center;
-  padding: 7px 11px;
-  border: 1px solid var(--control-border);
-  border-radius: 999px;
-  color: var(--ink);
-  background: var(--frost-surface);
-  font: inherit;
-  font-size: 13px;
-  font-weight: 850;
-  white-space: nowrap;
-  cursor: pointer;
-  transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
-}
-
-.theme-toggle:hover {
-  transform: translateY(-1px);
-}
-
-.theme-toggle.is-active {
-  color: #ffffff;
-  border-color: transparent;
-  background: var(--teal);
-}
-
 .site-header.is-scrolled .site-nav a:hover,
 .site-header.is-scrolled .site-nav a.is-active {
   background: rgba(18, 107, 98, 0.10);
@@ -2339,14 +2310,6 @@ main:focus {
     font-size: 12px;
   }
 
-  .theme-toggle {
-    flex: 1 1 0;
-    min-width: 0;
-    min-height: 34px;
-    padding: 6px 8px;
-    font-size: 12px;
-  }
-
   .language-switch button {
     min-width: 36px;
     padding: 5px 7px;
@@ -2405,8 +2368,7 @@ main:focus {
 }
 
 @media (max-width: 340px) {
-  .nav-email-link,
-  .theme-toggle {
+  .nav-email-link {
     padding: 6px;
   }
 
@@ -2660,13 +2622,6 @@ body.resume-style {
 
 .resume-style .language-switch button {
   border-radius: 7px;
-}
-
-.resume-style .theme-toggle {
-  border-radius: 10px;
-  color: var(--ink);
-  border-color: var(--control-border);
-  background: var(--frost-surface);
 }
 
 .resume-style .language-switch button.is-active,
@@ -3631,7 +3586,6 @@ body.resume-style {
 }
 
 :root[data-theme="dark"] .resume-style .button.primary,
-:root[data-theme="dark"] .theme-toggle.is-active,
 :root[data-theme="dark"] .resume-style .language-switch button.is-active,
 :root[data-theme="dark"] .resume-style .site-header.is-scrolled .language-switch button.is-active {
   color: #071211;

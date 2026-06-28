@@ -70,9 +70,9 @@ test("metadata targets a Sydney biomedical field-service recruiter", () => {
     html,
     /<meta name="description" content="Sydney-based Biomedical Field Service Engineer with nearly three years of field and workshop service experience across hospital and pharmacy medical equipment\."/
   );
-  assert.match(html, /src="theme-init\.js\?v=dark-security-1"/);
-  assert.match(html, /href="styles\.css\?v=dark-security-1"/);
-  assert.match(html, /src="script\.js\?v=dark-security-1"/);
+  assert.match(html, /src="theme-init\.js\?v=dark-auto-1"/);
+  assert.match(html, /href="styles\.css\?v=dark-auto-1"/);
+  assert.match(html, /src="script\.js\?v=dark-auto-1"/);
   assert.match(html, /<link rel="canonical" href="https:\/\/yangyihang96\.com\/">/);
   assert.doesNotMatch(html, /http:\/\/yangyihang96\.com/);
 
@@ -372,15 +372,16 @@ test("links remain recognizable in body copy while navigation and buttons stay b
   assert.match(css, /transition-duration:\s*0\.001ms !important;/);
 });
 
-test("dark mode is supported by system preference and a persisted manual toggle", () => {
-  assert.match(html, /<button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">Dark<\/button>/);
-  assert.ok(html.indexOf('src="theme-init.js?v=dark-security-1"') < html.indexOf('href="styles.css?v=dark-security-1"'));
-  assert.match(themeInit, /localStorage\.getItem\(storageKey\)/);
+test("dark mode follows system preference without a manual toggle", () => {
+  assert.doesNotMatch(html, /theme-toggle|data-theme-toggle|Toggle dark mode/);
+  assert.ok(html.indexOf('src="theme-init.js?v=dark-auto-1"') < html.indexOf('href="styles.css?v=dark-auto-1"'));
+  assert.doesNotMatch(themeInit, /localStorage|siteTheme|storageKey/);
   assert.match(themeInit, /prefers-color-scheme: dark/);
+  assert.match(themeInit, /const resolvedTheme = mediaQuery\?\.matches \? "dark" : "light"/);
   assert.match(themeInit, /document\.documentElement\.dataset\.theme = resolvedTheme/);
-  assert.match(script, /themeStorageKey = "siteTheme"/);
-  assert.match(script, /data-theme-toggle/);
+  assert.doesNotMatch(script, /themeStorageKey|siteTheme|data-theme-toggle|updateThemeToggle|setStoredThemePreference|getStoredThemePreference/);
   assert.match(script, /themePreferenceMedia\?\.addEventListener\("change"/);
+  assert.doesNotMatch(css, /\.theme-toggle/);
   assert.match(css, /:root\[data-theme="dark"\]/);
   assert.match(css, /@media \(prefers-color-scheme: dark\)/);
   assert.match(css, /color-scheme:\s*dark/);

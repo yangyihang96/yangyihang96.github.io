@@ -50,12 +50,6 @@ const translations = {
       copied: "Copied",
       failed: "Copy failed",
     },
-    theme: {
-      label: "Dark",
-      aria: "Toggle dark mode",
-      darkActive: "Dark mode is active",
-      lightActive: "Light mode is active",
-    },
     text: {
       ".skip-link": "Skip to content",
       ".site-nav a:nth-child(1)": "Experience",
@@ -495,12 +489,6 @@ const translations = {
       copied: "已复制",
       failed: "复制失败",
     },
-    theme: {
-      label: "深色",
-      aria: "切换深色模式",
-      darkActive: "深色模式已开启",
-      lightActive: "浅色模式已开启",
-    },
     text: {
       ".skip-link": "跳到主要内容",
       ".site-nav a:nth-child(1)": "经历",
@@ -928,10 +916,8 @@ const translations = {
 const languageButtons = Array.from(document.querySelectorAll("[data-language-option]"));
 const emailCopyButtons = Array.from(document.querySelectorAll("[data-copy-email]"));
 const descriptionMeta = document.querySelector('meta[name="description"]');
-const themeToggleButton = document.querySelector("[data-theme-toggle]");
 const themeMeta = document.querySelector('meta[name="theme-color"]');
 const themePreferenceMedia = window.matchMedia?.("(prefers-color-scheme: dark)");
-const themeStorageKey = "siteTheme";
 const themeColors = {
   light: "#f4f7f4",
   dark: "#0d1716",
@@ -971,45 +957,14 @@ const applyRichContent = (dictionary) => {
   });
 };
 
-const getStoredThemePreference = () => {
-  try {
-    const stored = window.localStorage.getItem(themeStorageKey);
-    return stored === "dark" || stored === "light" ? stored : null;
-  } catch {
-    return null;
-  }
-};
-
-const setStoredThemePreference = (theme) => {
-  try {
-    window.localStorage.setItem(themeStorageKey, theme);
-  } catch {
-    // Local storage can be unavailable in restricted preview contexts.
-  }
-};
-
-const getResolvedTheme = () =>
-  getStoredThemePreference() || (themePreferenceMedia?.matches ? "dark" : "light");
+const getResolvedTheme = () => (themePreferenceMedia?.matches ? "dark" : "light");
 
 const getActiveDictionary = () => {
   const language = document.body.dataset.language || "en";
   return translations[language] || translations.en;
 };
 
-const updateThemeToggle = (theme = getResolvedTheme()) => {
-  if (!themeToggleButton) {
-    return;
-  }
-
-  const labels = getActiveDictionary().theme || translations.en.theme;
-  themeToggleButton.textContent = labels.label;
-  themeToggleButton.setAttribute("aria-label", labels.aria);
-  themeToggleButton.setAttribute("aria-pressed", String(theme === "dark"));
-  themeToggleButton.title = theme === "dark" ? labels.darkActive : labels.lightActive;
-  themeToggleButton.classList.toggle("is-active", theme === "dark");
-};
-
-const applyTheme = (theme, shouldStore = true) => {
+const applyTheme = (theme) => {
   const selected = theme === "dark" ? "dark" : "light";
   document.documentElement.dataset.theme = selected;
   document.documentElement.style.colorScheme = selected;
@@ -1017,12 +972,6 @@ const applyTheme = (theme, shouldStore = true) => {
   if (themeMeta) {
     themeMeta.setAttribute("content", themeColors[selected]);
   }
-
-  if (shouldStore) {
-    setStoredThemePreference(selected);
-  }
-
-  updateThemeToggle(selected);
 };
 
 const setStoredLanguage = (language) => {
@@ -1086,8 +1035,6 @@ const applyLanguage = (language, shouldStore = true) => {
     button.classList.remove("is-copied", "is-copy-failed");
   });
 
-  updateThemeToggle();
-
   if (shouldStore) {
     setStoredLanguage(selected);
   }
@@ -1099,14 +1046,8 @@ languageButtons.forEach((button) => {
   });
 });
 
-themeToggleButton?.addEventListener("click", () => {
-  applyTheme(getResolvedTheme() === "dark" ? "light" : "dark");
-});
-
 themePreferenceMedia?.addEventListener("change", () => {
-  if (!getStoredThemePreference()) {
-    applyTheme(getResolvedTheme(), false);
-  }
+  applyTheme(getResolvedTheme());
 });
 
 const setCopyButtonState = (button, state) => {
@@ -1163,7 +1104,7 @@ emailCopyButtons.forEach((button) => {
   });
 });
 
-applyTheme(getResolvedTheme(), false);
+applyTheme(getResolvedTheme());
 applyLanguage(getInitialLanguage(), false);
 
 const header = document.querySelector("[data-site-header]");
