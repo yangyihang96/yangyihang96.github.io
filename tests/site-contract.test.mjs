@@ -309,6 +309,8 @@ test("education stays concise and work-right proof is not over-explained", () =>
   assert.match(study, /Master of Philosophy/);
   assert.match(study, /Awarded Jun 2024/);
   assert.match(study, /Bachelor of Biomedical Engineering/);
+  assert.equal((study.match(/src="assets\/logo-university-of-sydney\.svg"/g) || []).length, 2);
+  assert.equal((study.match(/alt="The University of Sydney logo"/g) || []).length, 2);
   assert.match(study, /Flexible Electrodes for Smart Bandages/);
   assert.match(study, /impedance measurement, material\/process trade-offs, validation evidence, and technical documentation/);
   assert.match(study, /measurement, evidence, and controlled documentation rather than assumption/);
@@ -427,7 +429,9 @@ test("published assets, robots, and sitemap stay aligned with the live site", ()
   assert.ok(fs.existsSync(path.join(root, "assets/Henry_Yang_Biomedical_Engineer_Resume.pdf")));
   assert.ok(fs.existsSync(path.join(root, "assets/Henry_Yang_Biomedical_Engineer_Resume.docx")));
   assert.ok(fs.existsSync(path.join(root, "assets/logo-nova-biomedical-au.png")));
+  assert.ok(fs.existsSync(path.join(root, "assets/logo-university-of-sydney.svg")));
   assert.match(html, /src="assets\/logo-nova-biomedical-au\.png"/);
+  assert.match(html, /src="assets\/logo-university-of-sydney\.svg"/);
   assert.match(html, /alt="Nova Biomedical Australia logo"/);
 
   const robots = read("robots.txt");

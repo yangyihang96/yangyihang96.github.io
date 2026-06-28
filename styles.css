@@ -1344,6 +1344,23 @@ main:focus {
   background: #132d28;
 }
 
+.study-school-logo {
+  display: flex;
+  min-height: 72px;
+  align-items: center;
+  margin-bottom: 22px;
+  padding: 12px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.94);
+}
+
+.study-school-logo img {
+  display: block;
+  width: min(185px, 100%);
+  height: auto;
+}
+
 .study-grid span {
   color: #a8d6cd;
   font-weight: 850;
@@ -2781,6 +2798,12 @@ body.resume-style {
 .resume-style .company-logo-frame {
   border-color: rgba(19, 33, 31, 0.12);
   box-shadow: 0 10px 28px rgba(19, 33, 31, 0.06);
+}
+
+.resume-style .study-school-logo {
+  border-color: rgba(19, 33, 31, 0.10);
+  background: #ffffff;
+  box-shadow: 0 10px 28px rgba(19, 33, 31, 0.05);
 }
 
 .resume-style .experience-date {
