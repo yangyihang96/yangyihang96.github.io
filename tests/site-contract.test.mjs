@@ -12,6 +12,8 @@ const html = read("index.html");
 const css = read("styles.css");
 const script = read("script.js");
 const themeInit = read("theme-init.js");
+const sriSha384 = (source) =>
+  `sha384-${crypto.createHash("sha384").update(source).digest("base64")}`;
 const publicSource = `${html}\n${css}\n${script}\n${themeInit}`;
 const linkedinUrl = "https://au.linkedin.com/in/henry-yang-9644382bb";
 const githubUrl = "https://github.com/yangyihang96";
@@ -70,9 +72,9 @@ test("metadata targets a Sydney biomedical field-service recruiter", () => {
     html,
     /<meta name="description" content="Sydney-based Biomedical Field Service Engineer with nearly three years of field and workshop service experience with medical equipment used in hospital and pharmacy settings\."/
   );
-  assert.match(html, /src="theme-init\.js\?v=portfolio-redesign-v2-20260710"/);
-  assert.match(html, /href="styles\.css\?v=portfolio-redesign-v2-20260710"/);
-  assert.match(html, /src="script\.js\?v=portfolio-redesign-v2-20260710"/);
+  assert.match(html, /src="theme-init\.js\?v=portfolio-security-v3-20260710"/);
+  assert.match(html, /href="styles\.css\?v=portfolio-security-v3-20260710"/);
+  assert.match(html, /src="script\.js\?v=portfolio-security-v3-20260710"/);
   assert.match(html, /<link rel="canonical" href="https:\/\/yangyihang96\.com\/">/);
   assert.doesNotMatch(html, /http:\/\/yangyihang96\.com/);
 
@@ -107,24 +109,68 @@ test("document security policy constrains the static site surface", () => {
   assert.match(csp, /style-src 'self'/);
   assert.match(csp, /style-src-elem 'self'/);
   assert.match(csp, /style-src-attr 'none'/);
-  assert.match(csp, /img-src 'self' data:/);
+  assert.match(csp, /img-src 'self'/);
+  assert.doesNotMatch(csp, /img-src[^;]*data:/);
+  assert.match(csp, /font-src 'none'/);
   assert.match(csp, /connect-src 'none'/);
   assert.match(csp, /form-action 'none'/);
   assert.match(csp, /frame-src 'none'/);
   assert.match(csp, /child-src 'none'/);
   assert.match(csp, /worker-src 'none'/);
+  assert.match(csp, /media-src 'none'/);
+  assert.match(csp, /manifest-src 'none'/);
   assert.match(csp, /require-trusted-types-for 'script'/);
   assert.match(csp, /trusted-types default/);
   assert.match(csp, /upgrade-insecure-requests/);
   assert.doesNotMatch(csp, /unsafe-inline|unsafe-eval|\*/);
-  assert.match(html, /<meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">/);
+  assert.match(html, /<meta name="referrer" content="strict-origin-when-cross-origin">/);
+});
+
+test("static assets carry exact subresource integrity metadata", () => {
+  const version = "portfolio-security-v3-20260710";
+
+  assert.ok(
+    html.includes(
+      `<script src="theme-init.js?v=${version}" integrity="${sriSha384(themeInit)}" crossorigin="anonymous"></script>`
+    ),
+    "theme initializer integrity metadata must match its file"
+  );
+  assert.ok(
+    html.includes(
+      `<link rel="stylesheet" href="styles.css?v=${version}" integrity="${sriSha384(css)}" crossorigin="anonymous">`
+    ),
+    "stylesheet integrity metadata must match its file"
+  );
+  assert.ok(
+    html.includes(
+      `<script src="script.js?v=${version}" integrity="${sriSha384(script)}" crossorigin="anonymous"></script>`
+    ),
+    "main script integrity metadata must match its file"
+  );
+});
+
+test("hash navigation resolves element ids without parsing location data as selectors", () => {
+  assert.match(script, /const getHashTarget = \(hash\) =>/);
+  assert.match(script, /decodeURIComponent\(hash\.slice\(1\)\)/);
+  assert.match(script, /document\.getElementById\(id\)/);
+  assert.doesNotMatch(
+    script,
+    /document\.querySelector\((?:hash|window\.location\.hash)\)/
+  );
+  assert.equal((script.match(/revealTarget\(getHashTarget\(/g) || []).length, 3);
 });
 
 test("static security files document deployable response headers and reporting contact", () => {
   const headers = read("_headers");
   const securityTxt = read(".well-known/security.txt");
   const jekyllConfig = read("_config.yml");
+  const documentCsp = html.match(
+    /<meta http-equiv="Content-Security-Policy" content="([^"]+)">/
+  )?.[1];
+  const headerCsp = headers.match(/^\s*Content-Security-Policy:\s*(.+)$/m)?.[1];
   const jsonLd = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)?.[1];
+  assert.ok(documentCsp, "missing document CSP");
+  assert.ok(headerCsp, "missing response-header CSP template");
   assert.ok(jsonLd, "missing JSON-LD");
   const jsonLdHash = crypto.createHash("sha256").update(jsonLd).digest("base64");
 
@@ -135,6 +181,11 @@ test("static security files document deployable response headers and reporting c
   assert.match(securityTxt, /Canonical: https:\/\/yangyihang96\.com\/\.well-known\/security\.txt/);
   assert.match(headers, /Content-Security-Policy: default-src 'self'/);
   assert.match(headers, /frame-ancestors 'none'/);
+  assert.equal(
+    headerCsp.replace("; frame-ancestors 'none'", ""),
+    documentCsp,
+    "header CSP template should match the document CSP plus frame-ancestors"
+  );
   assert.match(headers, /X-Content-Type-Options: nosniff/);
   assert.match(headers, /X-Frame-Options: DENY/);
   assert.match(headers, /Cross-Origin-Opener-Policy: same-origin-allow-popups/);
@@ -447,7 +498,7 @@ test("links remain recognizable in body copy while navigation and buttons stay b
 
 test("dark mode follows system preference without a manual toggle", () => {
   assert.doesNotMatch(html, /theme-toggle|data-theme-toggle|Toggle dark mode/);
-  assert.ok(html.indexOf('src="theme-init.js?v=portfolio-redesign-v2-20260710"') < html.indexOf('href="styles.css?v=portfolio-redesign-v2-20260710"'));
+  assert.ok(html.indexOf('src="theme-init.js?v=portfolio-security-v3-20260710"') < html.indexOf('href="styles.css?v=portfolio-security-v3-20260710"'));
   assert.doesNotMatch(themeInit, /localStorage|siteTheme|storageKey/);
   assert.match(themeInit, /prefers-color-scheme: dark/);
   assert.match(themeInit, /const resolvedTheme = mediaQuery\?\.matches \? "dark" : "light"/);

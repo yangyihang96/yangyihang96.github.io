@@ -1187,8 +1187,22 @@ headerActions?.querySelectorAll("a, [data-language-option]").forEach((control) =
 });
 
 const navLinks = Array.from(document.querySelectorAll(".site-nav a"));
+
+const getHashTarget = (hash) => {
+  if (typeof hash !== "string" || !hash.startsWith("#") || hash.length <= 1) {
+    return null;
+  }
+
+  try {
+    const id = decodeURIComponent(hash.slice(1));
+    return id ? document.getElementById(id) : null;
+  } catch {
+    return null;
+  }
+};
+
 const sections = navLinks
-  .map((link) => document.querySelector(link.getAttribute("href")))
+  .map((link) => getHashTarget(link.getAttribute("href")))
   .filter(Boolean);
 let activeHashLock = null;
 let activeHashLockUntil = 0;
@@ -1213,7 +1227,7 @@ const lockActiveHash = (hash) => {
 };
 
 const shouldKeepHashActive = (hash) => {
-  const target = hash ? document.querySelector(hash) : null;
+  const target = getHashTarget(hash);
   if (!target) {
     return false;
   }
@@ -1234,7 +1248,7 @@ const revealTarget = (target) => {
 navLinks.forEach((link) => {
   link.addEventListener("click", () => {
     const hash = link.getAttribute("href");
-    revealTarget(document.querySelector(hash));
+    revealTarget(getHashTarget(hash));
     lockActiveHash(hash);
     setActiveNavLink(hash);
     setMenuOpen(false);
@@ -1293,7 +1307,7 @@ if ("IntersectionObserver" in window && sections.length > 0) {
 if (window.location.hash) {
   lockActiveHash(window.location.hash);
   setActiveNavLink(window.location.hash);
-  revealTarget(document.querySelector(window.location.hash));
+  revealTarget(getHashTarget(window.location.hash));
 } else {
   setActiveNavLink("#experience");
 }
@@ -1301,5 +1315,5 @@ if (window.location.hash) {
 window.addEventListener("hashchange", () => {
   lockActiveHash(window.location.hash);
   setActiveNavLink(window.location.hash);
-  revealTarget(document.querySelector(window.location.hash));
+  revealTarget(getHashTarget(window.location.hash));
 });
