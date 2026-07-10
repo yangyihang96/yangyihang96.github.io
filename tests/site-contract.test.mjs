@@ -4,6 +4,7 @@ import { execFileSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 import test from "node:test";
+import { runInNewContext } from "node:vm";
 
 const root = path.resolve(import.meta.dirname, "..");
 const read = (file) => fs.readFileSync(path.join(root, file), "utf8");
@@ -158,6 +159,34 @@ test("hash navigation resolves element ids without parsing location data as sele
     /document\.querySelector\((?:hash|window\.location\.hash)\)/
   );
   assert.equal((script.match(/revealTarget\(getHashTarget\(/g) || []).length, 3);
+
+  const helperStart = script.indexOf("const getHashTarget = (hash) => {");
+  const helperEnd = script.indexOf("\n\nconst sections =", helperStart);
+  assert.notEqual(helperStart, -1, "missing hash resolver start");
+  assert.notEqual(helperEnd, -1, "missing hash resolver end");
+
+  const knownTarget = { id: "experience" };
+  const lookedUpIds = [];
+  const getHashTarget = runInNewContext(
+    `${script.slice(helperStart, helperEnd)}\ngetHashTarget;`,
+    {
+      document: {
+        getElementById(id) {
+          lookedUpIds.push(id);
+          return id === knownTarget.id ? knownTarget : null;
+        },
+      },
+    }
+  );
+
+  assert.equal(getHashTarget("#experience"), knownTarget);
+  assert.equal(getHashTarget("#%65xperience"), knownTarget);
+  assert.equal(getHashTarget("#["), null);
+  assert.equal(getHashTarget("#%"), null);
+  assert.equal(getHashTarget("#%E0%A4%A"), null);
+  assert.equal(getHashTarget("#"), null);
+  assert.equal(getHashTarget(null), null);
+  assert.deepEqual(lookedUpIds, ["experience", "experience", "["]);
 });
 
 test("static security files document deployable response headers and reporting contact", () => {
