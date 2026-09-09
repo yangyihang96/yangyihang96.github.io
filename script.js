@@ -1,1319 +1,389 @@
-const yearTarget = document.querySelector("[data-current-year]");
-if (yearTarget) {
-  yearTarget.textContent = String(new Date().getFullYear());
-}
+"use strict";
+document.documentElement.classList.add("js-ready");
 
 const recruiterEmailAddress = "yangyihang96@gmail.com";
-const recruiterEmailHrefEn = `mailto:${recruiterEmailAddress}?subject=${encodeURIComponent(
-  "Biomedical field service opportunity"
-)}&body=${encodeURIComponent(
-  [
-    "Hi Yihang,",
-    "",
-    "I'm contacting you about a biomedical field service role.",
-    "",
-    "Role details: ",
-    "Device type / platform: ",
-    "Location / field travel: ",
-    "Preferred call times: ",
-    "Next hiring step: ",
-    "",
-    "Regards,",
-  ].join("\r\n")
-)}`;
-const recruiterEmailHrefZh = `mailto:${recruiterEmailAddress}?subject=${encodeURIComponent(
-  "医疗设备现场服务机会"
-)}&body=${encodeURIComponent(
-  [
-    "Yihang 你好，",
-    "",
-    "我想联系你沟通一个医疗设备现场服务相关机会。",
-    "",
-    "岗位信息：",
-    "设备范围：",
-    "地点 / 现场服务范围：",
-    "合适通话时间：",
-    "下一步流程：",
-    "",
-    "谢谢。",
-  ].join("\r\n")
-)}`;
-
+const textTargets = Array.from(document.querySelectorAll("[data-i18n]"));
+const englishText = Object.fromEntries(textTargets.map(node => [node.dataset.i18n, node.textContent]));
 const translations = {
   en: {
     lang: "en",
     title: "Yihang (Henry) Yang | Biomedical Field Service Engineer in Sydney",
-    description:
-      "Sydney-based Biomedical Field Service Engineer with nearly three years of field and workshop service experience with medical equipment used in hospital and pharmacy settings.",
-    copyEmail: {
-      default: "Copy Email",
-      copied: "Copied",
-      failed: "Copy failed",
-    },
-    menu: {
-      open: "Open navigation",
-      close: "Close navigation",
-    },
-    text: {
-      ".skip-link": "Skip to content",
-      ".site-nav a:nth-child(1)": "Experience",
-      ".site-nav a:nth-child(2)": "Scope",
-      ".site-nav a:nth-child(3)": "Cases",
-      ".site-nav a:nth-child(4)": "Education",
-      ".site-nav a:nth-child(5)": "Contact",
-      ".nav-email-link": "Email Henry",
-      ".nav-resume-link": "Resume PDF",
-      "#hero-title": "Biomedical Field Service Engineer",
-      ".hero-subtitle":
-        "Sydney-based field and workshop service, from diagnosis and repair to verification and handover.",
-      ".hero-meta div:nth-child(1) dt": "Experience",
-      ".hero-meta div:nth-child(1) dd": "Nearly 3 years",
-      ".hero-meta div:nth-child(2) dt": "Location",
-      ".hero-meta div:nth-child(2) dd": "Sydney, NSW",
-      ".hero-meta div:nth-child(3) dt": "Work mode",
-      ".hero-meta div:nth-child(3) dd": "Field travel",
-      ".hero-meta div:nth-child(4) dt": "Languages",
-      ".hero-meta div:nth-child(4) dd": "English / Mandarin",
-      ".experience-details-label": "View service outcome details",
-      ".partner-details-label": "View platform details",
-      ".scope-details-label": "View scope details",
-      ".case-details-label": "View evidence",
-      ".contact-more-label": "More options",
-      ".hero-skill-tags li:nth-child(1)": "Ventilation",
-      ".hero-skill-tags li:nth-child(2)": "Patient Monitoring",
-      ".hero-skill-tags li:nth-child(3)": "Ultrasound",
-      ".hero-skill-tags li:nth-child(4)": "DEXA",
-      ".hero-skill-tags li:nth-child(5)": "Pharmacy Automation",
-      ".hero-skill-tags li:nth-child(6)": "Simpro",
-      ".hero-skill-tags li:nth-child(7)": "English / Mandarin",
-      ".resume-link": "Resume PDF",
-      ".email-action": "Email Henry",
-      ".linkedin-action": "LinkedIn",
-      ".hero-action-path div:nth-child(1) strong": "Target role",
-      ".hero-action-path div:nth-child(1) span": "Medical device field service",
-      ".hero-action-path div:nth-child(2) strong": "Service work",
-      ".hero-action-path div:nth-child(2) span": "PM / repair / verification",
-      ".hero-action-path div:nth-child(3) strong": "Next step",
-      ".hero-action-path div:nth-child(3) span": "Send role details",
-      ".hero-profile-card .hero-card-kicker": "Current profile",
-      ".hero-profile-card strong": "Biomedical service, documentation, and handover",
-      ".hero-profile-card .hero-card-note":
-        "Hands-on profile across preventive maintenance, troubleshooting, verification notes, and service handover.",
-      ".profile-status-strip div:nth-child(1) strong": "Updated",
-      ".profile-status-strip div:nth-child(1) span": "June 2026",
-      ".profile-status-strip div:nth-child(2) strong": "Professional links",
-      ".fit-strip .section-kicker": "Field Service Snapshot",
-      "#fit-title": "Practical service across hospital and pharmacy equipment.",
-      ".fit-strip .section-intro":
-        "I support field and workshop work that depends on clear troubleshooting, verification records and handover.",
-      ".fit-grid article:nth-child(1) span": "Service actions",
-      ".fit-grid article:nth-child(1) strong": "PM, repair, installation and verification",
-      ".fit-grid article:nth-child(2) span": "Equipment",
-      ".fit-grid article:nth-child(2) strong":
-        "Ventilation, monitoring, ultrasound, DEXA, automation",
-      ".fit-grid article:nth-child(3) span": "Work settings",
-      ".fit-grid article:nth-child(3) strong": "Hospital, pharmacy and workshop support",
-      ".fit-grid article:nth-child(4) span": "Records",
-      ".fit-grid article:nth-child(4) strong": "Simpro, service reports and clear handover",
-      ".proof-grid article:nth-child(1) span": "Service",
-      ".proof-grid article:nth-child(1) h3": "PM, repair, installation support",
-      ".proof-grid article:nth-child(1) p":
-        "Field and workshop service with medical equipment used in hospital and pharmacy settings.",
-      ".proof-grid article:nth-child(2) span": "Verification",
-      ".proof-grid article:nth-child(2) h3": "Functional and performance checks",
-      ".proof-grid article:nth-child(2) p":
-        "Service decisions are supported by test notes, performance evidence, or clear escalation status.",
-      ".proof-grid article:nth-child(3) span": "Records",
-      ".proof-grid article:nth-child(3) h3": "Service traceability",
-      ".proof-grid article:nth-child(3) p":
-        "Work orders, test notes, equipment history, communication notes, and handover status support the next service decision rather than serving only as administration.",
-      ".proof-grid article:nth-child(4) span": "Communication",
-      ".proof-grid article:nth-child(4) h3": "English / Mandarin handover",
-      ".proof-grid article:nth-child(4) p":
-        "Clear updates for clinical users, biomedical teams, vendors, and internal engineers.",
-      ".experience-section .section-kicker": "Work Experience",
-      "#experience-title": "Three years across field and workshop work.",
-      ".experience-section .section-intro":
-        "My work spans equipment, service actions, verification records and handover.",
-      ".experience-summary > p":
-        "Biomedical field service engineer with nearly three years of experience in medical equipment service for hospital and pharmacy settings, including preventive maintenance, fault diagnosis, repair, installation support, verification, and documentation.",
-      ".experience-summary-grid div:nth-child(1) strong": "Service workflow",
-      ".experience-summary-grid div:nth-child(1) span":
-        "Prepare the device, complete field or workshop service, verify the result, document the work, and hand over the next-use or escalation status.",
-      ".experience-summary-grid div:nth-child(2) strong": "Equipment range",
-      ".experience-summary-grid div:nth-child(2) span":
-        "Ventilation, patient monitoring, ultrasound, DEXA, pharmacy automation, X-ray support, and general biomedical equipment.",
-      ".experience-summary-grid div:nth-child(3) strong": "Operational value",
-      ".experience-summary-grid div:nth-child(3) span":
-        "Repeat troubleshooting starts from aligned service notes, equipment history, and communication notes rather than memory alone.",
-      ".experience-timeline article:nth-child(1) .experience-date": "Jul 2023 - Present",
-      ".experience-timeline article:nth-child(1) h3":
-        "Biomedical Engineer | Nova Biomedical Australia",
-      ".experience-timeline article:nth-child(1) .experience-meta":
-        "Australia-wide field service / workshop support",
-      ".experience-evidence div:nth-child(1) strong": "Equipment",
-      ".experience-evidence div:nth-child(1) span": "Ventilation / monitoring / ultrasound / DEXA",
-      ".experience-evidence div:nth-child(2) strong": "Service actions",
-      ".experience-evidence div:nth-child(2) span": "PM / repair / installation / verification",
-      ".experience-evidence div:nth-child(3) strong": "Records",
-      ".experience-evidence div:nth-child(3) span": "Simpro / service reports / equipment history",
-      ".experience-evidence div:nth-child(4) strong": "Service settings",
-      ".experience-evidence div:nth-child(4) span": "Hospital / pharmacy / workshop support",
-      ".experience-outcome dt:nth-of-type(1)": "Service setting",
-      ".experience-outcome dd:nth-of-type(1)":
-        "Hospital, pharmacy, workshop, and field-support settings",
-      ".experience-outcome dt:nth-of-type(2)": "Verified outcome",
-      ".experience-outcome dd:nth-of-type(2)":
-        "Service outcomes documented with functional checks, performance evidence, or clear escalation status",
-      ".experience-outcome dt:nth-of-type(3)": "Record trail",
-      ".experience-outcome dd:nth-of-type(3)":
-        "Simpro work orders, service reports, equipment history, and communication notes aligned",
-      ".experience-outcome dt:nth-of-type(4)": "Handover",
-      ".experience-outcome dd:nth-of-type(4)":
-        "Biomedical teams, clinical users, vendors, and internal engineers can review next-use status",
-      ".partners-section .section-kicker": "Medical Technology Platforms",
-      "#partners-title": "Platforms I have supported.",
-      ".partners-copy > p:not(.section-kicker)":
-        "Grouped by device category and the field or workshop context in which I supported them.",
-      ".partners-grid article:nth-child(1) .partner-category": "Respiratory / monitoring / ultrasound",
-      ".partners-grid article:nth-child(1) h3": "Philips Healthcare",
-      ".partners-grid article:nth-child(1) p":
-        "Service preparation, field support, functional checks, upgrade support, and handover documentation across respiratory, patient monitoring, ultrasound, and ECG-cart contexts.",
-      ".partners-grid article:nth-child(1) .partner-equipment strong": "Equipment / platforms",
-      ".partners-grid article:nth-child(1) .partner-equipment p":
-        "Respironics V60, MX40/MX450, patient monitors, ultrasound systems, ECG carts, PNA testing.",
-      ".partners-grid article:nth-child(2) .partner-category": "Medication management / automation",
-      ".partners-grid article:nth-child(2) h3": "BD / BD Rowa",
-      ".partners-grid article:nth-child(2) p":
-        "Pyxis, Rowa, and Alaris-related service work covering call-outs, workflow support, remediation support, service notes, communication records, and handover.",
-      ".partners-grid article:nth-child(2) .partner-equipment strong": "Equipment / platforms",
-      ".partners-grid article:nth-child(2) .partner-equipment p":
-        "BD Pyxis, BD Rowa Vmax/Smart, Prolog, Alaris remediation, pharmacy automation workflows.",
-      ".partners-grid article:nth-child(3) .partner-category": "Critical care / resuscitation",
-      ".partners-grid article:nth-child(3) h3": "Device Technologies",
-      ".partners-grid article:nth-child(3) p":
-        "Corpuls and related critical-care service work covering workshop support, bench checks, field preparation, equipment status notes, and service handover.",
-      ".partners-grid article:nth-child(3) .partner-equipment strong": "Equipment / platforms",
-      ".partners-grid article:nth-child(3) .partner-equipment p":
-        "Corpuls CPR arms, Corpuls systems, Hamilton T1, H-900 humidifiers, connectivity and PM support.",
-      ".partners-grid article:nth-child(4) .partner-category": "Diagnostics / DEXA / surgical imaging",
-      ".partners-grid article:nth-child(4) h3": "Hologic",
-      ".partners-grid article:nth-child(4) p":
-        "DEXA, TridentHD, and remediation-support work with attention to performance evidence, service records, escalation pathways, and service status.",
-      ".partners-grid article:nth-child(4) .partner-equipment strong": "Equipment / platforms",
-      ".partners-grid article:nth-child(4) .partner-equipment p":
-        "Horizon DEXA, TridentHD, mammography and biopsy systems, EMI remediation support.",
-      ".partners-grid article:nth-child(5) .partner-category": "Respiratory diagnostics",
-      ".partners-grid article:nth-child(5) h3": "Jaeger Medical",
-      ".partners-grid article:nth-child(5) p":
-        "Respiratory diagnostic equipment service work covering planned service, functional checks, equipment condition notes, and traceable completion records.",
-      ".partners-grid article:nth-child(5) .partner-equipment strong": "Equipment / platforms",
-      ".partners-grid article:nth-child(5) .partner-equipment p":
-        "Vyntus Body, Vyntus One, Vyntus Spiro, Vyntus CPX, Pneumo and SentrySuite-related support.",
-      ".judgement-section .section-kicker": "Clinical Safety & Service Judgement",
-      "#judgement-title": "Safe service decisions need evidence.",
-      ".judgement-lead > p:not(.section-kicker)":
-        "I check the reported issue, equipment condition and service history, follow the right procedure, verify the result and document the next step.",
-      ".judgement-grid article:nth-child(1) span": "Return-to-use boundary",
-      ".judgement-grid article:nth-child(1) h3": "Do not return uncertain equipment",
-      ".judgement-grid article:nth-child(1) p":
-        "Unsafe or uncertain devices should not be returned to use until the result is verified or escalated.",
-      ".release-list li:nth-child(1)": "verified for use",
-      ".release-list li:nth-child(2)": "follow-up required",
-      ".release-list li:nth-child(3)": "escalated / not returned",
-      ".judgement-grid article:nth-child(2) span": "Procedure discipline",
-      ".judgement-grid article:nth-child(2) h3": "Procedure-led checks",
-      ".judgement-grid article:nth-child(2) p":
-        "Service checks follow appropriate manufacturer procedures, use suitable test equipment where required, and leave documented pass/fail or escalation notes.",
-      ".judgement-grid article:nth-child(3) span": "Australian biomedical service context",
-      ".judgement-grid article:nth-child(3) h3": "Lifecycle-aware biomedical service",
-      ".judgement-grid article:nth-child(3) p":
-        "Service work sits within medical equipment lifecycle requirements such as acceptance, planned service, fault management, routine testing, service records, disposal, and escalation in line with manufacturer procedures and local biomedical processes.",
-      ".judgement-grid article:nth-child(4) span": "Regulated records",
-      ".judgement-grid article:nth-child(4) h3": "Regulated documentation mindset",
-      ".judgement-grid article:nth-child(4) p":
-        "Biomedical service work benefits from the same discipline used in regulated healthcare records: clear event history, factual notes, traceable actions, escalation when safety or performance concerns remain unresolved, and no unsupported assumptions.",
-      ".experience-timeline article:nth-child(2) .experience-date": "Dec 2019 - Feb 2020",
-      ".experience-timeline article:nth-child(2) h3":
-        "Pharmacovigilance Department Assistant | Lundbeck Beijing",
-      ".experience-timeline article:nth-child(2) .experience-meta": "Internship, Beijing, China",
-      ".experience-timeline article:nth-child(2) li:nth-child(1)":
-        "Supported adverse reaction record handling and drug-safety documentation for Lundbeck products listed in China.",
-      ".experience-timeline article:nth-child(2) li:nth-child(2)":
-        "Assisted documentation work related to regulated healthcare records and cross-functional communication.",
-      "#capabilities .section-kicker": "Equipment & Service Scope",
-      "#capabilities-title": "Equipment scope and verification basis.",
-      "#capabilities .section-intro":
-        "Each area shows my level of involvement and the evidence used to verify or hand over the work.",
-      ".capability-row article:nth-child(1) span": "Respiratory",
-      ".capability-row article:nth-child(1) h3": "Respiratory service",
-      ".capability-row article:nth-child(1) p":
-        "V60, V60 Plus, Trilogy, planned service, functional checks, and troubleshooting preparation.",
-      ".capability-row article:nth-child(1) .scope-evidence dt:nth-of-type(1)": "Service involvement",
-      ".capability-row article:nth-child(1) .scope-evidence dd:nth-of-type(1)":
-        "PM, functional checks, and troubleshooting preparation.",
-      ".capability-row article:nth-child(1) .scope-evidence dt:nth-of-type(2)": "Verification basis",
-      ".capability-row article:nth-child(1) .scope-evidence dd:nth-of-type(2)":
-        "Flow/pressure-related checks, alarm/function confirmation, and manufacturer procedure notes where applicable.",
-      ".capability-row article:nth-child(1) .scope-level": "Hands-on service",
-      ".capability-row article:nth-child(2) span": "Monitoring",
-      ".capability-row article:nth-child(2) h3": "Patient monitoring",
-      ".capability-row article:nth-child(2) p":
-        "Avalon, Efficia, HeartStart and related monitoring-service preparation, checks, and handover notes.",
-      ".capability-row article:nth-child(2) .scope-evidence dt:nth-of-type(1)": "Service involvement",
-      ".capability-row article:nth-child(2) .scope-evidence dd:nth-of-type(1)":
-        "Monitoring service preparation, checks, and handover.",
-      ".capability-row article:nth-child(2) .scope-evidence dt:nth-of-type(2)": "Verification basis",
-      ".capability-row article:nth-child(2) .scope-evidence dd:nth-of-type(2)":
-        "ECG/SpO2/NIBP-related functional checks, visual inspection, and ready-for-use status where applicable.",
-      ".capability-row article:nth-child(2) .scope-level": "Training completed",
-      ".capability-row article:nth-child(3) span": "Imaging",
-      ".capability-row article:nth-child(3) h3": "Ultrasound systems",
-      ".capability-row article:nth-child(3) p":
-        "EPIQ, Affiniti, CX30, CX50 support exposure across service preparation, installation support, and checks.",
-      ".capability-row article:nth-child(3) .scope-evidence dt:nth-of-type(1)": "Service involvement",
-      ".capability-row article:nth-child(3) .scope-evidence dd:nth-of-type(1)":
-        "Installation support, service preparation, and checks.",
-      ".capability-row article:nth-child(3) .scope-evidence dt:nth-of-type(2)": "Verification basis",
-      ".capability-row article:nth-child(3) .scope-evidence dd:nth-of-type(2)":
-        "System function check, probe/cable condition, and image/function confirmation where applicable.",
-      ".capability-row article:nth-child(3) .scope-level": "Installation support",
-      ".capability-row article:nth-child(4) span": "Diagnostics",
-      ".capability-row article:nth-child(4) h3": "DEXA and X-ray support",
-      ".capability-row article:nth-child(4) p":
-        "Horizon DEXA and X-ray installation/service training, with performance-check and service-record awareness.",
-      ".capability-row article:nth-child(4) .scope-evidence dt:nth-of-type(1)": "Service involvement",
-      ".capability-row article:nth-child(4) .scope-evidence dd:nth-of-type(1)":
-        "Installation support and service training.",
-      ".capability-row article:nth-child(4) .scope-evidence dt:nth-of-type(2)": "Verification basis",
-      ".capability-row article:nth-child(4) .scope-evidence dd:nth-of-type(2)":
-        "Performance check awareness, safety documentation and escalation pathway.",
-      ".capability-row article:nth-child(4) .scope-level": "Training completed",
-      ".capability-row article:nth-child(5) span": "Automation",
-      ".capability-row article:nth-child(5) h3": "Pharmacy automation",
-      ".capability-row article:nth-child(5) p":
-        "BD FIX100, Pyxis, ROWA and specialty workflow support where service notes and handover are critical.",
-      ".capability-row article:nth-child(5) .scope-evidence dt:nth-of-type(1)": "Service involvement",
-      ".capability-row article:nth-child(5) .scope-evidence dd:nth-of-type(1)":
-        "Workflow support, service notes, customer communication, and handover.",
-      ".capability-row article:nth-child(5) .scope-evidence dt:nth-of-type(2)": "Verification basis",
-      ".capability-row article:nth-child(5) .scope-evidence dd:nth-of-type(2)":
-        "Functional status, dispensing/workflow check, and communication trail where applicable.",
-      ".capability-row article:nth-child(5) .scope-level": "Documentation / handover experience",
-      ".capability-row article:nth-child(6) span": "Records",
-      ".capability-row article:nth-child(6) h3": "Service traceability",
-      ".capability-row article:nth-child(6) p":
-        "Simpro work orders, service reports, equipment history, communication notes, and service completion records.",
-      ".capability-row article:nth-child(6) .scope-evidence dt:nth-of-type(1)": "Service involvement",
-      ".capability-row article:nth-child(6) .scope-evidence dd:nth-of-type(1)":
-        "CMMS records, handover notes, and service history alignment.",
-      ".capability-row article:nth-child(6) .scope-evidence dt:nth-of-type(2)": "Verification basis",
-      ".capability-row article:nth-child(6) .scope-evidence dd:nth-of-type(2)":
-        "Device condition, service action, test result, parts or escalation status, communication notes, and next-use decision.",
-      ".capability-row article:nth-child(6) .scope-level": "Hands-on service",
-      ".target-roles .section-kicker": "Target Roles",
-      "#target-roles-title": "Roles aligned with my experience.",
-      ".target-role-list li:nth-child(1)": "Biomedical Field Service Engineer",
-      ".target-role-list li:nth-child(2)": "Medical Device Service Engineer",
-      ".target-role-list li:nth-child(3)": "Clinical Engineering Service Support",
-      ".target-role-list li:nth-child(4)": "Biomedical Technician / Service Technician",
-      "#case-notes .section-kicker": "Service Case Notes",
-      "#case-title": "How I assess, verify and hand over.",
-      "#case-notes .section-intro":
-        "Three examples show the judgement behind maintenance, troubleshooting and traceable records.",
-      ".fault-approach h3": "Service decision path",
-      ".fault-approach li:nth-child(1) strong": "Assess",
-      ".fault-approach li:nth-child(1) span":
-        "Review safety, the reported symptom, equipment condition and service history.",
-      ".fault-approach li:nth-child(2) strong": "Act",
-      ".fault-approach li:nth-child(2) span":
-        "Reproduce or isolate the fault, follow the procedure, then repair or escalate.",
-      ".fault-approach li:nth-child(3) strong": "Verify",
-      ".fault-approach li:nth-child(3) span":
-        "Confirm post-service function and document the next-use or escalation status.",
-      ".case-grid article:nth-child(1) span": "01 / Preventive maintenance",
-      ".case-grid article:nth-child(1) h3": "Routine maintenance with clear handover",
-      ".case-grid article:nth-child(1) p":
-        "Scheduled service is handled by confirming condition, history, site limits, procedure steps, and performance evidence before handover.",
-      ".case-grid article:nth-child(1) .case-outcome dt:nth-of-type(1)": "Risk point",
-      ".case-grid article:nth-child(1) .case-outcome dd:nth-of-type(1)":
-        "Scheduled equipment can still carry risk if condition, history, or site limits are unclear",
-      ".case-grid article:nth-child(1) .case-outcome dt:nth-of-type(2)": "Evidence used",
-      ".case-grid article:nth-child(1) .case-outcome dd:nth-of-type(2)":
-        "Device condition, service history, manufacturer procedure steps, and functional or performance evidence",
-      ".case-grid article:nth-child(1) .case-outcome dt:nth-of-type(3)": "Service action",
-      ".case-grid article:nth-child(1) .case-outcome dd:nth-of-type(3)":
-        "Planned service steps, condition check, and service record completion",
-      ".case-grid article:nth-child(1) .case-outcome dt:nth-of-type(4)": "Verification",
-      ".case-grid article:nth-child(1) .case-outcome dd:nth-of-type(4)":
-        "Functional check and documented next-use status",
-      ".case-grid article:nth-child(1) .case-outcome dt:nth-of-type(5)": "Release decision",
-      ".case-grid article:nth-child(1) .case-outcome dd:nth-of-type(5)":
-        "Documented as ready for use only when the service result supported a verified status",
-      ".case-grid article:nth-child(1) .case-outcome dt:nth-of-type(6)": "Outcome",
-      ".case-grid article:nth-child(1) .case-outcome dd:nth-of-type(6)":
-        "Equipment status documented with clear next-use notes and service records",
-      ".case-grid article:nth-child(2) span": "02 / Fault diagnosis",
-      ".case-grid article:nth-child(2) h3":
-        "Troubleshooting example - intermittent user-reported fault",
-      ".case-grid article:nth-child(2) p":
-        "A user-reported intermittent fault was reviewed against device condition, service history, accessories, user workflow, and reproducible symptoms. I followed procedure-led checks, recorded measurement notes, confirmed post-repair function, and documented whether the device was ready for use, required follow-up, or needed escalation.",
-      ".case-grid article:nth-child(2) .case-outcome dt:nth-of-type(1)": "Risk point",
-      ".case-grid article:nth-child(2) .case-outcome dd:nth-of-type(1)":
-        "Intermittent symptoms can be device, accessory, workflow, environment, or configuration related",
-      ".case-grid article:nth-child(2) .case-outcome dt:nth-of-type(2)": "Evidence used",
-      ".case-grid article:nth-child(2) .case-outcome dd:nth-of-type(2)":
-        "Device condition, service history, accessories, user workflow, and reproducible symptoms",
-      ".case-grid article:nth-child(2) .case-outcome dt:nth-of-type(3)": "Service action",
-      ".case-grid article:nth-child(2) .case-outcome dd:nth-of-type(3)":
-        "Symptom review, reproduction steps, and procedure-led checks",
-      ".case-grid article:nth-child(2) .case-outcome dt:nth-of-type(4)": "Verification",
-      ".case-grid article:nth-child(2) .case-outcome dd:nth-of-type(4)":
-        "Measurement notes and post-repair confirmation",
-      ".case-grid article:nth-child(2) .case-outcome dt:nth-of-type(5)": "Release decision",
-      ".case-grid article:nth-child(2) .case-outcome dd:nth-of-type(5)":
-        "Documented whether the device was ready for use, required follow-up, or needed escalation based on post-service evidence",
-      ".case-grid article:nth-child(2) .case-outcome dt:nth-of-type(6)": "Outcome",
-      ".case-grid article:nth-child(2) .case-outcome dd:nth-of-type(6)":
-        "Separated use conditions, repair history, accessories, reproducible symptoms, and procedure-led checks before handover",
-      ".case-grid article:nth-child(3) span": "03 / Documentation",
-      ".case-grid article:nth-child(3) h3": "Traceable records support later service decisions",
-      ".case-grid article:nth-child(3) p":
-        "Service records are treated as engineering evidence: device condition, reported symptom, service action, test result, parts or escalation status, communication notes, and next-use decision.",
-      ".case-grid article:nth-child(3) .case-outcome dt:nth-of-type(1)": "Risk point",
-      ".case-grid article:nth-child(3) .case-outcome dd:nth-of-type(1)":
-        "Vague service notes make later troubleshooting slower and less defensible",
-      ".case-grid article:nth-child(3) .case-outcome dt:nth-of-type(2)": "Evidence used",
-      ".case-grid article:nth-child(3) .case-outcome dd:nth-of-type(2)":
-        "Work order, service action, test notes, equipment history, communication notes, and escalation status",
-      ".case-grid article:nth-child(3) .case-outcome dt:nth-of-type(3)": "Service action",
-      ".case-grid article:nth-child(3) .case-outcome dd:nth-of-type(3)":
-        "Work order, service report, equipment history, and actions kept consistent",
-      ".case-grid article:nth-child(3) .case-outcome dt:nth-of-type(4)": "Verification",
-      ".case-grid article:nth-child(3) .case-outcome dd:nth-of-type(4)":
-        "Cross-check against equipment history and communication notes",
-      ".case-grid article:nth-child(3) .case-outcome dt:nth-of-type(5)": "Release decision",
-      ".case-grid article:nth-child(3) .case-outcome dd:nth-of-type(5)":
-        "Next-use or escalation status recorded clearly for biomedical teams and internal engineers",
-      ".case-grid article:nth-child(3) .case-outcome dt:nth-of-type(6)": "Outcome",
-      ".case-grid article:nth-child(3) .case-outcome dd:nth-of-type(6)":
-        "Later service decisions start from evidence, not memory",
-      "#study .section-kicker": "Education",
-      "#study-title": "Biomedical engineering, applied in service.",
-      "#study .section-intro":
-        "Research training strengthened how I plan tests, interpret evidence and document technical decisions.",
-      ".study-grid article:nth-child(1) span": "Awarded Jun 2024",
-      ".study-grid article:nth-child(1) h3": "Master of Philosophy",
-      ".study-grid article:nth-child(1) p:nth-of-type(1)": "The University of Sydney",
-      ".study-grid article:nth-child(1) p:nth-of-type(2)":
-        "Biomedical engineering research with a focus on experimental planning, impedance measurement, material/process trade-offs, validation evidence, and technical documentation. This research background supports a service approach based on measurement, evidence, and controlled documentation rather than assumption.",
-      ".study-grid article:nth-child(2) span": "2017 - 2020",
-      ".study-grid article:nth-child(2) h3": "Bachelor of Biomedical Engineering",
-      ".study-grid article:nth-child(2) p:nth-of-type(1)": "The University of Sydney",
-      ".study-grid article:nth-child(2) p:nth-of-type(2)":
-        "Medical science, biomedical design, data analysis, electronics, and engineering design tools.",
-      ".study-grid article:nth-child(3) span": "MPhil thesis",
-      ".study-grid article:nth-child(3) h3":
-        "Flexible Electrodes for Smart Bandages: Feasibility Exploration",
-      ".study-grid article:nth-child(3) p":
-        "Wearable medical-device feasibility work using electrode geometry, silver ink coating, impedance measurement, and manufacturability trade-offs.",
-      "#contact .section-kicker": "Contact",
-      "#contact-title": "Discuss a biomedical field service role.",
-      ".contact-inner > p:not(.section-kicker)":
-        "Email is the best first step for opportunities in Sydney. I work in English and Mandarin.",
-      ".contact-actions-title": "Email Henry with the role details.",
-      ".contact-actions-summary":
-        "Useful details include device type, service setting, travel area, start timing or notice period, and the next hiring step.",
-      ".contact-email-action": "Email Henry",
-      ".contact-copy-email-action": "Copy Email",
-      ".contact-resume-link": "Resume PDF",
-      ".contact-docx-link": "Resume DOCX",
-      ".contact-linkedin-link": "LinkedIn",
-      ".contact-github-link": "GitHub",
-      ".contact-secondary-links strong": "Professional links",
-      ".contact-readiness div:nth-child(1) strong": "Availability",
-      ".contact-readiness div:nth-child(1) span": "Upon discussion",
-      ".contact-readiness div:nth-child(2) strong": "Driver licence",
-      ".contact-readiness div:nth-child(2) span": "Available for Sydney field travel",
-      ".contact-readiness div:nth-child(3) strong": "Work rights",
-      ".contact-readiness div:nth-child(3) span": "Available for employer verification",
-      ".contact-readiness div:nth-child(4) strong": "Direct email",
-      ".contact-email-text": "yangyihang96@gmail.com",
-      "#life .section-kicker": "Professional Development",
-      "#life-title": "Building deeper clinical engineering capability.",
-      ".life-section .story-content > p:not(.section-kicker)":
-        "My current focus is electrical safety, stronger verification, better traceability and procedure-led troubleshooting.",
-    },
-    rich: {
-      profileLinks: [
-        { label: "LinkedIn", href: "https://au.linkedin.com/in/henry-yang-9644382bb" },
-        { label: "GitHub", href: "https://github.com/yangyihang96" },
-      ],
-      lifeNotes: [
-        {
-          title: "Electrical safety testing",
-          body: "Electrical safety testing and medical equipment performance verification.",
-        },
-        {
-          title: "Equipment experience",
-          body: "Respiratory, monitoring, imaging, and pharmacy automation service capability.",
-        },
-        {
-          title: "CMMS quality",
-          body: "Biomedical asset management and CMMS record quality.",
-        },
-        {
-          title: "Procedure-led troubleshooting",
-          body: "Manufacturer training and procedure-led troubleshooting.",
-        },
-        {
-          title: "Clinical communication",
-          body: "Clear clinical communication and safe handover.",
-        },
-      ],
-    },
-    attrs: {
-      ".menu-toggle": { "aria-label": "Open navigation" },
-      ".site-nav": { "aria-label": "Primary navigation" },
-      ".language-switch": { "aria-label": "Language switcher" },
-      ".hero-skill-tags": { "aria-label": "Core equipment and service tags" },
-      ".hero-profile-card": { "aria-label": "Profile snapshot" },
-      ".profile-status-strip": { "aria-label": "Profile currency and professional links" },
-      ".proof-grid": { "aria-label": "Recruiter proof points" },
-      ".experience-summary-grid": { "aria-label": "Work experience summary" },
-      ".nav-email-link": { href: recruiterEmailHrefEn },
-      ".email-action": { href: recruiterEmailHrefEn },
-      ".linkedin-action": {
-        href: "https://au.linkedin.com/in/henry-yang-9644382bb",
-      },
-      ".contact-email-action": { href: recruiterEmailHrefEn },
-    },
+    description: "Biomedical field service, thoughtful problem-solving and practical AI workflows. Meet Sydney-based engineer Yihang (Henry) Yang.",
+    text: englishText,
+    menu: { open: "Open navigation", close: "Close navigation" },
+    copyEmail: { default: "Copy email", copied: "Email copied", failed: "Copy failed — use the email link" },
+    platformLabel: "Equipment platforms"
   },
   zh: {
     lang: "zh-CN",
-    title: "Yihang (Henry) Yang | 悉尼医疗设备现场服务工程师",
-    description:
-      "Yihang (Henry) Yang 常驻悉尼，拥有近三年医院和药房医疗设备现场及车间服务经验。",
-    copyEmail: {
-      default: "复制邮箱",
-      copied: "已复制",
-      failed: "复制失败",
-    },
-    menu: {
-      open: "打开导航",
-      close: "关闭导航",
-    },
+    title: "杨颐航 Henry Yang | 悉尼医疗设备现场服务工程师",
+    description: "医疗设备现场服务、严谨排障与实用 AI 工作方法。了解在悉尼工作的工程师杨颐航。",
     text: {
-      ".skip-link": "跳到主要内容",
-      ".site-nav a:nth-child(1)": "经历",
-      ".site-nav a:nth-child(2)": "范围",
-      ".site-nav a:nth-child(3)": "案例",
-      ".site-nav a:nth-child(4)": "教育",
-      ".site-nav a:nth-child(5)": "联系",
-      ".nav-email-link": "邮件联系",
-      ".nav-resume-link": "PDF 简历",
-      "#hero-title": "医疗设备现场服务工程师",
-      ".hero-subtitle":
-        "常驻悉尼，提供医疗设备现场与车间服务，覆盖诊断、维修、验证和交接。",
-      ".hero-meta div:nth-child(1) dt": "经验",
-      ".hero-meta div:nth-child(1) dd": "近 3 年",
-      ".hero-meta div:nth-child(2) dt": "地点",
-      ".hero-meta div:nth-child(2) dd": "悉尼 NSW",
-      ".hero-meta div:nth-child(3) dt": "工作方式",
-      ".hero-meta div:nth-child(3) dd": "现场服务",
-      ".hero-meta div:nth-child(4) dt": "语言",
-      ".hero-meta div:nth-child(4) dd": "英文 / 中文",
-      ".experience-details-label": "查看服务结果详情",
-      ".partner-details-label": "查看平台详情",
-      ".scope-details-label": "查看范围详情",
-      ".case-details-label": "查看证据",
-      ".contact-more-label": "更多选项",
-      ".hero-skill-tags li:nth-child(1)": "呼吸设备",
-      ".hero-skill-tags li:nth-child(2)": "患者监护",
-      ".hero-skill-tags li:nth-child(3)": "超声",
-      ".hero-skill-tags li:nth-child(4)": "DEXA",
-      ".hero-skill-tags li:nth-child(5)": "药房自动化",
-      ".hero-skill-tags li:nth-child(6)": "Simpro",
-      ".hero-skill-tags li:nth-child(7)": "英文 / 中文",
-      ".resume-link": "PDF 简历",
-      ".email-action": "邮件联系",
-      ".linkedin-action": "LinkedIn",
-      ".hero-action-path div:nth-child(1) strong": "岗位匹配",
-      ".hero-action-path div:nth-child(1) span": "医疗设备现场服务",
-      ".hero-action-path div:nth-child(2) strong": "服务内容",
-      ".hero-action-path div:nth-child(2) span": "维护 / 维修 / 验证",
-      ".hero-action-path div:nth-child(3) strong": "下一步",
-      ".hero-action-path div:nth-child(3) span": "邮件沟通岗位匹配",
-      ".hero-profile-card .hero-card-kicker": "当前定位",
-      ".hero-profile-card strong": "医疗设备服务记录与交接",
-      ".hero-profile-card .hero-card-note":
-        "经验重点是预防性维护、故障排查、验证记录和服务完成记录。",
-      ".profile-status-strip div:nth-child(1) strong": "更新",
-      ".profile-status-strip div:nth-child(1) span": "2026 年 6 月",
-      ".profile-status-strip div:nth-child(2) strong": "职业链接",
-      ".fit-strip .section-kicker": "现场服务概览",
-      "#fit-title": "医院与药房设备的实际服务能力。",
-      ".fit-strip .section-intro":
-        "我参与现场与车间工作，重点是清楚排查、验证记录和完整交接。",
-      ".fit-grid article:nth-child(1) span": "服务动作",
-      ".fit-grid article:nth-child(1) strong": "预防性维护、维修、安装和验证",
-      ".fit-grid article:nth-child(2) span": "设备",
-      ".fit-grid article:nth-child(2) strong": "呼吸治疗、患者监护、超声、DEXA、药房自动化",
-      ".fit-grid article:nth-child(3) span": "服务环境",
-      ".fit-grid article:nth-child(3) strong": "医院、药房和车间支持",
-      ".fit-grid article:nth-child(4) span": "记录",
-      ".fit-grid article:nth-child(4) strong": "Simpro、服务报告和明确交接",
-      ".proof-grid article:nth-child(1) span": "服务",
-      ".proof-grid article:nth-child(1) h3": "预防性维护、故障维修、安装支持",
-      ".proof-grid article:nth-child(1) p":
-        "服务经验覆盖医院与药房医疗设备的现场服务和车间支持。",
-      ".proof-grid article:nth-child(2) span": "验证",
-      ".proof-grid article:nth-child(2) h3": "功能与性能检查",
-      ".proof-grid article:nth-child(2) p":
-        "服务结论以测试记录、性能证据或明确升级状态为依据。",
-      ".proof-grid article:nth-child(3) span": "记录",
-      ".proof-grid article:nth-child(3) h3": "服务可追踪性",
-      ".proof-grid article:nth-child(3) p":
-        "工单、测试记录、设备服务历史、沟通记录和交接状态会成为下一次服务决策的证据，而不只是行政记录。",
-      ".proof-grid article:nth-child(4) span": "沟通",
-      ".proof-grid article:nth-child(4) h3": "中英文沟通与交接",
-      ".proof-grid article:nth-child(4) p":
-        "能向临床用户、医院工程团队、厂商和内部工程师清楚说明服务状态。",
-      ".experience-section .section-kicker": "工作经历",
-      "#experience-title": "三年现场与车间服务经历。",
-      ".experience-section .section-intro":
-        "我的工作覆盖设备、服务动作、验证记录和交接。",
-      ".experience-summary > p":
-        "医疗设备现场服务工程师，拥有近三年全职经验，覆盖医院与药房医疗设备服务、预防性维护、故障诊断、维修、安装支持、验证测试和文档记录。",
-      ".experience-summary-grid div:nth-child(1) strong": "服务流程",
-      ".experience-summary-grid div:nth-child(1) span":
-        "准备设备，完成现场服务或车间支持，验证结果，记录工作，并交接下一次使用状态。",
-      ".experience-summary-grid div:nth-child(2) strong": "设备范围",
-      ".experience-summary-grid div:nth-child(2) span":
-        "呼吸设备、患者监护、超声、DEXA、药房自动化、X-ray 支持和通用医疗设备。",
-      ".experience-summary-grid div:nth-child(3) strong": "运营价值",
-      ".experience-summary-grid div:nth-child(3) span":
-        "后续排查从一致的服务记录、设备服务历史和沟通记录开始，而不是只靠记忆。",
-      ".experience-timeline article:nth-child(1) .experience-date": "2023 年 7 月 - 至今",
-      ".experience-timeline article:nth-child(1) h3":
-        "Biomedical Engineer | Nova Biomedical Australia",
-      ".experience-timeline article:nth-child(1) .experience-meta":
-        "澳大利亚范围内现场服务 / 车间支持",
-      ".experience-evidence div:nth-child(1) strong": "设备",
-      ".experience-evidence div:nth-child(1) span": "呼吸 / 监护 / 超声 / DEXA",
-      ".experience-evidence div:nth-child(2) strong": "服务动作",
-      ".experience-evidence div:nth-child(2) span": "PM / 维修 / 安装 / 验证",
-      ".experience-evidence div:nth-child(3) strong": "记录",
-      ".experience-evidence div:nth-child(3) span": "Simpro / 服务报告 / 设备服务历史",
-      ".experience-evidence div:nth-child(4) strong": "服务场景",
-      ".experience-evidence div:nth-child(4) span": "医院 / 药房 / 车间支持",
-      ".experience-outcome dt:nth-of-type(1)": "服务环境",
-      ".experience-outcome dd:nth-of-type(1)": "医院、药房、车间和现场支持环境",
-      ".experience-outcome dt:nth-of-type(2)": "验证结果",
-      ".experience-outcome dd:nth-of-type(2)":
-        "服务结果以功能检查、性能证据或明确升级状态记录",
-      ".experience-outcome dt:nth-of-type(3)": "记录链路",
-      ".experience-outcome dd:nth-of-type(3)":
-        "Simpro 工单、服务报告、设备服务历史和沟通记录保持一致",
-      ".experience-outcome dt:nth-of-type(4)": "交接",
-      ".experience-outcome dd:nth-of-type(4)":
-        "医院工程团队、临床用户、厂商和内部工程师能明确看到下一次使用状态",
-      ".partners-section .section-kicker": "设备厂商与平台",
-      "#partners-title": "我支持过的设备平台。",
-      ".partners-copy > p:not(.section-kicker)":
-        "按设备类别，以及我参与的现场或车间工作场景整理。",
-      ".partners-grid article:nth-child(1) .partner-category": "呼吸 / 监护 / 超声",
-      ".partners-grid article:nth-child(1) h3": "Philips Healthcare 飞利浦医疗",
-      ".partners-grid article:nth-child(1) p":
-        "围绕呼吸治疗、患者监护、超声和 ECG 推车相关场景，参与服务准备、现场支持、功能检查、升级支持和交接记录。",
-      ".partners-grid article:nth-child(1) .partner-equipment strong": "对应设备 / 平台",
-      ".partners-grid article:nth-child(1) .partner-equipment p":
-        "Respironics V60、MX40/MX450、患者监护仪、超声系统、ECG 推车、PNA 测试。",
-      ".partners-grid article:nth-child(2) .partner-category": "用药管理 / 自动化",
-      ".partners-grid article:nth-child(2) h3": "BD / BD Rowa",
-      ".partners-grid article:nth-child(2) p":
-        "围绕 Pyxis、Rowa 和 Alaris 相关场景，参与现场故障支持、工作流支持、整改项目支持、服务记录、沟通记录和交接。",
-      ".partners-grid article:nth-child(2) .partner-equipment strong": "对应设备 / 平台",
-      ".partners-grid article:nth-child(2) .partner-equipment p":
-        "BD Pyxis、BD Rowa Vmax/Smart、Prolog、Alaris 整改、药房自动化工作流。",
-      ".partners-grid article:nth-child(3) .partner-category": "急救 / 重症支持",
-      ".partners-grid article:nth-child(3) h3": "Device Technologies",
-      ".partners-grid article:nth-child(3) p":
-        "围绕 Corpuls 等急救和重症相关设备场景，参与车间支持、台架检查、现场准备、设备状态记录和服务交接。",
-      ".partners-grid article:nth-child(3) .partner-equipment strong": "对应设备 / 平台",
-      ".partners-grid article:nth-child(3) .partner-equipment p":
-        "Corpuls CPR arm、Corpuls 系统、Hamilton T1、H-900 humidifier、连接测试和 PM 支持。",
-      ".partners-grid article:nth-child(4) .partner-category": "诊断 / DEXA / 手术影像",
-      ".partners-grid article:nth-child(4) h3": "Hologic",
-      ".partners-grid article:nth-child(4) p":
-        "围绕 DEXA、TridentHD 和整改项目支持场景，关注性能证据、服务记录、升级路径，以及是否可继续使用或需要升级处理的状态。",
-      ".partners-grid article:nth-child(4) .partner-equipment strong": "对应设备 / 平台",
-      ".partners-grid article:nth-child(4) .partner-equipment p":
-        "Horizon DEXA、TridentHD、乳腺影像和活检系统、EMI 整改支持。",
-      ".partners-grid article:nth-child(5) .partner-category": "呼吸诊断",
-      ".partners-grid article:nth-child(5) h3": "Jaeger Medical",
-      ".partners-grid article:nth-child(5) p":
-        "围绕呼吸诊断设备服务场景，参与计划性服务、功能检查、设备状态记录和可追踪的完整服务记录。",
-      ".partners-grid article:nth-child(5) .partner-equipment strong": "对应设备 / 平台",
-      ".partners-grid article:nth-child(5) .partner-equipment p":
-        "Vyntus Body、Vyntus One、Vyntus Spiro、Vyntus CPX、Pneumo、SentrySuite 相关支持。",
-      ".judgement-section .section-kicker": "临床安全与服务判断",
-      "#judgement-title": "安全的服务决策需要证据。",
-      ".judgement-lead > p:not(.section-kicker)":
-        "我会核对报告问题、设备状态和服务历史，遵循正确流程，验证结果并清楚记录下一步。",
-      ".judgement-grid article:nth-child(1) span": "放行边界",
-      ".judgement-grid article:nth-child(1) h3": "不确定的设备不应直接返回临床使用",
-      ".judgement-grid article:nth-child(1) p":
-        "不安全或结果不确定的设备，在完成验证或升级处理前，不应返回临床使用。",
-      ".release-list li:nth-child(1)": "已验证，可返回使用",
-      ".release-list li:nth-child(2)": "限制或观察使用",
-      ".release-list li:nth-child(3)": "升级处理 / 不返回使用",
-      ".judgement-grid article:nth-child(2) span": "流程纪律",
-      ".judgement-grid article:nth-child(2) h3": "测试设备和流程纪律",
-      ".judgement-grid article:nth-child(2) p":
-        "服务检查应按合适的厂家流程执行；需要时使用符合要求的测试设备，并记录通过 / 未通过或升级说明。",
-      ".judgement-grid article:nth-child(3) span": "澳洲医疗设备服务意识",
-      ".judgement-grid article:nth-child(3) h3": "AS/NZS 3551 生命周期意识",
-      ".judgement-grid article:nth-child(3) p":
-        "理解医疗设备生命周期管理的重要性：验收、计划性服务、故障管理、例行测试、服务记录、退役 / 报废意识，以及结合厂家流程和本地临床工程管理要求的升级路径。",
-      ".judgement-grid article:nth-child(4) span": "合规记录",
-      ".judgement-grid article:nth-child(4) h3": "合规医疗记录思维",
-      ".judgement-grid article:nth-child(4) p":
-        "医疗设备服务也需要合规记录纪律：清楚事件历史、事实性记录、可追踪动作，在安全或性能疑问未解决时升级，并避免没有证据支持的假设。",
-      ".experience-timeline article:nth-child(2) .experience-date": "2019 年 12 月 - 2020 年 2 月",
-      ".experience-timeline article:nth-child(2) h3": "药物警戒部门助理 | Lundbeck Beijing",
-      ".experience-timeline article:nth-child(2) .experience-meta": "实习，中国北京",
-      ".experience-timeline article:nth-child(2) li:nth-child(1)":
-        "支持 Lundbeck 在中国上市产品的不良反应记录处理和药物安全文档工作。",
-      ".experience-timeline article:nth-child(2) li:nth-child(2)":
-        "参与合规医疗记录相关文档整理，接触跨部门沟通和记录边界。",
-      "#capabilities .section-kicker": "设备与服务范围",
-      "#capabilities-title": "按设备类别说明服务范围和验证依据。",
-      "#capabilities .section-intro":
-        "每一项都说明我的参与程度，以及用于验证或交接工作的证据。",
-      ".capability-row article:nth-child(1) span": "呼吸",
-      ".capability-row article:nth-child(1) h3": "呼吸设备服务",
-      ".capability-row article:nth-child(1) p":
-        "V60、V60 Plus、Trilogy 等呼吸设备的计划性服务、功能检查和故障排查准备。",
-      ".capability-row article:nth-child(1) .scope-evidence dt:nth-of-type(1)": "参与内容",
-      ".capability-row article:nth-child(1) .scope-evidence dd:nth-of-type(1)":
-        "预防性维护、功能检查和故障排查准备。",
-      ".capability-row article:nth-child(1) .scope-evidence dt:nth-of-type(2)": "验证证据",
-      ".capability-row article:nth-child(1) .scope-evidence dd:nth-of-type(2)":
-        "适用时包括流量 / 压力相关检查、报警和功能确认、厂家流程记录。",
-      ".capability-row article:nth-child(1) .scope-level": "实际服务经验",
-      ".capability-row article:nth-child(2) span": "监护",
-      ".capability-row article:nth-child(2) h3": "患者监护",
-      ".capability-row article:nth-child(2) p":
-        "Avalon、Efficia、HeartStart 等监护设备的服务准备、检查和交接记录。",
-      ".capability-row article:nth-child(2) .scope-evidence dt:nth-of-type(1)": "参与内容",
-      ".capability-row article:nth-child(2) .scope-evidence dd:nth-of-type(1)":
-        "监护设备的服务准备、检查和交接记录。",
-      ".capability-row article:nth-child(2) .scope-evidence dt:nth-of-type(2)": "验证证据",
-      ".capability-row article:nth-child(2) .scope-evidence dd:nth-of-type(2)":
-        "适用时包括 ECG / SpO2 / NIBP 相关功能检查、外观检查和可用状态确认。",
-      ".capability-row article:nth-child(2) .scope-level": "培训已完成",
-      ".capability-row article:nth-child(3) span": "影像",
-      ".capability-row article:nth-child(3) h3": "超声系统",
-      ".capability-row article:nth-child(3) p":
-        "EPIQ、Affiniti、CX30、CX50 的服务准备、安装支持和检查。",
-      ".capability-row article:nth-child(3) .scope-evidence dt:nth-of-type(1)": "参与内容",
-      ".capability-row article:nth-child(3) .scope-evidence dd:nth-of-type(1)":
-        "安装支持、服务准备和检查。",
-      ".capability-row article:nth-child(3) .scope-evidence dt:nth-of-type(2)": "验证证据",
-      ".capability-row article:nth-child(3) .scope-evidence dd:nth-of-type(2)":
-        "适用时包括系统功能检查、探头 / 线缆状态和图像 / 功能确认。",
-      ".capability-row article:nth-child(3) .scope-level": "安装支持",
-      ".capability-row article:nth-child(4) span": "诊断",
-      ".capability-row article:nth-child(4) h3": "DEXA 和 X-ray 支持",
-      ".capability-row article:nth-child(4) p":
-        "Horizon DEXA、X-ray 安装和服务培训，重点是性能检查和服务记录。",
-      ".capability-row article:nth-child(4) .scope-evidence dt:nth-of-type(1)": "参与内容",
-      ".capability-row article:nth-child(4) .scope-evidence dd:nth-of-type(1)":
-        "安装支持和服务培训。",
-      ".capability-row article:nth-child(4) .scope-evidence dt:nth-of-type(2)": "验证证据",
-      ".capability-row article:nth-child(4) .scope-evidence dd:nth-of-type(2)":
-        "性能检查意识、安全文档和升级路径。",
-      ".capability-row article:nth-child(4) .scope-level": "培训已完成",
-      ".capability-row article:nth-child(5) span": "自动化",
-      ".capability-row article:nth-child(5) h3": "药房自动化",
-      ".capability-row article:nth-child(5) p":
-        "BD FIX100、Pyxis、ROWA 和专项工作流支持，重点是服务记录和交接。",
-      ".capability-row article:nth-child(5) .scope-evidence dt:nth-of-type(1)": "参与内容",
-      ".capability-row article:nth-child(5) .scope-evidence dd:nth-of-type(1)":
-        "工作流支持、服务记录和客户沟通交接。",
-      ".capability-row article:nth-child(5) .scope-evidence dt:nth-of-type(2)": "验证证据",
-      ".capability-row article:nth-child(5) .scope-evidence dd:nth-of-type(2)":
-        "适用时包括功能状态、发药流程 / 工作流检查和客户沟通记录。",
-      ".capability-row article:nth-child(5) .scope-level": "记录 / 交接经验",
-      ".capability-row article:nth-child(6) span": "记录",
-      ".capability-row article:nth-child(6) h3": "服务可追踪性",
-      ".capability-row article:nth-child(6) p":
-        "Simpro 工单、服务报告、设备服务历史、沟通记录和服务完成记录。",
-      ".capability-row article:nth-child(6) .scope-evidence dt:nth-of-type(1)": "参与内容",
-      ".capability-row article:nth-child(6) .scope-evidence dd:nth-of-type(1)":
-        "CMMS 记录、交接记录与设备服务历史保持一致。",
-      ".capability-row article:nth-child(6) .scope-evidence dt:nth-of-type(2)": "验证证据",
-      ".capability-row article:nth-child(6) .scope-evidence dd:nth-of-type(2)":
-        "设备状态、处理动作、测试结果、备件或升级状态、沟通记录和下一次使用判断。",
-      ".capability-row article:nth-child(6) .scope-level": "实际服务经验",
-      ".target-roles .section-kicker": "目标岗位",
-      "#target-roles-title": "与现有经验匹配的岗位。",
-      ".target-role-list li:nth-child(1)": "Biomedical Field Service Engineer",
-      ".target-role-list li:nth-child(2)": "Medical Device Service Engineer",
-      ".target-role-list li:nth-child(3)": "Clinical Engineering Service Support",
-      ".target-role-list li:nth-child(4)": "Biomedical Technician / Service Technician",
-      "#case-notes .section-kicker": "服务案例",
-      "#case-title": "我如何评估、验证并完成交接。",
-      "#case-notes .section-intro":
-        "三个案例说明维护、故障排查和可追踪记录背后的判断。",
-      ".fault-approach h3": "服务决策路径",
-      ".fault-approach li:nth-child(1) strong": "评估",
-      ".fault-approach li:nth-child(1) span": "核对安全、报告现象、设备状态和服务历史。",
-      ".fault-approach li:nth-child(2) strong": "处理",
-      ".fault-approach li:nth-child(2) span": "复现或隔离故障，按流程检查，再维修或升级。",
-      ".fault-approach li:nth-child(3) strong": "验证",
-      ".fault-approach li:nth-child(3) span": "确认服务后功能，并记录下一次使用或升级状态。",
-      ".case-grid article:nth-child(1) span": "01 / 预防性维护",
-      ".case-grid article:nth-child(1) h3": "例行维护也要留下清楚的交接结果",
-      ".case-grid article:nth-child(1) p":
-        "计划性服务会先确认设备状态、历史、现场限制、流程步骤和性能证据，再完成交接。",
-      ".case-grid article:nth-child(1) .case-outcome dt:nth-of-type(1)": "风险点",
-      ".case-grid article:nth-child(1) .case-outcome dd:nth-of-type(1)":
-        "计划性设备如果状态、历史或现场限制不清楚，仍然可能带来风险",
-      ".case-grid article:nth-child(1) .case-outcome dt:nth-of-type(2)": "判断依据",
-      ".case-grid article:nth-child(1) .case-outcome dd:nth-of-type(2)":
-        "设备状态、服务历史、厂家流程步骤，以及功能或性能证据",
-      ".case-grid article:nth-child(1) .case-outcome dt:nth-of-type(3)": "处理动作",
-      ".case-grid article:nth-child(1) .case-outcome dd:nth-of-type(3)":
-        "计划性服务步骤、状态检查和服务记录完善",
-      ".case-grid article:nth-child(1) .case-outcome dt:nth-of-type(4)": "验证",
-      ".case-grid article:nth-child(1) .case-outcome dd:nth-of-type(4)":
-        "功能检查和已记录的下一次使用状态",
-      ".case-grid article:nth-child(1) .case-outcome dt:nth-of-type(5)": "放行判断",
-      ".case-grid article:nth-child(1) .case-outcome dd:nth-of-type(5)":
-        "只有当服务结果支持明确的已验证可用状态时才返回使用",
-      ".case-grid article:nth-child(1) .case-outcome dt:nth-of-type(6)": "结果",
-      ".case-grid article:nth-child(1) .case-outcome dd:nth-of-type(6)":
-        "设备带有明确的下一次使用状态和完整的服务记录",
-      ".case-grid article:nth-child(2) span": "02 / 故障诊断",
-      ".case-grid article:nth-child(2) h3": "故障排查案例：用户反馈的间歇性故障",
-      ".case-grid article:nth-child(2) p":
-        "对用户反馈的间歇性故障，会结合设备状态、服务历史、附件、用户使用流程和可复现现象判断；按手册检查，记录测量结果，确认维修后功能，并记录设备是可使用、需观察使用，还是需要升级。",
-      ".case-grid article:nth-child(2) .case-outcome dt:nth-of-type(1)": "风险点",
-      ".case-grid article:nth-child(2) .case-outcome dd:nth-of-type(1)":
-        "间歇性现象可能来自主机、附件、工作流、环境或配置",
-      ".case-grid article:nth-child(2) .case-outcome dt:nth-of-type(2)": "判断依据",
-      ".case-grid article:nth-child(2) .case-outcome dd:nth-of-type(2)":
-        "设备状态、服务历史、附件、用户使用流程和可复现现象",
-      ".case-grid article:nth-child(2) .case-outcome dt:nth-of-type(3)": "处理动作",
-      ".case-grid article:nth-child(2) .case-outcome dd:nth-of-type(3)":
-        "现象复核、复现路径和按手册检查",
-      ".case-grid article:nth-child(2) .case-outcome dt:nth-of-type(4)": "验证",
-      ".case-grid article:nth-child(2) .case-outcome dd:nth-of-type(4)": "测量记录和维修后功能确认",
-      ".case-grid article:nth-child(2) .case-outcome dt:nth-of-type(5)": "放行判断",
-      ".case-grid article:nth-child(2) .case-outcome dd:nth-of-type(5)":
-        "根据服务后证据记录设备是可使用、需观察使用，还是需要升级",
-      ".case-grid article:nth-child(2) .case-outcome dt:nth-of-type(6)": "结果",
-      ".case-grid article:nth-child(2) .case-outcome dd:nth-of-type(6)":
-        "在交接前区分使用条件、维修历史、附件、可复现现象和手册检查结果",
-      ".case-grid article:nth-child(3) span": "03 / 服务记录",
-      ".case-grid article:nth-child(3) h3": "可追踪性，而不只是行政记录",
-      ".case-grid article:nth-child(3) p":
-        "服务记录会被当作工程证据：设备状态、报告现象、处理动作、测试结果、备件或升级状态、沟通记录和下一次使用判断。",
-      ".case-grid article:nth-child(3) .case-outcome dt:nth-of-type(1)": "风险点",
-      ".case-grid article:nth-child(3) .case-outcome dd:nth-of-type(1)":
-        "模糊的服务记录会让后续排查更慢，也更难说明判断依据",
-      ".case-grid article:nth-child(3) .case-outcome dt:nth-of-type(2)": "判断依据",
-      ".case-grid article:nth-child(3) .case-outcome dd:nth-of-type(2)":
-        "工单、处理动作、测试记录、设备服务历史、沟通记录和升级状态",
-      ".case-grid article:nth-child(3) .case-outcome dt:nth-of-type(3)": "处理动作",
-      ".case-grid article:nth-child(3) .case-outcome dd:nth-of-type(3)":
-        "对齐工单、服务报告、设备服务历史和处理动作",
-      ".case-grid article:nth-child(3) .case-outcome dt:nth-of-type(4)": "验证",
-      ".case-grid article:nth-child(3) .case-outcome dd:nth-of-type(4)": "交叉核对设备服务历史和沟通记录",
-      ".case-grid article:nth-child(3) .case-outcome dt:nth-of-type(5)": "放行判断",
-      ".case-grid article:nth-child(3) .case-outcome dd:nth-of-type(5)":
-        "为医院工程团队和内部工程师清楚记录下一次使用或升级状态",
-      ".case-grid article:nth-child(3) .case-outcome dt:nth-of-type(6)": "结果",
-      ".case-grid article:nth-child(3) .case-outcome dd:nth-of-type(6)":
-        "后续服务决策从证据开始，而不是只靠记忆",
-      "#study .section-kicker": "教育",
-      "#study-title": "把生物医学工程用于实际服务。",
-      "#study .section-intro": "研究训练加强了我的测试规划、证据判断和技术记录能力。",
-      ".study-grid article:nth-child(1) span": "2024 年 6 月授予",
-      ".study-grid article:nth-child(1) h3": "Master of Philosophy",
-      ".study-grid article:nth-child(1) p:nth-of-type(1)": "The University of Sydney",
-      ".study-grid article:nth-child(1) p:nth-of-type(2)":
-        "生物医学工程研究，重点包括实验计划、阻抗测量、材料 / 工艺权衡、验证证据和技术文档。这段研究经历也支持以测量、证据和规范记录为基础的服务方式，而不是凭假设判断。",
-      ".study-grid article:nth-child(2) span": "2017 - 2020",
-      ".study-grid article:nth-child(2) h3": "Bachelor of Biomedical Engineering",
-      ".study-grid article:nth-child(2) p:nth-of-type(1)": "The University of Sydney",
-      ".study-grid article:nth-child(2) p:nth-of-type(2)":
-        "医学科学、生物医学设计、数据分析、电子学和工程设计工具。",
-      ".study-grid article:nth-child(3) span": "MPhil 论文",
-      ".study-grid article:nth-child(3) h3":
-        "Flexible Electrodes for Smart Bandages: Feasibility Exploration",
-      ".study-grid article:nth-child(3) p":
-        "围绕可穿戴医疗设备可行性，处理柔性电极几何、银墨涂层、阻抗测量和可制造性权衡。",
-      "#contact .section-kicker": "联系",
-      "#contact-title": "欢迎沟通医疗设备现场服务岗位。",
-      ".contact-inner > p:not(.section-kicker)":
-        "悉尼相关机会请优先邮件联系。我可以使用中文或英文沟通。",
-      ".contact-actions-title": "请直接发送岗位信息。",
-      ".contact-actions-summary":
-        "有用信息包括设备类型、服务环境、现场服务范围、开始时间，以及招聘流程的下一步安排。",
-      ".contact-email-action": "邮件联系",
-      ".contact-copy-email-action": "复制邮箱",
-      ".contact-resume-link": "PDF 简历",
-      ".contact-docx-link": "DOCX 简历",
-      ".contact-linkedin-link": "LinkedIn",
-      ".contact-github-link": "GitHub",
-      ".contact-secondary-links strong": "职业链接",
-      ".contact-readiness div:nth-child(1) strong": "可开始时间",
-      ".contact-readiness div:nth-child(1) span": "可沟通",
-      ".contact-readiness div:nth-child(2) strong": "驾照",
-      ".contact-readiness div:nth-child(2) span": "可支持悉尼现场服务",
-      ".contact-readiness div:nth-child(3) strong": "工作权利",
-      ".contact-readiness div:nth-child(3) span": "可按雇主流程核验",
-      ".contact-readiness div:nth-child(4) strong": "直接邮箱",
-      ".contact-email-text": "yangyihang96@gmail.com",
-      "#life .section-kicker": "职业发展",
-      "#life-title": "持续深化临床工程服务能力。",
-      ".life-section .story-content > p:not(.section-kicker)":
-        "当前重点是电气安全、更强的验证、更好的可追踪性和按流程故障排查。",
-    },
-    rich: {
-      profileLinks: [
-        { label: "LinkedIn", href: "https://au.linkedin.com/in/henry-yang-9644382bb" },
-        { label: "GitHub", href: "https://github.com/yangyihang96" },
-      ],
-      lifeNotes: [
-        {
-          title: "电气安全测试",
-          body: "电气安全测试和医疗设备性能验证。",
-        },
-        {
-          title: "设备经验深度",
-          body: "加深呼吸、监护、影像和药房自动化服务能力。",
-        },
-        {
-          title: "CMMS 记录质量",
-          body: "医疗设备资产管理和 CMMS 记录质量。",
-        },
-        {
-          title: "按流程故障排查",
-          body: "厂家培训和按流程故障排查。",
-        },
-        {
-          title: "临床沟通",
-          body: "临床沟通和安全交接。",
-        },
-      ],
-    },
-    attrs: {
-      ".menu-toggle": { "aria-label": "打开导航" },
-      ".site-nav": { "aria-label": "主导航" },
-      ".language-switch": { "aria-label": "语言切换" },
-      ".hero-skill-tags": { "aria-label": "核心设备和服务标签" },
-      ".hero-profile-card": { "aria-label": "个人资料快照" },
-      ".profile-status-strip": { "aria-label": "资料更新时间和职业链接" },
-      ".proof-grid": { "aria-label": "招聘方证据点" },
-      ".experience-summary-grid": { "aria-label": "工作经历摘要" },
-      ".nav-email-link": { href: recruiterEmailHrefZh },
-      ".email-action": { href: recruiterEmailHrefZh },
-      ".linkedin-action": {
-        href: "https://au.linkedin.com/in/henry-yang-9644382bb",
-      },
-      ".contact-email-action": { href: recruiterEmailHrefZh },
-    },
-  },
-};
-
-const languageButtons = Array.from(document.querySelectorAll("[data-language-option]"));
-const emailCopyButtons = Array.from(document.querySelectorAll("[data-copy-email]"));
-const copyStatus = document.querySelector("[data-copy-status]");
-const descriptionMeta = document.querySelector('meta[name="description"]');
-const themeMeta = document.querySelector('meta[name="theme-color"]');
-const themePreferenceMedia = window.matchMedia?.("(prefers-color-scheme: dark)");
-const themeColors = {
-  light: "#f4f7f4",
-  dark: "#0d1716",
-};
-
-const createExternalLink = ({ label, href }) => {
-  const link = document.createElement("a");
-  link.href = href;
-  link.target = "_blank";
-  link.rel = "noopener noreferrer";
-  link.textContent = label;
-  return link;
-};
-
-const applyRichContent = (dictionary) => {
-  const profileLinkTarget = document.querySelector(".profile-status-strip div:nth-child(2) span");
-  if (profileLinkTarget && dictionary.rich?.profileLinks?.length) {
-    const nodes = dictionary.rich.profileLinks.flatMap((linkData, index) => {
-      const nodesForLink = [createExternalLink(linkData)];
-      if (index < dictionary.rich.profileLinks.length - 1) {
-        nodesForLink.push(document.createTextNode(" / "));
-      }
-      return nodesForLink;
-    });
-    profileLinkTarget.replaceChildren(...nodes);
-  }
-
-  (dictionary.rich?.lifeNotes || []).forEach((note, index) => {
-    const target = document.querySelector(`.life-notes p:nth-child(${index + 1})`);
-    if (!target) {
-      return;
-    }
-
-    const title = document.createElement("strong");
-    title.textContent = note.title;
-    target.replaceChildren(title, document.createTextNode(` ${note.body}`));
-  });
-};
-
-const getResolvedTheme = () => (themePreferenceMedia?.matches ? "dark" : "light");
-
-const getActiveDictionary = () => {
-  const language = document.body.dataset.language || "en";
-  return translations[language] || translations.en;
-};
-
-const applyTheme = (theme) => {
-  const selected = theme === "dark" ? "dark" : "light";
-  document.documentElement.dataset.theme = selected;
-  document.documentElement.style.colorScheme = selected;
-
-  if (themeMeta) {
-    themeMeta.setAttribute("content", themeColors[selected]);
+  "navService": "排障笔记",
+  "navEducation": "教育",
+  "philipsArtCaption": "图示：Philips Respironics V60",
+  "bdArtCaption": "图示：BD Rowa Vmax",
+  "corpulsArtCaption": "图示：corpuls3 modules",
+  "hologicArtCaption": "图示：Hologic Horizon DXA",
+  "philipsCategory": "呼吸机",
+  "equipmentLabel": "设备范围",
+  "philipsEquipment0": "V60 / V60 Plus",
+  "philipsEquipment1": "Trilogy 202 / Trilogy Evo",
+  "serviceContext": "服务经历",
+  "philipsScope": "V60 现场变更实施、预防性维护、功能验证与服务报告。",
+  "bdCategory": "药品管理 / 药房自动化",
+  "bdEquipment0": "Pyxis MedStation / PAS ES",
+  "bdEquipment1": "Rowa Vmax / Rowa Smart / ProLog",
+  "bdScope": "Rowa Vmax 与 ProLog 预防性维护、药房现场服务、故障记录及交接。",
+  "corpulsCategory": "监护 / 除颤",
+  "corpulsEquipment0": "corpuls3 modular monitor-defibrillator",
+  "corpulsScope": "设备更换与软件升级实施、车间准备、完成情况追踪及服务交接。",
+  "hologicCategory": "骨密度检测 / 标本影像",
+  "hologicEquipment0": "Horizon DXA",
+  "hologicEquipment1": "Trident HD",
+  "hologicScope": "参与 Horizon EMI 整改，以及 Trident HD 上电与设备信息记录支持；培训与支持范围对应具体承担的工作。",
+  "assessTitle": "评估",
+  "assessIntro": "理解故障表现及使用情境。",
+  "assessBody": "面对用户报告的间歇性故障，我会检查设备状态、服务历史、附件与使用流程，并确认问题是否可以复现。",
+  "procedureTitle": "按程序检查",
+  "procedureIntro": "依据制造商文档与适用的服务程序。",
+  "procedureBody": "依据制造商文档及适用程序排查故障，记录检查发现，并识别需要进一步支持或升级处理的问题。",
+  "verifyTitle": "验证",
+  "verifyIntro": "检查服务后的功能与性能。",
+  "verifyBody": "按适用程序进行服务后检查，以测量记录和功能验证结果作为后续判断的依据。",
+  "handoverTitle": "记录与交接",
+  "handoverIntro": "记录检查发现、设备状态与后续行动。",
+  "handoverBody": "通过 Simpro 工单和服务报告记录已完成的工作、验证结果、设备状态及未解决事项，让交接有据可查。",
+  "skip": "跳至正文",
+  "navExperience": "经历",
+  "navEquipment": "设备",
+  "navAi": "AI 与工具",
+  "navContact": "联系",
+  "heroRole": "医疗设备\n现场服务工程师",
+  "heroIntro": "常驻悉尼，从现场服务到车间维修，认真处理每一个工程问题。",
+  "download": "下载简历",
+  "email": "邮件联系",
+  "experienceLabel": "工作经历",
+  "since": "自 2023 年 7 月",
+  "locationLabel": "所在地",
+  "travelLabel": "现场出差",
+  "licence": "持有驾驶执照",
+  "languagesLabel": "语言",
+  "languages": "英语 / 普通话",
+  "aboutLabel": "关于我",
+  "experienceTitle": "用务实的方法，解决复杂的设备问题。",
+  "experienceIntro": "在澳大利亚开展现场服务，为医院与药房设备提供车间维修和技术支持。",
+  "novaDate": "2023 年 7 月至今",
+  "novaRole": "生物医学工程师",
+  "lundbeckDate": "2019 年 12 月至 2020 年 2 月",
+  "lundbeckRole": "药物警戒部门助理",
+  "lundbeckIntro": "协助处理不良反应记录、药物安全文档及跨部门沟通。",
+  "focusDiagnosis": "诊断与维修",
+  "focusDiagnosisBody": "预防性维护、故障排查、纠正性维修与安装支持。",
+  "focusVerification": "服务后验证",
+  "focusVerificationBody": "依据适用程序进行功能测试与性能检查。",
+  "focusDocumentation": "服务记录",
+  "focusDocumentationBody": "Simpro 工单、设备历史及可追溯的服务交接。",
+  "equipmentTitle": "医疗技术，",
+  "equipmentTitleAccent": "付诸实践。",
+  "equipmentIntro": "现场服务、车间维修、安装支持与服务记录。",
+  "platformHint": "选择平台，查看设备范围与服务经历。",
+  "serviceTitle": "从故障表现，到清晰交接。",
+  "serviceOutcome": "以记录支持判断：可投入使用、需要跟进，或需要升级处理。",
+  "aiLabel": "AI 工具与工作方式",
+  "aiTitle": "AI，融入",
+  "aiAccent": "日常工作。",
+  "aiIntro": "我使用 Codex、Claude Code 和 ChatGPT 辅助调研、文案撰写与编程，并在使用前检查输出。",
+  "websiteTitle": "个人网站",
+  "websiteIntro": "双语设计、响应式优化与交互检查。",
+  "howAi": "我怎样使用 AI",
+  "brief": "定义任务",
+  "websiteBrief": "明确问题、目标与限制条件。",
+  "build": "辅助制作",
+  "websiteBuild": "借助编程工具与生成的视觉方案进行迭代。",
+  "review": "检查结果",
+  "websiteReview": "检查文案、交互行为和实际呈现效果。",
+  "documentTitle": "简历与文档流程",
+  "documentIntro": "起草、排版并检查 PDF 与 Word 文档。",
+  "documentBrief": "整理原始信息，明确文档的使用对象。",
+  "documentBuild": "使用 AI 辅助起草内容、安排结构与调整格式。",
+  "documentReview": "核对事实，并检查最终 PDF 和 Word 的排版。",
+  "define": "定义",
+  "defineBody": "明确任务与背景。",
+  "create": "制作",
+  "createBody": "探索、起草与迭代。",
+  "reviewStep": "检查",
+  "reviewStepBody": "核对事实与适用性。",
+  "verifyStep": "验证",
+  "verifyStepBody": "验证最终结果。",
+  "studyLabel": "研究与教育",
+  "studyTitle": "让好奇心，经得起验证。",
+  "studyIntro": "生物医学工程研究，侧重实验规划、阻抗测量、验证方法与技术记录。",
+  "mphil": "哲学硕士（研究型）",
+  "mphilDate": "2024 年 6 月获授学位",
+  "mphilScope": "实验规划、阻抗测量与验证。",
+  "bachelor": "生物医学工程学士",
+  "bachelorScope": "医学科学、生物医学设计、数据分析与电子学。",
+  "contactLabel": "联系",
+  "contactTitle": "聊一聊。",
+  "contactIntro": "欢迎联系我，交流悉尼的生物医学工程与医疗设备现场服务岗位机会。",
+  "copyEmail": "复制邮箱",
+  "eligibility": "工作资格：可在招聘过程中核实。",
+  "imageNote": "部分工程主题图片由 AI 生成，用于视觉呈现。",
+  "backTop": "返回顶部",
+  "trainingLabel": "已完成培训",
+  "philipsTab": "呼吸治疗",
+  "philipsTraining": "已完成 V60 / V60 Plus 在线服务培训、Trilogy 202 服务培训及 Trilogy Evo 维修课程。",
+  "ultrasoundTab": "超声设备",
+  "ultrasoundCategory": "台车式与便携式超声",
+  "ultrasoundTraining": "2023 年 3 月在悉尼完成超声基础、EPIQ / Affiniti 现场课程，以及 CX30 / CX50 / SPARQ 现场服务工程师培训；同时完成相关在线课程。",
+  "ultrasoundScope": "Affiniti 70G 与 CX50 预防性维护：检查操控部件、接口和滤网，运行诊断，进行电气安全测试并记录验证结果。",
+  "ultrasoundArtCaption": "图示：Philips Affiniti 70",
+  "ultrasoundEquipment0": "EPIQ / Affiniti",
+  "ultrasoundEquipment1": "CX30 / CX50 / SPARQ",
+  "monitorTab": "患者监护",
+  "monitorCategory": "床旁、遥测与胎儿监护",
+  "monitorTraining": "已完成 Efficia CM 系列服务培训、MX40 安装与维修课程，以及 Avalon FM20 / FM30 支持培训。",
+  "monitorScope": "参与 IntelliVue X3 配置与软件升级、设备选项核查、完成记录整理和临床区域验证支持。",
+  "monitorArtCaption": "图示：Philips Efficia CM150",
+  "monitorEquipment0": "Efficia CM10 / CM12 / CM100 / CM120 / CM150",
+  "monitorEquipment1": "IntelliVue MX40 / X3",
+  "monitorEquipment2": "Avalon FM20 / FM30",
+  "ecgTab": "心电与除颤",
+  "ecgCategory": "诊断心电 / 监护除颤仪",
+  "ecgTraining": "2023 年 11 月完成 PageWriter TC20 / TC30 / TC50 系列课程；2025 年 3 月完成 HeartStart Intrepid 监护除颤仪服务培训。",
+  "ecgScope": "参与 PageWriter TC50 现场升级并整理服务报告。HeartStart Intrepid 在此列为已完成服务培训的设备。",
+  "ecgArtCaption": "图示：Philips PageWriter TC50",
+  "ecgEquipment0": "PageWriter TC20 / TC30 / TC50",
+  "ecgEquipment1": "HeartStart Intrepid",
+  "bdTab": "药房自动化",
+  "bdTraining": "2024 年 1 月完成 FIX 100 配药服务基础培训，以及 Pyxis MedStation / PAS ES 硬件 FIX 100 课程。",
+  "corpulsTab": "急救设备",
+  "corpulsTraining": "2026 年参加软件升级项目培训，随后开展现场实施工作。",
+  "hologicTab": "骨密度与手术影像",
+  "hologicTraining": "2025 年 5 月在悉尼完成 Horizon EMI 整改安装技术服务培训。"
+},
+    menu: { open: "打开导航", close: "关闭导航" },
+    copyEmail: { default: "复制邮箱", copied: "邮箱已复制", failed: "复制失败，请使用邮箱链接" },
+    platformLabel: "设备平台"
   }
 };
-
-const setStoredLanguage = (language) => {
-  try {
-    window.localStorage.setItem("siteLanguage", language);
-  } catch {
-    // Local storage can be unavailable in restricted preview contexts.
-  }
-};
-
-const getStoredLanguage = () => {
-  try {
-    return window.localStorage.getItem("siteLanguage");
-  } catch {
-    return null;
-  }
-};
-
+const isSupportedLanguage = language => typeof language === "string" && Object.hasOwn(translations, language);
 const getInitialLanguage = () => {
-  const storedLanguage = getStoredLanguage();
-  return translations[storedLanguage] ? storedLanguage : "en";
+  try {
+    const storedLanguage = localStorage.getItem("portfolio-language");
+    return isSupportedLanguage(storedLanguage) ? storedLanguage : "en";
+  } catch { return "en"; }
 };
-
-const applyLanguage = (language, shouldStore = true) => {
-  const selected = translations[language] ? language : "en";
-  const dictionary = translations[selected];
-
-  document.documentElement.lang = dictionary.lang;
-  document.body.dataset.language = selected;
-  document.title = dictionary.title;
-
-  if (descriptionMeta) {
-    descriptionMeta.setAttribute("content", dictionary.description);
-  }
-
-  Object.entries(dictionary.text).forEach(([selector, value]) => {
-    document.querySelectorAll(selector).forEach((target) => {
-      target.textContent = value;
-    });
-  });
-
-  applyRichContent(dictionary);
-
-  Object.entries(dictionary.attrs || {}).forEach(([selector, attributes]) => {
-    document.querySelectorAll(selector).forEach((target) => {
-      Object.entries(attributes).forEach(([name, value]) => {
-        target.setAttribute(name, value);
-      });
-    });
-  });
-
-  languageButtons.forEach((button) => {
-    const isActive = button.dataset.languageOption === selected;
-    button.classList.toggle("is-active", isActive);
-    button.setAttribute("aria-pressed", String(isActive));
-  });
-
-  emailCopyButtons.forEach((button) => {
-    button.classList.remove("is-copied", "is-copy-failed");
-  });
-
-  if (copyStatus) {
-    copyStatus.textContent = "";
-  }
-
-  if (shouldStore) {
-    setStoredLanguage(selected);
-  }
+const setStoredLanguage = language => {
+  try { localStorage.setItem("portfolio-language", language); } catch { /* Browsing with storage disabled remains supported. */ }
 };
-
-languageButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    applyLanguage(button.dataset.languageOption);
-  });
-});
-
-themePreferenceMedia?.addEventListener("change", () => {
-  applyTheme(getResolvedTheme());
-});
-
-const setCopyButtonState = (button, state) => {
-  const copyLabels = getActiveDictionary().copyEmail || translations.en.copyEmail;
-  button.textContent = copyLabels[state] || copyLabels.default;
-  button.classList.toggle("is-copied", state === "copied");
-  button.classList.toggle("is-copy-failed", state === "failed");
-
-  if (copyStatus) {
-    copyStatus.textContent = copyLabels[state] || "";
-  }
-
-  window.clearTimeout(Number(button.dataset.copyResetTimer));
-  const resetTimer = window.setTimeout(() => {
-    const resetLabels = getActiveDictionary().copyEmail || translations.en.copyEmail;
-    button.textContent = resetLabels.default;
-    button.classList.remove("is-copied", "is-copy-failed");
-    if (copyStatus) {
-      copyStatus.textContent = "";
-    }
-    delete button.dataset.copyResetTimer;
-  }, 1800);
-  button.dataset.copyResetTimer = String(resetTimer);
-};
-
-const copyTextToClipboard = async (text) => {
-  if (navigator.clipboard?.writeText) {
-    await navigator.clipboard.writeText(text);
-    return;
-  }
-
-  const textarea = document.createElement("textarea");
-  textarea.value = text;
-  textarea.setAttribute("readonly", "");
-  textarea.style.position = "fixed";
-  textarea.style.left = "-9999px";
-  document.body.append(textarea);
-  textarea.select();
-
-  const didCopy = document.execCommand("copy");
-  textarea.remove();
-
-  if (!didCopy) {
-    throw new Error("Copy command failed");
-  }
-};
-
-emailCopyButtons.forEach((button) => {
-  button.addEventListener("click", async () => {
-    const email = button.dataset.copyEmail;
-    if (!email) {
-      return;
-    }
-
-    try {
-      await copyTextToClipboard(email);
-      setCopyButtonState(button, "copied");
-    } catch {
-      setCopyButtonState(button, "failed");
-    }
-  });
-});
-
-applyTheme(getResolvedTheme());
-applyLanguage(getInitialLanguage(), false);
-
+let activeLanguage = "en";
+const getActiveDictionary = () => translations[activeLanguage];
 const header = document.querySelector("[data-site-header]");
 const menuToggle = document.querySelector("[data-menu-toggle]");
 const headerActions = document.querySelector("#site-menu");
-const compactMenuMedia = window.matchMedia?.("(max-width: 900px)");
-
-const collapseCompactEvidence = () => {
-  if (!compactMenuMedia?.matches) {
-    return;
-  }
-
-  document.querySelectorAll(".experience-details[open], .case-details[open]").forEach((item) => {
-    item.removeAttribute("open");
-  });
-};
+const compactMenuMedia = window.matchMedia?.("(max-width: 1120px)");
+const languageButtons = document.querySelectorAll("[data-language-option]");
+const emailCopyButtons = document.querySelectorAll("[data-copy-email]");
+const copyStatus = document.querySelector("[data-copy-status]");
+const descriptionMeta = document.querySelector('meta[name="description"]');
 
 const setMenuOpen = (isOpen) => {
   const nextState = Boolean(isOpen && compactMenuMedia?.matches);
+  if (!nextState && compactMenuMedia?.matches && headerActions?.contains(document.activeElement)) {
+    menuToggle?.focus({ preventScroll: true });
+  }
   header?.classList.toggle("is-menu-open", nextState);
   menuToggle?.setAttribute("aria-expanded", String(nextState));
-
-  const labels = getActiveDictionary().menu || translations.en.menu;
+  const labels = getActiveDictionary().menu;
   menuToggle?.setAttribute("aria-label", nextState ? labels.close : labels.open);
 };
 
-menuToggle?.addEventListener("click", () => {
-  setMenuOpen(menuToggle.getAttribute("aria-expanded") !== "true");
-});
-
-compactMenuMedia?.addEventListener("change", () => {
+const applyLanguage = (language, shouldStore = true) => {
+  activeLanguage = isSupportedLanguage(language) ? language : "en";
+  const dictionary = getActiveDictionary();
+  document.documentElement.lang = dictionary.lang;
+  document.body.dataset.language = activeLanguage;
+  document.title = dictionary.title;
+  descriptionMeta?.setAttribute("content", dictionary.description);
+  textTargets.forEach(node => {
+    const value = dictionary.text[node.dataset.i18n];
+    if (typeof value === "string") node.textContent = value;
+  });
+  languageButtons.forEach(button => {
+    const selected = button.dataset.languageOption === activeLanguage;
+    button.classList.toggle("is-active", selected);
+    button.setAttribute("aria-pressed", String(selected));
+  });
+  document.querySelector("[data-platform-tabs]")?.setAttribute("aria-label", dictionary.platformLabel);
+  document.querySelectorAll(".email-action").forEach(link => {
+    const subject = activeLanguage === "zh" ? "医疗设备现场服务岗位机会" : "Biomedical field service opportunity";
+    link.href = "mailto:" + recruiterEmailAddress + "?subject=" + encodeURIComponent(subject);
+  });
+  emailCopyButtons.forEach(button => {
+    window.clearTimeout(Number(button.dataset.copyResetTimer));
+    button.classList.remove("is-copied", "is-copy-failed");
+    delete button.dataset.copyResetTimer;
+  });
+  if (copyStatus) copyStatus.textContent = "";
   setMenuOpen(false);
-  collapseCompactEvidence();
-});
-
-collapseCompactEvidence();
-
-document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape") {
+  if (shouldStore) setStoredLanguage(activeLanguage);
+};
+languageButtons.forEach(button => button.addEventListener("click", () => {
+  applyLanguage(button.dataset.languageOption);
+  queueNavUpdate();
+}));
+menuToggle?.addEventListener("click", () => setMenuOpen(menuToggle.getAttribute("aria-expanded") !== "true"));
+compactMenuMedia?.addEventListener("change", () => setMenuOpen(false));
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape" && header?.classList.contains("is-menu-open")) {
     setMenuOpen(false);
-    menuToggle?.focus();
+    menuToggle?.focus({ preventScroll: true });
   }
 });
-
-document.addEventListener("click", (event) => {
-  if (header?.classList.contains("is-menu-open") && !header.contains(event.target)) {
-    setMenuOpen(false);
-  }
+document.addEventListener("click", event => {
+  if (header?.classList.contains("is-menu-open") && !header.contains(event.target)) setMenuOpen(false);
 });
+headerActions?.querySelectorAll("a").forEach(link => link.addEventListener("click", () => setMenuOpen(false)));
 
-headerActions?.querySelectorAll("a, [data-language-option]").forEach((control) => {
-  control.addEventListener("click", () => setMenuOpen(false));
-});
-
-const navLinks = Array.from(document.querySelectorAll(".site-nav a"));
-
-const getHashTarget = (hash) => {
-  if (typeof hash !== "string" || !hash.startsWith("#") || hash.length <= 1) {
-    return null;
-  }
-
-  try {
-    const id = decodeURIComponent(hash.slice(1));
-    return id ? document.getElementById(id) : null;
-  } catch {
-    return null;
-  }
-};
-
-const sections = navLinks
-  .map((link) => getHashTarget(link.getAttribute("href")))
-  .filter(Boolean);
-let activeHashLock = null;
-let activeHashLockUntil = 0;
-
-const setActiveNavLink = (hash) => {
-  if (!hash) {
-    return;
-  }
-
-  navLinks.forEach((navLink) => {
-    navLink.classList.toggle("is-active", navLink.getAttribute("href") === hash);
-  });
-};
-
-const lockActiveHash = (hash) => {
-  if (!hash) {
-    return;
-  }
-
-  activeHashLock = hash;
-  activeHashLockUntil = window.performance.now() + 1800;
-};
-
-const shouldKeepHashActive = (hash) => {
-  const target = getHashTarget(hash);
-  if (!target) {
-    return false;
-  }
-
-  const bounds = target.getBoundingClientRect();
-  const headerOffset = header?.offsetHeight || 0;
-  return bounds.top <= headerOffset + 40 && bounds.bottom > headerOffset + 80;
-};
-
-const revealItems = Array.from(document.querySelectorAll(".reveal"));
-
-const revealTarget = (target) => {
-  if (target && target.classList.contains("reveal")) {
-    target.classList.add("is-visible");
-  }
-};
-
-navLinks.forEach((link) => {
-  link.addEventListener("click", () => {
-    const hash = link.getAttribute("href");
-    revealTarget(getHashTarget(hash));
-    lockActiveHash(hash);
-    setActiveNavLink(hash);
-    setMenuOpen(false);
-  });
-});
-
-if ("IntersectionObserver" in window && revealItems.length > 0) {
-  const revealObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          revealObserver.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.12 }
-  );
-
-  revealItems.forEach((item) => revealObserver.observe(item));
-} else {
-  revealItems.forEach((item) => item.classList.add("is-visible"));
-}
-
-if ("IntersectionObserver" in window && sections.length > 0) {
-  const navObserver = new IntersectionObserver(
-    (entries) => {
-      const currentHash = window.location.hash;
-      const isHashLocked =
-        currentHash &&
-        activeHashLock === currentHash &&
-        window.performance.now() < activeHashLockUntil;
-
-      if (isHashLocked || shouldKeepHashActive(currentHash)) {
-        setActiveNavLink(currentHash);
-        return;
-      }
-
-      const visibleEntry = entries
-        .filter((entry) => entry.isIntersecting)
-        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-
-      if (visibleEntry?.target?.id) {
-        setActiveNavLink(`#${visibleEntry.target.id}`);
-      }
-    },
-    {
-      rootMargin: "-22% 0px -58% 0px",
-      threshold: [0.1, 0.24, 0.5],
+const copyTextToClipboard = async (text) => {
+  if (navigator.clipboard?.writeText) {
+    try {
+      await navigator.clipboard.writeText(text);
+      return;
+    } catch {
+      // Embedded browsers may deny the async API but allow a copy command.
     }
-  );
+  }
 
-  sections.forEach((section) => navObserver.observe(section));
+  const previousFocus = document.activeElement;
+  const textarea = document.createElement("textarea");
+  textarea.value = text;
+  textarea.setAttribute("readonly", "");
+  textarea.className = "visually-hidden";
+  document.body.append(textarea);
+  try {
+    textarea.select();
+    if (!document.execCommand("copy")) {
+      throw new Error("Copy command failed");
+    }
+  } finally {
+    textarea.remove();
+    previousFocus?.focus({ preventScroll: true });
+  }
+};
+
+const setCopyButtonState = (button, state) => {
+  const labels = getActiveDictionary().copyEmail;
+  const label = button.querySelector("[data-i18n]");
+  if (label) label.textContent = labels[state] || labels.default;
+  button.classList.toggle("is-copied", state === "copied");
+  button.classList.toggle("is-copy-failed", state === "failed");
+  if (copyStatus) copyStatus.textContent = labels[state] || "";
+  window.clearTimeout(Number(button.dataset.copyResetTimer));
+  button.dataset.copyResetTimer = String(window.setTimeout(() => {
+    if (label) label.textContent = getActiveDictionary().copyEmail.default;
+    button.classList.remove("is-copied", "is-copy-failed");
+    if (copyStatus) copyStatus.textContent = "";
+    delete button.dataset.copyResetTimer;
+  }, 1800));
+};
+emailCopyButtons.forEach(button => button.addEventListener("click", async () => {
+  try {
+    await copyTextToClipboard(button.dataset.copyEmail || recruiterEmailAddress);
+    setCopyButtonState(button, "copied");
+  } catch { setCopyButtonState(button, "failed"); }
+}));
+
+const equipment = document.querySelector("[data-equipment]");
+const platformTabs = Array.from(document.querySelectorAll("[data-platform]"));
+const platformPanels = Array.from(document.querySelectorAll("[data-platform-panel]"));
+const hydrateArt = panel => {
+  panel.querySelectorAll("[data-deferred-art]").forEach(picture => {
+    picture.querySelectorAll("[data-srcset]").forEach(node => {
+      node.setAttribute("srcset", node.dataset.srcset);
+      node.removeAttribute("data-srcset");
+    });
+    picture.querySelectorAll("[data-src]").forEach(node => {
+      node.setAttribute("src", node.dataset.src);
+      node.removeAttribute("data-src");
+    });
+    picture.hidden = false;
+  });
+};
+const activatePlatform = (id, moveFocus = false) => {
+  if (!platformTabs.some(tab => tab.dataset.platform === id)) return;
+  platformTabs.forEach(tab => {
+    const selected = tab.dataset.platform === id;
+    tab.setAttribute("aria-selected", String(selected));
+    tab.tabIndex = selected ? 0 : -1;
+    if (selected && moveFocus) tab.focus({ preventScroll: true });
+  });
+  platformPanels.forEach(panel => {
+    const selected = panel.dataset.platformPanel === id;
+    panel.hidden = !selected;
+    if (selected) hydrateArt(panel);
+  });
+};
+if (equipment && platformTabs.length === platformPanels.length && platformTabs.length > 0) {
+  platformPanels.forEach(panel => {
+    panel.setAttribute("role", "tabpanel");
+    panel.setAttribute("aria-labelledby", "tab-" + panel.dataset.platformPanel);
+    panel.tabIndex = 0;
+  });
+  equipment.classList.add("is-enhanced");
+  document.querySelector("[data-platform-navigation]").hidden = false;
+  activatePlatform("philips");
+  platformTabs.forEach((tab, index) => {
+    tab.addEventListener("click", () => activatePlatform(tab.dataset.platform));
+    tab.addEventListener("keydown", event => {
+      let next = index;
+      if (event.key === "ArrowRight" || event.key === "ArrowDown") next = (index + 1) % platformTabs.length;
+      else if (event.key === "ArrowLeft" || event.key === "ArrowUp") next = (index - 1 + platformTabs.length) % platformTabs.length;
+      else if (event.key === "Home") next = 0;
+      else if (event.key === "End") next = platformTabs.length - 1;
+      else return;
+      event.preventDefault();
+      activatePlatform(platformTabs[next].dataset.platform, true);
+    });
+  });
 }
 
-if (window.location.hash) {
-  lockActiveHash(window.location.hash);
-  setActiveNavLink(window.location.hash);
-  revealTarget(getHashTarget(window.location.hash));
-} else {
-  setActiveNavLink("#experience");
-}
-
-window.addEventListener("hashchange", () => {
-  lockActiveHash(window.location.hash);
-  setActiveNavLink(window.location.hash);
-  revealTarget(getHashTarget(window.location.hash));
-});
+const themePreferenceMedia = window.matchMedia?.("(prefers-color-scheme: dark)");
+const applyTheme = () => {
+  const theme = themePreferenceMedia?.matches ? "dark" : "light";
+  document.documentElement.dataset.theme = theme;
+  document.querySelector('meta[name="theme-color"]')?.setAttribute("content", theme === "dark" ? "#0d1828" : "#f4f6f8");
+};
+themePreferenceMedia?.addEventListener("change", applyTheme);
+const yearTarget = document.querySelector("[data-current-year]");
+if (yearTarget) yearTarget.textContent = String(new Date().getFullYear());
+const getHashTarget = hash => {
+  if (typeof hash !== "string" || !hash.startsWith("#") || hash.length < 2) return null;
+  try { return document.getElementById(decodeURIComponent(hash.slice(1))); } catch { return null; }
+};
+const navLinks = Array.from(document.querySelectorAll(".site-nav a"));
+const navSections = navLinks.map(link => ({ link, target: getHashTarget(link.getAttribute("href")) })).filter(item => item.target);
+let navFrame = 0;
+const updateActiveNav = () => {
+  navFrame = 0;
+  const offset = (header?.offsetHeight || 84) + 100;
+  const current = navSections.filter(item => item.target.getBoundingClientRect().top <= offset).at(-1);
+  navSections.forEach(item => {
+    const active = item === current;
+    item.link.classList.toggle("is-active", active);
+    if (active) item.link.setAttribute("aria-current", "location");
+    else item.link.removeAttribute("aria-current");
+  });
+};
+const queueNavUpdate = () => {
+  if (!navFrame) navFrame = window.requestAnimationFrame(updateActiveNav);
+};
+window.addEventListener("scroll", queueNavUpdate, { passive: true });
+window.addEventListener("resize", queueNavUpdate, { passive: true });
+window.addEventListener("hashchange", queueNavUpdate);
+document.querySelectorAll("details").forEach(note => note.addEventListener("toggle", queueNavUpdate));
+applyTheme();
+applyLanguage(getInitialLanguage(), false);
+queueNavUpdate();

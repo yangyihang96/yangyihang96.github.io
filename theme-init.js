@@ -1,6 +1,6 @@
 (() => {
-  const darkThemeColor = "#0d1716";
-  const lightThemeColor = "#f4f7f4";
+  const darkThemeColor = "#0d1828";
+  const lightThemeColor = "#f4f6f8";
   const themeMeta = document.querySelector('meta[name="theme-color"]');
   const mediaQuery = window.matchMedia?.("(prefers-color-scheme: dark)");
 

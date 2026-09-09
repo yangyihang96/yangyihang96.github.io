@@ -1,0 +1,340 @@
+{
+  "version": "portfolio-v16-20260910",
+  "generator": "GPT Image",
+  "images": [
+    {
+      "name": "hero-light",
+      "sourcePNG": "exec-5a4160a2-72d5-4569-b103-537a9de38aaa.png",
+      "derivatives": [
+        {
+          "path": "assets/studio-v16/hero-light-1280.webp",
+          "width": 1280,
+          "height": 640,
+          "bytes": 18190,
+          "sha256": "5467e2a687a93ead480497c89278c7c4ba79e92fe478de6bcecc0b30f2f305a8"
+        },
+        {
+          "path": "assets/studio-v16/hero-light-1920.webp",
+          "width": 1920,
+          "height": 960,
+          "bytes": 29382,
+          "sha256": "f23c7ea717a4d4039566cb7e2a82cf9a64ab77ba40dc50d577e8c14a98c3bcfc"
+        },
+        {
+          "path": "assets/studio-v16/hero-light-640.webp",
+          "width": 640,
+          "height": 320,
+          "bytes": 7380,
+          "sha256": "a12579f9781eee927783f95e6abbd044c99cf80db1e5482637aeb0fa18096c21"
+        }
+      ]
+    },
+    {
+      "name": "hero-dark",
+      "sourcePNG": "exec-560e4a40-b0c4-4883-830d-45b9a7cfc685.png",
+      "derivatives": [
+        {
+          "path": "assets/studio-v16/hero-dark-1280.webp",
+          "width": 1280,
+          "height": 640,
+          "bytes": 20050,
+          "sha256": "ff9f3884e94bdce83ea52b257d366b05cbde355c4f9d83945ea5d9f5b7511cc9"
+        },
+        {
+          "path": "assets/studio-v16/hero-dark-1920.webp",
+          "width": 1920,
+          "height": 960,
+          "bytes": 34160,
+          "sha256": "cfacd2ba4ee4543106c12685177e7312d2929881453f7f7e8188d1e8463ae2d9"
+        },
+        {
+          "path": "assets/studio-v16/hero-dark-640.webp",
+          "width": 640,
+          "height": 320,
+          "bytes": 8262,
+          "sha256": "a346f5107aea55c565d198c7c5d32b819d05a219452ced7794d319fe5e6bd40c"
+        }
+      ]
+    },
+    {
+      "name": "hero-mobile-light",
+      "sourcePNG": "exec-cd4c0bfc-b60a-4bb1-9de9-f2db1ee48904.png",
+      "derivatives": [
+        {
+          "path": "assets/studio-v16/hero-mobile-light-640.webp",
+          "width": 640,
+          "height": 480,
+          "bytes": 17424,
+          "sha256": "1d2454ecb2c5a9821ebccc0ad3b968cd6188b8d1a7744fd5d3c2396edcb4ac22"
+        },
+        {
+          "path": "assets/studio-v16/hero-mobile-light-960.webp",
+          "width": 960,
+          "height": 720,
+          "bytes": 28862,
+          "sha256": "fa29c1850150760c53c65d1c0ead1491204f0c98f4cc67ebe0ceb664481c7b19"
+        }
+      ]
+    },
+    {
+      "name": "hero-mobile-dark",
+      "sourcePNG": "exec-a180e629-eb5b-4d63-88a7-bc0640142b97.png",
+      "derivatives": [
+        {
+          "path": "assets/studio-v16/hero-mobile-dark-640.webp",
+          "width": 640,
+          "height": 480,
+          "bytes": 16226,
+          "sha256": "7c11b5fa76b8368c07085bd07034e6dc7ef0a108e1a8fa516b43d295f388489c"
+        },
+        {
+          "path": "assets/studio-v16/hero-mobile-dark-960.webp",
+          "width": 960,
+          "height": 720,
+          "bytes": 27886,
+          "sha256": "989059797ed274ea18e564659c184be7926e2834c44d7285aaf8670c472c60e7"
+        }
+      ]
+    },
+    {
+      "name": "platform-philips",
+      "sourcePNG": "exec-d831b05f-2780-4c10-b066-80269eccad5e.png",
+      "derivatives": [
+        {
+          "path": "assets/studio-v16/platform-philips-1280.webp",
+          "width": 1280,
+          "height": 1280,
+          "bytes": 32682,
+          "sha256": "a0d2c67718c3a918c0de629766de7ac25b62048233ef3a761013311217481c7a"
+        },
+        {
+          "path": "assets/studio-v16/platform-philips-640.webp",
+          "width": 640,
+          "height": 640,
+          "bytes": 13832,
+          "sha256": "3bded973bb9a46d67a5f4ef8b9b1c08a9f417c488e4f064d7c5e7f4ceb2498b5"
+        }
+      ]
+    },
+    {
+      "name": "platform-bd",
+      "sourcePNG": "exec-bc1894f4-adef-4f98-a0e5-fd4fa6a51dd5.png",
+      "derivatives": [
+        {
+          "path": "assets/studio-v16/platform-bd-1280.webp",
+          "width": 1280,
+          "height": 1280,
+          "bytes": 26040,
+          "sha256": "8435271057c6226223dd168b2c6a82c8aecff188f5aebf2c5cbc2eb91fe57037"
+        },
+        {
+          "path": "assets/studio-v16/platform-bd-640.webp",
+          "width": 640,
+          "height": 640,
+          "bytes": 10566,
+          "sha256": "58a019617b704ae99b4c36585658957a318b90a36160539704889b7f581352c7"
+        }
+      ]
+    },
+    {
+      "name": "platform-corpuls",
+      "sourcePNG": "exec-82f78943-42e3-4d5c-8a0e-2a4268f8d412.png",
+      "derivatives": [
+        {
+          "path": "assets/studio-v16/platform-corpuls-1280.webp",
+          "width": 1280,
+          "height": 1280,
+          "bytes": 71998,
+          "sha256": "aafae692c188787ce35ba96e6d5c5c398400310d96dfeb2a9f7ab1b90d585a7b"
+        },
+        {
+          "path": "assets/studio-v16/platform-corpuls-640.webp",
+          "width": 640,
+          "height": 640,
+          "bytes": 28920,
+          "sha256": "d490696d64cfcf08bd0b1fdc553ab94af36e2205231740c821fc0af8cfdd2ae3"
+        }
+      ]
+    },
+    {
+      "name": "experience-workbench",
+      "sourcePNG": "exec-1eaa80ea-0a0b-4ba2-8148-264be34a43db.png",
+      "derivatives": [
+        {
+          "path": "assets/studio-v16/experience-workbench-1280.webp",
+          "width": 1280,
+          "height": 1600,
+          "bytes": 79588,
+          "sha256": "8d6d7adc57ce2f684541602c1cfb53b500d73f711e158cb3df15725f437529d4"
+        },
+        {
+          "path": "assets/studio-v16/experience-workbench-640.webp",
+          "width": 640,
+          "height": 800,
+          "bytes": 33766,
+          "sha256": "e61e5de46a3f8a49f3cdf34ebb8a4ace77ee29f1d2a22f2a2fa3ecdd65fa2bd2"
+        }
+      ]
+    },
+    {
+      "name": "service-detail",
+      "sourcePNG": "exec-7cb104bb-e04c-490c-8948-6fa402e0468b.png",
+      "derivatives": [
+        {
+          "path": "assets/studio-v16/service-detail-1280.webp",
+          "width": 1280,
+          "height": 960,
+          "bytes": 32940,
+          "sha256": "4df21ce8d8bc899d67ce30ab52b730e7b957616b108d0844f95d6b80941011e2"
+        },
+        {
+          "path": "assets/studio-v16/service-detail-640.webp",
+          "width": 640,
+          "height": 480,
+          "bytes": 13168,
+          "sha256": "990d3dfb3b05f62d0b553ce72dffed1621204a51cf79f90edbf934b0c3db2e3c"
+        }
+      ]
+    },
+    {
+      "name": "platform-ultrasound",
+      "sourcePNG": "exec-bfec413f-b139-490c-8199-408357b67af4.png",
+      "derivatives": [
+        {
+          "path": "assets/studio-v16/platform-ultrasound-1280.webp",
+          "width": 1280,
+          "height": 1280,
+          "bytes": 37958,
+          "sha256": "cbb61168a44d89a1f42d856e1cad61caf0f07e74d66e84247d584eee6fad1754"
+        },
+        {
+          "path": "assets/studio-v16/platform-ultrasound-640.webp",
+          "width": 640,
+          "height": 640,
+          "bytes": 15568,
+          "sha256": "77c3f846c0a152e8dd198a02056e11dbec913297e9be804733e5a57e90b3ae39"
+        }
+      ]
+    },
+    {
+      "name": "platform-ecg",
+      "sourcePNG": "exec-00bd310c-bbad-46e4-8bd0-29d9435f53ac.png",
+      "derivatives": [
+        {
+          "path": "assets/studio-v16/platform-ecg-1280.webp",
+          "width": 1280,
+          "height": 1280,
+          "bytes": 38414,
+          "sha256": "28dffa9a3658094e65c399fb2c137d90335cb5f0c268d4065cc21dc2b5124ffc"
+        },
+        {
+          "path": "assets/studio-v16/platform-ecg-640.webp",
+          "width": 640,
+          "height": 640,
+          "bytes": 16256,
+          "sha256": "af579a19ad69ede5a49b3d7490a847a954180bebc9307e27dc9e9a8e86cbcd51"
+        }
+      ]
+    },
+    {
+      "name": "platform-monitor",
+      "sourcePNG": "exec-497d43ee-2bea-42a2-ad38-9abfce7807e5.png",
+      "derivatives": [
+        {
+          "path": "assets/studio-v16/platform-monitor-1280.webp",
+          "width": 1280,
+          "height": 1280,
+          "bytes": 21250,
+          "sha256": "d229c30f58cfbd30b8c088e44f56a8bf24fb0336d96c92fcbef19b0d7e7023bc"
+        },
+        {
+          "path": "assets/studio-v16/platform-monitor-640.webp",
+          "width": 640,
+          "height": 640,
+          "bytes": 8564,
+          "sha256": "fd529ac66a14095f34a794a1c49d6146a94b1c55a89c2816b90a439bc48634e1"
+        }
+      ]
+    },
+    {
+      "name": "platform-horizon",
+      "sourcePNG": "exec-adde94b0-b523-4158-9b2d-025418c191b7.png",
+      "derivatives": [
+        {
+          "path": "assets/studio-v16/platform-horizon-1280.webp",
+          "width": 1280,
+          "height": 1280,
+          "bytes": 25494,
+          "sha256": "a045f3a4c28595b2bea73370300e629b06c06bd6d09911e5291e508c200a289b"
+        },
+        {
+          "path": "assets/studio-v16/platform-horizon-640.webp",
+          "width": 640,
+          "height": 640,
+          "bytes": 10710,
+          "sha256": "27a20c0a5fc0be733f43ce47224addc047d3d7756f1b9a0255e63e280824fb46"
+        }
+      ]
+    },
+    {
+      "name": "research-cell",
+      "sourcePNG": "exec-98563b1e-3f11-44ae-a6f7-fd7ba9cf5ca8.png",
+      "derivatives": [
+        {
+          "path": "assets/studio-v16/research-cell-1280.webp",
+          "width": 1280,
+          "height": 427,
+          "bytes": 30386,
+          "sha256": "228d528cf81298beda485dc1156eb1ac8de5c9b49e587c8a4d299261d3dbb461"
+        },
+        {
+          "path": "assets/studio-v16/research-cell-640.webp",
+          "width": 640,
+          "height": 214,
+          "bytes": 12468,
+          "sha256": "7d0ca372c43c0bbe4a53cb13ff4e0e73b8a9a46f8afd899eb07930ac126b7094"
+        }
+      ]
+    },
+    {
+      "name": "ai-workbench",
+      "sourcePNG": "exec-7b7d8787-e4b5-4390-97b6-2757ff026ca0.png",
+      "derivatives": [
+        {
+          "path": "assets/studio-v16/ai-workbench-1280.webp",
+          "width": 1280,
+          "height": 1600,
+          "bytes": 89676,
+          "sha256": "b53a0b253f66caa7d06bb8df70809b75cb4300eb057616b41624530f7b55a700"
+        },
+        {
+          "path": "assets/studio-v16/ai-workbench-640.webp",
+          "width": 640,
+          "height": 800,
+          "bytes": 35782,
+          "sha256": "104953827ce9e976d202b2d71c636eb91fd96d0df427bd82579eb8b075b857e3"
+        }
+      ]
+    },
+    {
+      "name": "contact-cable",
+      "sourcePNG": "exec-14037058-9896-4e92-94f5-3314fda42128.png",
+      "derivatives": [
+        {
+          "path": "assets/studio-v16/contact-cable-1280.webp",
+          "width": 1280,
+          "height": 432,
+          "bytes": 16640,
+          "sha256": "c56345acb18ea6317e27e75ee343c6baf60c0a4c25de8289c0fc7599bfc58ad6"
+        },
+        {
+          "path": "assets/studio-v16/contact-cable-640.webp",
+          "width": 640,
+          "height": 216,
+          "bytes": 5824,
+          "sha256": "7b26662906a8f6db807f6db7a52823bcf5d5dc0c7a6403a7abd9317791f25300"
+        }
+      ]
+    }
+  ]
+}

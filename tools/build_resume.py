@@ -18,10 +18,10 @@ PDF_PATH = ASSETS / "Henry_Yang_Biomedical_Engineer_Resume.pdf"
 DOCX_PATH = ASSETS / "Henry_Yang_Biomedical_Engineer_Resume.docx"
 
 PROFILE = (
-    "Nearly three years of field and workshop service experience at "
+    "Three years of field and workshop service experience at "
     "Nova Biomedical Australia with medical equipment used in hospital and pharmacy settings. "
     "Core strengths include preventive maintenance (PM), fault diagnosis, repair, installation support, "
-    "verification, service documentation, and next-use or escalation records."
+    "verification, service documentation, and return-to-use or escalation decisions."
 )
 
 CONTACT_LINE = (
@@ -34,7 +34,7 @@ SERVICE_BULLETS = [
     "Support ventilation, patient monitoring, ultrasound, DEXA, pharmacy automation, X-ray support, and general biomedical equipment.",
     "Document service outcomes with functional checks, performance evidence, or clear escalation status.",
     "Use manufacturer-led checks, service history, and functional evidence to document whether equipment is ready for use, requires follow-up, or needs escalation.",
-    "Maintain Simpro work orders, service reports, equipment history, and communication notes so service records remain traceable service evidence.",
+    "Maintain Simpro work orders, service reports, equipment history, and communication notes as a traceable service history.",
 ]
 
 SCOPE_BULLETS = [
@@ -48,6 +48,7 @@ SKILL_BULLETS = [
     "PM procedures, fault diagnosis, functional testing, performance verification, service reports, and escalation notes.",
     "Simpro / CMMS, equipment history, equipment identifiers, communication notes, traceability, manufacturer documentation, and Microsoft Office.",
     "Electrical safety testing awareness, test equipment familiarity, service handover, Mandarin Chinese, and professional working proficiency in English.",
+    "AI tools: Working knowledge of Codex, Claude Code and ChatGPT for research, drafting and coding assistance, with outputs reviewed before use.",
 ]
 
 FIELD_SERVICE_TOOLS = [
@@ -169,7 +170,7 @@ def build_pdf():
     y -= 12
     c.setFillColor(muted)
     c.setFont("Helvetica", 8.4)
-    c.drawString(left, y, "Australia-wide field service / workshop support")
+    c.drawString(left, y, "Field service across Australia / workshop repair and technical support")
     y -= 12
     for item in SERVICE_BULLETS:
         y = draw_wrapped(c, f"- {item}", left + 8, y, right - left - 8, font_size=8.5, leading=10.3, color=ink)
@@ -206,7 +207,7 @@ def build_pdf():
     c.line(left, footer_y + 14, right, footer_y + 14)
     c.setFillColor(muted)
     c.setFont("Helvetica", 7.6)
-    c.drawString(left, footer_y, "Updated June 2026.")
+    c.drawString(left, footer_y, "Updated September 2026.")
     c.showPage()
     c.save()
 
@@ -222,6 +223,7 @@ def set_run_style(run, bold=False, color=None, size=9):
 
 def add_heading(doc, text):
     p = doc.add_paragraph()
+    p.paragraph_format.keep_with_next = True
     p.paragraph_format.space_before = Pt(8)
     p.paragraph_format.space_after = Pt(3)
     r = p.add_run(text.upper())
@@ -272,7 +274,7 @@ def build_docx():
     p = doc.add_paragraph()
     r = p.add_run("Biomedical Engineer | Nova Biomedical Australia")
     set_run_style(r, bold=True, color=(17, 54, 90), size=10)
-    r = p.add_run(" | Australia-wide field service / workshop support | Jul 2023 - Present")
+    r = p.add_run(" | Field service across Australia / workshop repair | Jul 2023 - Present")
     set_run_style(r, color=(82, 82, 82), size=9)
     for item in SERVICE_BULLETS:
         add_bullet(doc, item)
@@ -312,9 +314,8 @@ def build_docx():
     core.comments = "Biomedical field service resume for Yihang Henry Yang"
     core.keywords = "Biomedical Engineer, Field Service Engineer, Medical Device Service, Sydney"
     core.last_modified_by = "Yihang Henry Yang"
-    created = datetime(2026, 6, 25, tzinfo=timezone.utc)
-    core.created = created
-    core.modified = created
+    core.created = datetime(2026, 6, 25, tzinfo=timezone.utc)
+    core.modified = datetime(2026, 9, 5, tzinfo=timezone.utc)
 
     doc.save(DOCX_PATH)
 

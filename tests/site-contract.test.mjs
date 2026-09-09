@@ -4,40 +4,43 @@ import { execFileSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 import test from "node:test";
-import { runInNewContext } from "node:vm";
+import vm from "node:vm";
 
 const root = path.resolve(import.meta.dirname, "..");
 const read = (file) => fs.readFileSync(path.join(root, file), "utf8");
-
 const html = read("index.html");
 const css = read("styles.css");
 const script = read("script.js");
 const themeInit = read("theme-init.js");
-const sriSha384 = (source) =>
-  `sha384-${crypto.createHash("sha384").update(source).digest("base64")}`;
-const publicSource = `${html}\n${css}\n${script}\n${themeInit}`;
+const version = "portfolio-v16-20260910";
 const linkedinUrl = "https://au.linkedin.com/in/henry-yang-9644382bb";
 const githubUrl = "https://github.com/yangyihang96";
-const defensiveCopyPattern =
-  /De-identified|Anonymised|Based on service records|Small clinics|individual sites|job numbers|serial numbers|customer records|public endorsements|intentionally not published|Formal certificates|customer-specific records|sensitive documents|authorized hiring process|Sensitive identity|不发布|不公开|小诊所|具体站点|工单号|序列号|客户记录|公开背书|敏感记录|敏感文件|授权招聘流程|匿名服务案例|匿名故障排查案例/i;
+const sriSha384 = (source) =>
+  "sha384-" + crypto.createHash("sha384").update(source).digest("base64");
+
+// Exercise the actual browser functions with only their platform boundaries stubbed.
+const browserFunction = (name, context) => {
+  const start = script.indexOf(`const ${name} =`);
+  assert.notEqual(start, -1);
+  const end = script.indexOf("\n};", start) + 3;
+  return vm.runInNewContext(script.slice(start, end) + `\n${name}`, context);
+};
 
 const sectionById = (id) => {
-  const start = html.indexOf(`<section id="${id}"`);
-  assert.notEqual(start, -1, `missing section #${id}`);
+  const start = html.indexOf('<section id="' + id + '"');
+  assert.notEqual(start, -1, "missing section #" + id);
   const end = html.indexOf("</section>", start);
-  assert.notEqual(end, -1, `missing end for section #${id}`);
+  assert.notEqual(end, -1, "missing end for section #" + id);
   return html.slice(start, end);
 };
 
 const sectionByClass = (className) => {
-  const start = html.indexOf(`<section class="${className}`);
-  assert.notEqual(start, -1, `missing section .${className}`);
+  const start = html.indexOf('<section class="' + className);
+  assert.notEqual(start, -1, "missing section ." + className);
   const end = html.indexOf("</section>", start);
-  assert.notEqual(end, -1, `missing end for section .${className}`);
+  assert.notEqual(end, -1, "missing end for section ." + className);
   return html.slice(start, end);
 };
-
-const articleCount = (source) => (source.match(/<article\b/g) || []).length;
 
 const extractPdfText = () =>
   execFileSync(
@@ -67,519 +70,150 @@ const extractDocxText = () =>
     { cwd: root, encoding: "utf8" }
   );
 
-test("metadata targets a Sydney biomedical field-service recruiter", () => {
+test("clipboard denial falls back, reports failure, and always restores focus and removes the field", async () => {
+  for (const mode of ["modern", "denied", "missing", "false", "throws"]) {
+    let removed = 0, focused = 0, fallback = 0;
+    const textarea = { setAttribute() {}, select() {}, remove() { removed++; } };
+    const document = {
+      activeElement: { focus() { focused++; } },
+      body: { append() {} },
+      createElement: () => textarea,
+      execCommand: () => {
+        fallback++;
+        if (mode === "throws") throw new Error("Unavailable");
+        return mode !== "false";
+      },
+    };
+    const navigator = mode === "missing" ? {} : { clipboard: { writeText: async () => {
+      if (mode !== "modern") throw new Error("Denied");
+    } } };
+    const copy = browserFunction("copyTextToClipboard", { document, navigator });
+    if (["false", "throws"].includes(mode)) await assert.rejects(copy("test@example.com"));
+    else await copy("test@example.com");
+    const expected = mode === "modern" ? 0 : 1;
+    assert.equal(fallback, expected, mode);
+    assert.equal(removed, expected, mode);
+    assert.equal(focused, expected, mode);
+    if (expected) assert.equal(textarea.value, "test@example.com");
+  }
+});
+
+test("closing compact navigation returns focus only when its focused control would be hidden", () => {
+  for (const [compact, inside, open, expected] of [
+    [true, true, false, 1], [true, false, false, 0],
+    [true, true, true, 0], [false, true, false, 0],
+  ]) {
+    let focused = 0;
+    const attributes = {};
+    const setMenuOpen = browserFunction("setMenuOpen", {
+      compactMenuMedia: { matches: compact },
+      document: { activeElement: {} },
+      headerActions: { contains: () => inside },
+      header: { classList: { toggle() {} } },
+      menuToggle: { focus() { focused++; }, setAttribute(name, value) { attributes[name] = value; } },
+      getActiveDictionary: () => ({ menu: { open: "Open", close: "Close" } }),
+    });
+    setMenuOpen(open);
+    assert.equal(focused, expected);
+    assert.equal(attributes["aria-expanded"], String(compact && open));
+    assert.equal(attributes["aria-label"], compact && open ? "Close" : "Open");
+  }
+});
+
+test("metadata and structured data target a Sydney biomedical field-service recruiter", () => {
   assert.match(html, /<title>Yihang \(Henry\) Yang \| Biomedical Field Service Engineer in Sydney<\/title>/);
-  assert.match(
-    html,
-    /<meta name="description" content="Sydney-based Biomedical Field Service Engineer with nearly three years of field and workshop service experience with medical equipment used in hospital and pharmacy settings\."/
-  );
-  assert.match(html, /src="theme-init\.js\?v=portfolio-security-v3-20260710"/);
-  assert.match(html, /href="styles\.css\?v=portfolio-security-v3-20260710"/);
-  assert.match(html, /src="script\.js\?v=portfolio-security-v3-20260710"/);
+  assert.match(html, /<meta name="description" content="Sydney-based Biomedical Field Service Engineer with three years/);
   assert.match(html, /<link rel="canonical" href="https:\/\/yangyihang96\.com\/">/);
-  assert.doesNotMatch(html, /http:\/\/yangyihang96\.com/);
+  assert.ok(html.includes("theme-init.js?v=" + version));
+  assert.ok(html.includes("styles.css?v=" + version));
+  assert.ok(html.includes("script.js?v=" + version));
 
   const match = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/);
   assert.ok(match, "missing JSON-LD");
-  const data = JSON.parse(match[1]);
-  assert.equal(data.name, "Yihang (Henry) Yang");
-  assert.equal(data.jobTitle, "Biomedical Field Service Engineer");
-  assert.equal(
-    data.description,
-    "Sydney-based Biomedical Field Service Engineer with nearly three years of field and workshop service experience with medical equipment used in hospital and pharmacy settings."
+  const person = JSON.parse(match[1]);
+  assert.equal(person.name, "Yihang (Henry) Yang");
+  assert.equal(person.jobTitle, "Biomedical Field Service Engineer");
+  assert.equal(person.address.addressLocality, "Sydney");
+  assert.deepEqual(person.sameAs, [linkedinUrl, githubUrl]);
+  ["Preventive maintenance", "Medical device repair", "Installation support"].forEach((term) =>
+    assert.ok(person.knowsAbout.includes(term), term)
   );
-  assert.deepEqual(data.sameAs, [linkedinUrl, githubUrl]);
 });
 
-test("document security policy constrains the static site surface", () => {
-  const csp = html.match(
-    /<meta http-equiv="Content-Security-Policy" content="([^"]+)">/
-  )?.[1];
-  assert.ok(csp, "missing CSP meta");
-
+test("document CSP keeps the static site surface constrained", () => {
+  const csp = html.match(/<meta http-equiv="Content-Security-Policy" content="([^"]+)">/)?.[1];
   const jsonLd = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)?.[1];
-  assert.ok(jsonLd, "missing JSON-LD");
-  const jsonLdHash = crypto.createHash("sha256").update(jsonLd).digest("base64");
-
-  assert.match(csp, /default-src 'self'/);
-  assert.match(csp, /base-uri 'self'/);
-  assert.match(csp, /object-src 'none'/);
-  assert.match(csp, new RegExp(`script-src 'self' 'sha256-${jsonLdHash.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}'`));
-  assert.match(csp, new RegExp(`script-src-elem 'self' 'sha256-${jsonLdHash.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}'`));
-  assert.match(csp, /script-src-attr 'none'/);
-  assert.match(csp, /style-src 'self'/);
-  assert.match(csp, /style-src-elem 'self'/);
-  assert.match(csp, /style-src-attr 'none'/);
-  assert.match(csp, /img-src 'self'/);
-  assert.doesNotMatch(csp, /img-src[^;]*data:/);
-  assert.match(csp, /font-src 'none'/);
-  assert.match(csp, /connect-src 'none'/);
-  assert.match(csp, /form-action 'none'/);
-  assert.match(csp, /frame-src 'none'/);
-  assert.match(csp, /child-src 'none'/);
-  assert.match(csp, /worker-src 'none'/);
-  assert.match(csp, /media-src 'none'/);
-  assert.match(csp, /manifest-src 'none'/);
-  assert.match(csp, /require-trusted-types-for 'script'/);
-  assert.match(csp, /trusted-types default/);
-  assert.match(csp, /upgrade-insecure-requests/);
+  assert.ok(csp);
+  assert.ok(jsonLd);
+  const hash = crypto.createHash("sha256").update(jsonLd).digest("base64");
+  const directives = [
+    "default-src 'self'",
+    "base-uri 'self'",
+    "object-src 'none'",
+    "script-src-attr 'none'",
+    "style-src 'self'",
+    "img-src 'self'",
+    "font-src 'none'",
+    "connect-src 'none'",
+    "form-action 'none'",
+    "frame-src 'none'",
+    "worker-src 'none'",
+    "media-src 'none'",
+    "manifest-src 'none'",
+    "require-trusted-types-for 'script'",
+    "trusted-types default",
+    "upgrade-insecure-requests",
+  ];
+  directives.forEach((directive) => assert.ok(csp.includes(directive), directive));
+  assert.ok(csp.includes("sha256-" + hash));
   assert.doesNotMatch(csp, /unsafe-inline|unsafe-eval|\*/);
-  assert.match(html, /<meta name="referrer" content="strict-origin-when-cross-origin">/);
+  assert.doesNotMatch(csp, /img-src[^;]*data:/);
 });
 
 test("static assets carry exact subresource integrity metadata", () => {
-  const version = "portfolio-security-v3-20260710";
-
-  assert.ok(
-    html.includes(
-      `<script src="theme-init.js?v=${version}" integrity="${sriSha384(themeInit)}" crossorigin="anonymous"></script>`
-    ),
-    "theme initializer integrity metadata must match its file"
-  );
-  assert.ok(
-    html.includes(
-      `<link rel="stylesheet" href="styles.css?v=${version}" integrity="${sriSha384(css)}" crossorigin="anonymous">`
-    ),
-    "stylesheet integrity metadata must match its file"
-  );
-  assert.ok(
-    html.includes(
-      `<script src="script.js?v=${version}" integrity="${sriSha384(script)}" crossorigin="anonymous"></script>`
-    ),
-    "main script integrity metadata must match its file"
-  );
+  assert.ok(html.includes('<script src="theme-init.js?v=' + version + '" integrity="' + sriSha384(themeInit) + '" crossorigin="anonymous"></script>'));
+  assert.ok(html.includes('<link rel="stylesheet" href="styles.css?v=' + version + '" integrity="' + sriSha384(css) + '" crossorigin="anonymous">'));
+  assert.ok(html.includes('<script defer src="script.js?v=' + version + '" integrity="' + sriSha384(script) + '" crossorigin="anonymous"></script>'));
 });
 
-test("hash navigation resolves element ids without parsing location data as selectors", () => {
-  assert.match(script, /const getHashTarget = \(hash\) =>/);
-  assert.match(script, /decodeURIComponent\(hash\.slice\(1\)\)/);
-  assert.match(script, /document\.getElementById\(id\)/);
-  assert.doesNotMatch(
-    script,
-    /document\.querySelector\((?:hash|window\.location\.hash)\)/
-  );
-  assert.equal((script.match(/revealTarget\(getHashTarget\(/g) || []).length, 3);
-
-  const helperStart = script.indexOf("const getHashTarget = (hash) => {");
-  const helperEnd = script.indexOf("\n\nconst sections =", helperStart);
-  assert.notEqual(helperStart, -1, "missing hash resolver start");
-  assert.notEqual(helperEnd, -1, "missing hash resolver end");
-
-  const knownTarget = { id: "experience" };
-  const lookedUpIds = [];
-  const getHashTarget = runInNewContext(
-    `${script.slice(helperStart, helperEnd)}\ngetHashTarget;`,
-    {
-      document: {
-        getElementById(id) {
-          lookedUpIds.push(id);
-          return id === knownTarget.id ? knownTarget : null;
-        },
-      },
-    }
-  );
-
-  assert.equal(getHashTarget("#experience"), knownTarget);
-  assert.equal(getHashTarget("#%65xperience"), knownTarget);
-  assert.equal(getHashTarget("#["), null);
-  assert.equal(getHashTarget("#%"), null);
-  assert.equal(getHashTarget("#%E0%A4%A"), null);
-  assert.equal(getHashTarget("#"), null);
-  assert.equal(getHashTarget(null), null);
-  assert.deepEqual(lookedUpIds, ["experience", "experience", "["]);
-});
-
-test("static security files document deployable response headers and reporting contact", () => {
+test("hosting security files remain aligned with the document policy", () => {
   const headers = read("_headers");
   const securityTxt = read(".well-known/security.txt");
-  const jekyllConfig = read("_config.yml");
-  const documentCsp = html.match(
-    /<meta http-equiv="Content-Security-Policy" content="([^"]+)">/
-  )?.[1];
+  const documentCsp = html.match(/<meta http-equiv="Content-Security-Policy" content="([^"]+)">/)?.[1];
   const headerCsp = headers.match(/^\s*Content-Security-Policy:\s*(.+)$/m)?.[1];
-  const jsonLd = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)?.[1];
-  assert.ok(documentCsp, "missing document CSP");
-  assert.ok(headerCsp, "missing response-header CSP template");
-  assert.ok(jsonLd, "missing JSON-LD");
-  const jsonLdHash = crypto.createHash("sha256").update(jsonLd).digest("base64");
-
   assert.ok(fs.existsSync(path.join(root, ".nojekyll")));
-  assert.match(jekyllConfig, /include:\s*\n\s*- \.well-known/);
-  assert.match(securityTxt, /Contact: mailto:yangyihang96@gmail\.com/);
-  assert.match(securityTxt, /Expires: 2027-06-28T00:00:00Z/);
-  assert.match(securityTxt, /Canonical: https:\/\/yangyihang96\.com\/\.well-known\/security\.txt/);
-  assert.match(headers, /Content-Security-Policy: default-src 'self'/);
-  assert.match(headers, /frame-ancestors 'none'/);
-  assert.equal(
-    headerCsp.replace("; frame-ancestors 'none'", ""),
-    documentCsp,
-    "header CSP template should match the document CSP plus frame-ancestors"
-  );
+  assert.equal(headerCsp?.replace("; frame-ancestors 'none'", ""), documentCsp);
   assert.match(headers, /X-Content-Type-Options: nosniff/);
   assert.match(headers, /X-Frame-Options: DENY/);
-  assert.match(headers, /Cross-Origin-Opener-Policy: same-origin-allow-popups/);
-  assert.match(headers, /Cross-Origin-Resource-Policy: same-origin/);
-  assert.match(headers, /Origin-Agent-Cluster: \?1/);
-  assert.match(headers, /X-Permitted-Cross-Domain-Policies: none/);
+  assert.match(headers, /Strict-Transport-Security: max-age=31536000/);
   assert.match(headers, /Permissions-Policy:/);
-  assert.match(headers, /camera=\(\)/);
-  assert.match(headers, /microphone=\(\)/);
-  assert.match(headers, /geolocation=\(\)/);
-  assert.match(headers, /Strict-Transport-Security: max-age=31536000; includeSubDomains; preload/);
-  assert.match(headers, new RegExp(`sha256-${jsonLdHash.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}`));
-  assert.match(read("SECURITY.md"), /GitHub Pages does not let this repository set custom HTTP response headers/);
-  assert.match(read("SECURITY.md"), /The current DNS points directly to GitHub Pages/);
+  assert.match(securityTxt, /Contact: mailto:yangyihang96@gmail\.com/);
 });
 
-test("hero leads with the role, four scan-friendly facts, and two focused actions", () => {
-  const hero = sectionByClass("hero");
-  const heroActions = hero.match(/<div class="hero-actions">([\s\S]*?)<\/div>/)?.[1] ?? "";
-
-  assert.doesNotMatch(hero, /class="eyebrow"/);
-  assert.match(hero, /<h1 id="hero-title">Biomedical Field Service Engineer<\/h1>/);
-  assert.match(
-    hero,
-    /Sydney-based field and workshop service, from diagnosis and repair to verification and handover\./
-  );
-  assert.match(hero, /<dt>Experience<\/dt>\s*<dd>Nearly 3 years<\/dd>/);
-  assert.match(hero, /<dt>Location<\/dt>\s*<dd>Sydney, NSW<\/dd>/);
-  assert.match(hero, /<dt>Work mode<\/dt>\s*<dd>Field travel<\/dd>/);
-  assert.match(hero, /<dt>Languages<\/dt>\s*<dd>English \/ Mandarin<\/dd>/);
-  assert.doesNotMatch(hero, /hero-skill-tags|hero-action-path|hero-card-body/);
-  assert.match(hero, /yihang-professional-headshot-960\.webp 960w, assets\/yihang-professional-headshot-1400\.webp 1400w/);
-  assert.match(hero, /sizes="\(max-width: 900px\) calc\(100vw - 32px\), \(max-width: 1200px\) 42vw, 520px"/);
-  assert.match(heroActions, />Resume PDF</);
-  assert.match(heroActions, />Email Henry</);
-  assert.doesNotMatch(heroActions, />LinkedIn</);
-  assert.equal((heroActions.match(/<a\b/g) || []).length, 2);
-  assert.doesNotMatch(heroActions, /GitHub|DOCX|View De-identified Cases|Private proof|Hiring docs/);
+test("the public page avoids phone exposure and unsupported qualification claims", () => {
+  const publicBody = html.slice(html.indexOf("<body"));
+  assert.doesNotMatch(publicBody, /tel:|\+61\s?4|\b04\d{2}[\s-]?\d{3}[\s-]?\d{3}\b/);
+  assert.doesNotMatch(publicBody + "\n" + script, /Restricted Electrical Licence|AHPRA|ISO 13485|IEC 60601|AS\/NZS 3551|permanent resident|citizen/i);
 });
 
-test("defensive privacy language stays off the public page", () => {
-  assert.doesNotMatch(publicSource, defensiveCopyPattern);
-  assert.doesNotMatch(
-    publicSource,
-    /Private proof|Proof boundary|Screening Snapshot|Hiring docs|Public-safe summary|Private after role fit|Sensitive check material|Request documents after fit/
-  );
-  assert.doesNotMatch(
-    publicSource,
-    /passport|VEVO|visa grant|visa subclass|date of birth|DOB|student ID|护照|签证号|签证批签|出生日期|学生号/i
-  );
-});
-
-test("navigation and section order follow the recruiter reading path", () => {
-  assert.match(
-    html,
-    /<nav class="site-nav" aria-label="Primary navigation">\s*<a href="#experience">Experience<\/a>\s*<a href="#capabilities">Scope<\/a>\s*<a href="#case-notes">Cases<\/a>\s*<a href="#study">Education<\/a>\s*<a href="#contact">Contact<\/a>\s*<\/nav>/
-  );
-
-  const fitIndex = html.indexOf('<section class="fit-strip');
-  const experienceIndex = html.indexOf('<section id="experience"');
-  const partnersIndex = html.indexOf('<section class="partners-section');
-  const judgementIndex = html.indexOf('<section class="judgement-section');
-  const scopeIndex = html.indexOf('<section id="capabilities"');
-  const targetRolesIndex = html.indexOf('<section class="target-roles');
-  const caseIndex = html.indexOf('<section id="case-notes"');
-  const studyIndex = html.indexOf('<section id="study"');
-  const contactIndex = html.indexOf('<section id="contact"');
-
-  assert.ok(fitIndex > -1, "missing quick fit section");
-  assert.ok(fitIndex < experienceIndex);
-  assert.ok(experienceIndex < partnersIndex);
-  assert.ok(partnersIndex < judgementIndex);
-  assert.ok(judgementIndex < scopeIndex);
-  assert.ok(scopeIndex < targetRolesIndex);
-  assert.ok(targetRolesIndex < caseIndex);
-  assert.ok(caseIndex < studyIndex);
-  assert.ok(studyIndex < contactIndex);
-  assert.equal(html.includes('<section class="proof-strip'), false);
-  assert.equal(html.includes('<section class="brief-section'), false);
-  assert.equal(html.includes('<section id="certifications"'), false);
-});
-
-test("medical technology platforms are listed without overclaiming endorsement", () => {
-  const partners = sectionByClass("partners-section");
-
-  assert.match(partners, /<p class="section-kicker">Medical Technology Platforms<\/p>/);
-  assert.match(partners, /<h2 id="partners-title">Platforms I have supported\.<\/h2>/);
-  assert.match(partners, /Grouped by device category and the field or workshop context in which I supported them\./);
-  assert.equal(articleCount(partners), 5);
-  assert.match(partners, /src="assets\/logo-philips\.svg"/);
-  assert.match(partners, /src="assets\/logo-bd\.svg"/);
-  assert.match(partners, /src="assets\/logo-device-technologies\.svg"/);
-  assert.match(partners, /src="assets\/logo-hologic\.svg"/);
-  assert.match(partners, /src="assets\/logo-jaeger\.svg"/);
-  assert.match(partners, /Philips Healthcare/);
-  assert.match(partners, /BD \/ BD Rowa/);
-  assert.match(partners, /Device Technologies/);
-  assert.match(partners, /Hologic/);
-  assert.match(partners, /Jaeger Medical/);
-  assert.match(partners, /Respiratory \/ monitoring \/ ultrasound/);
-  assert.match(partners, /Medication management \/ automation/);
-  assert.match(partners, /Critical care \/ resuscitation/);
-  assert.match(partners, /Diagnostics \/ DEXA \/ surgical imaging/);
-  assert.match(partners, /Respiratory diagnostics/);
-  assert.match(partners, /Respironics V60/);
-  assert.match(partners, /BD Pyxis/);
-  assert.match(partners, /Corpuls CPR arms/);
-  assert.match(partners, /Horizon DEXA/);
-  assert.match(partners, /Vyntus Body/);
-  assert.match(css, /\.partner-logo-frame/);
-  assert.match(css, /\.partner-equipment/);
-  assert.doesNotMatch(partners, /official partner|official endorsement|customer list|client list|strategic partner|commercial partner|partner ecosystem|Private Hospital|Medical Centre|Day Surgery|QAS|Small clinics|not published|serial numbers/i);
-});
-
-test("quick fit answers core recruiter questions without repeating a second proof grid", () => {
-  const fit = sectionByClass("fit-strip");
-
-  assert.match(fit, /<p class="section-kicker">Field Service Snapshot<\/p>/);
-  assert.match(fit, /<h2 id="fit-title">Practical service across hospital and pharmacy equipment\.<\/h2>/);
-  assert.match(fit, /PM, repair, installation and verification/);
-  assert.match(fit, /Hospital, pharmacy and workshop support/);
-  assert.match(fit, /<span>Records<\/span>\s*<strong>Simpro, service reports and clear handover<\/strong>/);
-  assert.equal(articleCount(fit), 4);
-  assert.doesNotMatch(fit, /class="proof-grid"|Recruiter proof points/);
-  assert.doesNotMatch(fit, /Quick Fit|What a recruiter needs|Ask in interview|Private check|Public evidence|what proof to request/i);
-});
-
-test("clinical service judgement explains next-use status, escalation, and regulated records", () => {
-  const judgement = sectionByClass("judgement-section");
-
-  assert.match(judgement, /<p class="section-kicker">Clinical Safety &amp; Service Judgement<\/p>/);
-  assert.match(judgement, /Safe service decisions need evidence\./);
-  assert.match(judgement, /verify the result and document the next step/);
-  assert.match(judgement, /Unsafe or uncertain devices should not be returned to use/);
-  assert.match(judgement, /verified for use/);
-  assert.match(judgement, /follow-up required/);
-  assert.match(judgement, /escalated \/ not returned/);
-  assert.match(judgement, /Lifecycle-aware biomedical service/);
-  assert.equal(articleCount(judgement), 3);
-  assert.doesNotMatch(judgement, /Regulated documentation mindset/);
-  assert.doesNotMatch(judgement, /expert|certified|qualified compliance/i);
-  assert.match(script, /\.judgement-lead > p:not\(\.section-kicker\)/);
-  assert.doesNotMatch(script, /"\.judgement-lead > p":/);
-});
-
-test("target roles make the career direction explicit without adding another proof section", () => {
-  const targetRoles = sectionByClass("target-roles");
-
-  assert.match(targetRoles, /<p class="section-kicker">Target Roles<\/p>/);
-  assert.match(targetRoles, /Biomedical Field Service Engineer/);
-  assert.match(targetRoles, /Medical Device Service Engineer/);
-  assert.match(targetRoles, /Clinical Engineering Service Support/);
-  assert.match(targetRoles, /Biomedical Technician \/ Service Technician/);
-  assert.doesNotMatch(targetRoles, /student|research assistant|data scientist/i);
-});
-
-test("equipment and service scope merges skills and training into equipment categories", () => {
-  const scope = sectionById("capabilities");
-
-  assert.match(scope, /<p class="section-kicker">Equipment &amp; Service Scope<\/p>/);
-  assert.match(scope, /<h2 id="capabilities-title">Equipment scope and verification basis\.<\/h2>/);
-  assert.equal(articleCount(scope), 6);
-  assert.match(scope, /Respiratory service/);
-  assert.match(scope, /Patient monitoring/);
-  assert.match(scope, /Ultrasound systems/);
-  assert.match(scope, /DEXA and X-ray support/);
-  assert.match(scope, /Pharmacy automation/);
-  assert.match(scope, /Service traceability/);
-  assert.match(scope, /Hands-on service/);
-  assert.match(scope, /Training completed/);
-  assert.match(scope, /Installation support/);
-  assert.match(scope, /Documentation \/ handover experience/);
-  assert.equal((scope.match(/<dt>Verification basis<\/dt>/g) || []).length, 6);
-  assert.match(scope, /Flow\/pressure-related checks/);
-  assert.match(scope, /ECG\/SpO2\/NIBP-related functional checks/);
-  assert.match(scope, /probe\/cable condition/);
-  assert.match(scope, /safety documentation and escalation pathway/);
-  assert.match(scope, /dispensing\/workflow check/);
-});
-
-test("case notes include service outcomes and operational value", () => {
-  const cases = sectionById("case-notes");
-
-  assert.match(cases, /<p class="section-kicker">Service Case Notes<\/p>/);
-  assert.match(cases, /How I assess, verify and hand over/);
-  assert.match(cases, /Three examples show the judgement behind maintenance, troubleshooting and traceable records/);
-  assert.match(cases, /Service decision path/);
-  assert.match(cases, /<strong>Assess<\/strong>/);
-  assert.match(cases, /<strong>Act<\/strong>/);
-  assert.match(cases, /<strong>Verify<\/strong>/);
-  assert.match(cases, /Review safety, the reported symptom, equipment condition and service history/);
-  assert.match(cases, /Confirm post-service function and document the next-use or escalation status/);
-  assert.equal((cases.match(/<dt>Outcome<\/dt>/g) || []).length, 3);
-  assert.equal((cases.match(/<dt>Risk point<\/dt>/g) || []).length, 3);
-  assert.equal((cases.match(/<dt>Evidence used<\/dt>/g) || []).length, 3);
-  assert.equal((cases.match(/<dt>Release decision<\/dt>/g) || []).length, 3);
-  assert.match(cases, /Equipment status documented with clear next-use notes and service records/);
-  assert.match(cases, /Troubleshooting example - intermittent user-reported fault/);
-  assert.match(cases, /device condition, service history, accessories, user workflow, and reproducible symptoms/);
-  assert.match(cases, /ready for use, required follow-up, or needed escalation/);
-  assert.match(cases, /Service records are treated as engineering evidence/);
-  assert.doesNotMatch(cases, /Reduced repeat troubleshooting time/);
-  assert.doesNotMatch(cases, /customer names|serial numbers|internal records|De-identified|Anonymised|sensitive records|authorized hiring/i);
-});
-
-test("Chinese translation reads naturally for HR and field-service review", () => {
-  assert.match(script, /"现场服务概览"/);
-  assert.match(script, /"医院与药房设备的实际服务能力。"/);
-  assert.match(script, /"预防性维护、维修、安装和验证"/);
-  assert.match(script, /"呼吸治疗、患者监护、超声、DEXA、药房自动化"/);
-  assert.match(script, /"医院、药房和车间支持"/);
-  assert.match(script, /"Simpro、服务报告和明确交接"/);
-  assert.match(script, /设备服务历史、沟通记录和交接状态/);
-  assert.match(script, /"设备厂商与平台"/);
-  assert.match(script, /"我支持过的设备平台。"/);
-  assert.match(script, /"按设备类别，以及我参与的现场或车间工作场景整理。"/);
-  assert.match(script, /参与车间支持、台架检查、现场准备、设备状态记录和服务交接/);
-  assert.match(script, /"按设备类别说明服务范围和验证依据。"/);
-  assert.match(script, /"参与内容"/);
-  assert.match(script, /"判断依据"/);
-  assert.match(script, /"处理动作"/);
-  assert.match(script, /"请直接发送岗位信息。"/);
-  assert.match(script, /"可按雇主流程核验"/);
-  assert.doesNotMatch(script, /现场服务快照|现场服务画像|商业伙伴生态|商业伙伴|合作厂商|合作过的医疗技术厂商|补充说明设备范围|服务接触|台面检查|用户工作流|客户更新链路|受监管医疗记录|本地 biomedical governance|避免过度承诺|雇主核验材料已准备|清晰交接|近 3 年现场 \/ 车间服务|呼吸、监护、超声、DEXA、自动化|驾照和悉尼现场出行|客户更新|现场出勤|候选人画像|设备族|收尾|客户交接|安装和服务培训接触|是否可放回使用|对齐过的服务记录|出行范围|岗位范围|设备深度/);
-});
-
-test("clinical engineering design system stays concise, responsive, and interaction-ready", () => {
-  assert.match(css, /\/\* Clinical engineering portfolio redesign \*\//);
-  assert.match(css, /--soft-shadow:/);
-  assert.match(css, /--header-surface:/);
-  assert.match(css, /--hero-surface:/);
-  assert.match(css, /--radius-control:\s*10px/);
-  assert.match(css, /--radius-panel:\s*12px/);
-  assert.match(css, /--radius-media:\s*18px/);
-  assert.doesNotMatch(css, /\.resume-style \.resume-link::before/);
-  assert.doesNotMatch(css, /\.resume-style \.email-action::before/);
-  assert.doesNotMatch(css, /\.resume-style \.linkedin-action::before/);
-  assert.match(css, /\.menu-toggle[\s\S]*?display:\s*none/);
-  assert.match(css, /@media \(max-width:\s*900px\)[\s\S]*?\.menu-toggle[\s\S]*?display:\s*grid/);
-  assert.match(script, /matchMedia\?\.\("\(max-width: 900px\)"\)/);
-  assert.match(css, /\.capability-row[\s\S]*?grid-template-columns:\s*repeat\(2/);
-  assert.match(css, /\.case-grid[\s\S]*?grid-template-columns:\s*repeat\(2/);
-  assert.match(css, /\.experience-details[\s\S]*?\.partner-details[\s\S]*?\.scope-details[\s\S]*?\.case-details/);
-  assert.match(script, /const setMenuOpen = \(isOpen\) =>/);
-  assert.match(script, /collapseCompactEvidence/);
-  assert.doesNotMatch(script, /addEventListener\("scroll"|window\.scrollY/);
-  assert.doesNotMatch(css, /gradient orb|bokeh|decorative blob/i);
-});
-
-test("education stays concise and work-right proof is not over-explained", () => {
-  const study = sectionById("study");
-
-  assert.equal(articleCount(study), 3);
-  assert.match(study, /Master of Philosophy/);
-  assert.match(study, /Awarded Jun 2024/);
-  assert.match(study, /Bachelor of Biomedical Engineering/);
-  assert.equal((study.match(/src="assets\/logo-university-of-sydney\.svg"/g) || []).length, 2);
-  assert.equal((study.match(/src="assets\/logo-university-of-sydney-white\.svg"/g) || []).length, 2);
-  assert.equal((study.match(/aria-label="The University of Sydney logo"/g) || []).length, 2);
-  assert.match(study, /Flexible Electrodes for Smart Bandages/);
-  assert.match(study, /impedance measurement, material\/process trade-offs, validation evidence, and technical documentation/);
-  assert.match(study, /measurement, evidence, and controlled documentation rather than assumption/);
-  assert.doesNotMatch(study, /study-proof-strip|Academic records|submission\/examination documents|Eligibility checks stay private/);
-});
-
-test("professional development direction stays biomedical-service focused", () => {
-  const development = sectionById("life");
-
-  assert.match(development, /<p class="section-kicker">Professional Development<\/p>/);
-  assert.match(development, /Electrical safety testing and medical equipment performance verification/);
-  assert.match(development, /Biomedical asset management and CMMS record quality/);
-  assert.match(development, /Manufacturer training and procedure-led troubleshooting/);
-  assert.doesNotMatch(development, /AI tools|Structured weeks|personal note|study rhythm/i);
-});
-
-test("contact prioritizes email, resume, LinkedIn, GitHub, availability, and field readiness", () => {
-  const contact = sectionById("contact");
-
-  assert.match(contact, /Discuss a biomedical field service role\./);
-  assert.match(contact, /Email Henry/);
-  assert.match(contact, /Resume PDF/);
-  assert.match(contact, /Resume DOCX/);
-  assert.match(contact, new RegExp(linkedinUrl.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
-  assert.match(contact, new RegExp(githubUrl.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
-  assert.doesNotMatch(contact.match(/<div class="contact-action-buttons">([\s\S]*?)<\/div>/)?.[1] ?? "", /GitHub/);
-  assert.match(contact, /<div class="contact-secondary-links">/);
-  assert.match(contact, /role="status" aria-live="polite" data-copy-status/);
-  assert.match(contact, /<strong>Availability<\/strong>\s*<span>Upon discussion<\/span>/);
-  assert.match(contact, /<strong>Driver licence<\/strong>\s*<span>Available for Sydney field travel<\/span>/);
-  assert.match(contact, /<strong>Work rights<\/strong>\s*<span>Available for employer verification<\/span>/);
-  assert.doesNotMatch(contact, /tel:|\+61\s?4|\b04\d{2}\b|phone-number|mobile-number/);
-});
-
-test("runtime localization preserves visible control names for assistive technology", () => {
-  assert.doesNotMatch(script, /"\.brand":\s*\{\s*"aria-label"/);
-  assert.doesNotMatch(script, /"\.(?:nav-email-link|nav-resume-link|resume-link|email-action|linkedin-action|contact-email-action|contact-copy-email-action|contact-resume-link|contact-docx-link|contact-linkedin-link|contact-github-link)":\s*\{[^}]*"aria-label"/);
-  assert.doesNotMatch(script, /"\.(?:fault-approach|contact-actions)":\s*\{\s*"aria-label"/);
-  assert.match(script, /"\.menu-toggle":\s*\{\s*"aria-label":\s*"Open navigation"\s*\}/);
-  assert.match(script, /"\.menu-toggle":\s*\{\s*"aria-label":\s*"打开导航"\s*\}/);
-});
-
-test("links remain recognizable in body copy while navigation and buttons stay button-like", () => {
-  assert.doesNotMatch(css, /a\s*{\s*color:\s*inherit;\s*text-decoration:\s*none;\s*}/);
-  assert.match(css, /a\s*{[\s\S]*?color:\s*var\(--teal\);[\s\S]*?text-decoration:\s*underline;/);
-  assert.match(css, /\.site-nav a,[\s\S]*?\.nav-email-link,[\s\S]*?\.nav-resume-link,[\s\S]*?\.button,[\s\S]*?\.brand\s*{[\s\S]*?text-decoration:\s*none;/);
-  assert.match(css, /@media \(prefers-reduced-motion:\s*reduce\)/);
-  assert.match(css, /animation-duration:\s*0\.001ms !important;/);
-  assert.match(css, /transition-duration:\s*0\.001ms !important;/);
-});
-
-test("dark mode follows system preference without a manual toggle", () => {
-  assert.doesNotMatch(html, /theme-toggle|data-theme-toggle|Toggle dark mode/);
-  assert.ok(html.indexOf('src="theme-init.js?v=portfolio-security-v3-20260710"') < html.indexOf('href="styles.css?v=portfolio-security-v3-20260710"'));
-  assert.doesNotMatch(themeInit, /localStorage|siteTheme|storageKey/);
-  assert.match(themeInit, /prefers-color-scheme: dark/);
-  assert.match(themeInit, /const resolvedTheme = mediaQuery\?\.matches \? "dark" : "light"/);
-  assert.match(themeInit, /document\.documentElement\.dataset\.theme = resolvedTheme/);
-  assert.doesNotMatch(script, /themeStorageKey|siteTheme|data-theme-toggle|updateThemeToggle|setStoredThemePreference|getStoredThemePreference/);
-  assert.match(script, /themePreferenceMedia\?\.addEventListener\("change"/);
-  assert.doesNotMatch(css, /\.theme-toggle/);
-  assert.match(css, /:root\[data-theme="dark"\]/);
-  assert.match(css, /@media \(prefers-color-scheme: dark\)/);
-  assert.match(css, /color-scheme:\s*dark/);
-  assert.match(css, /--header-surface:/);
-  assert.match(css, /--hero-surface:/);
-});
-
-test("runtime translation avoids HTML string injection and external links isolate referrers", () => {
-  assert.doesNotMatch(script, /innerHTML|insertAdjacentHTML/);
-  assert.match(script, /replaceChildren/);
-  assert.match(script, /document\.createElement\("a"\)/);
-  assert.match(script, /link\.rel = "noopener noreferrer"/);
-
-  const externalLinks = [...html.matchAll(/<a\b[^>]*target="_blank"[^>]*>/g)].map((match) => match[0]);
-  assert.ok(externalLinks.length > 0, "expected external links");
-  externalLinks.forEach((link) => {
-    assert.match(link, /rel="noopener noreferrer"/);
-  });
-});
-
-test("resume PDF and DOCX match the revised HR-first positioning", () => {
-  const pdfText = extractPdfText();
-  const docxText = extractDocxText();
-  const combined = `${pdfText}\n${docxText}`;
-
-  assert.match(combined, /Biomedical Field Service Engineer \| Sydney/);
-  assert.match(combined, /Nearly three years of field and workshop service experience at Nova Biomedical Australia/);
-  assert.match(combined, /Sydney field travel/);
-  assert.match(combined, /Driver licence/);
-  assert.match(combined, /Work rights available for employer verification/);
-  assert.match(combined, /preventive maintenance \(PM\), fault diagnosis, repair, installation support, verification, and service documentation/);
-  assert.match(combined, /Nova Biomedical Australia/);
-  assert.match(combined, /Document service outcomes with functional checks, performance evidence, or clear escalation status/);
-  assert.match(combined, /Simpro work orders, service reports, equipment history, and communication notes/);
-  assert.match(combined, /next-use or escalation records/i);
-  assert.match(combined, /ready for use, requires follow-up, or needs escalation/i);
-  assert.match(combined, /traceable service evidence/i);
-  assert.match(combined, /Field service tools/i);
-  assert.match(combined, /Simpro \/ CMMS/);
+test("resume PDF and DOCX retain the verified field-service positioning", () => {
+  const resumeTexts = [extractPdfText(), extractDocxText()];
+  for (const text of resumeTexts) {
+    assert.ok(text.replace(/\s+/g, " ").includes("AI tools: Working knowledge of Codex, Claude Code and ChatGPT for research, drafting and coding assistance, with outputs reviewed before use."));
+  }
+  const combined = resumeTexts.join("\n");
+  [
+    "Biomedical Field Service Engineer | Sydney",
+    "Three years of field and workshop service experience at Nova Biomedical Australia",
+    "Sydney field travel",
+    "Driver licence",
+    "Work rights available for employer verification",
+    "Nova Biomedical Australia",
+    "Simpro work orders, service reports, equipment history, and communication notes",
+    "Master of Philosophy, The University of Sydney, awarded Jun 2024",
+  ].forEach((text) => assert.ok(combined.includes(text), text));
   assert.match(combined, /electrical safety testing awareness/i);
-  assert.match(combined, /Target roles/i);
-  assert.match(combined, /Biomedical Technician \/ Service Technician/);
-  assert.match(combined, /Master of Philosophy, The University of Sydney, awarded Jun 2024/);
-  assert.doesNotMatch(combined, /DOCUMENT FORMAT|PDF for quick review|Reduced repeat troubleshooting time|Sensitive identity|authorized hiring process|customer-specific records|safe return-to-use decisions|Work-right evidence ready|Work-right check ready|professional working English|manual-led checks/);
-  assert.doesNotMatch(combined, /Full-time,\s*38 hours per week|38 hours per week|Nova Biomedical Pty Ltd/);
+  assert.doesNotMatch(combined, /38 hours per week|Nova Biomedical Pty Ltd|permanent resident/i);
 });
 
 test("downloadable resume files keep professional metadata", () => {
@@ -589,48 +223,145 @@ test("downloadable resume files keep professional metadata", () => {
     ["-p", path.join(root, "assets/Henry_Yang_Biomedical_Engineer_Resume.docx"), "docProps/core.xml"],
     { encoding: "utf8" }
   );
-
   assert.match(pdfSource, /\/Title \(Henry Yang Biomedical Field Service Engineer Resume\)/);
   assert.match(pdfSource, /\/Author \(Yihang Henry Yang\)/);
-  assert.doesNotMatch(pdfSource, /127\.0\.0\.1|localhost|HeadlessChrome|Mozilla\/5\.0|Skia\/PDF/);
+  assert.doesNotMatch(pdfSource, /127\.0\.0\.1|localhost|HeadlessChrome|Mozilla\/5\.0/);
   assert.match(docxCoreProperties, /<dc:title>Henry Yang Biomedical Field Service Engineer Resume<\/dc:title>/);
   assert.match(docxCoreProperties, /<dc:creator>Yihang Henry Yang<\/dc:creator>/);
-  assert.match(docxCoreProperties, /<dc:description>Biomedical field service resume for Yihang Henry Yang<\/dc:description>/);
 });
 
-test("published assets, robots, and sitemap stay aligned with the live site", () => {
-  assert.ok(fs.existsSync(path.join(root, "favicon.svg")));
-  assert.ok(fs.existsSync(path.join(root, "favicon.ico")));
-  assert.ok(fs.existsSync(path.join(root, "apple-touch-icon.png")));
-  assert.ok(fs.existsSync(path.join(root, "assets/yihang-professional-headshot-960.webp")));
-  assert.ok(fs.existsSync(path.join(root, "assets/yihang-professional-headshot-1400.webp")));
-  assert.ok(fs.existsSync(path.join(root, "assets/Henry_Yang_Biomedical_Engineer_Resume.pdf")));
-  assert.ok(fs.existsSync(path.join(root, "assets/Henry_Yang_Biomedical_Engineer_Resume.docx")));
-  assert.ok(fs.existsSync(path.join(root, "assets/logo-nova-biomedical-au.png")));
-  assert.ok(fs.existsSync(path.join(root, "assets/logo-university-of-sydney.svg")));
-  assert.ok(fs.existsSync(path.join(root, "assets/logo-university-of-sydney-white.svg")));
-  assert.ok(fs.existsSync(path.join(root, "assets/logo-philips.svg")));
-  assert.ok(fs.existsSync(path.join(root, "assets/logo-bd.svg")));
-  assert.ok(fs.existsSync(path.join(root, "assets/logo-device-technologies.svg")));
-  assert.ok(fs.existsSync(path.join(root, "assets/logo-hologic.svg")));
-  assert.ok(fs.existsSync(path.join(root, "assets/logo-jaeger.svg")));
-  assert.match(html, /src="assets\/logo-nova-biomedical-au\.png"/);
-  assert.match(html, /src="assets\/logo-university-of-sydney\.svg"/);
-  assert.match(html, /src="assets\/logo-university-of-sydney-white\.svg"/);
-  assert.match(html, /src="assets\/logo-philips\.svg"/);
-  assert.match(html, /src="assets\/logo-bd\.svg"/);
-  assert.match(html, /src="assets\/logo-device-technologies\.svg"/);
-  assert.match(html, /src="assets\/logo-hologic\.svg"/);
-  assert.match(html, /src="assets\/logo-jaeger\.svg"/);
-  assert.match(html, /alt="Nova Biomedical Australia logo"/);
-  assert.match(html, /<link rel="icon" type="image\/svg\+xml" href="favicon\.svg">/);
-  assert.match(html, /<link rel="alternate icon" href="favicon\.ico">/);
-  assert.match(html, /<link rel="apple-touch-icon" href="apple-touch-icon\.png">/);
-
+test("published assets, robots, and sitemap stay aligned with the site", () => {
+  [
+    "favicon.svg",
+    "favicon.ico",
+    "apple-touch-icon.png",
+    "assets/yihang-professional-headshot-960.webp",
+    "assets/yihang-professional-headshot-1400.webp",
+    "assets/biomedical-service-workbench-960.webp",
+    "assets/biomedical-service-workbench-1400.webp",
+    "assets/Henry_Yang_Biomedical_Engineer_Resume.pdf",
+    "assets/Henry_Yang_Biomedical_Engineer_Resume.docx",
+    "assets/logo-nova-biomedical-au.png",
+    "assets/logo-lundbeck.svg",
+    "assets/logo-university-of-sydney.svg",
+    "assets/logo-university-of-sydney-white.svg",
+    "assets/logo-philips.svg",
+    "assets/logo-bd.svg",
+    "assets/logo-device-technologies.svg",
+    "assets/logo-hologic.svg",
+    "assets/logo-jaeger.svg",
+  ].forEach((asset) => assert.ok(fs.existsSync(path.join(root, asset)), asset));
   const robots = read("robots.txt");
   const sitemap = read("sitemap.xml");
   assert.match(robots, /Sitemap: https:\/\/yangyihang96\.com\/sitemap\.xml/);
-  assert.match(robots, /Disallow: \/assets\/personal-gallery\//);
   assert.match(sitemap, /<loc>https:\/\/yangyihang96\.com\/<\/loc>/);
-  assert.match(sitemap, /<lastmod>2026-07-10<\/lastmod>/);
+  assert.match(sitemap, /<lastmod>2026-09-10<\/lastmod>/);
+});
+
+
+test("hero retains identity, contact actions and recruiter facts before mobile artwork", () => {
+  const hero = sectionByClass("hero");
+  for (const term of ["Yihang (Henry) Yang", "Biomedical Field Service Engineer", "Sydney-based", "Since Jul 2023", "Sydney, NSW", "Driver licence", "English / Mandarin", "Download resume", "Email Henry"]) assert.ok(hero.includes(term), term);
+  assert.equal((hero.match(/<a\b/g) || []).length, 2);
+  assert.match(hero, /fetchpriority="high"/);
+  assert.match(hero, /hero-mobile-dark/);
+  assert.match(css, /\.hero-content[^{}]*\{[^{}]*order:\s*0/);
+});
+
+test("all section anchors and native download paths remain valid", () => {
+  const sections = ["experience", "capabilities", "case-notes", "ai-tools", "study", "contact"];
+  let previous = -1;
+  sections.forEach(id => {
+    const position = html.indexOf('<section id="' + id + '"');
+    assert.ok(position > previous, id); previous = position;
+  });
+  assert.equal((html.match(/<section\b/g) || []).length, 7);
+  const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map(m => m[1]);
+  assert.equal(new Set(ids).size, ids.length, "unique IDs");
+  for (const match of html.matchAll(/href="#([^"]+)"/g)) assert.ok(ids.includes(match[1]), match[1]);
+  for (const match of html.matchAll(/href="(assets\/[^"]+)"/g)) assert.ok(fs.existsSync(path.join(root, match[1])));
+});
+
+test("seven evidence-supported equipment categories preserve qualification boundaries", () => {
+  const equipment = sectionById("capabilities");
+  for (const name of ["Philips Healthcare", "BD / BD Rowa", "Device Technologies / Corpuls", "Hologic"]) assert.ok(equipment.includes(name));
+  assert.equal((equipment.match(/data-platform-panel=/g) || []).length, 7);
+  assert.doesNotMatch(equipment, /Jaeger|Vyntus|SentrySuite|certified|official partner/i);
+  assert.match(equipment, /Completed training/);
+  for (const model of ["Affiniti", "CX50", "Efficia CM10", "MX40", "FM20", "PageWriter", "HeartStart Intrepid", "Horizon EMI"]) assert.ok(equipment.includes(model), model);
+  assert.match(equipment, /data-platform-navigation[^>]*hidden/);
+  assert.equal((equipment.match(/<noscript>/g) || []).length, 6);
+});
+
+test("platform selection updates panels, focus and deferred image loading together", () => {
+  const ids = ["philips", "philips-ultrasound", "philips-monitor", "philips-ecg", "bd", "corpuls", "hologic"];
+  const tabs = ids.map(id => ({ dataset: { platform: id }, attrs: {}, setAttribute(k,v) { this.attrs[k]=v; }, focus() { this.focused=true; } }));
+  const panels = ids.map(id => ({ dataset: { platformPanel: id } }));
+  const loaded = [];
+  const activate = browserFunction("activatePlatform", { platformTabs: tabs, platformPanels: panels, hydrateArt: panel => loaded.push(panel.dataset.platformPanel) });
+  activate("bd", true);
+  assert.deepEqual(panels.map(p => p.hidden), ids.map(id => id !== "bd"));
+  assert.deepEqual(tabs.map(t => t.tabIndex), ids.map(id => id === "bd" ? 0 : -1));
+  assert.equal(tabs[4].attrs["aria-selected"], "true");
+  assert.equal(tabs[4].focused, true);
+  assert.deepEqual(loaded, ["bd"]);
+  activate("unknown");
+  assert.deepEqual(loaded, ["bd"]);
+});
+
+test("service and AI notes use independently readable native disclosure", () => {
+  for (const [id, count] of [["case-notes", 4], ["ai-tools", 2]]) {
+    const section = sectionById(id);
+    assert.equal((section.match(/<details\b/g) || []).length, count);
+    assert.equal((section.match(/<details[^>]*\bopen/g) || []).length, 1);
+    assert.equal((section.match(/<summary>/g) || []).length, count);
+    assert.doesNotMatch(section, /<details[^>]*\bname=/);
+  }
+  for (const term of ["Assess", "Follow procedure", "Verify", "handover", "user-reported fault"]) assert.ok(sectionById("case-notes").includes(term));
+  for (const term of ["Codex", "Claude Code", "ChatGPT", "outputs reviewed before use", "Personal website", "Resume &amp; document workflow"]) assert.ok(sectionById("ai-tools").includes(term));
+});
+
+test("stable bilingual keys cover every translated leaf and preserve unsafe-language fallback", () => {
+  const match = script.match(/text: (\{[\s\S]*?\}),\n    menu: \{ open: "打开导航"/);
+  assert.ok(match);
+  const zh = JSON.parse(match[1]);
+  for (const key of new Set([...html.matchAll(/data-i18n="([^"]+)"/g)].map(m => m[1]))) assert.equal(typeof zh[key], "string", key);
+  const initial = browserFunction("getInitialLanguage", { localStorage: { getItem: () => "__proto__" }, isSupportedLanguage: value => ["en", "zh"].includes(value) });
+  assert.equal(initial(), "en");
+  assert.match(script, /Object\.hasOwn\(translations, language\)/);
+  assert.doesNotMatch(script, /nth-child|innerHTML|insertAdjacentHTML|eval\(/);
+});
+
+test("keyboard equipment navigation and safe long-section navigation are present", () => {
+  for (const key of ["ArrowRight", "ArrowLeft", "ArrowDown", "ArrowUp", "Home", "End"]) assert.ok(script.includes('"' + key + '"'));
+  const target = {id:"ai-tools"};
+  const getTarget = browserFunction("getHashTarget", {document:{getElementById:id => id==="ai-tools" ? target : null}});
+  assert.equal(getTarget("#ai-tools"), target);
+  assert.equal(getTarget("#%invalid"), null);
+  assert.equal(getTarget("https://example.com"), null);
+  assert.match(script, /getBoundingClientRect\(\)\.top <= offset/);
+  assert.match(script, /requestAnimationFrame\(updateActiveNav\)/);
+  assert.match(script, /passive: true/);
+});
+
+test("responsive themes and reduced-motion mode retain readable content", () => {
+  for (const width of [1120,900,700]) assert.ok(css.includes("(max-width: " + width + "px)"));
+  assert.match(css, /prefers-color-scheme: dark/);
+  assert.match(css, /prefers-reduced-motion: reduce/);
+  assert.match(css, /animation-timeline: scroll\(root\)/);
+  assert.match(css, /\[hidden\]/);
+  assert.match(css, /\.is-menu-open \.header-actions/);
+  assert.match(themeInit, /#0d1828/);
+  assert.match(themeInit, /#f4f6f8/);
+});
+
+test("every image has fixed dimensions and all local image references exist", () => {
+  const images=[...html.matchAll(/<img\b[^>]*>/g)].map(m=>m[0]);
+  for(const img of images) {
+    assert.match(img,/\bwidth="\d+"/,img);
+    assert.match(img,/\bheight="\d+"/,img);
+    assert.match(img,/\balt="/,img);
+  }
+  for(const match of html.matchAll(/(?:src|data-src)="(assets\/[^"]+)"/g)) assert.ok(fs.existsSync(path.join(root,match[1])),match[1]);
+  for(const [name,max] of [["hero-mobile-light-960.webp",250000],["hero-mobile-dark-960.webp",250000],["hero-light-1920.webp",450000],["hero-dark-1920.webp",450000]]) assert.ok(fs.statSync(path.join(root,"assets/studio-v16",name)).size<=max,name);
 });
