@@ -12,7 +12,7 @@ const html = read("index.html");
 const css = read("styles.css");
 const script = read("script.js");
 const themeInit = read("theme-init.js");
-const version = "portfolio-v16-20260910";
+const version = "portfolio-v17-20260910";
 const linkedinUrl = "https://au.linkedin.com/in/henry-yang-9644382bb";
 const githubUrl = "https://github.com/yangyihang96";
 const sriSha384 = (source) =>
@@ -196,24 +196,16 @@ test("the public page avoids phone exposure and unsupported qualification claims
   assert.doesNotMatch(publicBody + "\n" + script, /Restricted Electrical Licence|AHPRA|ISO 13485|IEC 60601|AS\/NZS 3551|permanent resident|citizen/i);
 });
 
-test("resume PDF and DOCX retain the verified field-service positioning", () => {
-  const resumeTexts = [extractPdfText(), extractDocxText()];
-  for (const text of resumeTexts) {
-    assert.ok(text.replace(/\s+/g, " ").includes("AI tools: Working knowledge of Codex, Claude Code and ChatGPT for research, drafting and coding assistance, with outputs reviewed before use."));
+test("resume PDF and DOCX share verified work evidence and AI wording", () => {
+  const facts = JSON.parse(read("content/profile.json"));
+  for (const raw of [extractPdfText(), extractDocxText()]) {
+    const text = raw.replace(/\s+/g, " ");
+    for (const key of ["novaBullet1", "novaBullet2", "novaBullet3", "novaBullet4", "novaBullet5", "aiIntro", "mphilScope"]) {
+      assert.ok(text.includes(facts.en[key]), key);
+    }
+    for (const term of ["Nova Biomedical Australia", "Affiniti 70G", "IntelliVue X3", "V60", "FIX100", "Internal practical training", "Master of Philosophy", "Driver licence"]) assert.ok(text.includes(term), term);
+    assert.doesNotMatch(text, /electrical safety testing awareness|Work rights|Work eligibility|Target roles|Selected service outcomes|Jaeger/i);
   }
-  const combined = resumeTexts.join("\n");
-  [
-    "Biomedical Field Service Engineer | Sydney",
-    "Three years of field and workshop service experience at Nova Biomedical Australia",
-    "Sydney field travel",
-    "Driver licence",
-    "Work rights available for employer verification",
-    "Nova Biomedical Australia",
-    "Simpro work orders, service reports, equipment history, and communication notes",
-    "Master of Philosophy, The University of Sydney, awarded Jun 2024",
-  ].forEach((text) => assert.ok(combined.includes(text), text));
-  assert.match(combined, /electrical safety testing awareness/i);
-  assert.doesNotMatch(combined, /38 hours per week|Nova Biomedical Pty Ltd|permanent resident/i);
 });
 
 test("downloadable resume files keep professional metadata", () => {
@@ -223,8 +215,9 @@ test("downloadable resume files keep professional metadata", () => {
     ["-p", path.join(root, "assets/Henry_Yang_Biomedical_Engineer_Resume.docx"), "docProps/core.xml"],
     { encoding: "utf8" }
   );
-  assert.match(pdfSource, /\/Title \(Henry Yang Biomedical Field Service Engineer Resume\)/);
-  assert.match(pdfSource, /\/Author \(Yihang Henry Yang\)/);
+  const pdfMetadata = JSON.parse(execFileSync("python3", ["-c", "import json; from pypdf import PdfReader; print(json.dumps(dict(PdfReader('assets/Henry_Yang_Biomedical_Engineer_Resume.pdf').metadata)))"], {cwd:root,encoding:"utf8"}));
+  assert.equal(pdfMetadata["/Title"], "Henry Yang Biomedical Field Service Engineer Resume");
+  assert.equal(pdfMetadata["/Author"], "Yihang Henry Yang");
   assert.doesNotMatch(pdfSource, /127\.0\.0\.1|localhost|HeadlessChrome|Mozilla\/5\.0/);
   assert.match(docxCoreProperties, /<dc:title>Henry Yang Biomedical Field Service Engineer Resume<\/dc:title>/);
   assert.match(docxCoreProperties, /<dc:creator>Yihang Henry Yang<\/dc:creator>/);
@@ -237,9 +230,7 @@ test("published assets, robots, and sitemap stay aligned with the site", () => {
     "apple-touch-icon.png",
     "assets/yihang-professional-headshot-960.webp",
     "assets/yihang-professional-headshot-1400.webp",
-    "assets/biomedical-service-workbench-960.webp",
-    "assets/biomedical-service-workbench-1400.webp",
-    "assets/Henry_Yang_Biomedical_Engineer_Resume.pdf",
+            "assets/Henry_Yang_Biomedical_Engineer_Resume.pdf",
     "assets/Henry_Yang_Biomedical_Engineer_Resume.docx",
     "assets/logo-nova-biomedical-au.png",
     "assets/logo-lundbeck.svg",
@@ -261,15 +252,15 @@ test("published assets, robots, and sitemap stay aligned with the site", () => {
 
 test("hero retains identity, contact actions and recruiter facts before mobile artwork", () => {
   const hero = sectionByClass("hero");
-  for (const term of ["Yihang (Henry) Yang", "Biomedical Field Service Engineer", "Sydney-based", "Since Jul 2023", "Sydney, NSW", "Driver licence", "English / Mandarin", "Download resume", "Email Henry"]) assert.ok(hero.includes(term), term);
-  assert.equal((hero.match(/<a\b/g) || []).length, 2);
+  for (const term of ["Yihang (Henry) Yang", "Biomedical Field Service Engineer", "Sydney-based", "Since Jul 2023", "Sydney, NSW", "Driver licence", "English / Mandarin", "Resume · PDF", "Email Henry"]) assert.ok(hero.includes(term), term);
+  assert.equal((hero.match(/<a\b/g) || []).length, 3);
   assert.match(hero, /fetchpriority="high"/);
   assert.match(hero, /hero-mobile-dark/);
   assert.match(css, /\.hero-content[^{}]*\{[^{}]*order:\s*0/);
 });
 
 test("all section anchors and native download paths remain valid", () => {
-  const sections = ["experience", "capabilities", "case-notes", "ai-tools", "study", "contact"];
+  const sections = ["experience", "case-notes", "capabilities", "study", "ai-tools", "contact"];
   let previous = -1;
   sections.forEach(id => {
     const position = html.indexOf('<section id="' + id + '"');
@@ -279,7 +270,7 @@ test("all section anchors and native download paths remain valid", () => {
   const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map(m => m[1]);
   assert.equal(new Set(ids).size, ids.length, "unique IDs");
   for (const match of html.matchAll(/href="#([^"]+)"/g)) assert.ok(ids.includes(match[1]), match[1]);
-  for (const match of html.matchAll(/href="(assets\/[^"]+)"/g)) assert.ok(fs.existsSync(path.join(root, match[1])));
+  for (const match of html.matchAll(/href="(assets\/[^"]+)"/g)) assert.ok(fs.existsSync(path.join(root, match[1].split("?")[0])));
 });
 
 test("seven evidence-supported equipment categories preserve qualification boundaries", () => {
@@ -310,15 +301,15 @@ test("platform selection updates panels, focus and deferred image loading togeth
 });
 
 test("service and AI notes use independently readable native disclosure", () => {
-  for (const [id, count] of [["case-notes", 4], ["ai-tools", 2]]) {
+  for (const [id, count] of [["case-notes", 3], ["ai-tools", 2]]) {
     const section = sectionById(id);
     assert.equal((section.match(/<details\b/g) || []).length, count);
     assert.equal((section.match(/<details[^>]*\bopen/g) || []).length, 1);
     assert.equal((section.match(/<summary>/g) || []).length, count);
     assert.doesNotMatch(section, /<details[^>]*\bname=/);
   }
-  for (const term of ["Assess", "Follow procedure", "Verify", "handover", "user-reported fault"]) assert.ok(sectionById("case-notes").includes(term));
-  for (const term of ["Codex", "Claude Code", "ChatGPT", "outputs reviewed before use", "Personal website", "Resume &amp; document workflow"]) assert.ok(sectionById("ai-tools").includes(term));
+  for (const term of ["Affiniti 70G", "IntelliVue X3", "V60", "Recorded outcome", "missing C12 option"]) assert.ok(sectionById("case-notes").includes(term));
+  for (const term of ["Codex", "Claude Code", "ChatGPT", "checking facts, content and behaviour before use", "Personal website", "Resume &amp; document workflow"]) assert.ok(sectionById("ai-tools").includes(term));
 });
 
 test("stable bilingual keys cover every translated leaf and preserve unsafe-language fallback", () => {
@@ -364,4 +355,54 @@ test("every image has fixed dimensions and all local image references exist", ()
   }
   for(const match of html.matchAll(/(?:src|data-src)="(assets\/[^"]+)"/g)) assert.ok(fs.existsSync(path.join(root,match[1])),match[1]);
   for(const [name,max] of [["hero-mobile-light-960.webp",250000],["hero-mobile-dark-960.webp",250000],["hero-light-1920.webp",450000],["hero-dark-1920.webp",450000]]) assert.ok(fs.statSync(path.join(root,"assets/studio-v16",name)).size<=max,name);
+});
+
+
+test("public fact source matches the rendered English and embedded Chinese content", () => {
+  const facts = JSON.parse(read("content/profile.json"));
+  const decode = text => text.replace(/&amp;/g,"&").replace(/&lt;/g,"<").replace(/&gt;/g,">").replace(/&quot;/g,'"').replace(/&#x27;/g,"'");
+  const leaves = [...html.matchAll(/data-i18n="([^"]+)"[^>]*>([^<]*)</g)];
+  for (const [,key,value] of leaves) assert.equal(decode(value), facts.en[key], key);
+  const zh = JSON.parse(script.match(/text: (\{[\s\S]*?\}),\n    menu: \{ open: "打开导航"/)[1]);
+  assert.deepEqual(zh, facts.zh);
+  assert.deepEqual(Object.keys(facts.en).sort(), Object.keys(facts.zh).sort());
+});
+
+test("professional evidence is visible before interacting with equipment tabs", () => {
+  const experience = sectionById("experience"), projects = sectionById("case-notes"), equipment = sectionById("capabilities");
+  assert.equal((experience.match(/data-i18n="novaBullet/g)||[]).length,5);
+  assert.equal((projects.match(/class="project-summary"/g)||[]).length,3);
+  assert.ok(equipment.indexOf('class="equipment-overview"') < equipment.indexOf('data-equipment'));
+  assert.match(equipment, /Internal practical training|internal practical training/);
+  assert.doesNotMatch(html+script, /Work eligibility|confirmable during recruitment|工作资格/);
+  assert.equal((html.match(/href="assets\/Henry_Yang_Biomedical_Engineer_Resume.docx\?v=portfolio-v17-20260910"/g)||[]).length,2);
+});
+
+test("resume export is two A4 pages with correct section order and native headings", () => {
+  const result = JSON.parse(execFileSync("python3", ["-c", `
+import json
+from pypdf import PdfReader
+from docx import Document
+r=PdfReader('assets/Henry_Yang_Biomedical_Engineer_Resume.pdf')
+d=Document('assets/Henry_Yang_Biomedical_Engineer_Resume.docx')
+print(json.dumps({'pages':[p.extract_text() for p in r.pages], 'sizes':[[float(p.mediabox.width),float(p.mediabox.height)] for p in r.pages], 'headings':[p.text for p in d.paragraphs if p.style.name=='Heading 1'], 'bodyFont':d.styles['Normal'].font.size.pt, 'floatingTables':len(d.tables)}))
+  `], {cwd:root, encoding:"utf8"}));
+  assert.equal(result.pages.length,2);
+  assert.ok(result.pages[0].includes("SELECTED SERVICE PROJECTS"));
+  assert.ok(result.pages[1].replace(/^Yihang \(Henry\) Yang\s+·\s+2\s*/, "").startsWith("EQUIPMENT & COMPLETED TRAINING"));
+  assert.ok(result.pages[1].indexOf("EDUCATION & RESEARCH") < result.pages[1].indexOf("DIGITAL TOOLS & APPLIED AI"));
+  result.sizes.forEach(([w,h])=>{assert.ok(Math.abs(w-595.3)<1);assert.ok(Math.abs(h-841.9)<1);});
+  assert.equal(result.headings.length,7);
+  assert.equal(result.bodyFont,11);
+  assert.equal(result.floatingTables,0);
+});
+
+test("navigation marks the contact section when the short footer reaches the viewport bottom", () => {
+  for (const bottom of [false,true]) {
+    const items = ["study","ai-tools","contact"].map((id,i)=>({target:{getBoundingClientRect:()=>({top:i*220-20})},link:{attrs:{},classList:{toggle(){}},setAttribute(k,v){this.attrs[k]=v},removeAttribute(k){delete this.attrs[k]}}}));
+    const update = browserFunction("updateActiveNav", {navFrame:0,header:{offsetHeight:84},navSections:items,window:{innerHeight:800,scrollY:bottom?200:100},document:{documentElement:{scrollHeight:1000}}});
+    update();
+    assert.equal(items.findIndex(i=>i.link.attrs['aria-current']==='location'),bottom?2:0);
+  }
+  assert.doesNotMatch(css,/scroll-margin-top:\s*(?:104|85)px/);
 });

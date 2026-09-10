@@ -1,328 +1,132 @@
+"""Build the two-page resume from shared public facts; export the DOCX to PDF."""
+import json
+import shutil
+import subprocess
+import tempfile
 from datetime import datetime, timezone
 from pathlib import Path
-import textwrap
 
 from docx import Document
 from docx.enum.text import WD_ALIGN_PARAGRAPH
-from docx.enum.section import WD_SECTION
-from docx.shared import Inches, Pt, RGBColor
-from reportlab.lib import colors
-from reportlab.lib.pagesizes import A4
-from reportlab.pdfbase.pdfmetrics import stringWidth
-from reportlab.pdfgen import canvas
-
+from docx.oxml import OxmlElement
+from docx.oxml.ns import qn
+from docx.shared import Mm, Pt, RGBColor
 
 ROOT = Path(__file__).resolve().parents[1]
-ASSETS = ROOT / "assets"
-PDF_PATH = ASSETS / "Henry_Yang_Biomedical_Engineer_Resume.pdf"
-DOCX_PATH = ASSETS / "Henry_Yang_Biomedical_Engineer_Resume.docx"
-
-PROFILE = (
-    "Three years of field and workshop service experience at "
-    "Nova Biomedical Australia with medical equipment used in hospital and pharmacy settings. "
-    "Core strengths include preventive maintenance (PM), fault diagnosis, repair, installation support, "
-    "verification, service documentation, and return-to-use or escalation decisions."
-)
-
-CONTACT_LINE = (
-    "Sydney, NSW | 0436 016 660 | yangyihang96@gmail.com | Driver licence | "
-    "Available for Sydney field travel | Work rights available for employer verification"
-)
-
-SERVICE_BULLETS = [
-    "Perform preventive maintenance (PM), fault diagnosis, repair, installation support, verification, and service documentation across field and workshop settings.",
-    "Support ventilation, patient monitoring, ultrasound, DEXA, pharmacy automation, X-ray support, and general biomedical equipment.",
-    "Document service outcomes with functional checks, performance evidence, or clear escalation status.",
-    "Use manufacturer-led checks, service history, and functional evidence to document whether equipment is ready for use, requires follow-up, or needs escalation.",
-    "Maintain Simpro work orders, service reports, equipment history, and communication notes as a traceable service history.",
-]
-
-SCOPE_BULLETS = [
-    "Respiratory: V60, V60 Plus, Trilogy; planned service, checks, and troubleshooting preparation.",
-    "Monitoring: Avalon, Efficia, HeartStart; service preparation, checks, and handover notes.",
-    "Imaging and diagnostics: EPIQ, Affiniti, CX30, CX50, Horizon DEXA, and X-ray support.",
-    "Pharmacy automation: BD FIX100, Pyxis, ROWA, workflow support, records, and handover.",
-]
-
-SKILL_BULLETS = [
-    "PM procedures, fault diagnosis, functional testing, performance verification, service reports, and escalation notes.",
-    "Simpro / CMMS, equipment history, equipment identifiers, communication notes, traceability, manufacturer documentation, and Microsoft Office.",
-    "Electrical safety testing awareness, test equipment familiarity, service handover, Mandarin Chinese, and professional working proficiency in English.",
-    "AI tools: Working knowledge of Codex, Claude Code and ChatGPT for research, drafting and coding assistance, with outputs reviewed before use.",
-]
-
-FIELD_SERVICE_TOOLS = [
-    "PM procedures, service manuals, functional testing, performance verification, and clear escalation notes.",
-    "Simpro / CMMS, service reports, equipment history, communication notes, handover records, and traceable service evidence.",
-    "Electrical safety testing awareness, test equipment familiarity, and manufacturer documentation.",
-    "Mandarin Chinese native; English professional working proficiency.",
-]
-
-EDUCATION_BULLETS = [
-    "Master of Philosophy, The University of Sydney, awarded Jun 2024.",
-    "Bachelor of Biomedical Engineering, The University of Sydney, Feb 2017 - Dec 2020.",
-    "MPhil thesis: flexible electrodes, impedance measurement, validation evidence, and technical documentation.",
-]
-
-OUTCOME_BULLETS = [
-    "Supported PM, repair, verification, and documentation across ventilation, monitoring, ultrasound, DEXA, pharmacy automation, and general biomedical equipment in hospital, pharmacy, and workshop settings.",
-    "Diagnosed user-reported faults by separating device condition, accessory context, workflow, repair history, reproducible symptoms, procedure-led checks, and post-repair verification.",
-    "Supported next-use decisions by documenting whether equipment was ready for use, required follow-up, or needed escalation based on post-service evidence.",
-]
-
-ROLE_FIT_BULLETS = [
-    "Biomedical Field Service Engineer.",
-    "Medical Device Service Engineer.",
-    "Clinical Engineering Service Support.",
-    "Biomedical Technician / Service Technician.",
-]
+ASSETS = ROOT / 'assets'
+DOCX_PATH = ASSETS / 'Henry_Yang_Biomedical_Engineer_Resume.docx'
+PDF_PATH = DOCX_PATH.with_suffix('.pdf')
+DATA = json.loads((ROOT / 'content/profile.json').read_text())
+TEXT = DATA['en']
+INK = RGBColor.from_string('15283F')
+MUTED = RGBColor.from_string('43546B')
 
 
-def wrap_text(text, font_name, font_size, max_width):
-    words = text.split()
-    lines = []
-    current = ""
-    for word in words:
-        candidate = f"{current} {word}".strip()
-        if stringWidth(candidate, font_name, font_size) <= max_width:
-            current = candidate
-        else:
-            if current:
-                lines.append(current)
-            current = word
-    if current:
-        lines.append(current)
-    return lines
+def add_link(paragraph, text, url):
+    relationship = paragraph.part.relate_to(url, 'http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink', is_external=True)
+    link = OxmlElement('w:hyperlink'); link.set(qn('r:id'), relationship)
+    run = OxmlElement('w:r'); props = OxmlElement('w:rPr')
+    color = OxmlElement('w:color'); color.set(qn('w:val'), '275DDE'); props.append(color)
+    run.append(props); value = OxmlElement('w:t'); value.text = text; run.append(value)
+    link.append(run); paragraph._p.append(link)
 
 
-def draw_wrapped(c, text, x, y, width, font_name="Helvetica", font_size=8.7, leading=11, color=colors.black):
-    c.setFont(font_name, font_size)
-    c.setFillColor(color)
-    for line in wrap_text(text, font_name, font_size, width):
-      c.drawString(x, y, line)
-      y -= leading
-    return y
+def heading(doc, title, page_break=False):
+    p = doc.add_paragraph(title, 'Heading 1')
+    p.paragraph_format.page_break_before = page_break
+    return p
 
 
-def draw_section(c, title, items, x, y, width, title_color):
-    c.setFillColor(title_color)
-    c.setFont("Helvetica-Bold", 9.6)
-    c.drawString(x, y, title.upper())
-    y -= 13
-    c.setStrokeColor(colors.Color(0.73, 0.80, 0.78))
-    c.line(x, y + 5, x + width, y + 5)
-    y -= 5
-    for item in items:
-        y = draw_wrapped(c, f"- {item}", x, y, width, font_size=8.5, leading=10.4, color=colors.Color(0.11, 0.18, 0.17))
-        y -= 3
-    return y - 6
-
-
-def build_pdf():
-    c = canvas.Canvas(str(PDF_PATH), pagesize=A4)
-    width, height = A4
-    left = 42
-    right = width - 42
-    teal = colors.Color(0.06, 0.38, 0.35)
-    ink = colors.Color(0.07, 0.13, 0.12)
-    muted = colors.Color(0.32, 0.39, 0.38)
-
-    c.setTitle("Henry Yang Biomedical Field Service Engineer Resume")
-    c.setAuthor("Yihang Henry Yang")
-    c.setSubject("Biomedical field service resume")
-    c.setCreator("Yihang Henry Yang")
-    c.setProducer("Yihang Henry Yang")
-    c.setKeywords("Biomedical Engineer, Field Service Engineer, Medical Device Service, Sydney")
-
-    y = height - 42
-    c.setFillColor(teal)
-    c.setFont("Helvetica-Bold", 18)
-    c.drawCentredString(width / 2, y, "YIHANG (HENRY) YANG")
-    y -= 20
-    c.setFont("Helvetica-Bold", 12)
-    c.drawCentredString(width / 2, y, "Biomedical Field Service Engineer | Sydney")
-    y -= 15
-    c.setFillColor(muted)
-    c.setFont("Helvetica", 8.5)
-    c.drawCentredString(width / 2, y, CONTACT_LINE)
-    y -= 18
-    c.setStrokeColor(colors.Color(0.73, 0.80, 0.78))
-    c.line(left, y, right, y)
-    y -= 16
-
-    c.setFillColor(teal)
-    c.setFont("Helvetica-Bold", 9.8)
-    c.drawString(left, y, "PROFESSIONAL PROFILE")
-    y -= 13
-    y = draw_wrapped(c, PROFILE, left, y, right - left, font_size=9.1, leading=11.6, color=ink)
-    y -= 10
-
-    c.setFillColor(teal)
-    c.setFont("Helvetica-Bold", 9.8)
-    c.drawString(left, y, "PROFESSIONAL EXPERIENCE")
-    y -= 14
-    c.setFillColor(ink)
-    c.setFont("Helvetica-Bold", 9.5)
-    c.drawString(left, y, "Biomedical Engineer | Nova Biomedical Australia")
-    c.setFillColor(muted)
-    c.setFont("Helvetica", 8.5)
-    c.drawRightString(right, y, "Jul 2023 - Present")
-    y -= 12
-    c.setFillColor(muted)
-    c.setFont("Helvetica", 8.4)
-    c.drawString(left, y, "Field service across Australia / workshop repair and technical support")
-    y -= 12
-    for item in SERVICE_BULLETS:
-        y = draw_wrapped(c, f"- {item}", left + 8, y, right - left - 8, font_size=8.5, leading=10.3, color=ink)
-        y -= 2
-    y -= 6
-
-    col_gap = 24
-    col_w = (right - left - col_gap) / 2
-    y_left = y
-    y_right = y
-    y_left = draw_section(c, "Equipment and training scope", SCOPE_BULLETS, left, y_left, col_w, teal)
-    y_left = draw_section(c, "Technical skills", SKILL_BULLETS, left, y_left, col_w, teal)
-
-    x2 = left + col_w + col_gap
-    y_right = draw_section(c, "Earlier healthcare documentation", [
-        "Pharmacovigilance Department Assistant, Lundbeck Beijing, Dec 2019 - Feb 2020.",
-        "Supported adverse reaction record handling and regulated drug-safety documentation.",
-    ], x2, y_right, col_w, teal)
-    y_right = draw_section(c, "Education", EDUCATION_BULLETS, x2, y_right, col_w, teal)
-
-    y = min(y_left, y_right) - 4
-    c.setStrokeColor(colors.Color(0.73, 0.80, 0.78))
-    c.line(left, y + 6, right, y + 6)
-    y -= 8
-    y = draw_section(c, "Selected service outcomes", OUTCOME_BULLETS, left, y, right - left, teal)
-
-    y_left = y
-    y_right = y
-    y_left = draw_section(c, "Target roles", ROLE_FIT_BULLETS, left, y_left, col_w, teal)
-    y_right = draw_section(c, "Field service tools", FIELD_SERVICE_TOOLS, x2, y_right, col_w, teal)
-
-    footer_y = 34
-    c.setStrokeColor(colors.Color(0.73, 0.80, 0.78))
-    c.line(left, footer_y + 14, right, footer_y + 14)
-    c.setFillColor(muted)
-    c.setFont("Helvetica", 7.6)
-    c.drawString(left, footer_y, "Updated September 2026.")
-    c.showPage()
-    c.save()
-
-
-def set_run_style(run, bold=False, color=None, size=9):
-    run.bold = bold
-    run.italic = False
-    run.font.name = "Arial"
-    run.font.size = Pt(size)
-    if color:
-        run.font.color.rgb = RGBColor(*color)
-
-
-def add_heading(doc, text):
-    p = doc.add_paragraph()
-    p.paragraph_format.keep_with_next = True
-    p.paragraph_format.space_before = Pt(8)
-    p.paragraph_format.space_after = Pt(3)
-    r = p.add_run(text.upper())
-    set_run_style(r, bold=True, color=(17, 54, 90), size=10)
-
-
-def add_bullet(doc, text):
-    p = doc.add_paragraph(style="List Bullet")
-    p.paragraph_format.space_after = Pt(2)
-    r = p.add_run(text)
-    set_run_style(r, size=9)
+def paragraph(doc, text, bold_prefix=None, style=None):
+    p = doc.add_paragraph(style=style)
+    if bold_prefix:
+        p.add_run(bold_prefix + ' ').bold = True
+    p.add_run(text)
+    p.paragraph_format.widow_control = True
+    p.paragraph_format.keep_together = True
+    return p
 
 
 def build_docx():
-    doc = Document()
-    section = doc.sections[0]
-    section.top_margin = Inches(0.45)
-    section.bottom_margin = Inches(0.45)
-    section.left_margin = Inches(0.58)
-    section.right_margin = Inches(0.58)
+    doc = Document(); section = doc.sections[0]
+    zoom = doc.settings.element.find(qn('w:zoom'))
+    if zoom is not None: zoom.set(qn('w:percent'), '100')
+    section.page_width = Mm(210); section.page_height = Mm(297)
+    section.top_margin = Mm(16); section.bottom_margin = Mm(16)
+    section.left_margin = Mm(18); section.right_margin = Mm(18)
+    section.footer_distance = Mm(8)
+    normal = doc.styles['Normal']
+    normal.font.name = 'Arial'; normal.font.size = Pt(11); normal.font.color.rgb = INK
+    normal.paragraph_format.line_spacing = 1.12
+    normal.paragraph_format.space_after = Pt(6)
+    for name, size in [('Heading 1', 12), ('Heading 2', 10.5)]:
+        style = doc.styles[name]; style.font.name = 'Arial'; style.font.size = Pt(size)
+        style.font.color.rgb = INK; style.font.bold = True
+        style.paragraph_format.space_before = Pt(11 if name == 'Heading 1' else 6)
+        style.paragraph_format.space_after = Pt(5)
+        style.paragraph_format.keep_with_next = True
+    bullet = doc.styles['List Bullet']; bullet.font.name = 'Arial'; bullet.font.size = Pt(11)
+    bullet.paragraph_format.left_indent = Mm(3.5); bullet.paragraph_format.first_line_indent = Mm(-3.5)
+    bullet.paragraph_format.space_after = Pt(5)
 
-    styles = doc.styles
-    styles["Normal"].font.name = "Arial"
-    styles["Normal"].font.size = Pt(9)
+    p=doc.add_paragraph(); p.paragraph_format.space_after=Pt(3)
+    run=p.add_run('YIHANG (HENRY) YANG'); run.font.size=Pt(22);run.bold=True
+    p=paragraph(doc,'Biomedical Field Service Engineer | Sydney');p.runs[0].bold=True;p.runs[0].font.size=Pt(12)
+    p=paragraph(doc,'Sydney, NSW  |  0436 016 660  |  yangyihang96@gmail.com');p.runs[0].font.size=Pt(9.5)
+    p=doc.add_paragraph();add_link(p,'yangyihang96.com','https://yangyihang96.com/');p.add_run('  |  ');add_link(p,'LinkedIn','https://au.linkedin.com/in/henry-yang-9644382bb')
+    p.add_run('  |  Driver licence  |  English / Mandarin').font.size=Pt(9.5)
+    heading(doc,'PROFESSIONAL PROFILE');paragraph(doc,DATA['resume']['profile'])
+    heading(doc,'PROFESSIONAL EXPERIENCE')
+    p=doc.add_paragraph('Biomedical Engineer | Nova Biomedical Australia','Heading 2')
+    p=paragraph(doc,'Jul 2023 – Present | Field service across Australia / workshop repair');p.runs[0].font.color.rgb=MUTED;p.runs[0].font.size=Pt(9.5);p.paragraph_format.keep_with_next=True
+    for i in range(1,6):paragraph(doc,TEXT[f'novaBullet{i}'],style='List Bullet')
+    heading(doc,'SELECTED SERVICE PROJECTS')
+    for key in ['Ultrasound','Monitor','V60']:
+        doc.add_paragraph(TEXT[f'case{key}Context'],'Heading 2')
+        if key == 'Ultrasound':
+            body = TEXT[f'case{key}Summary'] + ' ' + TEXT[f'case{key}Action']
+        elif key == 'Monitor':
+            body = TEXT[f'case{key}Summary'] + ' ' + TEXT[f'case{key}Result']
+        else:
+            body = TEXT[f'case{key}Result']
+        paragraph(doc, body)
 
-    p = doc.add_paragraph()
-    p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    r = p.add_run("YIHANG (HENRY) YANG")
-    set_run_style(r, bold=True, color=(17, 54, 90), size=17)
-
-    p = doc.add_paragraph()
-    p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    r = p.add_run("Biomedical Field Service Engineer | Sydney")
-    set_run_style(r, bold=True, color=(17, 54, 90), size=11)
-
-    p = doc.add_paragraph()
-    p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    r = p.add_run(CONTACT_LINE)
-    set_run_style(r, color=(82, 82, 82), size=8.5)
-
-    add_heading(doc, "Professional Profile")
-    p = doc.add_paragraph()
-    p.paragraph_format.space_after = Pt(4)
-    r = p.add_run(PROFILE)
-    set_run_style(r, size=9.2)
-
-    add_heading(doc, "Professional Experience")
-    p = doc.add_paragraph()
-    r = p.add_run("Biomedical Engineer | Nova Biomedical Australia")
-    set_run_style(r, bold=True, color=(17, 54, 90), size=10)
-    r = p.add_run(" | Field service across Australia / workshop repair | Jul 2023 - Present")
-    set_run_style(r, color=(82, 82, 82), size=9)
-    for item in SERVICE_BULLETS:
-        add_bullet(doc, item)
-
-    add_heading(doc, "Equipment and Service Scope")
-    for item in SCOPE_BULLETS:
-        add_bullet(doc, item)
-
-    add_heading(doc, "Technical Skills")
-    for item in SKILL_BULLETS:
-        add_bullet(doc, item)
-
-    add_heading(doc, "Earlier Healthcare Documentation")
-    add_bullet(doc, "Pharmacovigilance Department Assistant, Lundbeck Beijing, Dec 2019 - Feb 2020.")
-    add_bullet(doc, "Supported adverse reaction record handling and regulated drug-safety documentation.")
-
-    add_heading(doc, "Education")
-    for item in EDUCATION_BULLETS:
-        add_bullet(doc, item)
-
-    add_heading(doc, "Selected Service Outcomes")
-    for item in OUTCOME_BULLETS:
-        add_bullet(doc, item)
-
-    add_heading(doc, "Target Roles")
-    for item in ROLE_FIT_BULLETS:
-        add_bullet(doc, item)
-
-    add_heading(doc, "Field Service Tools")
-    for item in FIELD_SERVICE_TOOLS:
-        add_bullet(doc, item)
-
-    core = doc.core_properties
-    core.title = "Henry Yang Biomedical Field Service Engineer Resume"
-    core.author = "Yihang Henry Yang"
-    core.subject = "Biomedical field service resume"
-    core.comments = "Biomedical field service resume for Yihang Henry Yang"
-    core.keywords = "Biomedical Engineer, Field Service Engineer, Medical Device Service, Sydney"
-    core.last_modified_by = "Yihang Henry Yang"
-    core.created = datetime(2026, 6, 25, tzinfo=timezone.utc)
-    core.modified = datetime(2026, 9, 5, tzinfo=timezone.utc)
-
+    heading(doc,'EQUIPMENT & COMPLETED TRAINING',page_break=True)
+    for label, body in DATA['resume']['training']:
+        paragraph(doc,body,bold_prefix=label + ' —')
+    heading(doc,'EDUCATION & RESEARCH')
+    paragraph(doc,'The University of Sydney | Awarded Jun 2024',bold_prefix='Master of Philosophy |')
+    paragraph(doc,TEXT['mphilScope'])
+    paragraph(doc,'The University of Sydney | Feb 2017 – Dec 2020',bold_prefix='Bachelor of Biomedical Engineering |')
+    heading(doc,'EARLIER EXPERIENCE')
+    paragraph(doc,'Lundbeck Beijing | Dec 2019 – Feb 2020',bold_prefix='Pharmacovigilance Department Assistant |')
+    paragraph(doc,TEXT['lundbeckIntro'])
+    heading(doc,'DIGITAL TOOLS & APPLIED AI')
+    paragraph(doc,TEXT['digitalTools'])
+    paragraph(doc,TEXT['aiIntro'])
+    footer=section.footer.paragraphs[0];footer.alignment=WD_ALIGN_PARAGRAPH.RIGHT
+    run=footer.add_run('Yihang (Henry) Yang  ·  ');run.font.size=Pt(8);run.font.color.rgb=MUTED
+    field=OxmlElement('w:fldSimple');field.set(qn('w:instr'),'PAGE');footer._p.append(field)
+    core=doc.core_properties
+    core.title='Henry Yang Biomedical Field Service Engineer Resume';core.author='Yihang Henry Yang'
+    core.subject='Biomedical field service resume';core.last_modified_by='Yihang Henry Yang'
+    core.keywords='Biomedical Engineer, Field Service Engineer, Medical Device Service, Sydney'
+    core.created=datetime(2026,6,25,tzinfo=timezone.utc);core.modified=datetime.now(timezone.utc)
     doc.save(DOCX_PATH)
 
 
-if __name__ == "__main__":
-    ASSETS.mkdir(exist_ok=True)
-    build_pdf()
-    build_docx()
-    print(PDF_PATH)
-    print(DOCX_PATH)
+def export_pdf():
+    soffice = shutil.which('soffice')
+    if not soffice: raise RuntimeError('LibreOffice is required to export the resume PDF.')
+    with tempfile.TemporaryDirectory(prefix='resume-export-') as directory:
+        subprocess.run([soffice, '--headless', '--convert-to', 'pdf:writer_pdf_Export', '--outdir', directory, str(DOCX_PATH)], check=True, capture_output=True, text=True, timeout=90)
+        exported=Path(directory)/PDF_PATH.name
+        from pypdf import PdfReader
+        reader=PdfReader(exported)
+        if len(reader.pages)!=2: raise RuntimeError(f'Resume must be two pages, got {len(reader.pages)}. PDF not replaced.')
+        if 'EQUIPMENT & COMPLETED TRAINING' not in reader.pages[1].extract_text(): raise RuntimeError('Unexpected page break. PDF not replaced.')
+        shutil.copyfile(exported,PDF_PATH)
+
+if __name__ == '__main__':
+    build_docx(); export_pdf()
+    print('Built matching two-page DOCX and PDF resumes.')
