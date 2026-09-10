@@ -12,7 +12,7 @@ const html = read("index.html");
 const css = read("styles.css");
 const script = read("script.js");
 const themeInit = read("theme-init.js");
-const version = "portfolio-v17-20260910";
+const version = "portfolio-v17-20260910-r2";
 const linkedinUrl = "https://au.linkedin.com/in/henry-yang-9644382bb";
 const githubUrl = "https://github.com/yangyihang96";
 const sriSha384 = (source) =>
@@ -375,7 +375,7 @@ test("professional evidence is visible before interacting with equipment tabs", 
   assert.ok(equipment.indexOf('class="equipment-overview"') < equipment.indexOf('data-equipment'));
   assert.match(equipment, /Internal practical training|internal practical training/);
   assert.doesNotMatch(html+script, /Work eligibility|confirmable during recruitment|工作资格/);
-  assert.equal((html.match(/href="assets\/Henry_Yang_Biomedical_Engineer_Resume.docx\?v=portfolio-v17-20260910"/g)||[]).length,2);
+  assert.equal((html.match(/href="assets\/Henry_Yang_Biomedical_Engineer_Resume.docx\?v=portfolio-v17-20260910-r2"/g)||[]).length,2);
 });
 
 test("resume export is two A4 pages with correct section order and native headings", () => {
@@ -405,4 +405,21 @@ test("navigation marks the contact section when the short footer reaches the vie
     assert.equal(items.findIndex(i=>i.link.attrs['aria-current']==='location'),bottom?2:0);
   }
   assert.doesNotMatch(css,/scroll-margin-top:\s*(?:104|85)px/);
+});
+
+test("early header enhancement avoids delayed-script layout shifts and retains failure fallback", () => {
+  for (const outcome of ["success","missing","runtime-error"]) {
+    const classes = new Set(); const events = {};
+    const root = {dataset:{},style:{},classList:{add(...names){names.forEach(n=>classes.add(n))},remove(...names){names.forEach(n=>classes.delete(n))},contains(name){return classes.has(name)}}};
+    const document = {documentElement:root,querySelector(){return {setAttribute(){}}},addEventListener(name,fn){events[name]=fn}};
+    vm.runInNewContext(themeInit,{document,window:{matchMedia:()=>({matches:false})}});
+    assert.ok(classes.has("js-pending"));
+    if(outcome!=="missing")classes.add("js-ready");
+    if(outcome==="success")classes.delete("js-pending");
+    events.DOMContentLoaded();
+    assert.equal(classes.has("js-pending"),false);
+    assert.equal(classes.has("js-ready"),outcome==="success");
+  }
+  assert.match(css,/:root:not\(\.js-ready\):not\(\.js-pending\)/);
+  assert.match(script,/classList\.remove\("js-pending"\)/);
 });

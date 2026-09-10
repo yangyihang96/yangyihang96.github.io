@@ -7,7 +7,7 @@ import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = 'portfolio-v17-20260910'
+VERSION = 'portfolio-v17-20260910-r2'
 
 def digest(data, algorithm):
     return base64.b64encode(hashlib.new(algorithm, data).digest()).decode()
@@ -30,7 +30,7 @@ def main():
     page = re.sub(r'(<meta (?:name="description"|property="og:description"|name="twitter:description") content=")[^"]+(">)', lambda m: m[1]+descriptions['en']+m[2], page)
     page = re.sub(r'("description": ")[^"]+("[,])',lambda m:m[1]+descriptions['en']+m[2],page,count=1)
     (ROOT / 'script.js').write_text(script)
-    page = re.sub(r'portfolio-v\d+-\d+', VERSION, page)
+    page = re.sub(r'portfolio-v\d+-\d+(?:-r\d+)?', VERSION, page)
     page = re.sub(r'(href="assets/Henry_Yang_Biomedical_Engineer_Resume\.(?:pdf|docx))(?:\?[^"]*)?(")', lambda m: m[1] + '?v=' + VERSION + m[2], page)
     for filename in ['styles.css', 'script.js', 'theme-init.js']:
         sri = 'sha384-' + digest((ROOT / filename).read_bytes(), 'sha384')

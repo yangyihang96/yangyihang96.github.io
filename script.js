@@ -414,3 +414,5 @@ document.querySelectorAll("details").forEach(note => note.addEventListener("togg
 applyTheme();
 applyLanguage(getInitialLanguage(), false);
 queueNavUpdate();
+
+document.documentElement.classList.remove("js-pending");

@@ -1,11 +1,11 @@
 
 /* Progressive enhancement keeps navigation and all content usable without scripts. */
-:root:not(.js-ready) .language-switch,
-:root:not(.js-ready) .menu-toggle,
-:root:not(.js-ready) [data-copy-email] { display: none; }
-:root:not(.js-ready) .header-inner { flex-wrap: wrap; padding-block: 14px; }
-:root:not(.js-ready) .header-actions { display: block; position: static; width: auto; padding: 0; border: 0; max-height: none; }
-:root:not(.js-ready) .site-nav { flex-direction: row; flex-wrap: wrap; gap: 10px 22px; }
+:root:not(.js-ready):not(.js-pending) .language-switch,
+:root:not(.js-ready):not(.js-pending) .menu-toggle,
+:root:not(.js-ready):not(.js-pending) [data-copy-email] { display: none; }
+:root:not(.js-ready):not(.js-pending) .header-inner { flex-wrap: wrap; padding-block: 14px; }
+:root:not(.js-ready):not(.js-pending) .header-actions { display: block; position: static; width: auto; padding: 0; border: 0; max-height: none; }
+:root:not(.js-ready):not(.js-pending) .site-nav { flex-direction: row; flex-wrap: wrap; gap: 10px 22px; }
 .platform-art figcaption { padding-top: 14px; font: 12px/1.5 var(--mono); color: var(--exhibit-muted); }
 @media (min-width: 1121px) { .site-nav { gap: clamp(16px, 1.6vw, 28px); } }
 :root {
