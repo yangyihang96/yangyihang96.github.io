@@ -1,0 +1,153 @@
+{
+  "version": "portfolio-v18-20260912",
+  "generator": "GPT Image",
+  "images": [
+    {
+      "name": "v60",
+      "sourcePNG": "exec-12250981-5daa-4da4-8815-b827fa0e863c.png",
+      "derivatives": [
+        {
+          "path": "assets/studio-v18/v60-640.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 10436,
+          "sha256": "6c07a415ddd75deaa6c266cabde7aef0cf0ac91a38a2c3b846d17820ed19c0d6"
+        },
+        {
+          "path": "assets/studio-v18/v60-1280.webp",
+          "width": 1280,
+          "height": 853,
+          "bytes": 29928,
+          "sha256": "9b3b029306a23f356c9a774cf79a2805f1c3de7077fa897c916079910ae35808"
+        },
+        {
+          "path": "assets/studio-v18/social-v60.jpg",
+          "width": 1280,
+          "height": 853,
+          "bytes": 83142,
+          "sha256": "43d53ffea11082416695a4c7fb0fd0d6667c6be60e29b54c7bae9efa0cb64eb6"
+        }
+      ]
+    },
+    {
+      "name": "ultrasound",
+      "sourcePNG": "exec-8067432f-2244-4e3c-8e3a-c4759597d6a5.png",
+      "derivatives": [
+        {
+          "path": "assets/studio-v18/ultrasound-640.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 10756,
+          "sha256": "8a14eecee62cf6b45d72245f1fdb8142dedcd8289b7ce99a8dcc215b5dad094d"
+        },
+        {
+          "path": "assets/studio-v18/ultrasound-1280.webp",
+          "width": 1280,
+          "height": 853,
+          "bytes": 29266,
+          "sha256": "9416c69d5fc72ae81e180340f26648ed5b0098c7b75cfd36eeda9658f2b479c5"
+        }
+      ]
+    },
+    {
+      "name": "monitor",
+      "sourcePNG": "exec-d46426c7-0d44-41ec-8e2c-96390e8fcb50.png",
+      "derivatives": [
+        {
+          "path": "assets/studio-v18/monitor-640.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 6924,
+          "sha256": "fc9cbe614206de01f10ae7f6d5dd745925a320604fdec162e7b4ff107df28ad9"
+        },
+        {
+          "path": "assets/studio-v18/monitor-1280.webp",
+          "width": 1280,
+          "height": 853,
+          "bytes": 19748,
+          "sha256": "56290145426c1f4b5857612275b92dce74e611302f3a23f0319fa2d4e12d237c"
+        }
+      ]
+    },
+    {
+      "name": "ecg",
+      "sourcePNG": "exec-1e86dcba-b1f0-4a84-bfce-5f0642504897.png",
+      "derivatives": [
+        {
+          "path": "assets/studio-v18/ecg-640.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 13052,
+          "sha256": "4ca957982ffe75537386e55db42ffc26ffe87b8a1bbc46e7748e12434b0e86c7"
+        },
+        {
+          "path": "assets/studio-v18/ecg-1280.webp",
+          "width": 1280,
+          "height": 853,
+          "bytes": 34268,
+          "sha256": "d231b2c8a846ff6b0641c4ddd593efe026c984785444c025b8eefd8b66d1c4ba"
+        }
+      ]
+    },
+    {
+      "name": "bd",
+      "sourcePNG": "exec-abad1b13-988b-4ba0-90b4-d6325c2e7d2e.png",
+      "derivatives": [
+        {
+          "path": "assets/studio-v18/bd-640.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 9400,
+          "sha256": "b9b7b4858de52e0e20ac2af353c0bc83106855817148c9a9b2201e2726be922a"
+        },
+        {
+          "path": "assets/studio-v18/bd-1280.webp",
+          "width": 1280,
+          "height": 853,
+          "bytes": 26934,
+          "sha256": "5d8c105d61fd8a7592263d0f0d2a5e84f97892828c37b111bb37d94cae4f76d9"
+        }
+      ]
+    },
+    {
+      "name": "corpuls",
+      "sourcePNG": "exec-a72e02ac-8afe-4c6f-906d-9d64449c8152.png",
+      "derivatives": [
+        {
+          "path": "assets/studio-v18/corpuls-640.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 20780,
+          "sha256": "49b890906d9a67794257b523abda8afcf34d739b1ebff0e52c14ddeb3d94d83a"
+        },
+        {
+          "path": "assets/studio-v18/corpuls-1280.webp",
+          "width": 1280,
+          "height": 853,
+          "bytes": 57506,
+          "sha256": "09a7d278cafe5c83e20c0cf67298e6d106bb7d18bb085aa2e4a403f7a2c319fc"
+        }
+      ]
+    },
+    {
+      "name": "horizon",
+      "sourcePNG": "exec-50d4aa8d-98a6-4c85-b7b9-a5f01a0faad6.png",
+      "derivatives": [
+        {
+          "path": "assets/studio-v18/horizon-640.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 8914,
+          "sha256": "0417c73efb9ca49557120a0f70ddb7d0510862f11746ebfc99c81f245a0b32ff"
+        },
+        {
+          "path": "assets/studio-v18/horizon-1280.webp",
+          "width": 1280,
+          "height": 853,
+          "bytes": 23680,
+          "sha256": "5c1f9556030378cf522a2dbc2b47df5632e46c324552d503776d52cb79d95ac8"
+        }
+      ]
+    }
+  ]
+}

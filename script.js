@@ -187,7 +187,12 @@ const translations = {
   "websiteIntro": "双语设计、响应式优化与交互检查。",
   "websiteReview": "检查文案、交互行为和实际呈现效果。",
   "websiteTitle": "个人网站",
-  "wordDownload": "Word 版本"
+  "wordDownload": "Word 版本",
+  "heroArtCaption": "Philips Respironics V60 · AI 生成示意图",
+  "officialReference": "厂家原图依据",
+  "viewImage": "查看大图",
+  "viewerTitle": "设备示意图",
+  "closeImage": "关闭"
 },
     menu: { open: "打开导航", close: "关闭导航" },
     copyEmail: { default: "复制邮箱", copied: "邮箱已复制", failed: "复制失败，请使用邮箱链接" },
@@ -374,6 +379,33 @@ if (equipment && platformTabs.length === platformPanels.length && platformTabs.l
       activatePlatform(platformTabs[next].dataset.platform, true);
     });
   });
+}
+
+// A native modal supplies keyboard containment, Escape and focus restoration.
+const imageViewer = document.querySelector("[data-image-viewer]");
+if (imageViewer && typeof imageViewer.showModal === "function") {
+  const viewerImage = imageViewer.querySelector("[data-viewer-image]");
+  const viewerCaption = imageViewer.querySelector("[data-viewer-caption]");
+  document.querySelectorAll("[data-art-zoom]").forEach(button => {
+    button.hidden = false;
+    button.addEventListener("click", () => {
+      const figure = button.closest("figure");
+      const source = figure.querySelector("picture img");
+      if (!source?.getAttribute("src")) return;
+      viewerImage.src = source.getAttribute("src");
+      viewerImage.alt = "";
+      viewerCaption.textContent = figure.querySelector("figcaption > span")?.textContent || "";
+      imageViewer.showModal();
+      document.documentElement.classList.add("image-viewer-open");
+    });
+  });
+  imageViewer.querySelector("[data-close-viewer]").addEventListener("click", () => imageViewer.close());
+  imageViewer.addEventListener("click", event => {
+    if (event.target !== imageViewer) return;
+    const rect = imageViewer.getBoundingClientRect();
+    if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) imageViewer.close();
+  });
+  imageViewer.addEventListener("close", () => document.documentElement.classList.remove("image-viewer-open"));
 }
 
 const themePreferenceMedia = window.matchMedia?.("(prefers-color-scheme: dark)");
