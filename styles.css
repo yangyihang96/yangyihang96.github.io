@@ -599,7 +599,7 @@ h2 { letter-spacing: -.045em; }
 .button .icon { width: 19px; height: 19px; }
 .button.secondary { border-color: var(--line); color: var(--ink); }
 .button.secondary:hover { border-color: var(--accent); color: var(--accent); }
-.hero-stage { width: min(var(--content), calc(100% - var(--gutter) * 2)); margin-inline: auto; display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.08fr); gap: 52px; min-height: 570px; padding-block: 50px 42px; }
+.hero-stage { width: min(var(--content), calc(100% - var(--gutter) * 2)); margin-inline: auto; display: grid; grid-template-columns: minmax(0,1.2fr) minmax(0,.8fr); gap: 52px; min-height: 570px; padding-block: 50px 42px; }
 .hero-content { width: auto; margin: 0; padding: 0; order: 0; min-width: 0; }
 .hero-main { width: 100%; max-width: none; }
 .hero-name { font-size: clamp(43px, 4.8vw, 65px); line-height: 1.01; letter-spacing: -.055em; margin-bottom: 22px; }
@@ -815,3 +815,14 @@ h2 { letter-spacing: -.045em; }
 .platform-art .art-zoom:hover { background: #23415f; }
 /* Keep the closing artwork subordinate to readable contact actions. */
 .contact-visual { opacity: .2; }
+
+/* A personal introduction: portrait proportions stay independent of device artwork. */
+.hero-art { width: 100%; max-width: 400px; justify-self: end; }
+.hero-visual { aspect-ratio: 4/5; border-radius: 8px; }
+.hero-visual img { height: 100%; aspect-ratio: auto; object-fit: cover; object-position: center top; }
+@media (max-width: 900px) {
+  .hero-art { max-width: 320px; align-self: flex-start; }
+}
+@media (max-width: 700px) {
+  .hero-art { max-width: 256px; }
+}

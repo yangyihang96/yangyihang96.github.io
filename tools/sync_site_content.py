@@ -7,7 +7,7 @@ import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = 'portfolio-v18-20260912'
+VERSION = 'portfolio-v19-20260914'
 
 def digest(data, algorithm):
     return base64.b64encode(hashlib.new(algorithm, data).digest()).decode()

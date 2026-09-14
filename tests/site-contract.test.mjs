@@ -12,7 +12,7 @@ const html = read("index.html");
 const css = read("styles.css");
 const script = read("script.js");
 const themeInit = read("theme-init.js");
-const version = "portfolio-v18-20260912";
+const version = "portfolio-v19-20260914";
 const linkedinUrl = "https://au.linkedin.com/in/henry-yang-9644382bb";
 const githubUrl = "https://github.com/yangyihang96";
 const sriSha384 = (source) =>
@@ -255,7 +255,8 @@ test("hero retains identity, contact actions and recruiter facts before mobile a
   for (const term of ["Yihang (Henry) Yang", "Biomedical Field Service Engineer", "Sydney-based", "Since Jul 2023", "Sydney, NSW", "Driver licence", "English / Mandarin", "Resume · PDF", "Email Henry"]) assert.ok(hero.includes(term), term);
   assert.equal((hero.match(/<a\b/g) || []).length, 3);
   assert.match(hero, /fetchpriority="high"/);
-  assert.match(hero, /assets\/studio-v18\/v60-1280.webp/);
+  assert.match(hero, /assets\/yihang-professional-headshot-960.webp/);
+  assert.doesNotMatch(hero, /studio-v18|data-art-zoom/);
   assert.ok(hero.indexOf("hero-content") < hero.indexOf("hero-art"), "identity and contact precede image");
   assert.match(css, /\.hero-content[^{}]*\{[^{}]*order:\s*0/);
 });
@@ -355,7 +356,7 @@ test("every image has fixed dimensions and all local image references exist", ()
     assert.match(img,/\balt="/,img);
   }
   for(const match of html.matchAll(/(?:src|data-src)="(assets\/[^"]+)"/g)) assert.ok(fs.existsSync(path.join(root,match[1])),match[1]);
-  for(const [name,max] of [["v60-640.webp",250000],["v60-1280.webp",450000]]) assert.ok(fs.statSync(path.join(root,"assets/studio-v18",name)).size<=max,name);
+  for(const [name,max] of [["yihang-professional-headshot-960.webp",250000],["yihang-professional-headshot-1400.webp",450000]]) assert.ok(fs.statSync(path.join(root,"assets",name)).size<=max,name);
 });
 
 
@@ -376,7 +377,7 @@ test("professional evidence is visible before interacting with equipment tabs", 
   assert.ok(equipment.indexOf('class="equipment-overview"') < equipment.indexOf('data-equipment'));
   assert.match(equipment, /Internal practical training|internal practical training/);
   assert.doesNotMatch(html+script, /Work eligibility|confirmable during recruitment|工作资格/);
-  assert.equal((html.match(/href="assets\/Henry_Yang_Biomedical_Engineer_Resume.docx\?v=portfolio-v18-20260912"/g)||[]).length,2);
+  assert.equal((html.match(/href="assets\/Henry_Yang_Biomedical_Engineer_Resume.docx\?v=portfolio-v19-20260914"/g)||[]).length,2);
 });
 
 test("resume export is two A4 pages with correct section order and native headings", () => {

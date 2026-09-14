@@ -188,7 +188,7 @@ const translations = {
   "websiteReview": "检查文案、交互行为和实际呈现效果。",
   "websiteTitle": "个人网站",
   "wordDownload": "Word 版本",
-  "heroArtCaption": "Philips Respironics V60 · AI 生成示意图",
+  "heroArtCaption": "杨颐航 Henry · 澳大利亚悉尼",
   "officialReference": "厂家原图依据",
   "viewImage": "查看大图",
   "viewerTitle": "设备示意图",
