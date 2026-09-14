@@ -12,7 +12,7 @@ const html = read("index.html");
 const css = read("styles.css");
 const script = read("script.js");
 const themeInit = read("theme-init.js");
-const version = "portfolio-v19-20260914";
+const version = "portfolio-v19-20260914-r1";
 const linkedinUrl = "https://au.linkedin.com/in/henry-yang-9644382bb";
 const githubUrl = "https://github.com/yangyihang96";
 const sriSha384 = (source) =>
@@ -377,7 +377,7 @@ test("professional evidence is visible before interacting with equipment tabs", 
   assert.ok(equipment.indexOf('class="equipment-overview"') < equipment.indexOf('data-equipment'));
   assert.match(equipment, /Internal practical training|internal practical training/);
   assert.doesNotMatch(html+script, /Work eligibility|confirmable during recruitment|工作资格/);
-  assert.equal((html.match(/href="assets\/Henry_Yang_Biomedical_Engineer_Resume.docx\?v=portfolio-v19-20260914"/g)||[]).length,2);
+  assert.equal((html.match(/href="assets\/Henry_Yang_Biomedical_Engineer_Resume.docx\?v=portfolio-v19-20260914-r1"/g)||[]).length,2);
 });
 
 test("resume export is two A4 pages with correct section order and native headings", () => {

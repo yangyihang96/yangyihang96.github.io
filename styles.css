@@ -458,21 +458,10 @@ h2 { font-size: clamp(32px, 3.3vw, 46px); }
 .resume-format a { text-decoration: underline; display: inline-flex; align-items: center; min-height: 32px; }
 .chapter-heading { margin-bottom: 30px; }
 .chapter-heading .section-intro { margin-top: 18px; }
-.career-layout { display: grid; grid-template-columns: 200px minmax(0,1fr); gap: 56px; }
-.career-portrait { align-self: start; }
-.career-portrait .portrait img { aspect-ratio: 3/4; }
-.career-portrait .portrait figcaption { font-size: 12px; }
-.portrait-caption { font-size: 12px; color: var(--muted); margin-top: 5px; }
-.career-content .section-intro { margin-bottom: 24px; }
-.role-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 20px; padding-top: 24px; border-top: 1px solid var(--line); }
-.role-heading .experience-date { flex-shrink: 0; }
 .career-bullets { margin: 20px 0 0; padding-left: 20px; max-width: 78ch; }
 .career-bullets li { padding-left: 4px; margin-bottom: 12px; }
 .career-bullets li::marker { color: var(--accent); }
-.earlier-role { border-top: 1px solid var(--line); padding-top: 20px; margin-top: 26px; color: var(--muted); font-size: 14px; }
-.earlier-role .section-label { margin-bottom: 10px; font-size: 11px; }
 .earlier-role h3 { font-size: 17px; letter-spacing: -.02em; color: var(--ink); }
-.earlier-role .experience-date { margin-block: 8px; font-size: 12px; }
 .service-section { background: var(--page); }
 .field-projects { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 22px; align-items: start; }
 .field-project { padding: 26px; background: var(--surface); border: 1px solid var(--line); border-top: 3px solid var(--accent); }
@@ -529,7 +518,6 @@ h2 { font-size: clamp(32px, 3.3vw, 46px); }
   .scope-grid > div { grid-template-columns: 120px minmax(0,1fr); gap: 12px; }
   .field-project { padding: 20px; }
   .field-project h3 { font-size: 22px; }
-  .career-layout { gap: 36px; grid-template-columns: 168px minmax(0,1fr); }
 }
 @media (max-width: 900px) {
   .hero-stage { min-height: 0; }
@@ -537,8 +525,6 @@ h2 { font-size: clamp(32px, 3.3vw, 46px); }
   .hero-content { order: 0; padding-block: 40px 12px; }
   .hero-subtitle { max-width: 620px; }
   .hero-visual { max-height: 360px; }
-  .career-layout { grid-template-columns: 140px minmax(0,1fr); gap: 28px; }
-  .role-heading { flex-direction: column; gap: 10px; }
   .scope-grid { column-gap: 25px; }
   .scope-grid > div { grid-template-columns: 1fr; gap: 6px; }
   .field-projects { grid-template-columns: 1fr; gap: 16px; }
@@ -556,10 +542,6 @@ h2 { font-size: clamp(32px, 3.3vw, 46px); }
   .hero-subtitle { font-size: 17px; }
   .hero-content { padding-top: 34px; }
   .hero-visual { max-height: 300px; }
-  .career-layout { grid-template-columns: 1fr; gap: 24px; }
-  .career-portrait { display: flex; align-items: flex-end; gap: 18px; }
-  .career-portrait .portrait { max-width: 110px; }
-  .portrait-caption { margin-bottom: 28px; }
   .role-heading h3 { font-size: 23px; }
   .career-bullets { padding-left: 18px; font-size: 15px; }
   .scope-grid { grid-template-columns: 1fr; }
@@ -616,15 +598,9 @@ h2 { letter-spacing: -.045em; }
 .hero-meta dt { font-size: 10px; letter-spacing: .09em; text-transform: uppercase; }
 .hero-meta dd { font-size: 15px; margin-top: 7px; }
 .experience-section { background: var(--surface); }
-.career-layout { grid-template-columns: 190px minmax(0,1fr); gap: 54px; }
-.career-portrait .portrait { border-radius: 6px; overflow: hidden; }
-.career-portrait .portrait figcaption { font-size: 11px; }
-.career-content .section-intro { font-size: 18px; max-width: 63ch; }
-.role-heading { padding-top: 22px; }
 .role-heading h3 { font-size: 25px; }
 .career-bullets { font-size: 16px; line-height: 1.7; }
 .career-bullets li { margin-bottom: 10px; padding-left: 8px; }
-.earlier-role { margin-top: 28px; padding-top: 24px; }
 .chapter-heading { display: grid; grid-template-columns: 1fr 1fr; align-items: end; gap: 48px; margin-bottom: 36px; }
 .chapter-heading .section-intro { margin: 0; font-size: 17px; }
 .field-projects { display: block; border-bottom: 1px solid var(--line); }
@@ -723,9 +699,6 @@ h2 { letter-spacing: -.045em; }
   .hero-meta dd { font-size: 14px; }
   .hero-meta > div { padding-left: 16px; }
   .hero-meta > div:nth-child(odd) { padding-left: 0; }
-  .career-layout { grid-template-columns: 1fr; gap: 26px; }
-  .career-portrait .portrait { max-width: 108px; }
-  .career-content .section-intro { font-size: 17px; }
   .career-bullets { font-size: 15px; padding-left: 18px; }
   .career-bullets li { padding-left: 3px; }
   .role-heading h3 { font-size: 24px; }
@@ -769,7 +742,6 @@ h2 { letter-spacing: -.045em; }
 .chapter-heading > .section-label { grid-column: 1/-1; margin: 0; }
 .chapter-heading > h2 { grid-column: 1; }
 .chapter-heading > .section-intro { grid-column: 2; }
-.experience-section .chapter-heading > h2 { grid-column: 1/-1; }
 .field-project { grid-template-columns: 58px minmax(0,.85fr) minmax(0,1.15fr); }
 .project-index { grid-row: auto; }
 .project-heading { grid-column: 2; }
@@ -825,4 +797,24 @@ h2 { letter-spacing: -.045em; }
 }
 @media (max-width: 700px) {
   .hero-art { max-width: 256px; }
+}
+
+/* Resume-style rows: employer and dates on the left, service responsibilities on the right. */
+.career-layout { border-top: 1px solid var(--line); }
+.current-role, .earlier-role { display: grid; grid-template-columns: minmax(0,.8fr) minmax(0,1.2fr); gap: 48px; padding-block: 32px; }
+.role-heading { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; min-width: 0; }
+.role-heading h3 { max-width: 25ch; }
+.role-heading .company-name { margin: 0; }
+.role-heading .experience-date { margin: 4px 0 0; font-size: 13px; color: var(--muted); }
+.current-role .career-bullets { margin: 0; }
+.career-bullets li:last-child { margin-bottom: 0; }
+.earlier-role { border-top: 1px solid var(--line); padding-bottom: 0; }
+.earlier-role .section-label { margin: 0 0 4px; font-size: 10px; }
+.earlier-role h3 { font-size: 20px; }
+.earlier-summary { font-size: 16px; line-height: 1.7; color: var(--muted); max-width: 58ch; }
+@media (max-width: 900px) {
+  .current-role, .earlier-role { gap: 28px; }
+}
+@media (max-width: 700px) {
+  .current-role, .earlier-role { grid-template-columns: 1fr; gap: 22px; padding-top: 26px; }
 }
