@@ -1,5 +1,5 @@
 /*
-  Content-Security-Policy: default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-/ZKvam4dsc36dxqBtHyh9seQR4iU91aRwgKZR4HlZPI='; script-src-elem 'self' 'sha256-/ZKvam4dsc36dxqBtHyh9seQR4iU91aRwgKZR4HlZPI='; script-src-attr 'none'; style-src 'self'; style-src-elem 'self'; style-src-attr 'none'; img-src 'self'; font-src 'none'; connect-src 'none'; form-action 'none'; frame-ancestors 'none'; frame-src 'none'; child-src 'none'; worker-src 'none'; media-src 'none'; manifest-src 'none'; require-trusted-types-for 'script'; trusted-types default; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-haAZ1LJsv9OkPi4GD8mLg6YQZU7CZ+dXWNlzbyxSZiw='; script-src-elem 'self' 'sha256-haAZ1LJsv9OkPi4GD8mLg6YQZU7CZ+dXWNlzbyxSZiw='; script-src-attr 'none'; style-src 'self'; style-src-elem 'self'; style-src-attr 'none'; img-src 'self'; font-src 'none'; connect-src 'none'; form-action 'none'; frame-ancestors 'none'; frame-src 'none'; child-src 'none'; worker-src 'none'; media-src 'none'; manifest-src 'none'; require-trusted-types-for 'script'; trusted-types default; upgrade-insecure-requests
   Referrer-Policy: strict-origin-when-cross-origin
   X-Content-Type-Options: nosniff
   X-Frame-Options: DENY

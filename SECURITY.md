@@ -10,7 +10,8 @@ This is a static personal website. Security hardening is split between browser-e
 - Fragment navigation decodes the URL fragment and resolves it with `getElementById`; address-bar data is never parsed as a CSS selector.
 - Referrer Policy is set to `strict-origin-when-cross-origin`.
 - External links use `rel="noopener noreferrer"`.
-- Language switching builds rich content with DOM nodes instead of assigning HTML strings.
+- Language switching uses textContent rather than assigning HTML strings.
+- The content generator escapes HTML delimiters in JSON-LD before calculating its CSP hash, preventing edited text from ending the script element.
 - `.well-known/security.txt` publishes a lightweight contact path for responsible reports.
 
 ## Hosting-layer headers

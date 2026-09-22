@@ -3,6 +3,7 @@ import crypto from "node:crypto";
 import { execFileSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
+import os from "node:os";
 import test from "node:test";
 import vm from "node:vm";
 
@@ -12,11 +13,37 @@ const html = read("index.html");
 const css = read("styles.css");
 const script = read("script.js");
 const themeInit = read("theme-init.js");
-const version = "portfolio-v19-20260914-r1";
+const resolvedProfile = JSON.parse(execFileSync("python3", ["tools/profile_data.py"], {cwd:root, encoding:"utf8"}));
+const version = "portfolio-v20-20260922";
 const linkedinUrl = "https://au.linkedin.com/in/henry-yang-9644382bb";
 const githubUrl = "https://github.com/yangyihang96";
 const sriSha384 = (source) =>
   "sha384-" + crypto.createHash("sha384").update(source).digest("base64");
+
+test("generated JSON-LD preserves special text without allowing a script-element breakout", () => {
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), "portfolio-jsonld-"));
+  try {
+    for (const name of ["content", "tools"]) fs.mkdirSync(path.join(directory, name));
+    for (const name of ["index.html", "script.js", "styles.css", "theme-init.js", "_headers", "content/profile.json", "tools/profile_data.py", "tools/sync_site_content.py"]) {
+      fs.copyFileSync(path.join(root, name), path.join(directory, name));
+    }
+    const profile = JSON.parse(read("content/profile.json"));
+    const hostileText = '</script><script>globalThis.unwanted = true</script><div title="x"> & 悉尼';
+    profile.metadata.en.description = hostileText;
+    fs.writeFileSync(path.join(directory, "content/profile.json"), JSON.stringify(profile));
+    execFileSync("python3", ["tools/sync_site_content.py"], { cwd: directory });
+    const generated = fs.readFileSync(path.join(directory, "index.html"), "utf8");
+    const jsonLd = generated.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)?.[1];
+    assert.equal(JSON.parse(jsonLd).description, hostileText);
+    assert.doesNotMatch(jsonLd, /[<>&]/);
+    assert.equal((generated.match(/<script\b/g) || []).length, (html.match(/<script\b/g) || []).length);
+    const hash = crypto.createHash("sha256").update(jsonLd).digest("base64");
+    assert.ok(generated.includes("sha256-" + hash));
+    assert.ok(fs.readFileSync(path.join(directory, "_headers"), "utf8").includes("sha256-" + hash));
+  } finally {
+    fs.rmSync(directory, { recursive: true, force: true });
+  }
+});
 
 // Exercise the actual browser functions with only their platform boundaries stubbed.
 const browserFunction = (name, context) => {
@@ -122,7 +149,7 @@ test("closing compact navigation returns focus only when its focused control wou
 
 test("metadata and structured data target a Sydney biomedical field-service recruiter", () => {
   assert.match(html, /<title>Yihang \(Henry\) Yang \| Biomedical Field Service Engineer in Sydney<\/title>/);
-  assert.match(html, /<meta name="description" content="Sydney-based Biomedical Field Service Engineer with three years/);
+  assert.match(html, /<meta name="description" content="Sydney-based Biomedical Field Service Engineer at Nova Biomedical Australia since July 2023/);
   assert.match(html, /<link rel="canonical" href="https:\/\/yangyihang96\.com\/">/);
   assert.ok(html.includes("theme-init.js?v=" + version));
   assert.ok(html.includes("styles.css?v=" + version));
@@ -197,7 +224,7 @@ test("the public page avoids phone exposure and unsupported qualification claims
 });
 
 test("resume PDF and DOCX share verified work evidence and AI wording", () => {
-  const facts = JSON.parse(read("content/profile.json"));
+  const facts = resolvedProfile;
   for (const raw of [extractPdfText(), extractDocxText()]) {
     const text = raw.replace(/\s+/g, " ");
     for (const key of ["novaBullet1", "novaBullet2", "novaBullet3", "novaBullet4", "novaBullet5", "aiIntro", "mphilScope"]) {
@@ -252,8 +279,8 @@ test("published assets, robots, and sitemap stay aligned with the site", () => {
 
 test("hero retains identity, contact actions and recruiter facts before mobile artwork", () => {
   const hero = sectionByClass("hero");
-  for (const term of ["Yihang (Henry) Yang", "Biomedical Field Service Engineer", "Sydney-based", "Since Jul 2023", "Sydney, NSW", "Driver licence", "English / Mandarin", "Resume · PDF", "Email Henry"]) assert.ok(hero.includes(term), term);
-  assert.equal((hero.match(/<a\b/g) || []).length, 3);
+  for (const term of ["Yihang (Henry) Yang", "Biomedical Field Service Engineer", "Sydney-based", "Since Jul 2023", "Sydney, NSW", "Driver licence", "English / Mandarin", "Download résumé (PDF)", "Email Henry"]) assert.ok(hero.includes(term), term);
+  assert.equal((hero.match(/<a\b/g) || []).length, 2);
   assert.match(hero, /fetchpriority="high"/);
   assert.match(hero, /assets\/yihang-professional-headshot-960.webp/);
   assert.doesNotMatch(hero, /studio-v18|data-art-zoom/);
@@ -271,6 +298,7 @@ test("all section anchors and native download paths remain valid", () => {
   assert.equal((html.match(/<section\b/g) || []).length, 7);
   const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map(m => m[1]);
   assert.equal(new Set(ids).size, ids.length, "unique IDs");
+  for (const legacy of ["fit-title", "partners-title", "scope-title"]) assert.ok(ids.includes(legacy), "legacy anchor " + legacy);
   for (const match of html.matchAll(/href="#([^"]+)"/g)) assert.ok(ids.includes(match[1]), match[1]);
   for (const match of html.matchAll(/href="(assets\/[^"]+)"/g)) assert.ok(fs.existsSync(path.join(root, match[1].split("?")[0])));
 });
@@ -303,15 +331,15 @@ test("platform selection updates panels, focus and deferred image loading togeth
 });
 
 test("service and AI notes use independently readable native disclosure", () => {
-  for (const [id, count] of [["case-notes", 3], ["ai-tools", 2]]) {
+  for (const [id, count] of [["case-notes", 3], ["ai-tools", 1]]) {
     const section = sectionById(id);
     assert.equal((section.match(/<details\b/g) || []).length, count);
     assert.equal((section.match(/<details[^>]*\bopen/g) || []).length, 1);
     assert.equal((section.match(/<summary>/g) || []).length, count);
     assert.doesNotMatch(section, /<details[^>]*\bname=/);
   }
-  for (const term of ["Affiniti 70G", "IntelliVue X3", "V60", "Recorded outcome", "missing C12 option"]) assert.ok(sectionById("case-notes").includes(term));
-  for (const term of ["Codex", "Claude Code", "ChatGPT", "checking facts, content and behaviour before use", "Personal website", "Resume &amp; document workflow"]) assert.ok(sectionById("ai-tools").includes(term));
+  for (const term of ["Affiniti 70G", "IntelliVue X3", "V60", "Outcome / status", "missing C12 option"]) assert.ok(sectionById("case-notes").includes(term));
+  for (const term of ["Codex", "Claude Code", "ChatGPT", "checking facts, content and behaviour before use", "Personal website", "A personal portfolio project"]) assert.ok(sectionById("ai-tools").includes(term));
 });
 
 test("stable bilingual keys cover every translated leaf and preserve unsafe-language fallback", () => {
@@ -361,7 +389,7 @@ test("every image has fixed dimensions and all local image references exist", ()
 
 
 test("public fact source matches the rendered English and embedded Chinese content", () => {
-  const facts = JSON.parse(read("content/profile.json"));
+  const facts = resolvedProfile;
   const decode = text => text.replace(/&amp;/g,"&").replace(/&lt;/g,"<").replace(/&gt;/g,">").replace(/&quot;/g,'"').replace(/&#x27;/g,"'");
   const leaves = [...html.matchAll(/data-i18n="([^"]+)"[^>]*>([^<]*)</g)];
   for (const [,key,value] of leaves) assert.equal(decode(value), facts.en[key], key);
@@ -374,10 +402,13 @@ test("professional evidence is visible before interacting with equipment tabs", 
   const experience = sectionById("experience"), projects = sectionById("case-notes"), equipment = sectionById("capabilities");
   assert.equal((experience.match(/data-i18n="novaBullet/g)||[]).length,5);
   assert.equal((projects.match(/class="project-summary"/g)||[]).length,3);
-  assert.ok(equipment.indexOf('class="equipment-overview"') < equipment.indexOf('data-equipment'));
+  assert.doesNotMatch(equipment, /class="equipment-overview"/);
+  const visibleProjects = projects.replace(/<details[\s\S]*?<\/details>/g, "");
+  for (const term of ["Both preventive-maintenance visits", "missing C12 option", "April 2026"]) assert.ok(visibleProjects.includes(term), term);
+  assert.ok(equipment.includes("Hands-on service") && equipment.includes("Implementation support"));
   assert.match(equipment, /Internal practical training|internal practical training/);
   assert.doesNotMatch(html+script, /Work eligibility|confirmable during recruitment|工作资格/);
-  assert.equal((html.match(/href="assets\/Henry_Yang_Biomedical_Engineer_Resume.docx\?v=portfolio-v19-20260914-r1"/g)||[]).length,2);
+  assert.equal((html.match(/href="assets\/Henry_Yang_Biomedical_Engineer_Resume.docx\?v=portfolio-v20-20260922"/g)||[]).length,1);
 });
 
 test("resume export is two A4 pages with correct section order and native headings", () => {
@@ -424,4 +455,32 @@ test("early header enhancement avoids delayed-script layout shifts and retains f
   }
   assert.match(css,/:root:not\(\.js-ready\):not\(\.js-pending\)/);
   assert.match(script,/classList\.remove\("js-pending"\)/);
+});
+
+
+test("shared fact resolution reaches metadata, visible cases and resume without stale years", () => {
+  const facts = resolvedProfile;
+  for (const selector of ['name="description"', 'property="og:description"', 'name="twitter:description"']) assert.ok(html.includes(selector + ' content="' + facts.metadata.en.description + '"'));
+  const person = JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1]);
+  assert.equal(person.description, facts.metadata.en.description);
+  assert.doesNotMatch(html + script + extractPdfText(), /three years|Nearly 3 years|工作三年|\$\{/);
+  assert.ok(extractDocxText().includes(facts.en.novaDate));
+  assert.ok(extractDocxText().includes(facts.en.mphil));
+  for (const key of ["Ultrasound", "Monitor", "V60"]) for (const field of ["Context", "Summary", "Responsibility", "Action", "Verification", "Result"]) assert.ok(html.includes('data-i18n="case' + key + field + '"'));
+});
+
+test("illustrations have independent original-size sources and failure feedback", () => {
+  const sources = [...html.matchAll(/data-full-src="([^\"]+)"/g)].map(m=>m[1]);
+  assert.equal(new Set(sources).size, 7);
+  for (const file of sources) assert.ok(fs.existsSync(path.join(root,file)),file);
+  assert.match(script,/viewerImage.src = source.dataset.fullSrc/);
+  assert.match(script,/viewerImage.addEventListener\("error"/);
+  assert.match(html,/data-viewer-error/);
+  assert.match(html,/Efficia CM150. The X3 case concerns a different device/);
+  assert.doesNotMatch(html,/research-cell|contact-cable|class="platform-logo"/);
+  assert.equal((html.match(/class="hero-visual"/g)||[]).length,1);
+  const card = 'assets/studio-v20/social-card.jpg';
+  assert.ok(fs.existsSync(path.join(root,card)));
+  assert.match(html,/og:image:width" content="1200"/);
+  assert.match(html,/og:image:height" content="630"/);
 });

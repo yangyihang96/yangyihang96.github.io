@@ -12,4 +12,4 @@ MIT applies to the software code only. Personal biography and contact informatio
 
 ## Local checks
 
-Run `node --test tests/site-contract.test.mjs` locally. This license update changes documentation only; it does not change the deployed site's application code or content.
+Public content is maintained in `content/profile.json`. Run `python3 tools/sync_site_content.py` after content, CSS or JavaScript changes to refresh static content, metadata, SRI and CSP hashes. Run `node --test tests/site-contract.test.mjs` before publication. See [v20 implementation and browser checks](design/studio-v20/README.md) for the résumé and browser workflows.

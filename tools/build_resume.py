@@ -6,6 +6,7 @@ import tempfile
 from datetime import datetime, timezone
 from pathlib import Path
 
+from profile_data import load_profile
 from docx import Document
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.oxml import OxmlElement
@@ -16,7 +17,7 @@ ROOT = Path(__file__).resolve().parents[1]
 ASSETS = ROOT / 'assets'
 DOCX_PATH = ASSETS / 'Henry_Yang_Biomedical_Engineer_Resume.docx'
 PDF_PATH = DOCX_PATH.with_suffix('.pdf')
-DATA = json.loads((ROOT / 'content/profile.json').read_text())
+DATA = load_profile()
 TEXT = DATA['en']
 INK = RGBColor.from_string('15283F')
 MUTED = RGBColor.from_string('43546B')
@@ -71,20 +72,20 @@ def build_docx():
 
     p=doc.add_paragraph(); p.paragraph_format.space_after=Pt(3)
     run=p.add_run('YIHANG (HENRY) YANG'); run.font.size=Pt(22);run.bold=True
-    p=paragraph(doc,'Biomedical Field Service Engineer | Sydney');p.runs[0].bold=True;p.runs[0].font.size=Pt(12)
+    p=paragraph(doc,TEXT['heroRole'] + ' | Sydney');p.runs[0].bold=True;p.runs[0].font.size=Pt(12)
     p=paragraph(doc,'Sydney, NSW  |  0436 016 660  |  yangyihang96@gmail.com');p.runs[0].font.size=Pt(9.5)
     p=doc.add_paragraph();add_link(p,'yangyihang96.com','https://yangyihang96.com/');p.add_run('  |  ');add_link(p,'LinkedIn','https://au.linkedin.com/in/henry-yang-9644382bb')
     p.add_run('  |  Driver licence  |  English / Mandarin').font.size=Pt(9.5)
     heading(doc,'PROFESSIONAL PROFILE');paragraph(doc,DATA['resume']['profile'])
     heading(doc,'PROFESSIONAL EXPERIENCE')
-    p=doc.add_paragraph('Biomedical Engineer | Nova Biomedical Australia','Heading 2')
-    p=paragraph(doc,'Jul 2023 – Present | Field service across Australia / workshop repair');p.runs[0].font.color.rgb=MUTED;p.runs[0].font.size=Pt(9.5);p.paragraph_format.keep_with_next=True
+    p=doc.add_paragraph(TEXT['novaRole'] + ' | ' + DATA['facts']['employer'],'Heading 2')
+    p=paragraph(doc,TEXT['novaDate'] + ' | Field service / workshop repair');p.runs[0].font.color.rgb=MUTED;p.runs[0].font.size=Pt(9.5);p.paragraph_format.keep_with_next=True
     for i in range(1,6):paragraph(doc,TEXT[f'novaBullet{i}'],style='List Bullet')
     heading(doc,'SELECTED SERVICE PROJECTS')
     for key in ['Ultrasound','Monitor','V60']:
         doc.add_paragraph(TEXT[f'case{key}Context'],'Heading 2')
         if key == 'Ultrasound':
-            body = TEXT[f'case{key}Summary'] + ' ' + TEXT[f'case{key}Action']
+            body = TEXT[f'case{key}Action'] + ' ' + TEXT[f'case{key}Result']
         elif key == 'Monitor':
             body = TEXT[f'case{key}Summary'] + ' ' + TEXT[f'case{key}Result']
         else:
@@ -95,11 +96,11 @@ def build_docx():
     for label, body in DATA['resume']['training']:
         paragraph(doc,body,bold_prefix=label + ' —')
     heading(doc,'EDUCATION & RESEARCH')
-    paragraph(doc,'The University of Sydney | Awarded Jun 2024',bold_prefix='Master of Philosophy |')
+    paragraph(doc,DATA['facts']['university'] + ' | ' + TEXT['mphilDate'],bold_prefix=TEXT['mphil'] + ' |')
     paragraph(doc,TEXT['mphilScope'])
-    paragraph(doc,'The University of Sydney | Feb 2017 – Dec 2020',bold_prefix='Bachelor of Biomedical Engineering |')
+    paragraph(doc,DATA['facts']['university'] + ' | ' + TEXT['bachelorDate'],bold_prefix=TEXT['bachelor'] + ' |')
     heading(doc,'EARLIER EXPERIENCE')
-    paragraph(doc,'Lundbeck Beijing | Dec 2019 – Feb 2020',bold_prefix='Pharmacovigilance Department Assistant |')
+    paragraph(doc,'Lundbeck Beijing | ' + TEXT['lundbeckDate'],bold_prefix=TEXT['lundbeckRole'] + ' |')
     paragraph(doc,TEXT['lundbeckIntro'])
     heading(doc,'DIGITAL TOOLS & APPLIED AI')
     paragraph(doc,TEXT['digitalTools'])

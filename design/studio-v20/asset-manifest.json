@@ -1,0 +1,918 @@
+{
+  "version": "portfolio-v20-20260922",
+  "notes": [
+    "AI illustrations are not evidence of actual service visits.",
+    "No manufacturer reference photograph is newly published.",
+    "Existing unreferenced files are preserved; this manifest records usage, not deletion.",
+    "Small AI-generated device markings are not asserted to be accurate. Do not use these illustrations as technical instructions.",
+    "Research still life and cable background removed. Approved real research images remain unavailable; research is text-only.",
+    "All image files listed here are local and decodable. Reference-fetch failures, if any, are recorded separately and are not proof of a broken local asset."
+  ],
+  "assets": [
+    {
+      "path": "assets/logo-bd.svg",
+      "decision": "remove_from_page_preserve_file",
+      "purpose": "Removed device-brand display",
+      "source": "Existing third-party logo asset",
+      "authorisation": "Third-party mark; no new licence or endorsement inferred",
+      "aiIllustration": false,
+      "sensitiveContent": "No customer, serial, patient or diagnostic readings used; original certificates remain private",
+      "dimensions": {
+        "viewBox": "-1.65643992 -1.65643992 147.31247984 58.52754384"
+      },
+      "bytes": 4329,
+      "sha256": "8b635c411f47b735b9ccec7c9ff9a344e6d46700c5ae7860365109da26bd53c3",
+      "model": null,
+      "alt": null,
+      "caption": null,
+      "activeAltCaption": "Not rendered; removed from page and file preserved"
+    },
+    {
+      "path": "assets/logo-device-technologies.svg",
+      "decision": "remove_from_page_preserve_file",
+      "purpose": "Removed device-brand display",
+      "source": "Existing third-party logo asset",
+      "authorisation": "Third-party mark; no new licence or endorsement inferred",
+      "aiIllustration": false,
+      "sensitiveContent": "No customer, serial, patient or diagnostic readings used; original certificates remain private",
+      "dimensions": {
+        "viewBox": "0 0 646 149"
+      },
+      "bytes": 12671,
+      "sha256": "1842cf9c1761303fd2955607e08fa50a72ab3da839c6d1369bbe7aae986ca31f",
+      "model": null,
+      "alt": null,
+      "caption": null,
+      "activeAltCaption": "Not rendered; removed from page and file preserved"
+    },
+    {
+      "path": "assets/logo-hologic.svg",
+      "decision": "remove_from_page_preserve_file",
+      "purpose": "Removed device-brand display",
+      "source": "Existing third-party logo asset",
+      "authorisation": "Third-party mark; no new licence or endorsement inferred",
+      "aiIllustration": false,
+      "sensitiveContent": "No customer, serial, patient or diagnostic readings used; original certificates remain private",
+      "dimensions": {
+        "viewBox": "0 0 778.1 140.5"
+      },
+      "bytes": 4964,
+      "sha256": "ae78b9c80465d3ded4b695a1d727352818c09436fae4a1aea67f57b5155b2baf",
+      "model": null,
+      "alt": null,
+      "caption": null,
+      "activeAltCaption": "Not rendered; removed from page and file preserved"
+    },
+    {
+      "path": "assets/logo-philips.svg",
+      "decision": "remove_from_page_preserve_file",
+      "purpose": "Removed device-brand display",
+      "source": "Existing third-party logo asset",
+      "authorisation": "Third-party mark; no new licence or endorsement inferred",
+      "aiIllustration": false,
+      "sensitiveContent": "No customer, serial, patient or diagnostic readings used; original certificates remain private",
+      "dimensions": {
+        "viewBox": "0 0 800 159.842"
+      },
+      "bytes": 2935,
+      "sha256": "ff807a280e184d42b84d9e2c220ca9742406847a47f73e0981c577ffd7fe9b9b",
+      "model": null,
+      "alt": null,
+      "caption": null,
+      "activeAltCaption": "Not rendered; removed from page and file preserved"
+    },
+    {
+      "path": "assets/logo-university-of-sydney-white.svg",
+      "decision": "retain",
+      "purpose": "University identification",
+      "source": "Existing third-party logo asset",
+      "authorisation": "Third-party mark; no new licence or endorsement inferred",
+      "aiIllustration": false,
+      "sensitiveContent": "No customer, serial, patient or diagnostic readings used; original certificates remain private",
+      "dimensions": {
+        "viewBox": "0 0 168 64"
+      },
+      "bytes": 11751,
+      "sha256": "885ba3f12199e9dabdbc9e1967b0e4b322f8cae34288f03d01c14b34be138cf7",
+      "model": null,
+      "alt": {
+        "en": "The University of Sydney logo",
+        "zh": "The University of Sydney logo"
+      },
+      "caption": null
+    },
+    {
+      "path": "assets/logo-university-of-sydney.svg",
+      "decision": "retain",
+      "purpose": "University identification",
+      "source": "Existing third-party logo asset",
+      "authorisation": "Third-party mark; no new licence or endorsement inferred",
+      "aiIllustration": false,
+      "sensitiveContent": "No customer, serial, patient or diagnostic readings used; original certificates remain private",
+      "dimensions": {
+        "viewBox": "0 0 233 80"
+      },
+      "bytes": 21400,
+      "sha256": "88183bedaffd6d4f5c594e421578830b47518818c13968dd2d562607e8fb1f80",
+      "model": null,
+      "alt": {
+        "en": "The University of Sydney logo",
+        "zh": "The University of Sydney logo"
+      },
+      "caption": null
+    },
+    {
+      "path": "assets/studio-v16/contact-cable-1280.webp",
+      "decision": "remove_from_page_preserve_file",
+      "purpose": "Removed decorative artwork",
+      "source": "GPT Image; manufacturer-reference provenance in studio-v18/IMPLEMENTATION.md",
+      "authorisation": "User authorised generated site illustrations; reference links do not establish manufacturer-photo redistribution permission",
+      "aiIllustration": true,
+      "sensitiveContent": "No customer, serial, patient or diagnostic readings used; original certificates remain private",
+      "dimensions": {
+        "width": 1280,
+        "height": 432
+      },
+      "bytes": 16640,
+      "sha256": "c56345acb18ea6317e27e75ee343c6baf60c0a4c25de8289c0fc7599bfc58ad6",
+      "model": null,
+      "alt": null,
+      "caption": null,
+      "activeAltCaption": "Not rendered; removed from page and file preserved"
+    },
+    {
+      "path": "assets/studio-v16/contact-cable-640.webp",
+      "decision": "remove_from_page_preserve_file",
+      "purpose": "Removed decorative artwork",
+      "source": "GPT Image; manufacturer-reference provenance in studio-v18/IMPLEMENTATION.md",
+      "authorisation": "User authorised generated site illustrations; reference links do not establish manufacturer-photo redistribution permission",
+      "aiIllustration": true,
+      "sensitiveContent": "No customer, serial, patient or diagnostic readings used; original certificates remain private",
+      "dimensions": {
+        "width": 640,
+        "height": 216
+      },
+      "bytes": 5824,
+      "sha256": "7b26662906a8f6db807f6db7a52823bcf5d5dc0c7a6403a7abd9317791f25300",
+      "model": null,
+      "alt": null,
+      "caption": null,
+      "activeAltCaption": "Not rendered; removed from page and file preserved"
+    },
+    {
+      "path": "assets/studio-v16/research-cell-1280.webp",
+      "decision": "remove_from_page_preserve_file",
+      "purpose": "Removed decorative artwork",
+      "source": "GPT Image; manufacturer-reference provenance in studio-v18/IMPLEMENTATION.md",
+      "authorisation": "User authorised generated site illustrations; reference links do not establish manufacturer-photo redistribution permission",
+      "aiIllustration": true,
+      "sensitiveContent": "No customer, serial, patient or diagnostic readings used; original certificates remain private",
+      "dimensions": {
+        "width": 1280,
+        "height": 427
+      },
+      "bytes": 30386,
+      "sha256": "228d528cf81298beda485dc1156eb1ac8de5c9b49e587c8a4d299261d3dbb461",
+      "model": null,
+      "alt": null,
+      "caption": null,
+      "activeAltCaption": "Not rendered; removed from page and file preserved"
+    },
+    {
+      "path": "assets/studio-v16/research-cell-640.webp",
+      "decision": "remove_from_page_preserve_file",
+      "purpose": "Removed decorative artwork",
+      "source": "GPT Image; manufacturer-reference provenance in studio-v18/IMPLEMENTATION.md",
+      "authorisation": "User authorised generated site illustrations; reference links do not establish manufacturer-photo redistribution permission",
+      "aiIllustration": true,
+      "sensitiveContent": "No customer, serial, patient or diagnostic readings used; original certificates remain private",
+      "dimensions": {
+        "width": 640,
+        "height": 214
+      },
+      "bytes": 12468,
+      "sha256": "7d0ca372c43c0bbe4a53cb13ff4e0e73b8a9a46f8afd899eb07930ac126b7094",
+      "model": null,
+      "alt": null,
+      "caption": null,
+      "activeAltCaption": "Not rendered; removed from page and file preserved"
+    },
+    {
+      "path": "assets/studio-v18/bd-1280.webp",
+      "decision": "retain",
+      "purpose": "Category illustration only",
+      "source": "Existing GPT Image original, 1536 × 1024; based on manufacturer reference",
+      "authorisation": "Existing user-commissioned generated illustration retained. Reference is for comparison; no manufacturer photograph licence or endorsement inferred.",
+      "aiIllustration": true,
+      "sensitiveContent": "Visible screens blank; no patient, customer, asset serial or certificate data. Generated markings are illustrative, not a service reference.",
+      "dimensions": {
+        "width": 1280,
+        "height": 853
+      },
+      "bytes": 26934,
+      "sha256": "5d8c105d61fd8a7592263d0f0d2a5e84f97892828c37b111bb37d94cae4f76d9",
+      "referenceURL": "https://rowa.de/content/media/BD_Rowa_Vmax_EN.pdf",
+      "model": "BD Rowa Vmax",
+      "alt": {
+        "en": "Pictured: BD Rowa Vmax",
+        "zh": "图示：BD Rowa Vmax"
+      },
+      "caption": {
+        "en": "Pictured: BD Rowa Vmax",
+        "zh": "图示：BD Rowa Vmax"
+      },
+      "visualReview": "Compared silhouette, control layout and component placement with archived manufacturer reference; retained only as category illustration, not an exact technical diagram."
+    },
+    {
+      "path": "assets/studio-v18/bd-640.webp",
+      "decision": "retain",
+      "purpose": "Category illustration only",
+      "source": "Existing GPT Image original, 1536 × 1024; based on manufacturer reference",
+      "authorisation": "Existing user-commissioned generated illustration retained. Reference is for comparison; no manufacturer photograph licence or endorsement inferred.",
+      "aiIllustration": true,
+      "sensitiveContent": "Visible screens blank; no patient, customer, asset serial or certificate data. Generated markings are illustrative, not a service reference.",
+      "dimensions": {
+        "width": 640,
+        "height": 427
+      },
+      "bytes": 9400,
+      "sha256": "b9b7b4858de52e0e20ac2af353c0bc83106855817148c9a9b2201e2726be922a",
+      "referenceURL": "https://rowa.de/content/media/BD_Rowa_Vmax_EN.pdf",
+      "model": "BD Rowa Vmax",
+      "alt": {
+        "en": "Pictured: BD Rowa Vmax",
+        "zh": "图示：BD Rowa Vmax"
+      },
+      "caption": {
+        "en": "Pictured: BD Rowa Vmax",
+        "zh": "图示：BD Rowa Vmax"
+      },
+      "visualReview": "Compared silhouette, control layout and component placement with archived manufacturer reference; retained only as category illustration, not an exact technical diagram."
+    },
+    {
+      "path": "assets/studio-v18/corpuls-1280.webp",
+      "decision": "retain",
+      "purpose": "Category illustration only",
+      "source": "Existing GPT Image original, 1536 × 1024; based on manufacturer reference",
+      "authorisation": "Existing user-commissioned generated illustration retained. Reference is for comparison; no manufacturer photograph licence or endorsement inferred.",
+      "aiIllustration": true,
+      "sensitiveContent": "Visible screens blank; no patient, customer, asset serial or certificate data. Generated markings are illustrative, not a service reference.",
+      "dimensions": {
+        "width": 1280,
+        "height": 853
+      },
+      "bytes": 57506,
+      "sha256": "09a7d278cafe5c83e20c0cf67298e6d106bb7d18bb085aa2e4a403f7a2c319fc",
+      "referenceURL": "https://corpuls.world/wAssets/img/produkte/corpuls3/weblication/wThumbnails/8e3a05a9-564810d5@ll.jpg?1712740670",
+      "model": "corpuls3 modular monitor-defibrillator",
+      "alt": {
+        "en": "Pictured: corpuls3 modules",
+        "zh": "图示：corpuls3 modules"
+      },
+      "caption": {
+        "en": "Pictured: corpuls3 modules",
+        "zh": "图示：corpuls3 modules"
+      },
+      "visualReview": "Compared silhouette, control layout and component placement with archived manufacturer reference; retained only as category illustration, not an exact technical diagram."
+    },
+    {
+      "path": "assets/studio-v18/corpuls-640.webp",
+      "decision": "retain",
+      "purpose": "Category illustration only",
+      "source": "Existing GPT Image original, 1536 × 1024; based on manufacturer reference",
+      "authorisation": "Existing user-commissioned generated illustration retained. Reference is for comparison; no manufacturer photograph licence or endorsement inferred.",
+      "aiIllustration": true,
+      "sensitiveContent": "Visible screens blank; no patient, customer, asset serial or certificate data. Generated markings are illustrative, not a service reference.",
+      "dimensions": {
+        "width": 640,
+        "height": 427
+      },
+      "bytes": 20780,
+      "sha256": "49b890906d9a67794257b523abda8afcf34d739b1ebff0e52c14ddeb3d94d83a",
+      "referenceURL": "https://corpuls.world/wAssets/img/produkte/corpuls3/weblication/wThumbnails/8e3a05a9-564810d5@ll.jpg?1712740670",
+      "model": "corpuls3 modular monitor-defibrillator",
+      "alt": {
+        "en": "Pictured: corpuls3 modules",
+        "zh": "图示：corpuls3 modules"
+      },
+      "caption": {
+        "en": "Pictured: corpuls3 modules",
+        "zh": "图示：corpuls3 modules"
+      },
+      "visualReview": "Compared silhouette, control layout and component placement with archived manufacturer reference; retained only as category illustration, not an exact technical diagram."
+    },
+    {
+      "path": "assets/studio-v18/ecg-1280.webp",
+      "decision": "retain",
+      "purpose": "Category illustration only",
+      "source": "Existing GPT Image original, 1536 × 1024; based on manufacturer reference",
+      "authorisation": "Existing user-commissioned generated illustration retained. Reference is for comparison; no manufacturer photograph licence or endorsement inferred.",
+      "aiIllustration": true,
+      "sensitiveContent": "Visible screens blank; no patient, customer, asset serial or certificate data. Generated markings are illustrative, not a service reference.",
+      "dimensions": {
+        "width": 1280,
+        "height": 853
+      },
+      "bytes": 34268,
+      "sha256": "d231b2c8a846ff6b0641c4ddd593efe026c984785444c025b8eefd8b66d1c4ba",
+      "referenceURL": "https://www.documents.philips.com/doclib/enc/5950412/PageWriter_TC50_cardiograph_with_DXL_16_-_Always_in_Touch_%28ENG%29.pdf",
+      "model": "Philips PageWriter TC50",
+      "alt": {
+        "en": "Pictured: Philips PageWriter TC50",
+        "zh": "图示：Philips PageWriter TC50"
+      },
+      "caption": {
+        "en": "Pictured: Philips PageWriter TC50",
+        "zh": "图示：Philips PageWriter TC50"
+      },
+      "visualReview": "Compared silhouette, control layout and component placement with archived manufacturer reference; retained only as category illustration, not an exact technical diagram."
+    },
+    {
+      "path": "assets/studio-v18/ecg-640.webp",
+      "decision": "retain",
+      "purpose": "Category illustration only",
+      "source": "Existing GPT Image original, 1536 × 1024; based on manufacturer reference",
+      "authorisation": "Existing user-commissioned generated illustration retained. Reference is for comparison; no manufacturer photograph licence or endorsement inferred.",
+      "aiIllustration": true,
+      "sensitiveContent": "Visible screens blank; no patient, customer, asset serial or certificate data. Generated markings are illustrative, not a service reference.",
+      "dimensions": {
+        "width": 640,
+        "height": 427
+      },
+      "bytes": 13052,
+      "sha256": "4ca957982ffe75537386e55db42ffc26ffe87b8a1bbc46e7748e12434b0e86c7",
+      "referenceURL": "https://www.documents.philips.com/doclib/enc/5950412/PageWriter_TC50_cardiograph_with_DXL_16_-_Always_in_Touch_%28ENG%29.pdf",
+      "model": "Philips PageWriter TC50",
+      "alt": {
+        "en": "Pictured: Philips PageWriter TC50",
+        "zh": "图示：Philips PageWriter TC50"
+      },
+      "caption": {
+        "en": "Pictured: Philips PageWriter TC50",
+        "zh": "图示：Philips PageWriter TC50"
+      },
+      "visualReview": "Compared silhouette, control layout and component placement with archived manufacturer reference; retained only as category illustration, not an exact technical diagram."
+    },
+    {
+      "path": "assets/studio-v18/horizon-1280.webp",
+      "decision": "retain",
+      "purpose": "Category illustration only",
+      "source": "Existing GPT Image original, 1536 × 1024; based on manufacturer reference",
+      "authorisation": "Existing user-commissioned generated illustration retained. Reference is for comparison; no manufacturer photograph licence or endorsement inferred.",
+      "aiIllustration": true,
+      "sensitiveContent": "Visible screens blank; no patient, customer, asset serial or certificate data. Generated markings are illustrative, not a service reference.",
+      "dimensions": {
+        "width": 1280,
+        "height": 853
+      },
+      "bytes": 23680,
+      "sha256": "5c1f9556030378cf522a2dbc2b47df5632e46c324552d503776d52cb79d95ac8",
+      "referenceURL": "https://www.hologic.com/sites/default/files/styles/banner_product_page_1070_x_540_/public/2021/04/Hologic_Horizon%C2%AE%20DXA%20System.jpg",
+      "model": "Hologic Horizon DXA",
+      "alt": {
+        "en": "Pictured: Hologic Horizon DXA",
+        "zh": "图示：Hologic Horizon DXA"
+      },
+      "caption": {
+        "en": "Pictured: Hologic Horizon DXA",
+        "zh": "图示：Hologic Horizon DXA"
+      },
+      "visualReview": "Compared silhouette, control layout and component placement with archived manufacturer reference; retained only as category illustration, not an exact technical diagram."
+    },
+    {
+      "path": "assets/studio-v18/horizon-640.webp",
+      "decision": "retain",
+      "purpose": "Category illustration only",
+      "source": "Existing GPT Image original, 1536 × 1024; based on manufacturer reference",
+      "authorisation": "Existing user-commissioned generated illustration retained. Reference is for comparison; no manufacturer photograph licence or endorsement inferred.",
+      "aiIllustration": true,
+      "sensitiveContent": "Visible screens blank; no patient, customer, asset serial or certificate data. Generated markings are illustrative, not a service reference.",
+      "dimensions": {
+        "width": 640,
+        "height": 427
+      },
+      "bytes": 8914,
+      "sha256": "0417c73efb9ca49557120a0f70ddb7d0510862f11746ebfc99c81f245a0b32ff",
+      "referenceURL": "https://www.hologic.com/sites/default/files/styles/banner_product_page_1070_x_540_/public/2021/04/Hologic_Horizon%C2%AE%20DXA%20System.jpg",
+      "model": "Hologic Horizon DXA",
+      "alt": {
+        "en": "Pictured: Hologic Horizon DXA",
+        "zh": "图示：Hologic Horizon DXA"
+      },
+      "caption": {
+        "en": "Pictured: Hologic Horizon DXA",
+        "zh": "图示：Hologic Horizon DXA"
+      },
+      "visualReview": "Compared silhouette, control layout and component placement with archived manufacturer reference; retained only as category illustration, not an exact technical diagram."
+    },
+    {
+      "path": "assets/studio-v18/monitor-1280.webp",
+      "decision": "retain",
+      "purpose": "Category illustration only",
+      "source": "Existing GPT Image original, 1536 × 1024; based on manufacturer reference",
+      "authorisation": "Existing user-commissioned generated illustration retained. Reference is for comparison; no manufacturer photograph licence or endorsement inferred.",
+      "aiIllustration": true,
+      "sensitiveContent": "Visible screens blank; no patient, customer, asset serial or certificate data. Generated markings are illustrative, not a service reference.",
+      "dimensions": {
+        "width": 1280,
+        "height": 853
+      },
+      "bytes": 19748,
+      "sha256": "56290145426c1f4b5857612275b92dce74e611302f3a23f0319fa2d4e12d237c",
+      "referenceURL": "https://images.philips.com/is/image/philipsconsumer/4ebad747f8174ae79485a48e011fb9ba?wid=1400&fmt=jpeg",
+      "model": "Philips Efficia CM150 (illustration); IntelliVue X3 (separate case)",
+      "alt": {
+        "en": "Category illustration: Efficia CM150. The X3 case concerns a different device.",
+        "zh": "类别示意：Efficia CM150，与案例中的 X3 并非同一设备。"
+      },
+      "caption": {
+        "en": "Category illustration: Efficia CM150. The X3 case concerns a different device.",
+        "zh": "类别示意：Efficia CM150，与案例中的 X3 并非同一设备。"
+      },
+      "visualReview": "Compared silhouette, control layout and component placement with archived manufacturer reference; retained only as category illustration, not an exact technical diagram."
+    },
+    {
+      "path": "assets/studio-v18/monitor-640.webp",
+      "decision": "retain",
+      "purpose": "Category illustration only",
+      "source": "Existing GPT Image original, 1536 × 1024; based on manufacturer reference",
+      "authorisation": "Existing user-commissioned generated illustration retained. Reference is for comparison; no manufacturer photograph licence or endorsement inferred.",
+      "aiIllustration": true,
+      "sensitiveContent": "Visible screens blank; no patient, customer, asset serial or certificate data. Generated markings are illustrative, not a service reference.",
+      "dimensions": {
+        "width": 640,
+        "height": 427
+      },
+      "bytes": 6924,
+      "sha256": "fc9cbe614206de01f10ae7f6d5dd745925a320604fdec162e7b4ff107df28ad9",
+      "referenceURL": "https://images.philips.com/is/image/philipsconsumer/4ebad747f8174ae79485a48e011fb9ba?wid=1400&fmt=jpeg",
+      "model": "Philips Efficia CM150 (illustration); IntelliVue X3 (separate case)",
+      "alt": {
+        "en": "Category illustration: Efficia CM150. The X3 case concerns a different device.",
+        "zh": "类别示意：Efficia CM150，与案例中的 X3 并非同一设备。"
+      },
+      "caption": {
+        "en": "Category illustration: Efficia CM150. The X3 case concerns a different device.",
+        "zh": "类别示意：Efficia CM150，与案例中的 X3 并非同一设备。"
+      },
+      "visualReview": "Compared silhouette, control layout and component placement with archived manufacturer reference; retained only as category illustration, not an exact technical diagram."
+    },
+    {
+      "path": "assets/studio-v18/ultrasound-1280.webp",
+      "decision": "retain",
+      "purpose": "Category illustration only",
+      "source": "Existing GPT Image original, 1536 × 1024; based on manufacturer reference",
+      "authorisation": "Existing user-commissioned generated illustration retained. Reference is for comparison; no manufacturer photograph licence or endorsement inferred.",
+      "aiIllustration": true,
+      "sensitiveContent": "Visible screens blank; no patient, customer, asset serial or certificate data. Generated markings are illustrative, not a service reference.",
+      "dimensions": {
+        "width": 1280,
+        "height": 853
+      },
+      "bytes": 29266,
+      "sha256": "9416c69d5fc72ae81e180340f26648ed5b0098c7b75cfd36eeda9658f2b479c5",
+      "referenceURL": "https://www.usa.philips.com/c-dam/b2bhc/us/Products/Ultrasound/Affiniti70/Affiniti_A_smart%20investment_TCO_DS_FNL.PDF",
+      "model": "Philips Affiniti 70 (illustration); Affiniti 70G / CX50 (service case)",
+      "alt": {
+        "en": "Category illustration: Affiniti 70. Service case: Affiniti 70G / CX50.",
+        "zh": "类别示意：Affiniti 70；服务案例型号为 Affiniti 70G / CX50。"
+      },
+      "caption": {
+        "en": "Category illustration: Affiniti 70. Service case: Affiniti 70G / CX50.",
+        "zh": "类别示意：Affiniti 70；服务案例型号为 Affiniti 70G / CX50。"
+      },
+      "visualReview": "Compared silhouette, control layout and component placement with archived manufacturer reference; retained only as category illustration, not an exact technical diagram."
+    },
+    {
+      "path": "assets/studio-v18/ultrasound-640.webp",
+      "decision": "retain",
+      "purpose": "Category illustration only",
+      "source": "Existing GPT Image original, 1536 × 1024; based on manufacturer reference",
+      "authorisation": "Existing user-commissioned generated illustration retained. Reference is for comparison; no manufacturer photograph licence or endorsement inferred.",
+      "aiIllustration": true,
+      "sensitiveContent": "Visible screens blank; no patient, customer, asset serial or certificate data. Generated markings are illustrative, not a service reference.",
+      "dimensions": {
+        "width": 640,
+        "height": 427
+      },
+      "bytes": 10756,
+      "sha256": "8a14eecee62cf6b45d72245f1fdb8142dedcd8289b7ce99a8dcc215b5dad094d",
+      "referenceURL": "https://www.usa.philips.com/c-dam/b2bhc/us/Products/Ultrasound/Affiniti70/Affiniti_A_smart%20investment_TCO_DS_FNL.PDF",
+      "model": "Philips Affiniti 70 (illustration); Affiniti 70G / CX50 (service case)",
+      "alt": {
+        "en": "Category illustration: Affiniti 70. Service case: Affiniti 70G / CX50.",
+        "zh": "类别示意：Affiniti 70；服务案例型号为 Affiniti 70G / CX50。"
+      },
+      "caption": {
+        "en": "Category illustration: Affiniti 70. Service case: Affiniti 70G / CX50.",
+        "zh": "类别示意：Affiniti 70；服务案例型号为 Affiniti 70G / CX50。"
+      },
+      "visualReview": "Compared silhouette, control layout and component placement with archived manufacturer reference; retained only as category illustration, not an exact technical diagram."
+    },
+    {
+      "path": "assets/studio-v18/v60-1280.webp",
+      "decision": "retain",
+      "purpose": "Category illustration only",
+      "source": "Existing GPT Image original, 1536 × 1024; based on manufacturer reference",
+      "authorisation": "Existing user-commissioned generated illustration retained. Reference is for comparison; no manufacturer photograph licence or endorsement inferred.",
+      "aiIllustration": true,
+      "sensitiveContent": "Visible screens blank; no patient, customer, asset serial or certificate data. Generated markings are illustrative, not a service reference.",
+      "dimensions": {
+        "width": 1280,
+        "height": 853
+      },
+      "bytes": 29928,
+      "sha256": "9b3b029306a23f356c9a774cf79a2805f1c3de7077fa897c916079910ae35808",
+      "referenceURL": "https://images.philips.com/is/content/PhilipsConsumer/Campaigns/HC20140401_DG/Documents/V60-quick-reference-guide.pdf",
+      "model": "Philips Respironics V60",
+      "alt": {
+        "en": "Pictured: Philips Respironics V60",
+        "zh": "图示：Philips Respironics V60"
+      },
+      "caption": {
+        "en": "Pictured: Philips Respironics V60",
+        "zh": "图示：Philips Respironics V60"
+      },
+      "visualReview": "Compared silhouette, control layout and component placement with archived manufacturer reference; retained only as category illustration, not an exact technical diagram."
+    },
+    {
+      "path": "assets/studio-v18/v60-640.webp",
+      "decision": "retain",
+      "purpose": "Category illustration only",
+      "source": "Existing GPT Image original, 1536 × 1024; based on manufacturer reference",
+      "authorisation": "Existing user-commissioned generated illustration retained. Reference is for comparison; no manufacturer photograph licence or endorsement inferred.",
+      "aiIllustration": true,
+      "sensitiveContent": "Visible screens blank; no patient, customer, asset serial or certificate data. Generated markings are illustrative, not a service reference.",
+      "dimensions": {
+        "width": 640,
+        "height": 427
+      },
+      "bytes": 10436,
+      "sha256": "6c07a415ddd75deaa6c266cabde7aef0cf0ac91a38a2c3b846d17820ed19c0d6",
+      "referenceURL": "https://images.philips.com/is/content/PhilipsConsumer/Campaigns/HC20140401_DG/Documents/V60-quick-reference-guide.pdf",
+      "model": "Philips Respironics V60",
+      "alt": {
+        "en": "Pictured: Philips Respironics V60",
+        "zh": "图示：Philips Respironics V60"
+      },
+      "caption": {
+        "en": "Pictured: Philips Respironics V60",
+        "zh": "图示：Philips Respironics V60"
+      },
+      "visualReview": "Compared silhouette, control layout and component placement with archived manufacturer reference; retained only as category illustration, not an exact technical diagram."
+    },
+    {
+      "path": "assets/studio-v20/bd-1536.webp",
+      "decision": "add",
+      "purpose": "Category illustration only",
+      "source": "Existing GPT Image original, 1536 × 1024; based on manufacturer reference",
+      "authorisation": "Existing user-commissioned generated illustration retained. Reference is for comparison; no manufacturer photograph licence or endorsement inferred.",
+      "aiIllustration": true,
+      "sensitiveContent": "Visible screens blank; no patient, customer, asset serial or certificate data. Generated markings are illustrative, not a service reference.",
+      "dimensions": {
+        "width": 1536,
+        "height": 1024
+      },
+      "bytes": 50432,
+      "sha256": "464b0a20c12cdef42413850b0324722fde7b5658e1f1c7db39b1c4d7e82d05a6",
+      "referenceURL": "https://rowa.de/content/media/BD_Rowa_Vmax_EN.pdf",
+      "model": "BD Rowa Vmax",
+      "alt": {
+        "en": "Pictured: BD Rowa Vmax",
+        "zh": "图示：BD Rowa Vmax"
+      },
+      "caption": {
+        "en": "Pictured: BD Rowa Vmax",
+        "zh": "图示：BD Rowa Vmax"
+      },
+      "visualReview": "Compared silhouette, control layout and component placement with archived manufacturer reference; retained only as category illustration, not an exact technical diagram."
+    },
+    {
+      "path": "assets/studio-v20/corpuls-1536.webp",
+      "decision": "add",
+      "purpose": "Category illustration only",
+      "source": "Existing GPT Image original, 1536 × 1024; based on manufacturer reference",
+      "authorisation": "Existing user-commissioned generated illustration retained. Reference is for comparison; no manufacturer photograph licence or endorsement inferred.",
+      "aiIllustration": true,
+      "sensitiveContent": "Visible screens blank; no patient, customer, asset serial or certificate data. Generated markings are illustrative, not a service reference.",
+      "dimensions": {
+        "width": 1536,
+        "height": 1024
+      },
+      "bytes": 109080,
+      "sha256": "5afae2e258df3b4dfac8bce16182054997288689047d676aeab201bf37fa515e",
+      "referenceURL": "https://corpuls.world/wAssets/img/produkte/corpuls3/weblication/wThumbnails/8e3a05a9-564810d5@ll.jpg?1712740670",
+      "model": "corpuls3 modular monitor-defibrillator",
+      "alt": {
+        "en": "Pictured: corpuls3 modules",
+        "zh": "图示：corpuls3 modules"
+      },
+      "caption": {
+        "en": "Pictured: corpuls3 modules",
+        "zh": "图示：corpuls3 modules"
+      },
+      "visualReview": "Compared silhouette, control layout and component placement with archived manufacturer reference; retained only as category illustration, not an exact technical diagram."
+    },
+    {
+      "path": "assets/studio-v20/ecg-1536.webp",
+      "decision": "add",
+      "purpose": "Category illustration only",
+      "source": "Existing GPT Image original, 1536 × 1024; based on manufacturer reference",
+      "authorisation": "Existing user-commissioned generated illustration retained. Reference is for comparison; no manufacturer photograph licence or endorsement inferred.",
+      "aiIllustration": true,
+      "sensitiveContent": "Visible screens blank; no patient, customer, asset serial or certificate data. Generated markings are illustrative, not a service reference.",
+      "dimensions": {
+        "width": 1536,
+        "height": 1024
+      },
+      "bytes": 59312,
+      "sha256": "0258d847e754b3ca769e5cbc98522f9e17387d02a8698fd31e8cca4fa9e5fc96",
+      "referenceURL": "https://www.documents.philips.com/doclib/enc/5950412/PageWriter_TC50_cardiograph_with_DXL_16_-_Always_in_Touch_%28ENG%29.pdf",
+      "model": "Philips PageWriter TC50",
+      "alt": {
+        "en": "Pictured: Philips PageWriter TC50",
+        "zh": "图示：Philips PageWriter TC50"
+      },
+      "caption": {
+        "en": "Pictured: Philips PageWriter TC50",
+        "zh": "图示：Philips PageWriter TC50"
+      },
+      "visualReview": "Compared silhouette, control layout and component placement with archived manufacturer reference; retained only as category illustration, not an exact technical diagram."
+    },
+    {
+      "path": "assets/studio-v20/horizon-1536.webp",
+      "decision": "add",
+      "purpose": "Category illustration only",
+      "source": "Existing GPT Image original, 1536 × 1024; based on manufacturer reference",
+      "authorisation": "Existing user-commissioned generated illustration retained. Reference is for comparison; no manufacturer photograph licence or endorsement inferred.",
+      "aiIllustration": true,
+      "sensitiveContent": "Visible screens blank; no patient, customer, asset serial or certificate data. Generated markings are illustrative, not a service reference.",
+      "dimensions": {
+        "width": 1536,
+        "height": 1024
+      },
+      "bytes": 44404,
+      "sha256": "280a073456d0e231fb3e0534b76d3681cf14ea6c9d3bf6d4ab7a4e6a028c416b",
+      "referenceURL": "https://www.hologic.com/sites/default/files/styles/banner_product_page_1070_x_540_/public/2021/04/Hologic_Horizon%C2%AE%20DXA%20System.jpg",
+      "model": "Hologic Horizon DXA",
+      "alt": {
+        "en": "Pictured: Hologic Horizon DXA",
+        "zh": "图示：Hologic Horizon DXA"
+      },
+      "caption": {
+        "en": "Pictured: Hologic Horizon DXA",
+        "zh": "图示：Hologic Horizon DXA"
+      },
+      "visualReview": "Compared silhouette, control layout and component placement with archived manufacturer reference; retained only as category illustration, not an exact technical diagram."
+    },
+    {
+      "path": "assets/studio-v20/monitor-1536.webp",
+      "decision": "add",
+      "purpose": "Category illustration only",
+      "source": "Existing GPT Image original, 1536 × 1024; based on manufacturer reference",
+      "authorisation": "Existing user-commissioned generated illustration retained. Reference is for comparison; no manufacturer photograph licence or endorsement inferred.",
+      "aiIllustration": true,
+      "sensitiveContent": "Visible screens blank; no patient, customer, asset serial or certificate data. Generated markings are illustrative, not a service reference.",
+      "dimensions": {
+        "width": 1536,
+        "height": 1024
+      },
+      "bytes": 39114,
+      "sha256": "e5f612cdb0c5710a2c8368353a8dcc3cfecfc1051400975c61821678204140f7",
+      "referenceURL": "https://images.philips.com/is/image/philipsconsumer/4ebad747f8174ae79485a48e011fb9ba?wid=1400&fmt=jpeg",
+      "model": "Philips Efficia CM150 (illustration); IntelliVue X3 (separate case)",
+      "alt": {
+        "en": "Category illustration: Efficia CM150. The X3 case concerns a different device.",
+        "zh": "类别示意：Efficia CM150，与案例中的 X3 并非同一设备。"
+      },
+      "caption": {
+        "en": "Category illustration: Efficia CM150. The X3 case concerns a different device.",
+        "zh": "类别示意：Efficia CM150，与案例中的 X3 并非同一设备。"
+      },
+      "visualReview": "Compared silhouette, control layout and component placement with archived manufacturer reference; retained only as category illustration, not an exact technical diagram."
+    },
+    {
+      "path": "assets/studio-v20/portrait-320.webp",
+      "decision": "add",
+      "purpose": "Personal identity / structured Person image",
+      "source": "Existing personal portrait asset; resized only in this revision",
+      "authorisation": "Existing portrait supplied for this personal site; retained within the authorised site scope. Original photography/generative provenance is not independently re-established.",
+      "aiIllustration": false,
+      "sensitiveContent": "Public identity portrait only",
+      "dimensions": {
+        "width": 320,
+        "height": 501
+      },
+      "bytes": 12022,
+      "sha256": "819e4b80e15118649b73c33e1a59ffa10527ea50d720ed90c9b5a766b4f7aaa0",
+      "originalAIProvenance": "Not re-established; no generative edit in this revision",
+      "model": null,
+      "alt": {
+        "en": "Yihang (Henry) Yang",
+        "zh": "Yihang (Henry) Yang"
+      },
+      "caption": {
+        "en": "Yihang (Henry) Yang · Sydney, Australia",
+        "zh": "杨颐航 Henry · 澳大利亚悉尼"
+      }
+    },
+    {
+      "path": "assets/studio-v20/portrait-640.webp",
+      "decision": "add",
+      "purpose": "Personal identity / structured Person image",
+      "source": "Existing personal portrait asset; resized only in this revision",
+      "authorisation": "Existing portrait supplied for this personal site; retained within the authorised site scope. Original photography/generative provenance is not independently re-established.",
+      "aiIllustration": false,
+      "sensitiveContent": "Public identity portrait only",
+      "dimensions": {
+        "width": 640,
+        "height": 1001
+      },
+      "bytes": 40384,
+      "sha256": "126bc2c83405c65f694e47de9bf9baee8ff453072935e07f53da1e67d7f8baa9",
+      "originalAIProvenance": "Not re-established; no generative edit in this revision",
+      "model": null,
+      "alt": {
+        "en": "Yihang (Henry) Yang",
+        "zh": "Yihang (Henry) Yang"
+      },
+      "caption": {
+        "en": "Yihang (Henry) Yang · Sydney, Australia",
+        "zh": "杨颐航 Henry · 澳大利亚悉尼"
+      }
+    },
+    {
+      "path": "assets/studio-v20/social-card.jpg",
+      "decision": "add",
+      "purpose": "1200 × 630 social sharing card",
+      "source": "Native HTML typography rendered with unchanged existing personal portrait",
+      "authorisation": "Created for the authorised personal website; portrait reused within existing scope",
+      "aiIllustration": false,
+      "sensitiveContent": "Public identity, role and Sydney only",
+      "dimensions": {
+        "width": 1200,
+        "height": 630
+      },
+      "bytes": 53869,
+      "sha256": "f63c0d1baa418186b17fbe1c2ca54755b6655eadec64d6ef3d2cb1f9802b585c",
+      "model": null,
+      "alt": {
+        "en": "Yihang (Henry) Yang — Biomedical Field Service Engineer — Sydney",
+        "zh": "杨颐航 Henry — 医疗设备现场服务工程师 — 悉尼"
+      },
+      "caption": null
+    },
+    {
+      "path": "assets/studio-v20/ultrasound-1536.webp",
+      "decision": "add",
+      "purpose": "Category illustration only",
+      "source": "Existing GPT Image original, 1536 × 1024; based on manufacturer reference",
+      "authorisation": "Existing user-commissioned generated illustration retained. Reference is for comparison; no manufacturer photograph licence or endorsement inferred.",
+      "aiIllustration": true,
+      "sensitiveContent": "Visible screens blank; no patient, customer, asset serial or certificate data. Generated markings are illustrative, not a service reference.",
+      "dimensions": {
+        "width": 1536,
+        "height": 1024
+      },
+      "bytes": 51284,
+      "sha256": "4ada28dc3bb59fff217ec1313df77cf34ac9c8ebad54b68ffcafbd128de12ac9",
+      "referenceURL": "https://www.usa.philips.com/c-dam/b2bhc/us/Products/Ultrasound/Affiniti70/Affiniti_A_smart%20investment_TCO_DS_FNL.PDF",
+      "model": "Philips Affiniti 70 (illustration); Affiniti 70G / CX50 (service case)",
+      "alt": {
+        "en": "Category illustration: Affiniti 70. Service case: Affiniti 70G / CX50.",
+        "zh": "类别示意：Affiniti 70；服务案例型号为 Affiniti 70G / CX50。"
+      },
+      "caption": {
+        "en": "Category illustration: Affiniti 70. Service case: Affiniti 70G / CX50.",
+        "zh": "类别示意：Affiniti 70；服务案例型号为 Affiniti 70G / CX50。"
+      },
+      "visualReview": "Compared silhouette, control layout and component placement with archived manufacturer reference; retained only as category illustration, not an exact technical diagram."
+    },
+    {
+      "path": "assets/studio-v20/v60-1536.webp",
+      "decision": "add",
+      "purpose": "Category illustration only",
+      "source": "Existing GPT Image original, 1536 × 1024; based on manufacturer reference",
+      "authorisation": "Existing user-commissioned generated illustration retained. Reference is for comparison; no manufacturer photograph licence or endorsement inferred.",
+      "aiIllustration": true,
+      "sensitiveContent": "Visible screens blank; no patient, customer, asset serial or certificate data. Generated markings are illustrative, not a service reference.",
+      "dimensions": {
+        "width": 1536,
+        "height": 1024
+      },
+      "bytes": 55794,
+      "sha256": "23688295481e0513aca5358f73fd2155100191bdb74b1847e1d38ef93ab8648a",
+      "referenceURL": "https://images.philips.com/is/content/PhilipsConsumer/Campaigns/HC20140401_DG/Documents/V60-quick-reference-guide.pdf",
+      "model": "Philips Respironics V60",
+      "alt": {
+        "en": "Pictured: Philips Respironics V60",
+        "zh": "图示：Philips Respironics V60"
+      },
+      "caption": {
+        "en": "Pictured: Philips Respironics V60",
+        "zh": "图示：Philips Respironics V60"
+      },
+      "visualReview": "Compared silhouette, control layout and component placement with archived manufacturer reference; retained only as category illustration, not an exact technical diagram."
+    },
+    {
+      "path": "assets/yihang-professional-headshot-1400.webp",
+      "decision": "remove_from_page_preserve_file",
+      "purpose": "Personal identity / structured Person image",
+      "source": "Existing personal portrait asset; resized only in this revision",
+      "authorisation": "Existing portrait supplied for this personal site; retained within the authorised site scope. Original photography/generative provenance is not independently re-established.",
+      "aiIllustration": false,
+      "sensitiveContent": "Public identity portrait only",
+      "dimensions": {
+        "width": 1400,
+        "height": 2190
+      },
+      "bytes": 178088,
+      "sha256": "ed588406ad3155506286946ddc4faa0dbe97fed956744bbf85386c6c10b422aa",
+      "originalAIProvenance": "Not re-established; no generative edit in this revision",
+      "model": null,
+      "alt": {
+        "en": "Yihang (Henry) Yang",
+        "zh": "Yihang (Henry) Yang"
+      },
+      "caption": {
+        "en": "Yihang (Henry) Yang · Sydney, Australia",
+        "zh": "杨颐航 Henry · 澳大利亚悉尼"
+      }
+    },
+    {
+      "path": "assets/yihang-professional-headshot-720.jpg",
+      "decision": "remove_from_page_preserve_file",
+      "purpose": "Personal identity / structured Person image",
+      "source": "Existing personal portrait asset; resized only in this revision",
+      "authorisation": "Existing portrait supplied for this personal site; retained within the authorised site scope. Original photography/generative provenance is not independently re-established.",
+      "aiIllustration": false,
+      "sensitiveContent": "Public identity portrait only",
+      "dimensions": {
+        "width": 720,
+        "height": 1125
+      },
+      "bytes": 112935,
+      "sha256": "89e2b1f19830b2f348eb1b34051af89344ecb9a1ca52a932982f23bb3636f492",
+      "originalAIProvenance": "Not re-established; no generative edit in this revision",
+      "model": null,
+      "alt": {
+        "en": "Yihang (Henry) Yang",
+        "zh": "Yihang (Henry) Yang"
+      },
+      "caption": {
+        "en": "Yihang (Henry) Yang · Sydney, Australia",
+        "zh": "杨颐航 Henry · 澳大利亚悉尼"
+      }
+    },
+    {
+      "path": "assets/yihang-professional-headshot-960.webp",
+      "decision": "retain",
+      "purpose": "Personal identity / structured Person image",
+      "source": "Existing personal portrait asset; resized only in this revision",
+      "authorisation": "Existing portrait supplied for this personal site; retained within the authorised site scope. Original photography/generative provenance is not independently re-established.",
+      "aiIllustration": false,
+      "sensitiveContent": "Public identity portrait only",
+      "dimensions": {
+        "width": 960,
+        "height": 1502
+      },
+      "bytes": 82490,
+      "sha256": "14682c7a42dbfb86aa385aa0501ea0ce9ca76a4b43af7c7957db772892bbb794",
+      "originalAIProvenance": "Not re-established; no generative edit in this revision",
+      "model": null,
+      "alt": {
+        "en": "Yihang (Henry) Yang",
+        "zh": "Yihang (Henry) Yang"
+      },
+      "caption": {
+        "en": "Yihang (Henry) Yang · Sydney, Australia",
+        "zh": "杨颐航 Henry · 澳大利亚悉尼"
+      }
+    },
+    {
+      "path": "assets/yihang-professional-headshot-formal-4k.jpg",
+      "decision": "retain",
+      "purpose": "Personal identity / structured Person image",
+      "source": "Existing personal portrait asset; resized only in this revision",
+      "authorisation": "Existing portrait supplied for this personal site; retained within the authorised site scope. Original photography/generative provenance is not independently re-established.",
+      "aiIllustration": false,
+      "sensitiveContent": "Public identity portrait only",
+      "dimensions": {
+        "width": 1407,
+        "height": 2200
+      },
+      "bytes": 297396,
+      "sha256": "9fee947936a5e93df2e295d4f0383618ea1cd2e16aecaed86e411889aafd22e1",
+      "originalAIProvenance": "Not re-established; no generative edit in this revision",
+      "model": null,
+      "alt": {
+        "en": "Yihang (Henry) Yang",
+        "zh": "Yihang (Henry) Yang"
+      },
+      "caption": {
+        "en": "Yihang (Henry) Yang · Sydney, Australia",
+        "zh": "杨颐航 Henry · 澳大利亚悉尼"
+      }
+    }
+  ]
+}
