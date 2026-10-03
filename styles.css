@@ -122,10 +122,17 @@ section[id] { scroll-margin-top: 0; }
 .project-index { font: 500 var(--text-small)/1.5 var(--mono); font-variant-numeric: tabular-nums; color: var(--accent); margin-bottom: 18px; }
 .project-context { font-size: 13px; color: var(--muted); margin-bottom: 10px; }
 .project-heading h3 { max-width: 25ch; }
-.case-facts > div + div { margin-top: 16px; }
 .case-facts dt, .case-body dt { font-size: var(--text-small); font-weight: 600; margin-bottom: 5px; }
 .case-facts dd, .case-body dd { color: var(--muted); font-size: var(--text-body); max-width: 65ch; }
-.case-facts > div:last-child { border-left: 2px solid var(--accent); padding-left: 16px; }
+/* Each service record reads as a trace: context, responsibility and verification lead to the recorded outcome. */
+.case-facts { --trace-indent: 26px; --row-gap: 16px; --node: 9px; --node-top: calc((var(--copy-leading) * var(--text-small) - var(--node)) / 2); --outcome-pad: 12px; padding-left: var(--trace-indent); }
+.case-facts > div { position: relative; }
+.case-facts > div + div { margin-top: var(--row-gap); }
+.case-facts > div::before { content: ""; position: absolute; left: calc(var(--trace-indent) * -1); top: var(--node-top); box-sizing: border-box; width: var(--node); height: var(--node); border: 1.5px solid var(--accent); border-radius: 50%; background: var(--page); }
+.case-facts > div:not(:last-child)::after { content: ""; position: absolute; left: calc(var(--trace-indent) * -1 + var(--node) / 2 - .5px); top: calc(var(--node-top) + var(--node)); bottom: calc((var(--row-gap) + var(--node-top)) * -1); width: 1px; background: var(--line); }
+.case-facts > div:nth-last-child(2)::after { bottom: calc((var(--row-gap) + var(--outcome-pad) + var(--node-top)) * -1); }
+.case-facts > div:last-child { padding: var(--outcome-pad) 16px; border-radius: var(--control-radius); background: var(--soft); }
+.case-facts > div:last-child::before { top: calc(var(--outcome-pad) + var(--node-top)); background: var(--accent); print-color-adjust: exact; -webkit-print-color-adjust: exact; }
 .case-facts > div:last-child dd { color: var(--ink); }
 .project-evidence details { margin-top: 20px; border-top: 1px solid var(--line); }
 summary { display: flex; align-items: center; gap: 16px; cursor: pointer; list-style: none; min-height: 48px; padding-block: 12px; font-size: var(--text-small); font-weight: 500; }
@@ -145,7 +152,17 @@ summary:hover { color: var(--accent); }
 .platform-tabs button { display: inline-flex; align-items: center; text-align: left; gap: 8px; min-height: 64px; padding: 12px; border: 1px solid var(--line); border-radius: var(--control-radius); background: transparent; color: var(--ink); flex: 1 1 140px; line-height: 1.45; }
 .platform-tabs button strong { display: block; font-size: var(--text-small); font-weight: 600; }
 .platform-tabs button small { display: block; font-size: var(--text-caption); margin-top: 4px; }
-.platform-tabs button .icon { width: 14px; height: 14px; margin-left: auto; }
+.platform-tabs button[aria-selected="true"] { --scope-color: #fff; }
+/* Scope marks: one shape per scope, shared by the legend, the category tabs and the panel rows. */
+.scope-legend { display: flex; flex-wrap: wrap; gap: 6px 22px; margin-bottom: 14px; color: var(--muted); font-size: var(--text-caption); }
+.scope-key { display: inline-flex; align-items: center; gap: 8px; }
+.scope-signal { display: grid; gap: 5px; margin-left: auto; padding-left: 4px; }
+.scope-key::before, .scope-mark, .platform-details dt:is([data-i18n="serviceContext"], [data-i18n="supportLabel"], [data-i18n="trainingLabel"])::before { content: ""; display: inline-block; flex: none; box-sizing: border-box; width: 9px; height: 9px; border: 1.5px solid var(--scope-color, var(--accent)); border-radius: 1px; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+.scope-key[data-scope="service"]::before, .scope-mark[data-scope="service"], .platform-details dt[data-i18n="serviceContext"]::before { border-radius: 50%; background: var(--scope-color, var(--accent)); }
+.scope-key[data-scope="support"]::before, .scope-mark[data-scope="support"], .platform-details dt[data-i18n="supportLabel"]::before { background: var(--scope-color, var(--accent)); transform: rotate(45deg) scale(.82); }
+.scope-mark.is-absent { visibility: hidden; }
+.platform-details dt:is([data-i18n="serviceContext"], [data-i18n="supportLabel"], [data-i18n="trainingLabel"]) { padding-left: 17px; text-indent: -17px; }
+.platform-details dt:is([data-i18n="serviceContext"], [data-i18n="supportLabel"], [data-i18n="trainingLabel"])::before { margin-right: 8px; text-indent: 0; }
 .platform-tabs button:hover { background: var(--soft); }
 .platform-tabs button[aria-selected="true"] { background: #275dde; border-color: #91b7ff; color: #fff; }
 .platform-hint { margin-block: 16px 24px; }
@@ -304,7 +321,6 @@ summary:hover { color: var(--accent); }
 :root:not(.js-ready):not(.js-pending) .platform-navigation { display: none; }
 :root:not(.js-ready):not(.js-pending) .platform-panel[hidden] { display: grid !important; }
 :root:not(.js-ready):not(.js-pending) .site-nav { flex-direction: row; flex-wrap: wrap; gap: 4px 20px; }
-.is-restoring-hash { scroll-behavior: auto; }
 @supports (animation-timeline: scroll()) {
   @media (prefers-reduced-motion: no-preference) {
     .site-header::after { content: ""; position: absolute; bottom: -1px; left: 0; height: 2px; width: 100%; background: var(--accent); transform-origin: left; animation: reading-progress linear both; animation-timeline: scroll(root); }
@@ -316,7 +332,7 @@ summary:hover { color: var(--accent); }
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
 @media print {
-  :root, :root[data-theme="dark"] { color-scheme: light; --page: #fff; --surface: #fff; --ink: #15283f; --muted: #43546b; --accent: #1745a9; --line: #aab8c8; }
+  :root, :root[data-theme="dark"] { color-scheme: light; --page: #fff; --surface: #fff; --ink: #15283f; --muted: #43546b; --accent: #1745a9; --line: #aab8c8; --soft: #eef3fa; }
   body { background: #fff; color: #15283f; font-size: 11pt; }
   .site-header, .skip-link, .hero-art, .platform-art, .platform-navigation, .study-logo, .button, .contact-secondary, .site-footer, .image-viewer { display: none !important; }
   .content, .hero-stage { width: 100%; }

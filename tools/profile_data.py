@@ -7,7 +7,7 @@ from string import Template
 ROOT = Path(__file__).resolve().parents[1]
 
 def load_profile():
-    data = json.loads((ROOT / 'content/profile.json').read_text())
+    data = json.loads((ROOT / 'content/profile.json').read_text(encoding='utf-8'))
     facts = data['facts']
     def tokens(language):
         values = {}

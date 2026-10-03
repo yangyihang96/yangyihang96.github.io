@@ -1,0 +1,64 @@
+name: Site checks and Pages deploy
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: site-${{ github.ref }}
+  # Superseded branch runs may stop; a main-branch deployment always finishes.
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
+jobs:
+  checks:
+    name: Contract tests and generated content
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - name: Install the résumé readers used by the contract tests
+        run: python -m pip install --disable-pip-version-check pypdf==6.11.0 python-docx==1.2.0
+      - name: Contract tests
+        run: node --test tests/site-contract.test.mjs
+      - name: Generated copy, metadata, SRI and CSP match the sources
+        run: |
+          python3 tools/sync_site_content.py
+          git diff --exit-code || { echo "::error::Run python3 tools/sync_site_content.py and commit the result."; exit 1; }
+
+  deploy:
+    name: Deploy to GitHub Pages
+    # Publishing happens only after the checks pass on main.
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/configure-pages@v6
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: .
+          # Keeps .well-known/security.txt in the published site.
+          include-hidden-files: true
+      - id: deployment
+        uses: actions/deploy-pages@v5

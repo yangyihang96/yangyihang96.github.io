@@ -63,7 +63,6 @@ const translations = {
   "corpulsArtCaption": "图示：corpuls3 modules",
   "corpulsCategory": "监护 / 除颤",
   "corpulsEquipment0": "corpuls3 modular monitor-defibrillator",
-  "corpulsScope": "设备更换与软件升级实施、车间准备、完成情况追踪及服务交接。",
   "corpulsTab": "急救设备",
   "corpulsTraining": "2026 年参加软件升级项目培训，随后开展现场实施工作。",
   "digitalTools": "使用 Simpro 管理工单和服务历史，使用 Microsoft Office 整理技术记录、完成清单及交接文档。",
@@ -73,12 +72,10 @@ const translations = {
   "ecgCategory": "诊断心电 / 监护除颤仪",
   "ecgEquipment0": "PageWriter TC20 / TC30 / TC50",
   "ecgEquipment1": "HeartStart Intrepid",
-  "ecgScope": "参与 PageWriter TC50 现场升级并整理服务报告。HeartStart Intrepid 在此列为已完成服务培训的设备。",
   "ecgTab": "心电与除颤",
   "ecgTraining": "PageWriter TC20 / TC30 / TC50 系列课程（2023 年 11 月）；HeartStart Intrepid 服务培训（2025 年 3 月）。",
   "email": "邮件联系",
   "equipmentIntro": "按类别分别查看实际服务、实施支持及已完成培训。工作范围对应具体任务，不代表全系列维修权限。",
-  "equipmentLabel": "设备范围",
   "equipmentTitle": "设备与",
   "equipmentTitleAccent": "培训。",
   "experienceIntro": "在澳大利亚开展医疗设备现场服务，结合客户现场工作、车间维修与技术记录。",
@@ -90,7 +87,6 @@ const translations = {
   "hologicCategory": "骨密度检测 / 标本影像",
   "hologicEquipment0": "Horizon DXA",
   "hologicEquipment1": "Trident HD",
-  "hologicScope": "参与 Horizon EMI 整改，以及 Trident HD 上电与设备信息记录支持；培训与支持范围对应具体承担的工作。",
   "hologicTab": "骨密度与手术影像",
   "hologicTraining": "Horizon EMI 整改安装技术服务培训，悉尼（2025 年 5 月）。",
   "illustrationNote": "以真实设备为参考的 AI 类别示意图，不是作业现场照片或服务经历证明。",
@@ -99,7 +95,7 @@ const translations = {
   "languagesLabel": "语言",
   "licence": "持有驾驶执照",
   "locationLabel": "所在地",
-  "lundbeckDate": "2019 年 12 月至2020 年 2 月",
+  "lundbeckDate": "2019 年 12 月至 2020 年 2 月",
   "lundbeckIntro": "协助处理不良反应记录、药物安全文档及跨部门沟通。",
   "lundbeckRole": "药物警戒部门助理",
   "monitorArtCaption": "类别示意：Efficia CM150，与案例中的 X3 并非同一设备。",
@@ -107,7 +103,6 @@ const translations = {
   "monitorEquipment0": "Efficia CM10 / CM12 / CM100 / CM120 / CM150",
   "monitorEquipment1": "IntelliVue MX40 / X3",
   "monitorEquipment2": "Avalon FM20 / FM30",
-  "monitorScope": "参与 IntelliVue X3 配置与软件升级、设备选项核查、完成记录整理和临床区域验证支持。",
   "monitorTab": "患者监护",
   "monitorTraining": "已完成 Efficia CM 系列服务培训、MX40 安装与维修课程，以及 Avalon FM20 / FM30 支持培训。",
   "mphil": "哲学硕士（研究型）",
@@ -167,7 +162,7 @@ const translations = {
   "viewerTitle": "设备示意图",
   "closeImage": "关闭",
   "heroLocation": "澳大利亚 · 悉尼 NSW",
-  "bachelorDate": "2017 年 2 月至2020 年 12 月",
+  "bachelorDate": "2017 年 2 月至 2020 年 12 月",
   "caseContextLabel": "任务背景",
   "caseResponsibilityLabel": "本人职责",
   "caseVerificationLabel": "验证方式",
@@ -362,11 +357,32 @@ const activatePlatform = (id, moveFocus = false) => {
     if (selected) hydrateArt(panel);
   });
 };
+const scopeRows = [["service", "serviceContext"], ["support", "supportLabel"], ["training", "trainingLabel"]];
+const panelScopes = panel => {
+  // Read from the rows each panel lists, so a category tab never shows more scope than its panel states.
+  return scopeRows
+    .filter(([, key]) => panel?.querySelector('.platform-details dt[data-i18n="' + key + '"]'))
+    .map(([scope]) => scope);
+};
 if (equipment && platformTabs.length === platformPanels.length && platformTabs.length > 0) {
   platformPanels.forEach(panel => {
     panel.setAttribute("role", "tabpanel");
     panel.setAttribute("aria-labelledby", "tab-" + panel.dataset.platformPanel);
     panel.tabIndex = 0;
+  });
+  platformTabs.forEach(tab => {
+    const scopes = panelScopes(platformPanels.find(panel => panel.dataset.platformPanel === tab.dataset.platform));
+    const signal = document.createElement("span");
+    signal.className = "scope-signal";
+    signal.setAttribute("aria-hidden", "true");
+    scopeRows.forEach(([scope]) => {
+      const mark = document.createElement("span");
+      mark.className = "scope-mark";
+      mark.dataset.scope = scope;
+      mark.classList.toggle("is-absent", !scopes.includes(scope));
+      signal.append(mark);
+    });
+    tab.append(signal);
   });
   equipment.classList.add("is-enhanced");
   document.querySelector("[data-platform-navigation]").hidden = false;
@@ -453,6 +469,8 @@ const themePreferenceMedia = window.matchMedia?.("(prefers-color-scheme: dark)")
 const applyTheme = () => {
   const theme = themePreferenceMedia?.matches ? "dark" : "light";
   document.documentElement.dataset.theme = theme;
+  // theme-init.js sets an inline color-scheme; update it too so scrollbars and native controls follow later system changes.
+  document.documentElement.style.colorScheme = theme;
   document.querySelector('meta[name="theme-color"]')?.setAttribute("content", theme === "dark" ? "#0d1828" : "#f4f6f8");
 };
 themePreferenceMedia?.addEventListener("change", applyTheme);

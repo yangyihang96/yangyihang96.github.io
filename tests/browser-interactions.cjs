@@ -144,6 +144,38 @@ const sha = (x) => crypto.createHash("sha256").update(x).digest("hex");
             await first.evaluate((e) => getComputedStyle(e).outlineStyle),
             "none",
           );
+          // Scope marks on each category repeat exactly the rows its panel lists.
+          assert.equal(await p.locator(".scope-legend").isVisible(), true);
+          const scopeMismatches = await p.evaluate(() => {
+            const keys = { service: "serviceContext", support: "supportLabel", training: "trainingLabel" };
+            return [...document.querySelectorAll("[role=tab]")]
+              .filter((tab) => {
+                const panel = document.getElementById(tab.getAttribute("aria-controls"));
+                const marked = [...tab.querySelectorAll(".scope-mark:not(.is-absent)")].map((mark) => mark.dataset.scope);
+                const listed = Object.keys(keys).filter((scope) =>
+                  panel.querySelector(`.platform-details dt[data-i18n="${keys[scope]}"]`),
+                );
+                return marked.join() !== listed.join() ||
+                  tab.querySelector(".scope-signal")?.getAttribute("aria-hidden") !== "true";
+              })
+              .map((tab) => tab.id);
+          });
+          assert.deepEqual(scopeMismatches, []);
+          // A system theme change after load also moves native controls and scrollbars.
+          const otherScheme = colorScheme === "light" ? "dark" : "light";
+          await p.emulateMedia({ colorScheme: otherScheme });
+          await p.waitForFunction(
+            (scheme) => document.documentElement.dataset.theme === scheme &&
+              getComputedStyle(document.documentElement).colorScheme === scheme,
+            otherScheme,
+            { timeout: 2000 },
+          );
+          await p.emulateMedia({ colorScheme });
+          await p.waitForFunction(
+            (scheme) => getComputedStyle(document.documentElement).colorScheme === scheme,
+            colorScheme,
+            { timeout: 2000 },
+          );
           const zoom = p.locator("#platform-philips [data-art-zoom]");
           await zoom.click();
           await p.locator("[data-viewer-image]").evaluate((i) => i.decode());

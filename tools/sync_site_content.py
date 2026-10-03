@@ -8,15 +8,15 @@ from pathlib import Path
 from profile_data import load_profile
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = 'portfolio-v21-20260926'
+VERSION = 'portfolio-v22-20261004'
 
 def digest(data, algorithm):
     return base64.b64encode(hashlib.new(algorithm, data).digest()).decode()
 
 def main():
     content = load_profile()
-    page = (ROOT / 'index.html').read_text()
-    script = (ROOT / 'script.js').read_text()
+    page = (ROOT / 'index.html').read_text(encoding='utf-8')
+    script = (ROOT / 'script.js').read_text(encoding='utf-8')
     def leaf(match):
         return match[1] + html.escape(content['en'][match[2]]) + match[3]
     page = re.sub(r'(<[^>]+data-i18n="([^"]+)"[^>]*>)[^<]*(</[^>]+>)', leaf, page)
@@ -61,7 +61,7 @@ def main():
         safe_json = safe_json.replace(character, escaped)
     new_structured = '\n' + safe_json + '\n    '
     page = page.replace(structured, new_structured)
-    (ROOT / 'script.js').write_text(script)
+    (ROOT / 'script.js').write_text(script, encoding='utf-8')
     page = re.sub(r'portfolio-v\d+-\d+(?:-r\d+)?', VERSION, page)
     page = re.sub(r'(href="assets/Henry_Yang_Biomedical_Engineer_Resume\.(?:pdf|docx))(?:\?[^"]*)?(")', lambda m:m[1]+'?v='+VERSION+m[2],page)
     for filename in ['styles.css','script.js','theme-init.js']:
@@ -69,9 +69,13 @@ def main():
         page = re.sub(r'((?:src|href)="'+re.escape(filename)+r'\?[^\"]+" integrity=")[^"]+',lambda m:m[1]+sri,page)
     csp_hash = 'sha256-' + digest(new_structured.encode(),'sha256')
     page = re.sub(r'sha256-[A-Za-z0-9+/=]+',csp_hash,page)
-    (ROOT / 'index.html').write_text('\n'.join(line.rstrip() for line in page.splitlines())+'\n')
-    headers = (ROOT / '_headers').read_text()
-    (ROOT / '_headers').write_text(re.sub(r'sha256-[A-Za-z0-9+/=]+',csp_hash,headers))
+    (ROOT / 'index.html').write_text('\n'.join(line.rstrip() for line in page.splitlines())+'\n', encoding='utf-8')
+    headers = (ROOT / '_headers').read_text(encoding='utf-8')
+    (ROOT / '_headers').write_text(re.sub(r'sha256-[A-Za-z0-9+/=]+',csp_hash,headers), encoding='utf-8')
+    # The release date in VERSION is the page's last content change; keep the sitemap deterministic.
+    released = re.search(r'-(\d{4})(\d{2})(\d{2})(?:-r\d+)?$', VERSION)
+    sitemap = (ROOT / 'sitemap.xml').read_text(encoding='utf-8')
+    (ROOT / 'sitemap.xml').write_text(re.sub(r'<lastmod>[^<]*</lastmod>', '<lastmod>' + '-'.join(released.groups()) + '</lastmod>', sitemap), encoding='utf-8')
 
 if __name__ == '__main__':
     main()

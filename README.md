@@ -12,4 +12,8 @@ MIT applies to the software code only. Personal biography and contact informatio
 
 ## Local checks
 
-Public content is maintained in `content/profile.json`. Run `python3 tools/sync_site_content.py` after content, CSS or JavaScript changes to refresh static content, metadata, SRI and CSP hashes. Run `node --test tests/site-contract.test.mjs` before publication. See [v20 implementation and browser checks](design/studio-v20/README.md) for the résumé and browser workflows.
+Public content is maintained in `content/profile.json`. Run `python3 tools/sync_site_content.py` after content, CSS or JavaScript changes to refresh static content, metadata, SRI and CSP hashes and the sitemap date; for a release, first raise `VERSION` in that script. Run `node --test tests/site-contract.test.mjs` before publication. See [v22 notes](design/studio-v22/README.md) and [v20 implementation and browser checks](design/studio-v20/README.md) for the résumé and browser workflows.
+
+## Automated checks
+
+`.github/workflows/site.yml` runs the contract tests on every push and pull request and fails when the generated copy, metadata, SRI or CSP no longer match their sources. When the repository's GitHub Pages source is set to GitHub Actions, `main` is deployed only after those checks pass.

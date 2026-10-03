@@ -14,7 +14,9 @@ const css = read("styles.css");
 const script = read("script.js");
 const themeInit = read("theme-init.js");
 const resolvedProfile = JSON.parse(execFileSync("python3", ["tools/profile_data.py"], {cwd:root, encoding:"utf8"}));
-const version = "portfolio-v21-20260926";
+// The generator owns the release version; tests read it rather than repeating it.
+const version = read("tools/sync_site_content.py").match(/^VERSION = '(portfolio-v\d+-\d{8}(?:-r\d+)?)'$/m)?.[1];
+const releaseDate = version?.match(/-(\d{4})(\d{2})(\d{2})(?:-r\d+)?$/)?.slice(1).join("-");
 const linkedinUrl = "https://au.linkedin.com/in/henry-yang-9644382bb";
 const githubUrl = "https://github.com/yangyihang96";
 const sriSha384 = (source) =>
@@ -24,7 +26,7 @@ test("generated JSON-LD preserves special text without allowing a script-element
   const directory = fs.mkdtempSync(path.join(os.tmpdir(), "portfolio-jsonld-"));
   try {
     for (const name of ["content", "tools"]) fs.mkdirSync(path.join(directory, name));
-    for (const name of ["index.html", "script.js", "styles.css", "theme-init.js", "_headers", "content/profile.json", "tools/profile_data.py", "tools/sync_site_content.py"]) {
+    for (const name of ["index.html", "script.js", "styles.css", "theme-init.js", "_headers", "sitemap.xml", "content/profile.json", "tools/profile_data.py", "tools/sync_site_content.py"]) {
       fs.copyFileSync(path.join(root, name), path.join(directory, name));
     }
     const profile = JSON.parse(read("content/profile.json"));
@@ -273,7 +275,8 @@ test("published assets, robots, and sitemap stay aligned with the site", () => {
   const sitemap = read("sitemap.xml");
   assert.match(robots, /Sitemap: https:\/\/yangyihang96\.com\/sitemap\.xml/);
   assert.match(sitemap, /<loc>https:\/\/yangyihang96\.com\/<\/loc>/);
-  assert.match(sitemap, /<lastmod>2026-09-10<\/lastmod>/);
+  assert.ok(releaseDate, "VERSION carries a release date");
+  assert.ok(sitemap.includes("<lastmod>" + releaseDate + "</lastmod>"), "sitemap lastmod follows the release version");
 });
 
 
@@ -408,7 +411,7 @@ test("professional evidence is visible before interacting with equipment tabs", 
   assert.ok(equipment.includes("Hands-on service") && equipment.includes("Implementation support"));
   assert.match(equipment, /Internal practical training|internal practical training/);
   assert.doesNotMatch(html+script, /Work eligibility|confirmable during recruitment|工作资格/);
-  assert.equal((html.match(/href="assets\/Henry_Yang_Biomedical_Engineer_Resume.docx\?v=portfolio-v21-20260926"/g)||[]).length,1);
+  assert.equal(html.split('href="assets/Henry_Yang_Biomedical_Engineer_Resume.docx?v=' + version + '"').length - 1, 1);
 });
 
 test("resume export is two A4 pages with correct section order and native headings", () => {
@@ -483,4 +486,46 @@ test("illustrations have independent original-size sources and failure feedback"
   assert.ok(fs.existsSync(path.join(root,card)));
   assert.match(html,/og:image:width" content="1200"/);
   assert.match(html,/og:image:height" content="630"/);
+});
+
+test("equipment scope marks come only from the rows each panel lists", () => {
+  const equipment = sectionById("capabilities");
+  const navigation = equipment.slice(equipment.indexOf("data-platform-navigation"), equipment.indexOf('class="platform-hint"'));
+  assert.match(navigation, /<p class="scope-legend" aria-hidden="true">/);
+  for (const [scope, key] of [["service", "serviceContext"], ["support", "supportLabel"], ["training", "trainingLabel"]])
+    assert.ok(navigation.includes('data-scope="' + scope + '"><span data-i18n="' + key + '">'), scope);
+  const tabs = equipment.slice(equipment.indexOf('<div class="platform-tabs"'), equipment.indexOf('class="platform-hint"'));
+  assert.doesNotMatch(tabs, /<svg/, "category tabs do not show a dropdown chevron");
+  const scopeRows = JSON.parse(script.match(/^const scopeRows = (\[.+\]);$/m)[1]);
+  const panelScopes = browserFunction("panelScopes", { scopeRows });
+  const listed = new Set(["serviceContext", "trainingLabel"]);
+  const panel = { querySelector: selector => listed.has(selector.match(/data-i18n="([^"]+)"/)[1]) ? {} : null };
+  assert.deepEqual(panelScopes(panel), ["service", "training"]);
+  assert.deepEqual(panelScopes(undefined), []);
+  for (const block of equipment.split('class="platform-panel"').slice(1)) {
+    const keys = [...block.matchAll(/<dt data-i18n="([^"]+)"/g)].map(m => m[1]).filter(key => key !== "equipmentModelsLabel");
+    assert.ok(keys.length > 0, "each panel lists at least one scope");
+    for (const key of keys) assert.ok(scopeRows.some(([, rowKey]) => rowKey === key), key);
+  }
+  assert.match(script, /signal\.setAttribute\("aria-hidden", "true"\)/);
+});
+
+test("system theme changes keep native controls on the same colour scheme", () => {
+  for (const dark of [true, false]) {
+    const root = { dataset: {}, style: {} };
+    let themeColor = null;
+    const applyTheme = browserFunction("applyTheme", {
+      themePreferenceMedia: { matches: dark },
+      document: { documentElement: root, querySelector: () => ({ setAttribute: (name, value) => { themeColor = value; } }) },
+    });
+    applyTheme();
+    assert.equal(root.dataset.theme, dark ? "dark" : "light");
+    assert.equal(root.style.colorScheme, dark ? "dark" : "light");
+    assert.equal(themeColor, dark ? "#0d1828" : "#f4f6f8");
+  }
+});
+
+test("language buttons announce their own language", () => {
+  assert.match(html, /<button type="button" lang="en" data-language-option="en"/);
+  assert.match(html, /<button type="button" lang="zh-CN" data-language-option="zh"/);
 });
