@@ -259,6 +259,9 @@ test("published assets, robots, and sitemap stay aligned with the site", () => {
     "apple-touch-icon.png",
     "assets/yihang-professional-headshot-960.webp",
     "assets/yihang-professional-headshot-1400.webp",
+    "assets/studio-v23/portrait-320.webp",
+    "assets/studio-v23/portrait-640.webp",
+    "assets/studio-v23/portrait-960.webp",
             "assets/Henry_Yang_Biomedical_Engineer_Resume.pdf",
     "assets/Henry_Yang_Biomedical_Engineer_Resume.docx",
     "assets/logo-nova-biomedical-au.png",
@@ -285,7 +288,7 @@ test("hero retains identity, contact actions and recruiter facts before mobile a
   for (const term of ["Yihang (Henry) Yang", "Biomedical Field Service Engineer", "Sydney-based", "Since Jul 2023", "Sydney, NSW", "Driver licence", "English / Mandarin", "Download résumé (PDF)", "Email Henry"]) assert.ok(hero.includes(term), term);
   assert.equal((hero.match(/<a\b/g) || []).length, 2);
   assert.match(hero, /fetchpriority="high"/);
-  assert.match(hero, /assets\/yihang-professional-headshot-960.webp/);
+  assert.match(hero, /assets\/studio-v23\/portrait-960.webp/);
   assert.doesNotMatch(hero, /studio-v18|data-art-zoom/);
   assert.ok(hero.indexOf("hero-content") < hero.indexOf("hero-art"), "identity and contact precede image");
   assert.match(css, /\.hero-content[^{}]*\{[^{}]*order:\s*0/);
@@ -387,7 +390,7 @@ test("every image has fixed dimensions and all local image references exist", ()
     assert.match(img,/\balt="/,img);
   }
   for(const match of html.matchAll(/(?:src|data-src)="(assets\/[^"]+)"/g)) assert.ok(fs.existsSync(path.join(root,match[1])),match[1]);
-  for(const [name,max] of [["yihang-professional-headshot-960.webp",250000],["yihang-professional-headshot-1400.webp",450000]]) assert.ok(fs.statSync(path.join(root,"assets",name)).size<=max,name);
+  for(const [name,max] of [["yihang-professional-headshot-960.webp",250000],["yihang-professional-headshot-1400.webp",450000],["studio-v23/portrait-960.webp",120000]]) assert.ok(fs.statSync(path.join(root,"assets",name)).size<=max,name);
 });
 
 
