@@ -298,6 +298,9 @@ const sha = (x) => crypto.createHash("sha256").update(x).digest("hex");
             undefined,
             { timeout: 2000 },
           );
+          // Let the new srcset candidate finish before resizing again. Otherwise
+          // Chrome cancels a healthy image request and the network assertion fails.
+          await p.locator(".hero-visual img").evaluate((image) => image.decode());
           assert.equal(await menu.getAttribute("aria-expanded"), "false");
           await p.setViewportSize({ width: 390, height: 844 });
           await p.waitForFunction(
@@ -306,6 +309,7 @@ const sha = (x) => crypto.createHash("sha256").update(x).digest("hex");
             undefined,
             { timeout: 2000 },
           );
+          await p.locator(".hero-visual img").evaluate((image) => image.decode());
           assert.equal(await menu.getAttribute("aria-expanded"), "false");
           await p.emulateMedia({ media: "print" });
           await p.pdf({
