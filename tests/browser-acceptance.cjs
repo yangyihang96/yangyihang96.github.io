@@ -120,9 +120,10 @@ async function matrix() {
                   lang === "en" ? "en" : "zh-CN",
                 );
                 assert.equal(
-                  await p.locator('main img[src*="headshot"]').count(),
+                  await p.getByRole("img", { name: "Yihang (Henry) Yang", exact: true }).count(),
                   1,
                 );
+                assert.equal(await p.locator(".hero-visual img").count(), 1);
                 assert.equal(await p.locator("#experience img").count(), 0);
                 for (const model of ["Ultrasound", "Monitor", "V60"])
                   assert.equal(

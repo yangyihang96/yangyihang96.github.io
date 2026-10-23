@@ -8,7 +8,7 @@ from pathlib import Path
 from profile_data import load_profile
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = 'portfolio-v23-20261012'
+VERSION = 'portfolio-v24-20261023'
 
 def digest(data, algorithm):
     return base64.b64encode(hashlib.new(algorithm, data).digest()).decode()
